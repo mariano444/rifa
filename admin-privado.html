@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel Privado | Sorteo</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    :root {
+      --bg: #0b0d12;
+      --panel: #121723;
+      --panel-2: #171d2c;
+      --line: rgba(255,255,255,0.08);
+      --text: #eef2ff;
+      --muted: #97a0b6;
+      --gold: #f5c842;
+      --gold-2: #d89b00;
+      --red: #d93b3b;
+      --green: #2db17f;
+      --shadow: 0 24px 60px rgba(0,0,0,0.38);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(245,200,66,0.09), transparent 24%),
+        radial-gradient(circle at top right, rgba(59,139,255,0.08), transparent 20%),
+        linear-gradient(180deg, #0b0d12, #0f1320 55%, #0b0d12);
+      color: var(--text);
+      min-height: 100vh;
+    }
+    .wrap {
+      max-width: 1220px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    .hidden { display: none !important; }
+    .login-shell {
+      min-height: calc(100vh - 48px);
+      display: grid;
+      place-items: center;
+    }
+    .login-card, .card {
+      background: linear-gradient(180deg, rgba(18,23,35,0.95), rgba(23,29,44,0.95));
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+    }
+    .login-card {
+      width: min(460px, 100%);
+      padding: 28px;
+    }
+    .eyebrow {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.74rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      display: block;
+    }
+    h1, h2, h3, p { margin-top: 0; }
+    .muted { color: var(--muted); }
+    label {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+    input, textarea, select, button {
+      width: 100%;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      padding: 12px 14px;
+      font: inherit;
+    }
+    textarea { min-height: 110px; resize: vertical; }
+    button {
+      cursor: pointer;
+      background: linear-gradient(135deg, var(--gold), var(--gold-2));
+      color: #111;
+      font-weight: 800;
+      border: none;
+    }
+    button.secondary {
+      background: rgba(255,255,255,0.08);
+      color: var(--text);
+      border: 1px solid var(--line);
+    }
+    .status {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+      color: var(--muted);
+      line-height: 1.45;
+    }
+    .status.ok { color: #b8f3d8; border-color: rgba(45,177,127,0.35); background: rgba(45,177,127,0.09); }
+    .status.error { color: #ffd0d0; border-color: rgba(217,59,59,0.35); background: rgba(217,59,59,0.09); }
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .topbar .actions {
+      display: flex;
+      gap: 10px;
+    }
+    .topbar .actions button {
+      width: auto;
+      min-width: 140px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 20px;
+    }
+    .card {
+      padding: 20px;
+    }
+    .stack {
+      display: grid;
+      gap: 16px;
+    }
+    .row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .row-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .notice {
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(245,200,66,0.08);
+      border: 1px solid rgba(245,200,66,0.22);
+      color: #f3df99;
+      line-height: 1.45;
+    }
+    .list {
+      display: grid;
+      gap: 10px;
+    }
+    .list-item {
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+    }
+    .pill {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      background: rgba(245,200,66,0.12);
+      color: var(--gold);
+    }
+    @media (max-width: 960px) {
+      .grid, .row, .row-3 { grid-template-columns: 1fr; }
+      .topbar { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section id="loginView" class="login-shell">
+      <div class="login-card">
+        <span class="eyebrow">Panel Privado</span>
+        <h1>Ingresá para editar la página</h1>
+        <p class="muted">Este panel no muestra nada sensible hasta iniciar sesión correctamente como administrador.</p>
+        <div class="stack">
+          <div>
+            <label for="email">Email</label>
+            <input id="email" type="email" placeholder="admin@panel.local">
+          </div>
+          <div>
+            <label for="password">Contraseña</label>
+            <input id="password" type="password" placeholder="Tu contraseña">
+          </div>
+          <button id="loginBtn">Entrar al panel</button>
+          <div class="status" id="loginStatus">Esperando credenciales.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="appView" class="hidden">
+      <div class="topbar">
+        <div>
+          <span class="eyebrow">Administración protegida</span>
+          <h2 style="margin-bottom:6px;">Editor privado de la landing</h2>
+          <p class="muted" style="margin-bottom:0;">Modificá el contenido principal de la página y cargá credenciales de Mercado Pago y Galiopay.</p>
+        </div>
+        <div class="actions">
+          <button class="secondary" id="refreshBtn">Refrescar</button>
+          <button class="secondary" id="logoutBtn">Cerrar sesión</button>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="stack">
+          <article class="card">
+            <h3>Contenido principal</h3>
+            <div class="notice">Este bloque actualiza la campaña activa usada por la landing pública.</div>
+            <div class="stack" style="margin-top:14px;">
+              <div class="row">
+                <div>
+                  <label for="campaignSlug">Slug</label>
+                  <input id="campaignSlug" value="sorteo-moto-tv-dinero">
+                </div>
+                <div>
+                  <label for="campaignStatus">Estado</label>
+                  <select id="campaignStatus">
+                    <option value="draft">draft</option>
+                    <option value="active">active</option>
+                    <option value="paused">paused</option>
+                    <option value="finished">finished</option>
+                  </select>
+                </div>
+              </div>
+              <div>
+                <label for="campaignTitle">Título</label>
+                <input id="campaignTitle" placeholder="Gran Sorteo">
+              </div>
+              <div>
+                <label for="campaignSubtitle">Subtítulo</label>
+                <input id="campaignSubtitle" placeholder="Una chance puede cambiar tu vida">
+              </div>
+              <div>
+                <label for="campaignDescription">Descripción</label>
+                <textarea id="campaignDescription" placeholder="Texto principal de la campaña"></textarea>
+              </div>
+              <div class="row">
+                <div>
+                  <label for="campaignHeroBadge">Badge superior</label>
+                  <input id="campaignHeroBadge" placeholder="SORTEO OFICIAL">
+                </div>
+                <div>
+                  <label for="campaignWhatsapp">WhatsApp</label>
+                  <input id="campaignWhatsapp" placeholder="+54911...">
+                </div>
+              </div>
+              <div class="row">
+                <div>
+                  <label for="campaignDrawAt">Fecha de sorteo</label>
+                  <input id="campaignDrawAt" type="datetime-local">
+                </div>
+                <div>
+                  <label for="campaignCoverImage">Imagen principal</label>
+                  <input id="campaignCoverImage" placeholder="URL pública opcional">
+                </div>
+              </div>
+              <button id="saveCampaignBtn">Guardar cambios de la página</button>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Paquetes y chances</h3>
+            <div class="stack">
+              <div class="notice">Cargá o actualizá los paquetes que aparecen en la landing. El ahorro se calcula en la web tomando el paquete de 1 chance como base.</div>
+              <div id="packageList" class="list"></div>
+            </div>
+          </article>
+        </div>
+
+        <div class="stack">
+          <article class="card">
+            <h3>Credenciales de pago</h3>
+            <div class="stack">
+              <div>
+                <label for="providerName">Proveedor</label>
+                <select id="providerName">
+                  <option value="mercado_pago">mercado_pago</option>
+                  <option value="galiopay">galiopay</option>
+                </select>
+              </div>
+              <div class="row">
+                <div>
+                  <label for="providerEnv">Entorno</label>
+                  <select id="providerEnv">
+                    <option value="sandbox">sandbox</option>
+                    <option value="production">production</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="providerActive">Activo</label>
+                  <select id="providerActive">
+                    <option value="true">Sí</option>
+                    <option value="false">No</option>
+                  </select>
+                </div>
+              </div>
+              <div>
+                <label id="providerPublicKeyLabel" for="providerPublicKey">Client ID / Public key</label>
+                <input id="providerPublicKey" placeholder="Client ID de GalioPay o public key del proveedor">
+              </div>
+              <div>
+                <label id="providerAccessTokenLabel" for="providerAccessToken">API Key / Access token</label>
+                <input id="providerAccessToken" placeholder="API Key privada o access token">
+              </div>
+              <div>
+                <label id="providerWebhookSecretLabel" for="providerWebhookSecret">Webhook secret</label>
+                <input id="providerWebhookSecret" placeholder="Solo si tu proveedor usa firma o secreto">
+              </div>
+              <div class="row">
+                <div>
+                  <label for="galiopayCommerceId">Texto del checkout</label>
+                  <input id="galiopayCommerceId" placeholder="Sorteo con todas las funciones para hacer el pago">
+                </div>
+                <div>
+                  <label for="galiopayApiUrl">URL de Webhook</label>
+                  <input id="galiopayApiUrl" placeholder="https://tu-dominio.com/webhook">
+                </div>
+              </div>
+              <div>
+                <label for="providerExtraJson">Extra config JSON</label>
+                <textarea id="providerExtraJson" placeholder='{"success_url":"https://tu-dominio.com/gracias"}'></textarea>
+              </div>
+              <div class="notice">
+                En Galiopay, el panel guarda automáticamente `Client ID`, `API Key`, `modo`, `texto del checkout` y `URL de webhook`. Solo tenés que completar los campos y elegir `sandbox` o `production`.
+              </div>
+              <button id="saveProviderBtn">Guardar credenciales</button>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Estado de sesión</h3>
+            <div class="status" id="appStatus">Panel listo.</div>
+            <div class="notice" style="margin-top:14px;">
+              Si seguís viendo el error <code>400 Bad Request</code> en <code>/auth/v1/token</code>, el problema suele ser el email o la contraseña del usuario de Supabase Auth, no este panel.
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const SUPABASE_URL = 'https://asokopamdmuvuupywjzt.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_zBhxdMJHw_uy_m3uRDj-ng_0yXz42EN';
+    const CAMPAIGN_SLUG = 'sorteo-moto-tv-dinero';
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    let session = null;
+    let currentCampaign = null;
+    let packageCache = [];
+
+    const $ = (id) => document.getElementById(id);
+
+    function setLoginStatus(message, type = '') {
+      $('loginStatus').textContent = message;
+      $('loginStatus').className = type ? `status ${type}` : 'status';
+    }
+
+    function setAppStatus(message, type = '') {
+      $('appStatus').textContent = message;
+      $('appStatus').className = type ? `status ${type}` : 'status';
+    }
+
+    function showApp() {
+      $('loginView').classList.add('hidden');
+      $('appView').classList.remove('hidden');
+    }
+
+    function showLogin() {
+      $('appView').classList.add('hidden');
+      $('loginView').classList.remove('hidden');
+    }
+
+    function syncProviderUI() {
+      const isGalio = $('providerName').value === 'galiopay';
+      $('providerPublicKeyLabel').textContent = isGalio ? 'Client ID' : 'Public key';
+      $('providerAccessTokenLabel').textContent = isGalio ? 'API Key' : 'Access token';
+      $('providerWebhookSecretLabel').textContent = isGalio ? 'Firma / secret opcional' : 'Webhook secret';
+      $('providerPublicKey').placeholder = isGalio ? 'Tu Client ID de GalioPay' : 'APP_USR-... o clave pública';
+      $('providerAccessToken').placeholder = isGalio ? 'Tu API Key privada de GalioPay' : 'token privado';
+      $('providerWebhookSecret').placeholder = isGalio ? 'Opcional si GalioPay firma webhooks' : 'secret del webhook';
+      $('galiopayCommerceId').placeholder = isGalio ? 'Sorteo con todas las funciones para hacer el pago' : 'Texto visible en el checkout';
+      $('galiopayApiUrl').placeholder = isGalio ? 'https://tu-dominio.com/webhook' : 'https://api.proveedor.com/...';
+    }
+
+    async function ensureAdmin() {
+      const { data, error } = await supabaseClient.rpc('current_user_is_admin');
+      if (error) throw error;
+      if (!data) throw new Error('Tu usuario inició sesión, pero no tiene permisos de administrador.');
+    }
+
+    function hydrateCampaign(campaign) {
+      currentCampaign = campaign;
+      $('campaignSlug').value = campaign.slug || CAMPAIGN_SLUG;
+      $('campaignStatus').value = campaign.status || 'draft';
+      $('campaignTitle').value = campaign.title || '';
+      $('campaignSubtitle').value = campaign.subtitle || '';
+      $('campaignDescription').value = campaign.description || '';
+      $('campaignHeroBadge').value = campaign.hero_badge || '';
+      $('campaignWhatsapp').value = campaign.whatsapp_number || '';
+      $('campaignDrawAt').value = campaign.draw_at ? campaign.draw_at.slice(0, 16) : '';
+      $('campaignCoverImage').value = campaign.cover_image_url || '';
+    }
+
+    async function loadCampaign() {
+      const { data, error } = await supabaseClient
+        .from('campaigns')
+        .select('*')
+        .eq('slug', CAMPAIGN_SLUG)
+        .limit(1)
+        .maybeSingle();
+      if (error) throw error;
+      if (!data) throw new Error('No se encontró la campaña de la landing.');
+      hydrateCampaign(data);
+    }
+
+    function renderPackages() {
+      const container = $('packageList');
+      container.innerHTML = '';
+      packageCache.forEach((pkg) => {
+        const item = document.createElement('div');
+        item.className = 'list-item';
+        item.innerHTML = `
+          <div style="display:flex;justify-content:space-between;gap:12px;align-items:center;">
+            <div>
+              <strong>${pkg.name}</strong>
+              <div class="muted">${pkg.description || ''}</div>
+            </div>
+            <span class="pill">${pkg.status}</span>
+          </div>
+          <div class="row" style="margin-top:12px;">
+            <label>Chances
+              <input data-field="entries_qty" data-id="${pkg.id}" type="number" min="1" value="${pkg.entries_qty}">
+            </label>
+            <label>Precio
+              <input data-field="price_ars" data-id="${pkg.id}" type="number" min="0" step="0.01" value="${pkg.price_ars}">
+            </label>
+          </div>
+          <div class="row" style="margin-top:12px;">
+            <label>Bonus
+              <input data-field="bonus_entries" data-id="${pkg.id}" type="number" min="0" value="${pkg.bonus_entries}">
+            </label>
+            <label>Destacado
+              <select data-field="featured" data-id="${pkg.id}">
+                <option value="false" ${pkg.featured ? '' : 'selected'}>No</option>
+                <option value="true" ${pkg.featured ? 'selected' : ''}>Sí</option>
+              </select>
+            </label>
+          </div>
+        `;
+        container.appendChild(item);
+      });
+
+      const button = document.createElement('button');
+      button.textContent = 'Guardar paquetes';
+      button.onclick = savePackages;
+      container.appendChild(button);
+    }
+
+    async function loadPackages() {
+      if (!currentCampaign?.id) return;
+      const { data, error } = await supabaseClient
+        .from('packages')
+        .select('*')
+        .eq('campaign_id', currentCampaign.id)
+        .order('sort_order')
+        .order('entries_qty');
+      if (error) throw error;
+      packageCache = data || [];
+      renderPackages();
+    }
+
+    async function loadProviderConfig() {
+      let data = null;
+      const { data: rpcData, error } = await supabaseClient.rpc('admin_get_provider_config', {
+        p_provider: $('providerName').value,
+        p_environment: $('providerEnv').value
+      });
+
+      if (error) {
+        const isMissingRpc = error.code === 'PGRST202' || error.code === '404' || /404|not found/i.test(error.message || '');
+        if (!isMissingRpc) throw error;
+
+        const fallback = await supabaseClient
+          .from('payment_provider_configs')
+          .select('*')
+          .eq('provider', $('providerName').value)
+          .eq('environment', $('providerEnv').value)
+          .maybeSingle();
+        if (fallback.error) throw fallback.error;
+        data = fallback.data ? {
+          ...fallback.data,
+          extra_config: fallback.data.extra_config || {}
+        } : null;
+      } else {
+        data = rpcData;
+      }
+
+      $('providerActive').value = String(data?.is_active ?? false);
+      $('providerPublicKey').value = data?.public_key || '';
+      $('providerAccessToken').value = data?.access_token || '';
+      $('providerWebhookSecret').value = data?.webhook_secret || '';
+      $('providerExtraJson').value = data ? JSON.stringify(data.extra_config || {}, null, 2) : '';
+      $('galiopayCommerceId').value = data?.extra_config?.checkout_text || data?.extra_config?.commerce_id || '';
+      $('galiopayApiUrl').value = data?.extra_config?.webhook_url || data?.extra_config?.api_url || '';
+      syncProviderUI();
+    }
+
+    async function saveCampaign() {
+      const payload = {
+        slug: $('campaignSlug').value.trim(),
+        status: $('campaignStatus').value,
+        title: $('campaignTitle').value.trim(),
+        subtitle: $('campaignSubtitle').value.trim() || null,
+        description: $('campaignDescription').value.trim() || null,
+        hero_badge: $('campaignHeroBadge').value.trim() || null,
+        whatsapp_number: $('campaignWhatsapp').value.trim() || null,
+        draw_at: $('campaignDrawAt').value || null,
+        cover_image_url: $('campaignCoverImage').value.trim() || null
+      };
+
+      const { error } = await supabaseClient
+        .from('campaigns')
+        .update(payload)
+        .eq('id', currentCampaign.id);
+      if (error) throw error;
+      setAppStatus('Cambios de la página guardados.', 'ok');
+      await loadCampaign();
+    }
+
+    async function savePackages() {
+      const rows = Array.from(document.querySelectorAll('#packageList [data-id]'));
+      const grouped = new Map();
+      rows.forEach((input) => {
+        const id = input.dataset.id;
+        const field = input.dataset.field;
+        const value = input.tagName === 'SELECT' ? input.value === 'true' : input.type === 'number' ? Number(input.value) : input.value;
+        grouped.set(id, { ...(grouped.get(id) || {}), id, [field]: value });
+      });
+
+      for (const payload of grouped.values()) {
+        const { id, ...changes } = payload;
+        const { error } = await supabaseClient.from('packages').update(changes).eq('id', id);
+        if (error) throw error;
+      }
+
+      setAppStatus('Paquetes guardados.', 'ok');
+      await loadPackages();
+    }
+
+    async function saveProviderConfig() {
+      let extraConfig = {};
+      if ($('providerExtraJson').value.trim()) {
+        extraConfig = JSON.parse($('providerExtraJson').value.trim());
+      }
+      if ($('providerName').value === 'galiopay') {
+        extraConfig = {
+          ...extraConfig,
+          client_id: $('providerPublicKey').value.trim() || null,
+          api_key: $('providerAccessToken').value.trim() || null,
+          checkout_text: $('galiopayCommerceId').value.trim() || null,
+          webhook_url: $('galiopayApiUrl').value.trim() || null,
+          mode: $('providerEnv').value
+        };
+      }
+
+      const payload = {
+        p_provider: $('providerName').value,
+        p_environment: $('providerEnv').value,
+        p_is_active: $('providerActive').value === 'true',
+        p_public_key: $('providerPublicKey').value.trim() || null,
+        p_access_token: $('providerAccessToken').value.trim() || null,
+        p_webhook_secret: $('providerWebhookSecret').value.trim() || null,
+        p_extra_config: extraConfig
+      };
+
+      const { error } = await supabaseClient.rpc('admin_upsert_provider_config', payload);
+      if (error) {
+        const isMissingRpc = error.code === 'PGRST202' || error.code === '404' || /404|not found/i.test(error.message || '');
+        if (!isMissingRpc) throw error;
+
+        const fallback = await supabaseClient
+          .from('payment_provider_configs')
+          .upsert({
+            provider: payload.p_provider,
+            environment: payload.p_environment,
+            is_active: payload.p_is_active,
+            public_key: payload.p_public_key,
+            access_token: payload.p_access_token,
+            webhook_secret: payload.p_webhook_secret,
+            extra_config: payload.p_extra_config,
+            updated_by: session?.user?.id || null
+          }, {
+            onConflict: 'provider,environment'
+          });
+        if (fallback.error) throw fallback.error;
+      }
+      setAppStatus('Credenciales guardadas.', 'ok');
+      await loadProviderConfig();
+    }
+
+    async function login() {
+      const email = $('email').value.trim();
+      const password = $('password').value;
+      if (!email || !password) {
+        setLoginStatus('Ingresá email y contraseña.', 'error');
+        return;
+      }
+
+      const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
+      if (error) {
+        setLoginStatus(`No se pudo iniciar sesión: ${error.message}`, 'error');
+        return;
+      }
+
+      session = data.session;
+      await ensureAdmin();
+      showApp();
+      setAppStatus(`Sesión iniciada como ${session.user.email}`, 'ok');
+      await refreshAll();
+    }
+
+    async function logout() {
+      await supabaseClient.auth.signOut();
+      session = null;
+      showLogin();
+      setLoginStatus('Sesión cerrada.');
+    }
+
+    async function refreshAll() {
+      await loadCampaign();
+      await loadPackages();
+      await loadProviderConfig();
+    }
+
+    async function boot() {
+      $('loginBtn').addEventListener('click', async () => {
+        try {
+          await login();
+        } catch (error) {
+          setLoginStatus(error.message, 'error');
+        }
+      });
+
+      $('logoutBtn').addEventListener('click', async () => {
+        try {
+          await logout();
+        } catch (error) {
+          setAppStatus(error.message, 'error');
+        }
+      });
+
+      $('refreshBtn').addEventListener('click', async () => {
+        try {
+          await refreshAll();
+          setAppStatus('Panel actualizado.', 'ok');
+        } catch (error) {
+          setAppStatus(error.message, 'error');
+        }
+      });
+
+      $('saveCampaignBtn').addEventListener('click', async () => {
+        try {
+          await saveCampaign();
+        } catch (error) {
+          setAppStatus(error.message, 'error');
+        }
+      });
+
+      $('saveProviderBtn').addEventListener('click', async () => {
+        try {
+          await saveProviderConfig();
+        } catch (error) {
+          setAppStatus(error.message, 'error');
+        }
+      });
+
+      $('providerName').addEventListener('change', async () => {
+        try {
+          syncProviderUI();
+          await loadProviderConfig();
+        } catch (error) {
+          setAppStatus(error.message, 'error');
+        }
+      });
+
+      $('providerEnv').addEventListener('change', async () => {
+        try {
+          await loadProviderConfig();
+        } catch (error) {
+          setAppStatus(error.message, 'error');
+        }
+      });
+
+      const { data } = await supabaseClient.auth.getSession();
+      syncProviderUI();
+      if (data.session) {
+        try {
+          session = data.session;
+          await ensureAdmin();
+          showApp();
+          await refreshAll();
+          setAppStatus(`Sesión restaurada como ${session.user.email}`, 'ok');
+        } catch (error) {
+          await logout();
+          setLoginStatus(error.message, 'error');
+        }
+      }
+    }
+
+    boot();
+  </script>
+</body>
+</html>

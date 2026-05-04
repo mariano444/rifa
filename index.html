@@ -1,0 +1,4631 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gran Sorteo - Chevrolet Corsa Impecable</title>
+<meta name="description" content="Participa desde cualquier punto de Argentina por un Chevrolet Corsa impecable. ¡Últimas chances disponibles! El sorteo se hará el 1 de junio o antes al agotar stock.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Curso gratis + Gran Sorteo - Chevrolet Corsa Impecable">
+<meta property="og:description" content="Te invito a participar de este sorteo por un Chevrolet Corsa impecable. ¡Últimas chances disponibles! El sorteo se hará el 1 de junio o antes al agotar stock.">
+<meta property="og:image" content="/assets/share/share-sorteo.png">
+<meta property="og:image:alt" content="Imagen promocional del sorteo del Chevrolet Corsa">
+<meta property="og:image:width" content="1080">
+<meta property="og:image:height" content="1350">
+<meta property="og:image:type" content="image/png">
+<meta property="og:locale" content="es_AR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Gran Sorteo - Chevrolet Corsa Impecable">
+<meta name="twitter:description" content="Te invito a participar de este sorteo por un Chevrolet Corsa impecable. ¡Últimas chances disponibles! El sorteo se hará el 1 de junio o antes al agotar stock.">
+<meta name="twitter:image" content="/assets/share/share-sorteo.png">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #F5C842;
+    --gold2: #E6A800;
+    --red: #E8192C;
+    --red2: #B5000F;
+    --dark: #0A0A0F;
+    --dark2: #13131C;
+    --dark3: #1C1C2A;
+    --dark4: #252535;
+    --text: #F0EDE8;
+    --text2: #B0ABA4;
+    --green: #00D46A;
+    --blue: #3B8BFF;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  .hidden { display: none !important; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--dark);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  /* ---- NOISE OVERLAY ---- */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 0; opacity: 0.5;
+  }
+
+  /* ---- HERO ---- */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 2rem 1rem 4rem;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 120% 80% at 50% 20%, #3a1500 0%, var(--dark) 65%);
+    z-index: 0;
+  }
+  .hero-sparks {
+    position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  }
+  .spark {
+    position: absolute;
+    border-radius: 50%;
+    animation: sparkFloat linear infinite;
+    opacity: 0;
+  }
+  @keyframes sparkFloat {
+    0% { transform: translateY(100vh) scale(0); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 0.6; }
+    100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+  }
+  .hero-badge {
+    position: relative; z-index: 2;
+    background: linear-gradient(135deg, var(--red), var(--red2));
+    color: #fff;
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em;
+    padding: 0.4rem 1.2rem;
+    border-radius: 2rem;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(232,25,44,0.5); }
+    50% { box-shadow: 0 0 0 12px rgba(232,25,44,0); }
+  }
+  .hero-title {
+    position: relative; z-index: 2;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4rem, 12vw, 9rem);
+    line-height: 0.9;
+    color: var(--gold);
+    text-shadow: 0 0 60px rgba(245,200,66,0.3), 0 4px 0 var(--gold2);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.02em;
+  }
+  .hero-subtitle {
+    position: relative; z-index: 2;
+    font-size: clamp(1rem, 3vw, 1.4rem);
+    font-weight: 600;
+    color: var(--text2);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+  }
+  .hero-lead {
+    position: relative; z-index: 2;
+    max-width: 760px;
+    margin: 0 auto 1.5rem;
+    color: var(--text);
+    font-size: 1.05rem;
+    line-height: 1.75;
+    text-align: center;
+  }
+  .hero-lead strong {
+    color: var(--gold);
+  }
+  .hero-assurance {
+    position: relative; z-index: 2;
+    width: min(980px, 100%);
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.9rem;
+    margin: 0 auto 2rem;
+  }
+  .hero-assurance-card {
+    background: linear-gradient(145deg, rgba(24,24,34,0.94), rgba(16,16,24,0.96));
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 1.1rem;
+    padding: 1rem;
+    text-align: left;
+    box-shadow: 0 18px 34px rgba(0,0,0,0.18);
+  }
+  .hero-assurance-label {
+    display: block;
+    color: var(--gold);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 0.35rem;
+  }
+  .hero-assurance-copy {
+    color: var(--text2);
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  .prizes-row {
+    position: relative; z-index: 2;
+    display: grid;
+    grid-template-columns: minmax(320px, 1100px);
+    justify-content: center;
+    gap: 1rem;
+    align-items: stretch;
+    margin-bottom: 3rem;
+  }
+  .prize-card {
+    background: linear-gradient(145deg, rgba(28,28,42,0.96), rgba(19,19,28,0.96));
+    border: 1px solid rgba(245,200,66,0.2);
+    border-radius: 1.4rem;
+    padding: 1.35rem 1.5rem;
+    min-width: 160px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.35s, border-color 0.35s, box-shadow 0.35s;
+    cursor: default;
+    backdrop-filter: blur(8px);
+  }
+  .prize-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent 54%, rgba(245,200,66,0.08));
+    pointer-events: none;
+  }
+  .prize-card::after {
+    content: '';
+    position: absolute;
+    inset: auto -10% -45% -10%;
+    height: 58%;
+    background: radial-gradient(circle at center, rgba(245,200,66,0.2), rgba(245,200,66,0));
+    opacity: 0.7;
+    pointer-events: none;
+  }
+  .prize-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--gold);
+    box-shadow: 0 18px 46px rgba(0,0,0,0.28);
+  }
+  .prize-icon { font-size: 2.5rem; margin-bottom: 0.5rem; display: block; }
+  .prize-visual {
+    width: 100%;
+    height: 162px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 0.75rem;
+    isolation: isolate;
+  }
+  .prize-visual::before {
+    content: '';
+    position: absolute;
+    inset: 14% 12% 8%;
+    background: radial-gradient(circle at center, rgba(255,232,180,0.42) 0%, rgba(255,255,255,0.16) 38%, rgba(255,255,255,0) 74%);
+    filter: blur(18px);
+    z-index: 0;
+  }
+  .prize-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 18px 26px rgba(0,0,0,0.34));
+    position: relative;
+    z-index: 1;
+    transform-origin: center center;
+  }
+  .prize-layer {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: prizeFloat 5.8s ease-in-out infinite;
+  }
+  @keyframes prizeFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  .prize-moto-stack {
+    position: relative;
+    width: 100%;
+    height: 180px;
+  }
+  .prize-card.primary {
+    width: min(100%, 1100px);
+    text-align: left;
+    padding: 1.6rem 1.6rem 1.25rem;
+  }
+  .prize-card.primary .prize-name {
+    font-size: clamp(2.3rem, 4vw, 3.4rem);
+    line-height: 0.92;
+  }
+  .prize-card.primary .prize-detail {
+    max-width: 34ch;
+  }
+  .prize-card.primary .prize-visual {
+    height: auto;
+    margin-bottom: 1rem;
+  }
+  .prize-card.primary .prize-visual::before {
+    inset: 2% 4% 0;
+    background: radial-gradient(circle at center, rgba(255,232,180,0.46) 0%, rgba(255,255,255,0.12) 36%, rgba(255,255,255,0) 74%);
+  }
+  .prize-card.primary .prize-image {
+    width: 100%;
+    max-width: none;
+    max-height: none;
+  }
+  .prize-card.tv .prize-image {
+    width: 100%;
+    max-width: 220px;
+  }
+  .prize-gallery {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.9rem;
+  }
+  .prize-shot {
+    position: relative;
+    min-height: 180px;
+    border-radius: 1.1rem;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+    padding: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .prize-shot img {
+    width: 100%;
+    height: 170px;
+    object-fit: contain;
+    filter: drop-shadow(0 16px 24px rgba(0,0,0,0.32));
+  }
+  .prize-summary {
+    display: grid;
+    gap: 0.45rem;
+  }
+  .prize-eyebrow {
+    color: var(--gold);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+  .prize-specs {
+    color: var(--text2);
+    font-size: 0.98rem;
+    line-height: 1.5;
+  }
+  .auto-showcase {
+    position: relative;
+    padding: 2rem 1rem 0;
+    background:
+      radial-gradient(circle at top center, rgba(245,200,66,0.05), transparent 42%),
+      linear-gradient(180deg, rgba(10,10,15,0), rgba(10,10,15,0.55) 28%);
+  }
+  .auto-showcase-wrap {
+    width: min(1180px, 100%);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 0.92fr 1.08fr;
+    gap: 1.15rem;
+    align-items: stretch;
+  }
+  .auto-showcase-copy,
+  .auto-showcase-grid {
+    background: linear-gradient(145deg, rgba(24,24,34,0.96), rgba(16,16,24,0.98));
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 1.5rem;
+    box-shadow: 0 18px 38px rgba(0,0,0,0.22);
+  }
+  .auto-showcase-copy {
+    padding: 1.7rem;
+    display: grid;
+    gap: 0.95rem;
+  }
+  .auto-showcase-kicker {
+    color: var(--gold);
+    font-size: 0.74rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+  }
+  .auto-showcase-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.3rem, 4.8vw, 4rem);
+    line-height: 0.9;
+    color: var(--text);
+  }
+  .auto-showcase-title span {
+    color: var(--gold);
+    text-shadow: 0 0 26px rgba(245,200,66,0.16);
+  }
+  .auto-showcase-text {
+    color: var(--text2);
+    font-size: 0.98rem;
+    line-height: 1.7;
+    max-width: 44ch;
+  }
+  .auto-showcase-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+  }
+  .course-syllabus {
+    margin-top: 1rem;
+    display: grid;
+    gap: 0.8rem;
+  }
+  .course-syllabus-head {
+    display: grid;
+    gap: 0.3rem;
+  }
+  .course-syllabus-kicker {
+    color: #9dcbff;
+    font-size: 0.74rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+  }
+  .course-syllabus-title {
+    color: var(--text);
+    font-size: 1.2rem;
+    font-weight: 800;
+  }
+  .course-syllabus-copy {
+    color: var(--text2);
+    line-height: 1.65;
+    font-size: 0.94rem;
+  }
+  .course-syllabus-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.8rem;
+  }
+  .course-hook-section {
+    position: relative;
+    padding: 1.6rem 1rem 0;
+    background:
+      radial-gradient(circle at 18% 18%, rgba(59,139,255,0.14), transparent 28%),
+      radial-gradient(circle at 82% 20%, rgba(245,200,66,0.18), transparent 32%),
+      linear-gradient(180deg, rgba(10,10,15,0), rgba(10,10,15,0.7) 30%);
+  }
+  .course-hook-wrap {
+    width: min(1180px, 100%);
+    margin: 0 auto;
+    padding: clamp(1.4rem, 2.8vw, 2.2rem);
+    border-radius: 1.7rem;
+    border: 1px solid rgba(255,255,255,0.08);
+    background:
+      linear-gradient(145deg, rgba(11,16,28,0.98), rgba(23,19,12,0.96)),
+      linear-gradient(120deg, rgba(59,139,255,0.12), rgba(245,200,66,0.12));
+    box-shadow: 0 26px 50px rgba(0,0,0,0.28);
+    overflow: hidden;
+    position: relative;
+  }
+  .course-hook-wrap::before {
+    content: '';
+    position: absolute;
+    inset: -10% auto auto 55%;
+    width: 280px;
+    height: 280px;
+    background: radial-gradient(circle, rgba(245,200,66,0.18), transparent 68%);
+    pointer-events: none;
+  }
+  .course-hook-grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: 0.95fr 1.05fr;
+    gap: 1.25rem;
+    align-items: start;
+  }
+  .course-hook-copy {
+    display: grid;
+    gap: 1rem;
+  }
+  .course-hook-copy > .course-hook-title,
+  .course-hook-copy > p,
+  .course-hook-copy > .course-hook-proof,
+  .course-hook-copy > .course-hook-cta,
+  .course-hook-copy > .course-hook-kicker {
+    display: none;
+  }
+  .course-hook-lead {
+    display: grid;
+    gap: 1rem;
+  }
+  .course-hook-lead-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4.4rem);
+    line-height: 0.92;
+    color: var(--text);
+  }
+  .course-hook-lead-title span {
+    color: #9dcbff;
+    text-shadow: 0 0 28px rgba(59,139,255,0.16);
+  }
+  .course-hook-lead-copy {
+    max-width: 52ch;
+    color: var(--text2);
+    line-height: 1.7;
+    font-size: 1rem;
+  }
+  .course-hook-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: fit-content;
+    padding: 0.45rem 0.8rem;
+    border-radius: 999px;
+    border: 1px solid rgba(245,200,66,0.24);
+    background: rgba(245,200,66,0.08);
+    color: #ffe19a;
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .course-hook-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4.4rem);
+    line-height: 0.92;
+    color: var(--text);
+  }
+  .course-hook-title span {
+    color: #9dcbff;
+    text-shadow: 0 0 28px rgba(59,139,255,0.16);
+  }
+  .course-hook-copy p {
+    max-width: 52ch;
+    color: var(--text2);
+    line-height: 1.7;
+    font-size: 1rem;
+  }
+  .course-hook-highlight {
+    display: grid;
+    gap: 0.8rem;
+    padding: 1.05rem 1.1rem;
+    border-radius: 1.15rem;
+    border: 1px solid rgba(245,200,66,0.16);
+    background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(245,200,66,0.04));
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+  }
+  .course-hook-highlight strong {
+    color: var(--text);
+    font-size: 1.08rem;
+    font-weight: 800;
+  }
+  .course-hook-highlight span {
+    color: var(--text2);
+    font-size: 0.94rem;
+    line-height: 1.6;
+  }
+  .course-hook-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+  }
+  .course-hook-pill {
+    padding: 0.55rem 0.8rem;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.045);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: var(--text);
+    font-size: 0.84rem;
+    font-weight: 700;
+  }
+  .course-hook-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    align-items: center;
+  }
+  .course-hook-note {
+    color: #d7e7ff;
+    font-size: 0.92rem;
+    line-height: 1.55;
+  }
+  .course-hook-syllabus {
+    display: grid;
+    gap: 0.95rem;
+  }
+  .course-hook-header {
+    display: grid;
+    gap: 0.35rem;
+  }
+  .course-hook-header .course-syllabus-kicker {
+    color: #9dcbff;
+  }
+  .course-hook-header .course-syllabus-title {
+    font-size: 1.45rem;
+  }
+  .course-hook-header .course-syllabus-copy {
+    font-size: 0.97rem;
+    max-width: 58ch;
+  }
+  .course-topic {
+    padding: 0.95rem 1rem;
+    border-radius: 1rem;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .course-topic strong {
+    display: block;
+    color: var(--text);
+    margin-bottom: 0.25rem;
+  }
+  .course-topic span {
+    color: var(--text2);
+    font-size: 0.92rem;
+    line-height: 1.55;
+  }
+  .auto-pill {
+    padding: 0.55rem 0.85rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.03);
+    color: var(--text2);
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+  .auto-showcase-grid {
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.95rem;
+  }
+  .auto-photo-card {
+    position: relative;
+    min-height: 190px;
+    border-radius: 1.15rem;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.07);
+    background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.015));
+    transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+  }
+  .auto-photo-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(245,200,66,0.22);
+    box-shadow: 0 14px 28px rgba(0,0,0,0.22);
+  }
+  .auto-photo-card.featured {
+    grid-column: span 2;
+    min-height: 240px;
+  }
+  .auto-photo-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 1rem;
+    filter: drop-shadow(0 16px 28px rgba(0,0,0,0.32));
+  }
+  .auto-photo-label {
+    position: absolute;
+    left: 0.8rem;
+    right: 0.8rem;
+    bottom: 0.8rem;
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.62rem 0.78rem;
+    border-radius: 999px;
+    background: rgba(10,10,15,0.74);
+    border: 1px solid rgba(255,255,255,0.06);
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+  }
+  .auto-photo-label strong {
+    color: var(--gold);
+    font-weight: 800;
+  }
+  .live-feed {
+    position: fixed;
+    right: 18px;
+    bottom: 20px;
+    z-index: 2200;
+    min-width: 280px;
+    max-width: 360px;
+    transform: translateY(120%);
+    opacity: 0;
+    transition: transform 0.45s ease, opacity 0.45s ease;
+    pointer-events: none;
+  }
+  .live-feed.show {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  .live-feed-card {
+    background: linear-gradient(145deg, rgba(17,17,24,0.96), rgba(28,28,42,0.98));
+    border: 1px solid rgba(245,200,66,0.28);
+    border-radius: 1rem;
+    padding: 0.9rem 1rem;
+    box-shadow: 0 18px 44px rgba(0,0,0,0.35);
+    display: grid;
+    gap: 0.22rem;
+  }
+  .live-feed-kicker {
+    color: var(--gold);
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 800;
+  }
+  .live-feed-text {
+    font-size: 0.92rem;
+    line-height: 1.35;
+  }
+  .past-participants-scroller {
+    margin-top: 1.5rem;
+    background: rgba(255,255,255,0.02);
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding: 1.2rem 1rem;
+    overflow: hidden;
+    position: relative;
+  }
+  .past-participants-title {
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  .past-participants-track {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    width: max-content;
+    will-change: transform;
+  }
+  .past-participant-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+  .past-participant-avatar {
+    width: 28px; height: 28px; border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .past-participant-info {
+    font-size: 0.8rem;
+  }
+  .past-participant-name { font-weight: 600; color: var(--text); }
+  .past-participant-date { color: var(--text2); font-size: 0.7rem; margin-left: 0.3rem; }
+
+  /* Past Comments Scroller */
+  .past-comments-scroller {
+    margin-top: 1rem;
+    background: rgba(10,10,15,0.4);
+    border-radius: 1rem;
+    padding: 1.5rem 1rem;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(255,255,255,0.03);
+  }
+  .past-comment-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    flex-shrink: 0;
+    padding: 0.8rem 1.2rem;
+    background: rgba(255,255,255,0.03);
+    border-radius: 0.8rem;
+    border: 1px solid rgba(255,255,255,0.05);
+    max-width: 320px;
+  }
+  .past-comment-location {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .past-comment-text {
+    font-size: 0.85rem;
+    line-height: 1.4;
+    color: var(--text2);
+    font-style: italic;
+  }
+  .past-comment-tag {
+    font-size: 0.6rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.2);
+    text-align: right;
+    margin-top: 0.2rem;
+  }
+  .live-feed-sub {
+    color: var(--text2);
+    font-size: 0.76rem;
+  }
+  .prize-card.cash {
+    background: linear-gradient(145deg, #2c0b14, #1a141f);
+  }
+  .prize-card.cash::after {
+    background: radial-gradient(circle at center, rgba(232,25,44,0.22), rgba(232,25,44,0));
+  }
+  .prize-amount {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.1rem;
+    color: #fff;
+    letter-spacing: 0.03em;
+    text-shadow: 0 0 26px rgba(232,25,44,0.36);
+    display: block;
+    margin-bottom: 0.15rem;
+  }
+  .prize-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem; color: var(--gold);
+    display: block; margin-bottom: 0.25rem;
+  }
+  .prize-detail { font-size: 0.8rem; color: var(--text2); font-weight: 500; }
+
+  .hero-cta {
+    position: relative; z-index: 2;
+  }
+  .btn-primary {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--gold), var(--gold2));
+    color: var(--dark);
+    font-family: 'Barlow', sans-serif;
+    font-size: 1.1rem; font-weight: 900;
+    padding: 1rem 3rem;
+    border-radius: 3rem;
+    border: none; cursor: pointer;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 30px rgba(245,200,66,0.35);
+  }
+  .btn-primary:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 8px 40px rgba(245,200,66,0.5);
+  }
+  .btn-primary:active { transform: scale(0.98); }
+  .btn-secondary {
+    display: inline-block;
+    background: transparent;
+    color: var(--text2);
+    font-size: 0.9rem; font-weight: 600;
+    padding: 0.8rem 2rem;
+    border-radius: 3rem;
+    border: 1px solid rgba(255,255,255,0.15);
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--text2); color: var(--text); }
+
+  .countdown-bar {
+    position: relative; z-index: 2;
+    display: flex; gap: 1.5rem; justify-content: center;
+    margin-top: 2.5rem;
+  }
+  .countdown-bar.hidden-until-thirty { display: none; }
+  .countdown-unit { text-align: center; }
+  .countdown-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem; color: var(--gold); line-height: 1;
+    display: block;
+  }
+  .countdown-label {
+    font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--text2); font-weight: 600;
+  }
+  .countdown-sep { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; color: var(--gold2); align-self: flex-start; padding-top: 2px; }
+
+  /* ---- URGENCY STRIP ---- */
+  .urgency-strip {
+    background: linear-gradient(90deg, var(--red2), var(--red), var(--red2));
+    color: #fff;
+    padding: 0.7rem 1rem;
+    font-size: 0.85rem; font-weight: 700;
+    letter-spacing: 0.08em;
+    text-align: center;
+    text-transform: uppercase;
+    position: relative; overflow: hidden;
+  }
+  .urgency-strip span {
+    animation: scroll-x 18s linear infinite;
+    display: inline-block; white-space: nowrap;
+  }
+  @keyframes scroll-x {
+    from { transform: translateX(100vw); }
+    to { transform: translateX(-100%); }
+  }
+
+  /* ---- SECTION ---- */
+  section { position: relative; z-index: 1; }
+  .section-inner { max-width: 1100px; margin: 0 auto; padding: 5rem 1.5rem; }
+  .section-tag {
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 0.75rem; display: block;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    line-height: 1; margin-bottom: 1rem;
+  }
+  .section-sub { font-size: 1rem; color: var(--text2); max-width: 560px; line-height: 1.6; }
+  .bonus-section { display: none !important; }
+  /* ---- PACKAGES ---- */
+  .packages-section { background: var(--dark2); }
+  .packages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem; margin-top: 3rem;
+  }
+  .pkg {
+    background: var(--dark3);
+    border: 1.5px solid rgba(255,255,255,0.07);
+    border-radius: 1.2rem;
+    padding: 1.5rem 1.25rem;
+    position: relative; overflow: hidden;
+    transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+    cursor: pointer;
+  }
+  .pkg:hover { transform: translateY(-5px); border-color: var(--gold); box-shadow: 0 8px 32px rgba(245,200,66,0.15); }
+  .pkg.featured {
+    border-color: var(--gold);
+    background: linear-gradient(145deg, #1e1a06, var(--dark3));
+    box-shadow: 0 4px 24px rgba(245,200,66,0.2);
+  }
+  .pkg-badge {
+    position: absolute; top: 0.8rem; right: 0.8rem;
+    background: var(--gold);
+    color: var(--dark);
+    font-size: 0.6rem; font-weight: 900; letter-spacing: 0.1em;
+    padding: 0.2rem 0.5rem; border-radius: 0.3rem;
+    text-transform: uppercase;
+  }
+  .pkg-chances {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem; color: var(--gold); line-height: 1;
+    display: block;
+  }
+  .pkg-unit { font-size: 0.75rem; color: var(--text2); font-weight: 600; margin-bottom: 0.75rem; display: block; letter-spacing: 0.1em; }
+  .pkg-price {
+    font-size: 1.6rem; font-weight: 900; color: var(--text);
+    display: block; margin-bottom: 0.25rem;
+  }
+  .pkg-price-unit { font-size: 0.7rem; color: var(--text2); margin-bottom: 1.25rem; display: block; }
+  .pkg-saving {
+    font-size: 0.75rem; font-weight: 700; color: var(--green);
+    display: block; margin-bottom: 1rem;
+  }
+  .pkg-btn {
+    width: 100%;
+    background: transparent;
+    border: 1.5px solid rgba(245,200,66,0.4);
+    color: var(--gold);
+    padding: 0.65rem;
+    border-radius: 0.6rem;
+    font-size: 0.85rem; font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Barlow', sans-serif;
+  }
+  .pkg-btn:hover, .pkg.featured .pkg-btn {
+    background: var(--gold);
+    color: var(--dark);
+    border-color: var(--gold);
+  }
+  .pkg-progress { height: 4px; background: rgba(255,255,255,0.08); border-radius: 2px; margin-bottom: 0.75rem; overflow: hidden; }
+  .pkg-progress-fill { height: 100%; background: linear-gradient(90deg, var(--gold2), var(--gold)); border-radius: 2px; transition: width 1s ease; }
+
+  /* ---- TRUST STRIP ---- */
+  .trust-strip {
+    display: flex; flex-wrap: wrap; gap: 2rem;
+    justify-content: center; align-items: center;
+    padding: 2.5rem 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .trust-item {
+    display: flex; align-items: center; gap: 0.7rem;
+  }
+  .trust-icon {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: rgba(245,200,66,0.12);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; flex-shrink: 0;
+  }
+  .trust-label { font-size: 0.8rem; font-weight: 600; color: var(--text2); }
+  .trust-note {
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+    text-align: center;
+    color: var(--text2);
+    font-size: 0.92rem;
+    line-height: 1.65;
+  }
+
+  /* ---- PARTICIPANTS ---- */
+  .participants-section { background: var(--dark); }
+  .draw-showcase {
+    margin: 2.2rem 0 1.5rem;
+    background:
+      radial-gradient(circle at top, rgba(245,200,66,0.15), transparent 45%),
+      linear-gradient(145deg, rgba(28,28,42,0.96), rgba(10,10,15,0.96));
+    border: 1px solid rgba(245,200,66,0.16);
+    border-radius: 1.35rem;
+    padding: 1.3rem;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 22px 54px rgba(0,0,0,0.28);
+  }
+  .draw-showcase.collapsed {
+    display: none;
+  }
+  .demo-launcher {
+    margin: 1.3rem 0 1.1rem;
+    padding: 1rem 1.1rem;
+    border-radius: 1.1rem;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: linear-gradient(145deg, rgba(19,19,28,0.96), rgba(28,28,42,0.88));
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .demo-launcher-copy {
+    display: grid;
+    gap: 0.28rem;
+  }
+  .demo-launcher-title {
+    font-size: 0.9rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .demo-launcher-sub {
+    font-size: 0.88rem;
+    color: var(--text2);
+    max-width: 64ch;
+    line-height: 1.55;
+  }
+  .draw-showcase::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, rgba(255,255,255,0.03), transparent 45%, rgba(245,200,66,0.06));
+    pointer-events: none;
+  }
+  .draw-showcase-panel {
+    display: grid;
+    grid-template-columns: minmax(280px, 1.1fr) minmax(280px, 0.9fr);
+    gap: 1rem;
+    align-items: stretch;
+    margin-bottom: 1rem;
+  }
+  .draw-showcase-copy,
+  .draw-showcase-stage {
+    position: relative;
+    z-index: 1;
+  }
+  .draw-showcase-copy {
+    padding: 1rem 0.9rem 0.8rem;
+  }
+  .draw-showcase-topline {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.9rem;
+  }
+  .draw-showcase-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.9rem;
+  }
+  .draw-demo-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.42rem 0.68rem;
+    border-radius: 999px;
+    background: rgba(59,139,255,0.12);
+    border: 1px solid rgba(59,139,255,0.26);
+    color: #cfe3ff;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .draw-demo-badge::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: currentColor;
+    box-shadow: 0 0 12px currentColor;
+  }
+  .draw-showcase-kicker::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 14px rgba(245,200,66,0.8);
+  }
+  .draw-showcase-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(1.9rem, 4vw, 3rem);
+    line-height: 0.92;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.65rem;
+    color: var(--text);
+  }
+  .draw-showcase-title span {
+    color: var(--gold);
+    text-shadow: 0 0 28px rgba(245,200,66,0.18);
+  }
+  .draw-showcase-sub {
+    max-width: 56ch;
+    color: var(--text2);
+    line-height: 1.65;
+    font-size: 0.95rem;
+  }
+  .draw-showcase-stage {
+    min-height: 250px;
+    border-radius: 1.2rem;
+    border: 1px solid rgba(255,255,255,0.07);
+    background:
+      radial-gradient(circle at top, rgba(59,139,255,0.16), transparent 40%),
+      linear-gradient(160deg, rgba(19,19,28,0.96), rgba(28,28,42,0.88));
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+  }
+  .draw-showcase-stage::before,
+  .draw-showcase-stage::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    filter: blur(4px);
+  }
+  .draw-showcase-stage::before {
+    width: 160px;
+    height: 160px;
+    right: -20px;
+    top: -30px;
+    background: radial-gradient(circle, rgba(245,200,66,0.22), rgba(245,200,66,0));
+    animation: showcaseOrb 6s ease-in-out infinite;
+  }
+  .draw-showcase-stage::after {
+    width: 120px;
+    height: 120px;
+    left: -10px;
+    bottom: -24px;
+    background: radial-gradient(circle, rgba(59,139,255,0.18), rgba(59,139,255,0));
+    animation: showcaseOrb 7.5s ease-in-out infinite reverse;
+  }
+  @keyframes showcaseOrb {
+    0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+    50% { transform: translate3d(0, -10px, 0) scale(1.08); }
+  }
+  .draw-stage-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    align-self: flex-start;
+    padding: 0.5rem 0.75rem;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: var(--text2);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .draw-stage-chip strong {
+    color: var(--text);
+    font-size: 0.76rem;
+  }
+  .draw-featured-card {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 0.9rem;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 1.15rem;
+    min-height: 132px;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(245,200,66,0.04));
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+    transition: transform 0.32s ease, border-color 0.32s ease, box-shadow 0.32s ease;
+  }
+  .draw-featured-card::after {
+    content: '';
+    position: absolute;
+    inset: -14%;
+    border-radius: inherit;
+    background: radial-gradient(circle, rgba(245,200,66,0.18), rgba(245,200,66,0));
+    opacity: 0;
+    transform: scale(0.88);
+    transition: opacity 0.28s ease, transform 0.28s ease;
+    pointer-events: none;
+  }
+  .draw-featured-card.spotlight {
+    transform: scale(1.03);
+    border-color: rgba(245,200,66,0.45);
+    box-shadow: 0 0 0 1px rgba(245,200,66,0.14), 0 18px 44px rgba(245,200,66,0.1);
+    animation: drawSpotlightPulse 1.15s ease-in-out infinite;
+  }
+  .draw-featured-card.spotlight::after {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  @keyframes drawSpotlightPulse {
+    0%, 100% { transform: scale(1.03); box-shadow: 0 0 0 1px rgba(245,200,66,0.14), 0 18px 44px rgba(245,200,66,0.1); }
+    50% { transform: scale(1.05); box-shadow: 0 0 0 1px rgba(245,200,66,0.22), 0 26px 56px rgba(245,200,66,0.18); }
+  }
+  .draw-featured-avatar {
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.05rem;
+    font-weight: 800;
+    box-shadow: 0 0 0 6px rgba(255,255,255,0.02);
+  }
+  .draw-featured-body {
+    display: grid;
+    gap: 0.22rem;
+    min-width: 0;
+  }
+  .draw-featured-label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--text2);
+    font-weight: 800;
+  }
+  .draw-featured-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    line-height: 0.92;
+    letter-spacing: 0.03em;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .draw-featured-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    color: var(--text2);
+    font-size: 0.82rem;
+  }
+  .draw-featured-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.35rem 0.55rem;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .draw-featured-score {
+    display: grid;
+    gap: 0.4rem;
+    justify-items: end;
+    min-width: 110px;
+  }
+  .draw-featured-score-label {
+    font-size: 0.68rem;
+    font-weight: 800;
+    color: var(--text2);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .draw-featured-score-value {
+    font-family: 'Bebas Neue', sans-serif;
+    color: var(--gold);
+    font-size: 2.3rem;
+    line-height: 1;
+    text-shadow: 0 0 26px rgba(245,200,66,0.22);
+  }
+  .draw-showcase-status {
+    display: grid;
+    gap: 0.18rem;
+  }
+  .draw-showcase-status-label {
+    color: var(--gold);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .draw-showcase-status-name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .draw-showcase-status-hint {
+    font-size: 0.85rem;
+    color: var(--text2);
+  }
+  .draw-intel-bar {
+    position: relative;
+    height: 9px;
+    border-radius: 999px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .draw-intel-fill {
+    width: 24%;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, var(--blue), var(--gold), #fff2b8);
+    box-shadow: 0 0 16px rgba(245,200,66,0.22);
+    transition: width 0.28s ease;
+  }
+  .draw-intel-glow {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.55), transparent);
+    transform: translateX(-100%);
+    animation: drawSweep 1.8s linear infinite;
+    opacity: 0.45;
+  }
+  @keyframes drawSweep {
+    to { transform: translateX(100%); }
+  }
+  .draw-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin-top: 0.95rem;
+  }
+  .draw-control-btn {
+    appearance: none;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.05);
+    color: var(--text);
+    border-radius: 999px;
+    padding: 0.75rem 1rem;
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease;
+  }
+  .draw-control-btn:hover {
+    transform: translateY(-1px);
+    border-color: rgba(245,200,66,0.35);
+    background: rgba(245,200,66,0.08);
+  }
+  .draw-control-btn.primary {
+    background: linear-gradient(135deg, rgba(245,200,66,0.22), rgba(230,168,0,0.16));
+    border-color: rgba(245,200,66,0.34);
+    color: var(--gold);
+  }
+  .draw-control-btn.accent {
+    background: linear-gradient(135deg, rgba(0,212,106,0.16), rgba(0,212,106,0.08));
+    border-color: rgba(0,212,106,0.3);
+    color: #8ff0be;
+  }
+  .draw-showcase.paused .draw-intel-glow {
+    animation-play-state: paused;
+    opacity: 0.18;
+  }
+  .draw-showcase.paused .draw-featured-card {
+    border-color: rgba(255,255,255,0.12);
+    transform: none;
+    animation: none;
+  }
+  .draw-rail {
+    display: none;
+  }
+  .draw-rail-card {
+    min-width: 0;
+    padding: 0.8rem 0.9rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.04);
+    transition: transform 0.32s ease, border-color 0.32s ease, background 0.32s ease, opacity 0.32s ease;
+    opacity: 0.66;
+  }
+  .draw-rail-card.active {
+    transform: translateY(-6px) scale(1.02);
+    border-color: rgba(59,139,255,0.4);
+    background: rgba(59,139,255,0.1);
+    opacity: 1;
+  }
+  .draw-rail-card.spotlight {
+    border-color: rgba(245,200,66,0.42);
+    background: rgba(245,200,66,0.1);
+    opacity: 1;
+  }
+  .draw-rail-name {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.22rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .draw-rail-meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    font-size: 0.74rem;
+    color: var(--text2);
+  }
+  .draw-rail-empty {
+    padding: 1rem 1.1rem;
+    border-radius: 1rem;
+    border: 1px dashed rgba(255,255,255,0.14);
+    color: var(--text2);
+    background: rgba(255,255,255,0.02);
+  }
+  .stats-row {
+    display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 3rem;
+  }
+  .stat-card {
+    flex: 1 1 160px;
+    background: var(--dark3);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 1rem;
+    padding: 1.25rem 1.5rem;
+  }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem; color: var(--gold); line-height: 1;
+    display: block;
+  }
+  .stat-label { font-size: 0.75rem; color: var(--text2); font-weight: 600; margin-top: 0.25rem; letter-spacing: 0.05em; }
+
+  .participants-table-wrap {
+    background: var(--dark2);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 1.2rem;
+    overflow: hidden;
+  }
+  #participantsTableScroller {
+    max-height: min(62vh, 640px);
+    overflow-y: auto;
+    scroll-behavior: smooth;
+  }
+  .table-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    gap: 1rem; flex-wrap: wrap;
+  }
+  .table-title { font-weight: 700; font-size: 0.95rem; }
+  .live-badge {
+    display: flex; align-items: center; gap: 0.4rem;
+    font-size: 0.7rem; font-weight: 700; color: var(--green);
+    letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .live-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--green);
+    animation: livePulse 1.2s ease-in-out infinite;
+  }
+  @keyframes livePulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.7); }
+  }
+  .search-input {
+    background: var(--dark3);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--text);
+    padding: 0.5rem 1rem; border-radius: 0.5rem;
+    font-size: 0.85rem; font-family: 'Barlow', sans-serif;
+    width: 200px; max-width: 100%;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .search-input:focus { border-color: var(--gold); }
+  .search-input::placeholder { color: var(--text2); }
+
+  table { width: 100%; min-width: 980px; border-collapse: collapse; table-layout: auto; }
+  th {
+    background: var(--dark3);
+    font-size: 0.7rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--text2);
+    padding: 0.75rem 1.25rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  th[data-col="participant-head"] {
+    padding-left: 1rem;
+  }
+  td {
+    padding: 0.85rem 1.25rem;
+    font-size: 0.9rem;
+    vertical-align: middle;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    transition: background 0.22s ease, transform 0.22s ease, color 0.22s ease, border-color 0.22s ease;
+  }
+  tr:hover td { background: rgba(255,255,255,0.02); }
+  tr:last-child td { border-bottom: none; }
+  .td-avatar {
+    width: 32px; height: 32px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem; font-weight: 700;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+  .td-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .participant-cell {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    min-width: 0;
+  }
+  td[data-col="participant"] {
+    min-width: 220px;
+    padding-left: 1rem;
+  }
+  .participant-label {
+    display: block;
+    min-width: 0;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--text);
+  }
+  .participant-main-row td[data-col="participant"],
+  .participant-detail-row td[data-col="participant"] {
+    padding-right: 0.9rem;
+  }
+  .td-city { font-size: 0.75rem; color: var(--text2); }
+  .chances-badge {
+    display: inline-flex; align-items: center;
+    background: rgba(245,200,66,0.12);
+    color: var(--gold);
+    font-size: 0.75rem; font-weight: 700;
+    padding: 0.2rem 0.6rem; border-radius: 0.3rem;
+  }
+  .chances-list { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  .participant-main-row {
+    cursor: pointer;
+  }
+  .participant-main-row.is-draw-active td {
+    background: rgba(59,139,255,0.12);
+    box-shadow: inset 0 0 0 1px rgba(59,139,255,0.22);
+  }
+  .participant-main-row.is-draw-active,
+  .participant-main-row.is-draw-spotlight {
+    position: relative;
+  }
+  .participant-main-row.is-draw-active::before,
+  .participant-main-row.is-draw-spotlight::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    transition: width 0.22s ease, background 0.22s ease;
+  }
+  .participant-main-row.is-draw-active::before {
+    width: 4px;
+    background: linear-gradient(180deg, rgba(59,139,255,0.9), rgba(59,139,255,0.35));
+  }
+  .participant-main-row.is-draw-active .participant-label,
+  .participant-main-row.is-draw-active .chances-badge {
+    color: #dcecff;
+  }
+  .participant-main-row.is-draw-spotlight td {
+    background: linear-gradient(90deg, rgba(245,200,66,0.16), rgba(245,200,66,0.06));
+    box-shadow: inset 3px 0 0 rgba(245,200,66,0.92), inset 0 0 0 1px rgba(245,200,66,0.22);
+    animation: drawRowPulse 1.15s ease-in-out infinite;
+  }
+  .participant-main-row.is-draw-spotlight::before {
+    width: 6px;
+    background: linear-gradient(180deg, rgba(245,200,66,1), rgba(230,168,0,0.52));
+  }
+  .participant-main-row.is-draw-spotlight .participant-label {
+    color: var(--gold);
+  }
+  .participant-main-row.is-draw-spotlight .td-avatar {
+    box-shadow: 0 0 0 6px rgba(245,200,66,0.08), 0 0 22px rgba(245,200,66,0.12);
+  }
+  @keyframes drawRowPulse {
+    0%, 100% { box-shadow: inset 3px 0 0 rgba(245,200,66,0.92), inset 0 0 0 1px rgba(245,200,66,0.22); }
+    50% { box-shadow: inset 3px 0 0 rgba(245,200,66,1), inset 0 0 0 1px rgba(245,200,66,0.36); }
+  }
+  .draw-showcase.is-focus-locked {
+    scroll-margin-top: 84px;
+  }
+  .demo-history {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 1.15rem;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: linear-gradient(145deg, rgba(19,19,28,0.96), rgba(28,28,42,0.88));
+    display: none;
+  }
+  .demo-history.open {
+    display: block;
+  }
+  .demo-history-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.9rem;
+    flex-wrap: wrap;
+  }
+  .demo-history-title {
+    font-size: 0.92rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .demo-history-sub {
+    font-size: 0.84rem;
+    color: var(--text2);
+  }
+  .demo-history-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.8rem;
+  }
+  .demo-history-card {
+    padding: 0.95rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.04);
+    display: grid;
+    gap: 0.28rem;
+  }
+  .demo-history-card strong {
+    color: var(--text);
+    font-size: 1rem;
+  }
+  .demo-history-meta {
+    color: var(--text2);
+    font-size: 0.8rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+  }
+  .demo-history-empty {
+    padding: 1rem;
+    border-radius: 1rem;
+    border: 1px dashed rgba(255,255,255,0.14);
+    color: var(--text2);
+    background: rgba(255,255,255,0.03);
+  }
+  .message-cell {
+    text-align: right;
+  }
+  .message-trigger {
+    display: inline-flex; align-items: center; gap: 0.35rem;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: var(--text);
+    border-radius: 999px;
+    padding: 0.35rem 0.7rem;
+    font-size: 0.72rem; font-weight: 700;
+    cursor: pointer;
+    transition: border-color 0.2s, transform 0.2s, background 0.2s;
+  }
+  .message-trigger:hover {
+    border-color: var(--gold);
+    background: rgba(245,200,66,0.08);
+    transform: translateY(-1px);
+  }
+  .message-trigger.empty {
+    opacity: 0.45;
+    cursor: default;
+    pointer-events: none;
+  }
+  .message-trigger-icon { font-size: 0.9rem; line-height: 1; }
+  .participant-detail-row td {
+    background: rgba(255,255,255,0.02);
+    padding-top: 0.5rem;
+    padding-bottom: 1rem;
+  }
+  .participant-main-row.is-draw-active + .participant-detail-row td,
+  .participant-main-row.is-draw-spotlight + .participant-detail-row td {
+    background: rgba(255,255,255,0.045);
+  }
+  .participant-detail-wrap { display: flex; flex-direction: column; gap: 0.5rem; }
+  .participant-detail-title { font-size: 0.85rem; font-weight: 700; color: var(--text); }
+  .participant-detail-grid { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+  .participant-detail-chip {
+    display: inline-flex; align-items: center;
+    background: rgba(245,200,66,0.08);
+    border: 1px solid rgba(245,200,66,0.18);
+    color: var(--gold);
+    font-size: 0.75rem; font-weight: 700;
+    padding: 0.28rem 0.55rem; border-radius: 999px;
+  }
+  .chances-bar { display: flex; gap: 2px; }
+  .chance-dot {
+    width: 8px; height: 8px; border-radius: 1px;
+    background: var(--gold);
+    opacity: 0.3;
+    transition: opacity 0.3s;
+  }
+  .chance-dot.active { opacity: 1; }
+
+  /* ---- HOW IT WORKS ---- */
+  .how-section { background: var(--dark2); }
+  .steps-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem; margin-top: 3rem;
+  }
+  .step {
+    text-align: center; padding: 2rem 1.5rem;
+    background: var(--dark3);
+    border-radius: 1.2rem;
+    border: 1px solid rgba(255,255,255,0.06);
+    position: relative; overflow: hidden;
+    transition: transform 0.25s;
+  }
+  .step:hover { transform: translateY(-4px); }
+  .step-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 5rem; color: rgba(245,200,66,0.06);
+    position: absolute; top: -0.5rem; right: 0.5rem; line-height: 1;
+  }
+  .step-icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
+  .step-title { font-weight: 700; font-size: 1rem; margin-bottom: 0.5rem; }
+  .step-desc { font-size: 0.85rem; color: var(--text2); line-height: 1.6; }
+
+  /* ---- DRAW PROCESS ---- */
+  .draw-process-section {
+    background: linear-gradient(180deg, var(--dark), var(--dark2));
+  }
+  .draw-process-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-top: 2.5rem;
+  }
+  .draw-card {
+    background: var(--dark3);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 1.1rem;
+    padding: 1.35rem 1.25rem;
+  }
+  .draw-card-title {
+    font-size: 0.98rem;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 0.45rem;
+  }
+  .draw-card-copy {
+    font-size: 0.85rem;
+    line-height: 1.65;
+    color: var(--text2);
+  }
+  .draw-highlight {
+    margin-top: 1.4rem;
+    padding: 1rem 1.1rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(245,200,66,0.18);
+    background: rgba(245,200,66,0.06);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  /* ---- SOCIAL PROOF ---- */
+  .proof-section {
+    background: var(--dark);
+  }
+  .proof-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+    margin-top: 2.5rem;
+  }
+  .proof-card {
+    background: var(--dark3);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 1.1rem;
+    padding: 1.3rem 1.2rem;
+  }
+  .proof-head {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 0.75rem;
+  }
+  .proof-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .proof-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .proof-head-copy {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.8rem;
+  }
+  .proof-name {
+    font-weight: 800;
+    color: var(--text);
+    font-size: 0.92rem;
+  }
+  .proof-city {
+    color: var(--gold);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .proof-copy {
+    color: var(--text2);
+    font-size: 0.86rem;
+    line-height: 1.65;
+  }
+  .proof-empty {
+    margin-top: 2rem;
+    padding: 1.1rem 1.2rem;
+    border-radius: 1rem;
+    border: 1px dashed rgba(255,255,255,0.14);
+    color: var(--text2);
+    line-height: 1.65;
+    background: rgba(255,255,255,0.02);
+  }
+
+  /* ---- FAQ ---- */
+  .faq-list { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 0.75rem; }
+  .faq-item {
+    background: var(--dark3);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 0.8rem;
+    overflow: hidden;
+  }
+  .faq-q {
+    width: 100%; background: none; border: none;
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.95rem; font-weight: 600;
+    padding: 1.1rem 1.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    cursor: pointer; gap: 1rem;
+    text-align: left;
+  }
+  .faq-arrow {
+    font-size: 1.2rem; color: var(--gold);
+    transition: transform 0.3s; flex-shrink: 0;
+  }
+  .faq-item.open .faq-arrow { transform: rotate(180deg); }
+  .faq-a {
+    display: none; padding: 0 1.5rem 1.1rem;
+    font-size: 0.875rem; color: var(--text2); line-height: 1.7;
+  }
+  .faq-item.open .faq-a { display: block; }
+
+  /* ---- BOTTOM CTA ---- */
+  .bottom-cta {
+    text-align: center;
+    padding: 6rem 1.5rem;
+    background: radial-gradient(ellipse 100% 100% at 50% 50%, #2a1200 0%, var(--dark) 70%);
+    position: relative; overflow: hidden;
+  }
+  .bottom-cta-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    color: var(--gold);
+    margin-bottom: 1rem;
+    text-shadow: 0 0 40px rgba(245,200,66,0.2);
+  }
+  .bottom-cta-sub { color: var(--text2); font-size: 1rem; margin-bottom: 2.5rem; }
+
+  /* ---- FOOTER ---- */
+  footer {
+    background: #060608;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    font-size: 0.78rem; color: var(--text2);
+    border-top: 1px solid rgba(255,255,255,0.05);
+    line-height: 1.7;
+  }
+
+  /* ---- MODAL ---- */
+  .modal-overlay {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.85);
+    z-index: 1000;
+    display: flex; align-items: center; justify-content: center;
+    padding: 1rem;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.3s;
+  }
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+  .modal {
+    background: var(--dark2);
+    border: 1px solid rgba(245,200,66,0.3);
+    border-radius: 1.5rem;
+    padding: 2rem;
+    width: 100%; max-width: 500px;
+    transform: translateY(20px);
+    transition: transform 0.3s;
+    position: relative;
+    max-height: 90vh; overflow-y: auto;
+  }
+  .modal-overlay.open .modal { transform: translateY(0); }
+  .modal-close {
+    position: absolute; top: 1rem; right: 1rem;
+    background: none; border: none;
+    color: var(--text2); font-size: 1.5rem;
+    cursor: pointer; line-height: 1;
+    transition: color 0.2s;
+  }
+  .modal-close:hover { color: var(--text); }
+  .modal-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem; color: var(--gold);
+    margin-bottom: 0.25rem;
+  }
+  .modal-sub { font-size: 0.85rem; color: var(--text2); margin-bottom: 1.5rem; }
+  .modal-assurance {
+    display: grid;
+    gap: 0.55rem;
+    margin: -0.25rem 0 1.1rem;
+    padding: 0.95rem 1rem;
+    border-radius: 0.9rem;
+    background: rgba(255,255,255,0.035);
+    border: 1px solid rgba(245,200,66,0.12);
+  }
+  .modal-assurance strong {
+    color: var(--text);
+    font-size: 0.92rem;
+  }
+  .modal-assurance span {
+    color: var(--text2);
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+  .modal-pkg-display {
+    background: var(--dark3);
+    border: 1px solid rgba(245,200,66,0.2);
+    border-radius: 0.8rem;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .modal-pkg-info .label { font-size: 0.75rem; color: var(--text2); font-weight: 600; }
+  .modal-pkg-info .value { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; color: var(--gold); }
+  .form-group { margin-bottom: 1rem; }
+  .form-check {
+    display: flex; align-items: flex-start; gap: 0.7rem;
+    padding: 0.85rem 1rem;
+    border-radius: 0.9rem;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .form-check input {
+    margin-top: 0.2rem;
+    accent-color: var(--gold);
+    width: 16px;
+    height: 16px;
+  }
+  .form-check-copy { display: grid; gap: 0.2rem; }
+  .form-check-title { font-size: 0.9rem; font-weight: 700; color: var(--text); }
+  .form-check-sub { font-size: 0.8rem; line-height: 1.45; color: var(--text2); }
+  .form-label { font-size: 0.78rem; font-weight: 700; color: var(--text2); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.35rem; display: block; }
+  .form-input {
+    width: 100%;
+    background: var(--dark3);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--text);
+    padding: 0.75rem 1rem;
+    border-radius: 0.6rem;
+    font-size: 0.9rem; font-family: 'Barlow', sans-serif;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-input:focus { border-color: var(--gold); }
+  .form-input::placeholder { color: var(--text2); }
+  .file-upload {
+    display: grid;
+    gap: 0.7rem;
+  }
+  .file-upload-input {
+    width: 100%;
+    background: var(--dark3);
+    border: 1px dashed rgba(255,255,255,0.2);
+    color: var(--text2);
+    padding: 0.75rem 1rem;
+    border-radius: 0.6rem;
+  }
+  .file-upload-help {
+    font-size: 0.76rem;
+    color: var(--text2);
+    line-height: 1.45;
+  }
+  .photo-preview {
+    display: none;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.75rem 0.85rem;
+    border-radius: 0.8rem;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .photo-preview.show {
+    display: flex;
+  }
+  .photo-preview img {
+    width: 52px;
+    height: 52px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid rgba(245,200,66,0.35);
+  }
+  .photo-preview-copy {
+    font-size: 0.82rem;
+    color: var(--text2);
+  }
+  .form-textarea {
+    min-height: 90px;
+    resize: vertical;
+  }
+  .form-help {
+    margin-top: 0.45rem;
+    font-size: 0.76rem;
+    color: var(--text2);
+    line-height: 1.45;
+  }
+  .message-preview {
+    display: none;
+    margin: 0.2rem 0 1rem;
+    padding: 0.9rem 1rem;
+    border-radius: 0.8rem;
+    background: rgba(255,255,255,0.03);
+    border: 1px dashed rgba(255,255,255,0.16);
+  }
+  .message-preview.show {
+    display: block;
+  }
+  .message-preview-label {
+    display: block;
+    margin-bottom: 0.35rem;
+    color: var(--gold);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .message-preview-copy {
+    color: var(--text);
+    font-size: 0.88rem;
+    line-height: 1.55;
+    white-space: pre-wrap;
+  }
+  .payment-methods {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .pm-chip {
+    background: var(--dark3);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 0.5rem;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.78rem; font-weight: 600;
+    cursor: pointer; transition: all 0.2s;
+    color: var(--text2);
+  }
+  .pm-chip.selected { border-color: var(--gold); color: var(--gold); background: rgba(245,200,66,0.08); }
+  .modal-confirm {
+    width: 100%;
+    background: linear-gradient(135deg, var(--gold), var(--gold2));
+    color: var(--dark);
+    font-family: 'Barlow', sans-serif;
+    font-size: 1rem; font-weight: 900;
+    padding: 0.9rem;
+    border-radius: 0.7rem;
+    border: none; cursor: pointer;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .modal-confirm:hover { opacity: 0.9; transform: scale(1.01); }
+  .modal-trust {
+    display: flex; justify-content: center; gap: 1.5rem;
+    margin-top: 1rem;
+    font-size: 0.72rem; color: var(--text2); flex-wrap: wrap;
+  }
+  .opinion-modal-copy {
+    color: var(--text2);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-top: 1rem;
+    white-space: pre-wrap;
+  }
+
+  /* ---- TOAST ---- */
+  .toast {
+    position: fixed; bottom: 1.5rem; left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: var(--dark3);
+    border: 1px solid var(--green);
+    border-radius: 0.8rem;
+    padding: 0.8rem 1.5rem;
+    font-size: 0.85rem; font-weight: 600;
+    color: var(--green);
+    z-index: 2000;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    white-space: nowrap;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+  .countdown-note {
+    position: relative; z-index: 2;
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .whatsapp-float {
+    position: fixed;
+    right: 1.2rem;
+    bottom: 1.5rem;
+    z-index: 1300;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.9rem 1.1rem;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #1bd741, #12a832);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 800;
+    box-shadow: 0 18px 36px rgba(0,0,0,0.28);
+  }
+  .whatsapp-float small {
+    display: block;
+    font-size: 0.68rem;
+    opacity: 0.9;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  body.modal-open .whatsapp-float {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+  .payment-status-card {
+    display: none;
+    margin: 1.5rem auto 0;
+    max-width: 760px;
+    background: linear-gradient(145deg, rgba(28,28,42,0.98), rgba(19,19,28,0.96));
+    border: 1px solid rgba(245,200,66,0.24);
+    border-radius: 1.25rem;
+    padding: 1.2rem 1.3rem;
+    box-shadow: 0 24px 50px rgba(0,0,0,0.26);
+    text-align: left;
+    gap: 0.9rem;
+  }
+  .payment-status-card.show {
+    display: grid;
+  }
+  .payment-status-kicker {
+    color: var(--gold);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-weight: 800;
+  }
+  .payment-status-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(1.9rem, 4vw, 2.8rem);
+    line-height: 0.95;
+    color: var(--text);
+  }
+  .payment-status-copy {
+    color: var(--text2);
+    line-height: 1.5;
+    font-size: 0.96rem;
+  }
+  .payment-status-reward {
+    display: none;
+    border: 1px solid rgba(59,139,255,0.22);
+    background: linear-gradient(145deg, rgba(59,139,255,0.12), rgba(255,255,255,0.03));
+    border-radius: 1rem;
+    padding: 1rem;
+    gap: 0.8rem;
+  }
+  .payment-status-reward.show {
+    display: grid;
+  }
+  .payment-status-reward-title {
+    font-weight: 800;
+    color: var(--text);
+  }
+  .payment-status-reward-copy {
+    color: var(--text2);
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  .share-link-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    gap: 0.75rem;
+    align-items: center;
+  }
+  .share-link-input {
+    width: 100%;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.04);
+    color: var(--text);
+    padding: 0.9rem 1rem;
+  }
+  .share-link-btn {
+    width: auto;
+    min-width: 150px;
+    border: none;
+    border-radius: 999px;
+    padding: 0.9rem 1.2rem;
+    font-weight: 800;
+    cursor: pointer;
+  }
+  .share-link-btn.primary {
+    background: linear-gradient(135deg, var(--gold), var(--gold2));
+    color: var(--dark);
+  }
+  .share-link-btn.secondary {
+    background: rgba(255,255,255,0.08);
+    color: var(--text);
+    border: 1px solid rgba(255,255,255,0.12);
+  }
+
+  /* ---- ANIMATIONS ---- */
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s, transform 0.6s; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ---- TICKER TAPE ---- */
+  .ticker { overflow: hidden; background: rgba(245,200,66,0.05); padding: 0.5rem 0; border-top: 1px solid rgba(245,200,66,0.15); border-bottom: 1px solid rgba(245,200,66,0.15); }
+  .ticker-inner { display: flex; gap: 3rem; animation: tickerScroll 20s linear infinite; white-space: nowrap; }
+  .ticker-item { font-size: 0.8rem; color: var(--gold); font-weight: 600; letter-spacing: 0.05em; flex-shrink: 0; }
+  @keyframes tickerScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  @media (max-width: 600px) {
+    .hero-assurance { grid-template-columns: 1fr; }
+    .course-syllabus-grid { grid-template-columns: 1fr; }
+    .prizes-row { grid-template-columns: 1fr; }
+    .packages-grid { grid-template-columns: 1fr 1fr; }
+    .draw-showcase { padding: 1rem; }
+    .draw-showcase-panel { grid-template-columns: 1fr; }
+    .draw-showcase-copy { padding: 0.2rem 0 0; }
+    .draw-showcase-stage { min-height: 0; }
+    .demo-launcher { align-items: flex-start; }
+    .draw-featured-card {
+      grid-template-columns: auto 1fr;
+      align-items: start;
+    }
+    .draw-featured-score {
+      grid-column: 1 / -1;
+      justify-items: start;
+      min-width: 0;
+    }
+    .draw-rail { grid-template-columns: 1fr; }
+    th, td { padding: 0.6rem 0.75rem; }
+    .modal { padding: 1.5rem; }
+    .hero-title { font-size: 4.5rem; }
+    .prize-visual, .prize-moto-stack { height: 140px; }
+    .prize-card.primary .prize-visual { height: auto; }
+    .prize-gallery { grid-template-columns: 1fr 1fr; }
+    .prize-shot { min-height: 150px; }
+    .prize-shot img { height: 140px; }
+    .auto-showcase-wrap { grid-template-columns: 1fr; }
+    .course-hook-grid { grid-template-columns: 1fr; }
+    .auto-showcase-grid { grid-template-columns: 1fr; }
+    .auto-photo-card.featured { grid-column: span 1; min-height: 220px; }
+    .live-feed { left: 12px; right: 12px; min-width: 0; max-width: none; }
+    .whatsapp-float {
+      right: 12px;
+      left: 12px;
+      bottom: 12px;
+      justify-content: center;
+    }
+    .share-link-row { grid-template-columns: 1fr; }
+    .share-link-btn { width: 100%; }
+  }
+</style>
+  <!-- Meta Pixel Code -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '675114246370648');
+  fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=675114246370648&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-sparks" id="sparks"></div>
+
+  <div class="hero-badge">SORTEO - ¡ÚLTIMAS CHANCES DISPONIBLES!</div>
+
+  <h1 class="hero-title">GRAN<br>SORTEO</h1>
+  <p class="hero-subtitle">Un gran premio. Un Chevrolet Corsa impecable.</p>
+  <p class="hero-lead">Comprás tus chances, tu pago queda registrado y cuando se acredita aparecés en la lista pública del sorteo. Además, <strong>si comprás 3 o más chances te regalamos acceso a un curso práctico</strong> para comprar tu auto usado en Argentina con más seguridad.</p>
+
+  <div class="hero-assurance reveal">
+    <div class="hero-assurance-card">
+      <span class="hero-assurance-label">Transparencia</span>
+      <div class="hero-assurance-copy">Cada compra aprobada se refleja en la lista con fecha y cantidad de chances activas.</div>
+    </div>
+    <div class="hero-assurance-card">
+      <span class="hero-assurance-label">Seguridad</span>
+      <div class="hero-assurance-copy">Tu reserva queda asociada a tus datos y al estado real del pago para dar seguimiento claro.</div>
+    </div>
+    <div class="hero-assurance-card">
+      <span class="hero-assurance-label">Beneficio extra</span>
+      <div class="hero-assurance-copy">Con 3 o más chances desbloqueás gratis el curso guía para evitar errores al comprar un usado.</div>
+    </div>
+    <div class="hero-assurance-card">
+      <span class="hero-assurance-label">Entrega</span>
+      <div class="hero-assurance-copy">El premio se coordina con el ganador luego de la selección final y validación del resultado.</div>
+    </div>
+  </div>
+
+  <div class="prizes-row">
+    <div class="prize-card primary reveal">
+      <div class="prize-visual">
+        <div class="prize-gallery">
+          <div class="prize-shot"><img class="prize-image" src="./assets/premios/corsa.png" alt="Chevrolet Corsa vista frontal en angulo"></div>
+          <div class="prize-shot"><img class="prize-image" src="./assets/premios/corsa1.png" alt="Chevrolet Corsa vista frontal"></div>
+          <div class="prize-shot"><img class="prize-image" src="./assets/premios/corsa4.png" alt="Chevrolet Corsa interior"></div>
+          <div class="prize-shot"><img class="prize-image" src="./assets/premios/corsa5.png" alt="Chevrolet Corsa vista trasera lateral"></div>
+          <div class="prize-shot"><img class="prize-image" src="./assets/premios/corsa2.png" alt="Chevrolet Corsa vista trasera"></div>
+          <div class="prize-shot"><img class="prize-image" src="./assets/premios/corsa3.png" alt="Chevrolet Corsa vista trasera en angulo"></div>
+        </div>
+      </div>
+      <div class="prize-summary">
+        <span class="prize-eyebrow">Premio</span>
+        <span class="prize-name">HERMOSO CHEVROLET CORSA</span>
+        <span class="prize-detail">Impecable. Entrega coordinada con el ganador.</span>
+        <span class="prize-specs">Se participa por un premio: el auto publicado en esta pagina, con todas sus fotos visibles para que el premio quede claro desde el primer vistazo.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-cta reveal" style="transition-delay:0.3s">
+    <a href="#paquetes" class="btn-primary">QUIERO MIS CHANCES</a>
+  </div>
+
+  <div class="countdown-bar reveal hidden-until-thirty" id="countdownBar" style="transition-delay:0.4s">
+    <div class="countdown-unit">
+      <span class="countdown-num" id="cd-d">00</span>
+      <span class="countdown-label">DÃ­as</span>
+    </div>
+    <div class="countdown-sep">:</div>
+    <div class="countdown-unit">
+      <span class="countdown-num" id="cd-h">00</span>
+      <span class="countdown-label">Horas</span>
+    </div>
+    <div class="countdown-sep">:</div>
+    <div class="countdown-unit">
+      <span class="countdown-num" id="cd-m">00</span>
+      <span class="countdown-label">Min</span>
+    </div>
+    <div class="countdown-sep">:</div>
+    <div class="countdown-unit">
+      <span class="countdown-num" id="cd-s">00</span>
+      <span class="countdown-label">Seg</span>
+    </div>
+  </div>
+  <div class="countdown-note reveal" id="countdownNote" style="transition-delay:0.45s">Quedan pocos lugares para hacer el sorteo antes.</div>
+</div>
+
+<!-- URGENCY STRIP -->
+<div class="urgency-strip">
+  <span>SORTEO · CHEVROLET CORSA IMPECABLE · PREMIO · 1 DE JUNIO O ANTES AL AGOTAR STOCK · ¡ÚLTIMAS CHANCES! · SORTEO NACIONAL · CHEVROLET CORSA IMPECABLE · PREMIO UNICO · ¡ÚLTIMAS CHANCES! · </span>
+</div>
+
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <div class="trust-item">
+    <div class="trust-icon">OK</div>
+    <span class="trust-label">Reserva registrada<br>y datos protegidos</span>
+  </div>
+  <div class="trust-item">
+    <div class="trust-icon">VIP</div>
+    <span class="trust-label">Lista publica<br>con participaciones activas</span>
+  </div>
+  <div class="trust-item">
+    <div class="trust-icon">AR</div>
+    <span class="trust-label">Participan personas<br>de toda Argentina</span>
+  </div>
+  <div class="trust-item">
+    <div class="trust-icon">GO</div>
+    <span class="trust-label">Entrega coordinada<br>con el ganador</span>
+  </div>
+  <div class="trust-item">
+    <div class="trust-icon">1</div>
+    <span class="trust-label">1 ganador<br>seleccionado al azar</span>
+  </div>
+  <div class="trust-note">La propuesta está pensada para que entiendas qué comprás, cómo se acredita tu participación y qué recibís además del sorteo. El premio es visible, las participaciones aprobadas quedan registradas y el bonus del curso se entrega automáticamente cuando corresponde.</div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner" id="ticker">
+    <span class="ticker-item">Chevrolet Corsa impecable</span>
+    <span class="ticker-item">Premio unico publicado con 6 fotos reales</span>
+    <span class="ticker-item">1 ganador seleccionado al azar</span>
+    <span class="ticker-item">Mas chances = mas posibilidades</span>
+    <span class="ticker-item">Sorteo 100% transparente</span>
+    <span class="ticker-item">Participas desde toda Argentina</span>
+    <span class="ticker-item">Con 3 o mas chances te llevas un curso gratis</span>
+    <span class="ticker-item">Chevrolet Corsa impecable</span>
+    <span class="ticker-item">Premio unico publicado con 6 fotos reales</span>
+    <span class="ticker-item">1 ganador seleccionado al azar</span>
+    <span class="ticker-item">Mas chances = mas posibilidades</span>
+    <span class="ticker-item">Sorteo 100% transparente</span>
+    <span class="ticker-item">Participas desde toda Argentina</span>
+    <span class="ticker-item">Con 3 o mas chances te llevas un curso gratis</span>
+  </div>
+</div>
+
+<section class="bonus-section">
+  <div class="section-inner">
+    <div class="bonus-grid reveal">
+      <div class="bonus-card">
+        <span class="bonus-kicker">Bonus incluido</span>
+        <h2 class="bonus-title">Comprando <span>3 o más chances</span> también te llevás un curso gratis</h2>
+        <p class="bonus-copy">Además de participar por el Chevrolet Corsa, desbloqueás una guía práctica para comprar tu auto usado en Argentina con más criterio, más control y menos riesgo. El acceso se entrega después del pago aprobado con un código simple y un botón directo al curso.</p>
+        <div class="bonus-points">
+          <div class="bonus-point">
+            <strong>Acceso fácil</strong>
+            Recibís un código simple y un acceso directo apenas se confirma tu compra bonificada.
+          </div>
+          <div class="bonus-point">
+            <strong>Valor real</strong>
+            El curso acompaña la propuesta con contenido útil, no con un regalo simbólico.
+          </div>
+          <div class="bonus-point">
+            <strong>Más seguridad al comprar</strong>
+            Incluye alertas, chequeos y criterios para analizar un usado con más confianza.
+          </div>
+          <div class="bonus-point">
+            <strong>Beneficio concreto</strong>
+            Aunque no dependas del resultado final del sorteo, te llevás un recurso práctico para usar.
+          </div>
+        </div>
+      </div>
+      <div class="bonus-proof">
+        <span class="bonus-kicker">Más credibilidad</span>
+        <h3 class="bonus-title" style="font-size:clamp(1.8rem,4vw,2.7rem)">Una propuesta más seria,<br><span>clara y confiable</span></h3>
+        <div class="bonus-proof-list">
+          <div class="bonus-proof-item">
+            <strong>Premio visible y explicado</strong>
+            El auto está publicado con fotos reales para que sepas exactamente por qué participás.
+          </div>
+          <div class="bonus-proof-item">
+            <strong>Condición simple y objetiva</strong>
+            Con 3 o más chances el acceso al curso se habilita automáticamente, sin sorteos extra ni pasos raros.
+          </div>
+          <div class="bonus-proof-item">
+            <strong>Registro claro de participación</strong>
+            Las compras aprobadas quedan reflejadas en la lista pública para reforzar transparencia.
+          </div>
+          <div class="bonus-proof-item">
+            <strong>Más valor para quien compra</strong>
+            No solo comprás chances: también te llevás información útil para una futura compra importante.
+          </div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">¿Cómo funciona el curso gratis? <span class="faq-arrow">▼</span></button>
+        <div class="faq-a">Si tu compra aprobada es de 3 o más chances, se habilita un código de acceso simple y un botón directo para entrar al curso. No depende de salir ganador: es un bonus concreto por la compra bonificada.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGES -->
+<section id="paquetes" class="packages-section">
+  <div class="section-inner">
+    <span class="section-tag">ðŸ’Ž Elige tu pack</span>
+    <h2 class="section-title">MÃ¡s chances,<br><span style="color:var(--gold)">mÃ¡s posibilidades</span></h2>
+    <p class="section-sub">Cada chance suma una participación real dentro del sistema de selección. Mientras más chances tengas, más posibilidades acumulás de quedarte con el Chevrolet Corsa.</p>
+
+    <div class="packages-grid" id="packagesGrid">
+      <!-- generado por JS -->
+    </div>
+  </div>
+</section>
+
+<!-- PARTICIPANTS -->
+<section id="participantes" class="participants-section">
+  <div class="section-inner">
+    <span class="section-tag">ðŸ‘¥ Transparencia total</span>
+    <h2 class="section-title">Lista de<br><span style="color:var(--gold)">participantes</span></h2>
+    <p class="section-sub">Cada participaciÃ³n aprobada aparece aquÃ­ con su fecha y cantidad de chances, para que puedas ver que el ingreso quedÃ³ registrado y que el proceso se mantiene visible.</p>
+
+    <p class="section-sub" style="margin-top:0.9rem; max-width:760px">Cuando una compra se acredita, queda asociada al participante y pasa a formar parte del registro visible del sorteo. Eso ayuda a dar seguimiento real y a reforzar la confianza de quien participa.</p>
+    <div class="demo-launcher reveal hidden">
+      <div class="demo-launcher-copy">
+        <div class="demo-launcher-title">Demostracion en tiempo real</div>
+        <div class="demo-launcher-sub">Este bloque permite probar en vivo el funcionamiento del software para reforzar transparencia, confianza y claridad del proceso. Es una demostracion del sistema inteligente y sus resultados no son oficiales ni reemplazan el sorteo real.</div>
+      </div>
+      <button class="draw-control-btn primary" type="button" id="toggleDemoBtn">Iniciar demostracion</button>
+    </div>
+
+    <div class="draw-showcase reveal collapsed hidden" id="drawShowcase">
+      <div class="draw-showcase-panel">
+        <div class="draw-showcase-copy">
+          <div class="draw-showcase-topline">
+            <span class="draw-showcase-kicker">Demostracion de transparencia</span>
+            <span class="draw-demo-badge">Demostracion</span>
+          </div>
+          <h3 class="draw-showcase-title">Probador visual del <span>software de seleccion</span></h3>
+          <p class="draw-showcase-sub">Inicia la demostracion para observar en tiempo real como el sistema recorre participantes, se detiene automaticamente y deja asentado el punto exacto donde finaliza la prueba. Este modulo existe solo para demostrar el funcionamiento y no define resultados oficiales.</p>
+          <div class="draw-controls">
+            <button class="draw-control-btn primary" type="button" id="drawStartBtn">Iniciar prueba</button>
+            <button class="draw-control-btn accent" type="button" id="saveDemoResultBtn">Registrar resultado</button>
+            <button class="draw-control-btn" type="button" id="toggleDemoHistoryBtn">Participantes demostracion</button>
+          </div>
+        </div>
+        <div class="draw-showcase-stage">
+          <div class="draw-stage-chip">Ronda actual <strong id="drawRoundCounter">0</strong></div>
+          <div class="draw-featured-card" id="drawFeaturedCard">
+            <div class="draw-featured-avatar" id="drawFeaturedAvatar">--</div>
+            <div class="draw-featured-body">
+              <span class="draw-featured-label">Esperando participantes</span>
+              <strong class="draw-featured-name" id="drawFeaturedName">La animacion se activara sola</strong>
+              <div class="draw-featured-meta" id="drawFeaturedMeta">
+                <span class="draw-featured-pill">Se mostrara aqui</span>
+              </div>
+            </div>
+            <div class="draw-featured-score">
+              <span class="draw-featured-score-label">Chances</span>
+              <strong class="draw-featured-score-value" id="drawFeaturedScore">0</strong>
+            </div>
+          </div>
+          <div class="draw-showcase-status">
+            <span class="draw-showcase-status-label" id="drawPhaseLabel">Estado del sistema</span>
+            <strong class="draw-showcase-status-name" id="drawPhaseName">Esperando el listado en vivo</strong>
+            <span class="draw-showcase-status-hint" id="drawPhaseHint">Cuando haya participantes cargados, el sistema empezara a recorrerlos en bucle.</span>
+            <div class="draw-intel-bar">
+              <div class="draw-intel-fill" id="drawIntelFill"></div>
+              <div class="draw-intel-glow"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="draw-rail" id="drawRail">
+        <div class="draw-rail-empty">Todavia no hay participantes visibles para iniciar el recorrido animado.</div>
+      </div>
+      <div class="demo-history" id="demoHistoryPanel">
+        <div class="demo-history-head">
+          <div>
+            <div class="demo-history-title">Participantes demostracion</div>
+            <div class="demo-history-sub">Historial de participantes asentados manualmente desde esta demostracion.</div>
+          </div>
+        </div>
+        <div class="demo-history-grid" id="demoHistoryGrid">
+          <div class="demo-history-empty">Todavia no hay resultados de demostracion guardados.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="participants-table-wrap reveal">
+      <div class="table-header">
+        <span class="table-title">Participantes registrados</span>
+        <span class="live-badge"><span class="live-dot"></span> EN VIVO</span>
+        <input type="text" class="search-input" id="searchInput" placeholder="Buscar por nombre o cÃ³digo...">
+      </div>
+      <div style="overflow-x:auto" id="participantsTableScroller">
+        <table>
+          <colgroup>
+            <col style="width:34%">
+            <col style="width:15%">
+            <col style="width:15%">
+            <col style="width:12%">
+            <col style="width:12%">
+            <col style="width:12%">
+          </colgroup>
+          <thead>
+            <tr>
+              <th data-col="participant-head">Participante</th>
+              <th>Provincia</th>
+              <th>Ciudad</th>
+              <th>Compradas</th>
+              <th>Fecha</th>
+              <th>Mensaje</th>
+            </tr>
+          </thead>
+          <tbody id="participantsBody"></tbody>
+        </table>
+      </div>
+      <div class="past-participants-scroller hidden" id="pastParticipantsSection">
+        <div class="past-participants-title">Participantes de sorteos anteriores</div>
+        <div class="past-participants-track" id="pastParticipantsTrack"></div>
+      </div>
+      <div class="past-comments-scroller hidden" id="pastCommentsSection">
+        <div class="past-participants-title">Mensajes de sorteos anteriores</div>
+        <div class="past-participants-track" id="pastCommentsTrack"></div>
+      </div>
+    </div>
+
+    <div class="payment-status-card reveal" id="paymentStatusCard">
+      <div class="payment-status-kicker" id="paymentStatusKicker">Pago confirmado</div>
+      <div class="payment-status-title" id="paymentStatusTitle">Ya estÃ¡s participando</div>
+      <div class="payment-status-copy" id="paymentStatusCopy">Cuando tu pago quede aprobado, tus chances quedan activas, tu participaciÃ³n aparece en la lista y se habilita tu enlace Ãºnico si corresponde.</div>
+      <div class="payment-status-reward" id="courseRewardBox">
+        <div class="payment-status-reward-title">Curso gratis desbloqueado</div>
+        <div class="payment-status-reward-copy" id="courseRewardCopy">Con tu compra habilitaste el acceso al curso bonus.</div>
+        <div class="share-link-row">
+          <input class="share-link-input" id="courseAccessCodeInput" type="text" readonly>
+          <button class="share-link-btn secondary" id="copyCourseCodeBtn" type="button">Copiar codigo</button>
+          <button class="share-link-btn primary" id="openCourseBtn" type="button">Abrir curso</button>
+        </div>
+      </div>
+      <div class="share-link-row hidden" id="shareLinkRow">
+        <input class="share-link-input" id="shareLinkInput" type="text" readonly>
+        <button class="share-link-btn secondary" id="copyShareBtn" type="button">Copiar enlace</button>
+        <button class="share-link-btn primary" id="shareWhatsappBtn" type="button">Compartir</button>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:2rem">
+      <a href="#paquetes" class="btn-primary">Â¡Sumate ahora!</a>
+    </div>
+  </div>
+</section>
+
+<section class="auto-showcase">
+  <div class="auto-showcase-wrap reveal">
+    <div class="auto-showcase-copy">
+      <span class="auto-showcase-kicker">Galeria del premio</span>
+      <h2 class="auto-showcase-title">Hermoso <span>Chevrolet Corsa</span><br>impecable</h2>
+      <!--p class="auto-showcase-text">Una presentacion mas prolija del premio, ubicada debajo de la lista de participantes para acompañar el recorrido de la pagina con una seccion visual mas armoniosa, clara y profesional.</p-->
+      <div class="auto-showcase-pills">
+        <span class="auto-pill">Premio unico</span>
+        <span class="auto-pill">¡Últimas chances!</span>
+        <span class="auto-pill">Exterior e interior</span>
+        <span class="auto-pill">Entrega coordinada</span>
+      </div>
+    </div>
+    <div class="auto-showcase-grid">
+      <div class="auto-photo-card featured">
+        <img src="./assets/premios/corsa.png" alt="Hermoso Chevrolet Corsa vista principal">
+        <div class="auto-photo-label"><span>Vista principal</span><strong>Chevrolet Corsa</strong></div>
+      </div>
+      <div class="auto-photo-card">
+        <img src="./assets/premios/corsa1.png" alt="Hermoso Chevrolet Corsa frente">
+        <div class="auto-photo-label"><span>Frente</span><strong>Exterior</strong></div>
+      </div>
+      <div class="auto-photo-card">
+        <img src="./assets/premios/corsa4.png" alt="Hermoso Chevrolet Corsa interior">
+        <div class="auto-photo-label"><span>Interior</span><strong>Cabina</strong></div>
+      </div>
+      <div class="auto-photo-card">
+        <img src="./assets/premios/corsa5.png" alt="Hermoso Chevrolet Corsa lateral trasera">
+        <div class="auto-photo-label"><span>Lateral trasera</span><strong>Perfil</strong></div>
+      </div>
+      <div class="auto-photo-card">
+        <img src="./assets/premios/corsa2.png" alt="Hermoso Chevrolet Corsa parte trasera">
+        <div class="auto-photo-label"><span>Parte trasera</span><strong>Detalle</strong></div>
+      </div>
+      <div class="auto-photo-card featured">
+        <img src="./assets/premios/corsa3.png" alt="Hermoso Chevrolet Corsa vista final">
+        <div class="auto-photo-label"><span>Vista final</span><strong>Impecable</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="course-hook-section">
+  <div class="course-hook-wrap reveal">
+    <div class="course-hook-grid">
+      <div class="course-hook-copy">
+        <div class="course-hook-lead">
+          <span class="course-hook-kicker">Bonus incluido con 3 o más chances</span>
+          <h2 class="course-hook-lead-title">Con tu compra bonificada, desbloqueás un curso que te hace sentir <span>más seguro al elegir tu próximo auto</span></h2>
+          <p class="course-hook-lead-copy">Si elegís 3 o más chances, no solo participás por el Chevrolet Corsa: también te llevás acceso a un material pensado para mirar publicaciones, detectar alertas y tomar decisiones con mucha más confianza.</p>
+          <div class="course-hook-highlight">
+            <strong>Un bonus que suma valor real a tu compra</strong>
+            <span>Te vas con una herramienta útil incluso antes del sorteo, ideal para quienes quieren aprender a comprar mejor y evitar errores que después cuestan caro.</span>
+          </div>
+          <div class="course-hook-pills">
+            <span class="course-hook-pill">Acceso simple</span>
+            <span class="course-hook-pill">Contenido práctico</span>
+            <span class="course-hook-pill">Más criterio para decidir</span>
+            <span class="course-hook-pill">Incluido sin costo extra</span>
+          </div>
+          <div class="course-hook-cta">
+            <a href="#paquetes" class="btn-primary">Quiero mis chances y el bonus</a>
+            <span class="course-hook-note">Se habilita automáticamente con una compra aprobada de 3 o más chances.</span>
+          </div>
+        </div>
+        <span class="course-hook-kicker">Bonus incluido con 3 o más chances</span>
+        <h2 class="course-hook-title">Además del sorteo, te llevás una guía real para <span>comprar mejor tu auto usado</span></h2>
+        <p>Este bonus no está puesto para decorar la oferta. Está pensado para que sientas que ganás valor desde el momento en que comprás: aprendés a detectar riesgos, evitar errores caros y mirar un usado con más criterio antes de poner plata.</p>
+        <div class="course-hook-proof">
+          <div class="course-proof-card">
+            <span class="course-proof-value">Aplicable de inmediato</span>
+            <span class="course-proof-label">Lo podés usar para analizar publicaciones, visitas y pruebas de manejo reales.</span>
+          </div>
+          <div class="course-proof-card">
+            <span class="course-proof-value">Pensado para no especialistas</span>
+            <span class="course-proof-label">Explica qué mirar y qué preguntar sin necesidad de ser mecánico.</span>
+          </div>
+          <div class="course-proof-card">
+            <span class="course-proof-value">Te ahorra errores caros</span>
+            <span class="course-proof-label">Sirve para filtrar problemas de papeles, estado y decisiones apresuradas.</span>
+          </div>
+        </div>
+        <div class="course-hook-cta">
+          <a href="#paquetes" class="btn-primary">Quiero entrar y desbloquearlo</a>
+          <span class="course-hook-note">Se habilita automáticamente cuando el pago aprobado corresponde a una compra bonificada.</span>
+        </div>
+      </div>
+      <div class="course-hook-syllabus">
+        <div class="course-hook-header">
+          <span class="course-syllabus-kicker">Temario del curso</span>
+          <div class="course-syllabus-title">Qué aprende la persona en el curso bonus</div>
+          <div class="course-syllabus-copy">Este curso se entrega con la compra bonificada y está pensado para ayudar a evaluar mejor un auto usado, detectar riesgos y comprar con más seguridad.</div>
+        </div>
+        <div class="course-syllabus-grid">
+          <div class="course-topic">
+            <strong>Qué revisar antes de señar</strong>
+            <span>Cómo mirar publicaciones, hacer preguntas clave y detectar señales de alerta antes de avanzar.</span>
+          </div>
+          <div class="course-topic">
+            <strong>Chequeo mecánico básico</strong>
+            <span>Qué observar en motor, carrocería, interior, tren delantero y prueba de manejo sin ser especialista.</span>
+          </div>
+          <div class="course-topic">
+            <strong>Documentación y legalidad</strong>
+            <span>Qué papeles pedir, qué validar y cómo evitar problemas de titularidad, deuda o inhibiciones.</span>
+          </div>
+          <div class="course-topic">
+            <strong>Cómo evitar errores caros</strong>
+            <span>Los fallos más comunes al comprar un usado y cómo tomar decisiones con más criterio y confianza.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section">
+  <div class="section-inner">
+    <span class="section-tag">â“ Â¿CÃ³mo funciona?</span>
+    <h2 class="section-title">Simple,<br><span style="color:var(--gold)">transparente, real</span></h2>
+    <div class="steps-grid">
+      <div class="step reveal">
+        <span class="step-num">1</span>
+        <span class="step-icon">ðŸŽ¯</span>
+        <div class="step-title">ElegÃ­ tu pack</div>
+        <p class="step-desc">ElegÃ­s el pack que mÃ¡s te conviene. Cada chance representa una participaciÃ³n real dentro del sistema de selecciÃ³n aleatoria, por eso mientras mÃ¡s chances tengas, mÃ¡s posibilidades acumulÃ¡s.</p>
+      </div>
+      <div class="step reveal" style="transition-delay:0.1s">
+        <span class="step-num">2</span>
+        <span class="step-icon">ðŸ’³</span>
+        <div class="step-title">CompletÃ¡ el pago</div>
+        <p class="step-desc">CompletÃ¡s tus datos y pagÃ¡s de forma simple. Tu reserva queda registrada y, cuando el pago se acredita, tus chances quedan activas con seguimiento claro del proceso.</p>
+      </div>
+      <div class="step reveal" style="transition-delay:0.2s">
+        <span class="step-num">3</span>
+        <span class="step-icon">ðŸ“‹</span>
+        <div class="step-title">AparecÃ©s en la lista</div>
+        <p class="step-desc">Tu participaciÃ³n se refleja en la lista pÃºblica o, si preferÃ­s privacidad, podÃ©s figurar como anÃ³nimo con un cÃ³digo Ãºnico para conservar transparencia sin exponer tu nombre.</p>
+      </div>
+      <div class="step reveal" style="transition-delay:0.3s">
+        <span class="step-num">4</span>
+        <span class="step-icon">ðŸŽ°</span>
+        <div class="step-title">Sorteo nacional</div>
+        <p class="step-desc">El sistema realiza una seleccion aleatoria de 1 participante entre todas las chances activas. El sorteo se hace el 1 de junio o antes si se agotan las chances.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="draw-process-section">
+  <div class="section-inner">
+    <span class="section-tag">ðŸŽ² SelecciÃ³n transparente</span>
+    <h2 class="section-title">Como se elige<br><span style="color:var(--gold)">al ganador</span></h2>
+    <p class="section-sub">El proceso esta pensado para que cada chance cuente como una participacion dentro de una seleccion aleatoria. No importa de donde participes: si tu chance esta activa, entra en el sorteo.</p>
+
+    <div class="draw-process-grid">
+      <div class="draw-card reveal">
+        <div class="draw-card-title">1. Se registran las chances activas</div>
+        <div class="draw-card-copy">Cada pago aprobado activa la cantidad exacta de chances compradas. Esas participaciones quedan asociadas al participante y visibles en la lista.</div>
+      </div>
+      <div class="draw-card reveal" style="transition-delay:0.1s">
+        <div class="draw-card-title">2. Un sistema avanzado selecciona al azar</div>
+        <div class="draw-card-copy">Al cierre del sorteo, un sistema de seleccion aleatoria toma todas las chances activas y elige 1 ganador de forma imparcial.</div>
+      </div>
+      <div class="draw-card reveal" style="transition-delay:0.2s">
+        <div class="draw-card-title">3. MÃ¡s chances, mÃ¡s posibilidades</div>
+        <div class="draw-card-copy">Si una persona tiene mÃ¡s chances, participa mÃ¡s veces dentro del sistema. Eso no garantiza ganar, pero sÃ­ aumenta sus posibilidades frente a quien tiene menos chances.</div>
+      </div>
+      <div class="draw-card reveal" style="transition-delay:0.3s">
+        <div class="draw-card-title">4. Entrega coordinada con el ganador</div>
+        <div class="draw-card-copy">Una vez confirmado el ganador, se coordina la entrega dentro de las 48 horas siguientes. Se organiza el retiro del Chevrolet Corsa publicado.</div>
+      </div>
+    </div>
+
+    <div class="draw-highlight reveal" style="transition-delay:0.35s">
+      El objetivo es que el proceso sea simple de entender: compras chances, tu pago se acredita, tus participaciones quedan activas y luego entras en una seleccion aleatoria de 1 ganador. Mientras mas chances acumulas, mas posibilidades tenes de ganar.
+    </div>
+  </div>
+</section>
+
+<section class="proof-section">
+  <div class="section-inner">
+    <span class="section-tag">ðŸ’¬ Opiniones y expectativas</span>
+    <h2 class="section-title">Mensajes que suman<br><span style="color:var(--gold)">confianza</span></h2>
+    <p class="section-sub">Compartimos opiniones y expectativas frecuentes de personas que valoran la claridad del proceso, la lista pÃºblica y la coordinaciÃ³n de la entrega con cada ganador.</p>
+
+    <div class="proof-grid" id="proofGrid"></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="background:var(--dark)">
+  <div class="section-inner">
+    <span class="section-tag">â“ Preguntas frecuentes</span>
+    <h2 class="section-title">Todo lo que<br><span style="color:var(--gold)">necesitÃ¡s saber</span></h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q">Â¿CÃ³mo sÃ© que el sorteo es real? <span class="faq-arrow">â–¼</span></button>
+        <div class="faq-a">La lista de participantes se actualiza con pagos aprobados y muestra la cantidad de chances activas de cada persona. Eso permite ver que cada participaciÃ³n queda registrada y que el proceso sea mucho mÃ¡s claro, visible y confiable.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Â¿CÃ³mo se realizarÃ¡ el sorteo? <span class="faq-arrow">â–¼</span></button>
+        <div class="faq-a">Cada chance equivale a una participacion dentro del sistema. Al cierre del sorteo, un sistema avanzado de seleccion aleatoria toma todas las chances activas y elige 1 ganador. Si compras mas chances, participas mas veces y aumentas tus posibilidades.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Â¿CuÃ¡ndo se entrega el premio? <span class="faq-arrow">â–¼</span></button>
+        <div class="faq-a">El premio se coordina con el ganador dentro de las 48 horas posteriores al sorteo. Se contacta al ganador, se valida la forma de entrega y se organiza el retiro del Chevrolet Corsa o su equivalente en dinero.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Â¿Puedo comprar mÃ¡s de un pack? <span class="faq-arrow">â–¼</span></button>
+        <div class="faq-a">SÃ­. PodÃ©s comprar mÃ¡s de un pack y todas tus chances se acumulan en tu mismo usuario. Eso hace que tengas mÃ¡s oportunidades dentro del sorteo final.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Â¿QuÃ© mÃ©todos de pago aceptan? <span class="faq-arrow">â–¼</span></button>
+        <div class="faq-a">PodÃ©s abonar con los medios habilitados en el formulario. Una vez aprobado el pago, tus chances quedan activas y tu participaciÃ³n aparece en la lista pÃºblica o como anÃ³nimo, segÃºn elijas, para que siempre haya registro visible del ingreso.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Â¿CÃ³mo funcionan los referidos? <span class="faq-arrow">â–¼</span></button>
+        <div class="faq-a">Si tu compra aprobada habilita tu enlace Ãºnico, podÃ©s compartirlo. Cuando otra persona compra desde ese enlace y se acredita el pago, el sistema suma 2 chances extra a tu cuenta automÃ¡ticamente, aumentando tus posibilidades dentro de la selecciÃ³n.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Â¿Hay fecha lÃ­mite para participar? <span class="faq-arrow">â–¼</span></button>
+        <div class="faq-a">La fecha prevista es el 1 de junio o antes al agotar chances. Quedan pocos lugares, asÃ­ que te recomendamos no esperar al Ãºltimo momento.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">¿Cómo funciona el curso gratis? <span class="faq-arrow">▼</span></button>
+        <div class="faq-a">Si tu compra aprobada es de 3 o más chances, se habilita un código de acceso simple y un botón directo para entrar al curso. No depende de salir ganador: es un bonus concreto por la compra bonificada.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOTTOM CTA -->
+<section class="bottom-cta">
+  <h2 class="bottom-cta-title reveal">Â¿Y si sos<br>el prÃ³ximo ganador?</h2>
+  <p class="bottom-cta-sub reveal">Participás con un proceso claro, con registro visible y una selección aleatoria de 1 ganador. Y si elegís 3 o más chances, además te llevás el curso bonus como beneficio extra.</p>
+  <div class="reveal" style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap">
+    <a href="#paquetes" class="btn-primary">Â¡COMPRAR CHANCES AHORA!</a>
+    <a href="#participantes" class="btn-secondary">Ver participantes</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <strong style="color:var(--gold)">Gran Sorteo</strong><br>
+  Lista publica de participantes · Nacional para toda la Argentina · 1 premio garantizado
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <button class="modal-close" id="modalClose">âœ•</button>
+    <div class="modal-title">Â¡Casi listo! ðŸŽ‰</div>
+    <p class="modal-sub">CompletÃ¡ tus datos para reservar tus chances y avanzar a un pago simple y seguro.</p>
+    <div class="modal-assurance">
+      <strong>Tu reserva queda asociada a tus datos, al pack elegido y al estado del pago.</strong>
+      <span>Cuando el pago se acredita, tus chances se activan y tu participaciÃ³n se refleja en la lista pÃºblica o como anÃ³nimo si asÃ­ lo elegÃ­s. Eso ayuda a que el proceso sea mÃ¡s claro, ordenado y confiable.</span>
+    </div>
+    <div class="modal-pkg-display">
+      <div class="modal-pkg-info">
+        <span class="label">Pack seleccionado</span>
+        <span class="value" id="modal-pkg-name">â€”</span>
+      </div>
+      <div class="modal-pkg-info" style="text-align:right">
+        <span class="label">Total a pagar</span>
+        <span class="value" id="modal-pkg-price">â€”</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Nombre completo *</label>
+      <input class="form-input" type="text" id="f-name" placeholder="Tu nombre y apellido">
+    </div>
+    <div class="form-group">
+      <label class="form-label">WhatsApp *</label>
+      <input class="form-input" type="tel" id="f-phone" placeholder="Ej: 3516012345">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Provincia</label>
+      <input class="form-input" type="text" id="f-province" placeholder="Tu provincia">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Ciudad/localidad</label>
+      <input class="form-input" type="text" id="f-city" placeholder="Tu ciudad">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Foto de perfil opcional</label>
+      <div class="file-upload">
+        <input class="file-upload-input" type="file" id="f-photo" accept="image/*">
+        <div class="file-upload-help">Si subis una foto, se guardara con tu participacion y se mostrara en la lista publica.</div>
+        <div class="photo-preview" id="photoPreview">
+          <img id="photoPreviewImage" alt="Vista previa de foto de perfil">
+          <div class="photo-preview-copy" id="photoPreviewCopy">Foto lista para subirse con tu participacion.</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">OpiniÃ³n o expectativa opcional</label>
+      <textarea class="form-input form-textarea" id="f-message" placeholder="Ej: Me encanta participar, ojalÃ¡ tenga suerte. / Me gusta que la lista sea pÃºblica y transparente."></textarea>
+      <div class="form-help">Si querÃ©s, podÃ©s dejar una reseÃ±a breve, quÃ© te parece el sorteo o cuÃ¡les son tus expectativas. Es completamente opcional y se muestra abajo dentro del formulario como referencia.</div>
+    </div>
+    <div class="message-preview" id="messagePreview">
+      <span class="message-preview-label">Tu opiniÃ³n o expectativa</span>
+      <div class="message-preview-copy" id="messagePreviewCopy"></div>
+    </div>
+    <div class="form-group">
+      <label class="form-check">
+        <input type="checkbox" id="f-anonymous">
+        <span class="form-check-copy">
+          <span class="form-check-title">Quiero aparecer de forma anÃ³nima</span>
+          <span class="form-check-sub">En la lista pÃºblica vas a figurar como â€œAnÃ³nimoâ€ junto con un cÃ³digo Ãºnico de usuario.</span>
+        </span>
+      </label>
+    </div>
+    <div class="form-group">
+      <label class="form-label">MÃ©todo de pago preferido</label>
+      <div class="payment-methods">
+        <!--span class="pm-chip selected" data-provider="mercado_pago" onclick="selectPM(this)">ðŸ’³ Mercado Pago</span-->
+        <span class="pm-chip selected" data-provider="galiopay" onclick="selectPM(this)">ðŸ¦ Transferencia</span>
+        <!--span class="pm-chip" data-provider="manual" onclick="selectPM(this)">ðŸ¦ Transferencia</span>
+        <span class="pm-chip" data-provider="manual" onclick="selectPM(this)">ðŸ’µ Efectivo</span-->
+      </div>
+    </div>
+    <button class="modal-confirm" id="modalConfirm">CONFIRMAR Y PAGAR âœ“</button>
+    <div class="modal-trust">
+      <span>ðŸ”’ Datos y reserva asociados a tu compra</span>
+      <span>âœ… Chances activadas al acreditarse el pago</span>
+      <span>ðŸ“‹ ParticipaciÃ³n visible o anÃ³nima, segÃºn elijas</span>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="opinionModal">
+  <div class="modal">
+    <button class="modal-close" id="opinionModalClose">âœ•</button>
+    <div class="modal-title">ðŸ’¬ OpiniÃ³n o expectativa</div>
+    <p class="modal-sub">Mensaje compartido por una persona que ya participa del sorteo.</p>
+    <div class="modal-assurance">
+      <strong id="opinionAuthor">Participante</strong>
+      <span id="opinionMeta">Su mensaje aparece como parte de las opiniones visibles del sorteo.</span>
+    </div>
+    <div class="opinion-modal-copy" id="opinionModalCopy"></div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">âœ… Â¡Ya sos parte del sorteo! Te contactaremos por WhatsApp.</div>
+<div class="live-feed" id="liveFeed">
+  <div class="live-feed-card">
+    <div class="live-feed-kicker">Actividad en vivo</div>
+    <div class="live-feed-text" id="liveFeedText">Se actualiza con ingresos reales y demo.</div>
+    <div class="live-feed-sub" id="liveFeedSub">Ahora mismo</div>
+  </div>
+</div>
+<a class="whatsapp-float" href="https://wa.me/543518757751?text=Hola%2C%20quiero%20hacer%20una%20consulta%20sobre%20el%20sorteo." target="_blank" rel="noopener noreferrer">
+  <span style="font-size:1.35rem">ðŸ’¬</span>
+  <span><small>Consultas</small>WhatsApp</span>
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL = 'https://asokopamdmuvuupywjzt.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_zBhxdMJHw_uy_m3uRDj-ng_0yXz42EN';
+const CAMPAIGN_SLUG = 'sorteo-moto-tv-dinero';
+const MAX_FALLBACK_CHANCES = 5000;
+const FUNCTIONS_BASE_URL = `${SUPABASE_URL}/functions/v1`;
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+const DEFAULT_SHARE_IMAGE = new URL('./assets/share/share-sorteo.png', window.location.href).toString();
+const DEFAULT_SHARE_TITLE = 'Gran Sorteo - Chevrolet Corsa Impecable';
+const DEFAULT_SHARE_DESCRIPTION = 'Participa de este sorteo por un Chevrolet Corsa impecable. ¡Últimas chances disponibles! El sorteo se hará el 1 de junio o antes al agotar stock.';
+const COURSE_PAGE_PATH = './curso-guia-auto-argentina.html';
+const COURSE_MIN_ENTRIES = 3;
+const DRAW_TARGET_ISO = '2026-06-01T20:00:00-03:00';
+
+let activeCampaign = null;
+let packages = [];
+let participants = [];
+let currentParticipants = [];
+let pastParticipants = [];
+let pastComments = [];
+let pastParticipantsIndex = 0;
+let pastParticipantsInterval = null;
+let pastCommentsInterval = null;
+let demoResults = [];
+let selectedPkg = null;
+let selectedPhotoFile = null;
+let selectedPaymentProvider = 'galiopay';
+let countdownInterval = null;
+let liveFeedTimeout = null;
+let drawAnimationTimeout = null;
+const fallbackProofMessages = [
+  {
+    name: 'Mariana',
+    city: 'Cordoba',
+    message: 'Me dio confianza ver que las participaciones aparecen con fecha y cantidad de chances. Eso hace que el sorteo se sienta mÃ¡s claro y serio.'
+  },
+  {
+    name: 'Leandro',
+    city: 'Rosario',
+    message: 'Me gusta que expliquen que mientras mÃ¡s chances comprÃ¡s, mÃ¡s veces participÃ¡s en la selecciÃ³n aleatoria. Se entiende rÃ¡pido y genera seguridad.'
+  },
+  {
+    name: 'Camila',
+    city: 'Buenos Aires',
+    message: 'Saber que la entrega se coordina directamente con el ganador del Chevrolet Corsa me transmite mucha mas tranquilidad.'
+  },
+  {
+    name: 'Franco',
+    city: 'Mendoza',
+    message: 'La opciÃ³n de aparecer anÃ³nimo pero seguir participando con registro visible me parece una muy buena forma de combinar privacidad con transparencia.'
+  }
+];
+let latestOrderStatus = null;
+const expandedParticipantRows = new Set();
+const drawShowcaseState = {
+  basePool: [],
+  cycle: [],
+  cyclePosition: 0,
+  spotlightPosition: -1,
+  round: 0,
+  activeParticipantIndex: -1,
+  activeEntryNumber: 0,
+  activeEntryPosition: 0,
+  activeSpotlight: false,
+  paused: false,
+  historyOpen: false,
+  hasStarted: false
+};
+
+const COLORS = ['#F5C842','#3B8BFF','#00D46A','#FF6B3B','#BF5FFF','#FF3B7A'];
+function colorFor(i){ return COLORS[i % COLORS.length]; }
+function initials(name){ return name.split(' ').map(w => w[0]).join('').substring(0,2).toUpperCase(); }
+function totalChances(){ return participants.reduce((s, p) => s + (p.chances || 0), 0); }
+function currentMaxChances(){ return activeCampaign?.max_entries || MAX_FALLBACK_CHANCES; }
+function getBaseChancePrice(){
+  const singlePack = packages.find((pkg) => Number(pkg.entries_qty || 0) + Number(pkg.bonus_entries || 0) === 1);
+  return Number(singlePack?.price_ars || 0);
+}
+
+function getReferralCode(){
+  const params = new URLSearchParams(window.location.search);
+  const code = params.get('ref');
+  if (code) {
+    localStorage.setItem('raffle_referral_code', code);
+    return code;
+  }
+  return localStorage.getItem('raffle_referral_code') || '';
+}
+
+function getOrderReferenceFromQuery() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get('order_ref') || '';
+}
+
+function clearPaymentQueryState() {
+  const url = new URL(window.location.href);
+  url.searchParams.delete('payment');
+  url.searchParams.delete('order_ref');
+  window.history.replaceState({}, '', url.toString());
+}
+
+function buildLandingShareUrl(code) {
+  const url = new URL(window.location.href);
+  url.search = '';
+  url.hash = '';
+  url.searchParams.set('ref', code);
+  return url.toString();
+}
+
+function setMetaContent(selector, content) {
+  const el = document.querySelector(selector);
+  if (el) el.setAttribute('content', content);
+}
+
+function updateShareMetadata({ title, description, image, url }) {
+  const nextTitle = cleanMojibakeText(title || DEFAULT_SHARE_TITLE);
+  const nextDescription = cleanMojibakeText(description || DEFAULT_SHARE_DESCRIPTION);
+  const nextImage = image || DEFAULT_SHARE_IMAGE;
+  const nextUrl = url || window.location.href;
+
+  document.title = nextTitle;
+  setMetaContent('meta[name="description"]', nextDescription);
+  setMetaContent('meta[property="og:title"]', nextTitle);
+  setMetaContent('meta[property="og:description"]', nextDescription);
+  setMetaContent('meta[property="og:image"]', nextImage);
+  setMetaContent('meta[name="twitter:title"]', nextTitle);
+  setMetaContent('meta[name="twitter:description"]', nextDescription);
+  setMetaContent('meta[name="twitter:image"]', nextImage);
+
+  let canonical = document.querySelector('link[rel="canonical"]');
+  if (!canonical) {
+    canonical = document.createElement('link');
+    canonical.setAttribute('rel', 'canonical');
+    document.head.appendChild(canonical);
+  }
+  canonical.setAttribute('href', nextUrl);
+}
+
+function buildReferralShareCopy(label, shareUrl) {
+  return cleanMojibakeText(`${label} te invita a participar de este sorteo. Quedan pocos lugares y puede hacerse antes al agotar chances. Sumate ahora: ${shareUrl}`);
+}
+
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = cleanMojibakeText(msg);
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 4500);
+}
+
+function cleanMojibakeText(value) {
+  if (value == null) return value;
+  let text = String(value);
+  const replacements = [
+    ['Ã¡', 'á'], ['Ã©', 'é'], ['Ã­', 'í'], ['Ã³', 'ó'], ['Ãº', 'ú'],
+    ['Ã', 'Á'], ['Ã‰', 'É'], ['Ã', 'Í'], ['Ã“', 'Ó'], ['Ãš', 'Ú'],
+    ['Ã±', 'ñ'], ['Ã‘', 'Ñ'], ['Ã¼', 'ü'],
+    ['Â¡', '¡'], ['Â¿', '¿'], ['Â·', '·'], ['Â', ''], ['â€”', '-'], ['â€œ', '"'], ['â€', '"'],
+    ['â€™', "'"], ['â€¢', '•'], ['âœ•', '×'], ['âœ“', '✓'], ['âœ…', '✓'],
+    ['âš¡', '⚡'], ['â­', '★'], ['â“', '?'], ['â–¼', '▼'],
+    ['ðŸ”¥', '🔥'], ['ðŸ’¬', '💬'], ['ðŸ’Ž', '💎'], ['ðŸ‘¥', '👥'], ['ðŸŽ¥', '🎥'],
+    ['ðŸŽ¯', '🎯'], ['ðŸ’³', '💳'], ['ðŸ“‹', '📋'], ['ðŸŽ°', '🎰'], ['ðŸŽ²', '🎲'],
+    ['ðŸŽ‰', '🎉'], ['ðŸ¦', '🏦'], ['ðŸš—', '🚗'], ['ðŸ‡¦ðŸ‡·', '🇦🇷'], ['ðŸ”’', '🔒'], ['ðŸ†', '🏆'], ['ðŸ’µ', '💵'],
+    ['mÃ¡s', 'más'], ['MÃ¡s', 'Más'], ['selecciÃ³n', 'selección'], ['participaciÃ³n', 'participación'],
+    ['participaciones activas', 'participaciones activas'], ['registrÃ³', 'registró'], ['publica', 'publica']
+  ];
+  replacements.forEach(([from, to]) => {
+    text = text.split(from).join(to);
+  });
+  return text;
+}
+
+function repairDocumentText(root = document) {
+  const scope = root instanceof Element ? root : document;
+  const textRoot = root.body || root;
+  if (textRoot) {
+    const walker = document.createTreeWalker(textRoot, NodeFilter.SHOW_TEXT);
+    const textNodes = [];
+    while (walker.nextNode()) textNodes.push(walker.currentNode);
+    textNodes.forEach((node) => {
+      node.nodeValue = cleanMojibakeText(node.nodeValue);
+    });
+  }
+  scope.querySelectorAll?.('[placeholder],[title],[aria-label]').forEach((el) => {
+    ['placeholder', 'title', 'aria-label'].forEach((attr) => {
+      if (el.hasAttribute(attr)) {
+        el.setAttribute(attr, cleanMojibakeText(el.getAttribute(attr)));
+      }
+    });
+  });
+  document.querySelectorAll('meta[content]').forEach((meta) => {
+    meta.setAttribute('content', cleanMojibakeText(meta.getAttribute('content')));
+  });
+  document.title = cleanMojibakeText(document.title);
+}
+
+function updatePhotoPreview(file) {
+  const preview = document.getElementById('photoPreview');
+  const image = document.getElementById('photoPreviewImage');
+  const copy = document.getElementById('photoPreviewCopy');
+  if (!file) {
+    preview.classList.remove('show');
+    image.removeAttribute('src');
+    copy.textContent = 'Foto lista para subirse con tu participacion.';
+    return;
+  }
+  const objectUrl = URL.createObjectURL(file);
+  image.src = objectUrl;
+  copy.textContent = `${file.name} listo para acompaÃ±ar tu participacion.`;
+  preview.classList.add('show');
+}
+
+async function uploadParticipantPhoto(file, phone) {
+  if (!file) return null;
+  const fileExt = (file.name.split('.').pop() || 'jpg').toLowerCase();
+  const safePhone = phone.replace(/\D+/g, '') || Date.now().toString();
+  const filePath = `landing/${CAMPAIGN_SLUG}/${safePhone}-${Date.now()}.${fileExt}`;
+  const { error } = await supabaseClient.storage.from('participant-profiles').upload(filePath, file, {
+    cacheControl: '3600',
+    upsert: true
+  });
+  if (error) throw error;
+  const { data } = supabaseClient.storage.from('participant-profiles').getPublicUrl(filePath);
+  return data?.publicUrl || null;
+}
+
+function buildFunctionUrl(name) {
+  return `${FUNCTIONS_BASE_URL}/${name}`;
+}
+
+function buildCourseAccessCode(orderRef = '') {
+  const normalized = String(orderRef || '').replace(/[^a-z0-9]/gi, '').toUpperCase();
+  const base = (normalized.slice(-6) || 'BONUS3').padStart(6, '0');
+  const checksum = base
+    .split('')
+    .reduce((acc, char, index) => acc + (char.charCodeAt(0) * (index + 3)), 0)
+    .toString()
+    .slice(-4)
+    .padStart(4, '0');
+  return `CURSO-${base}-${checksum}`;
+}
+
+function buildCourseUrl(orderRef = '') {
+  const url = new URL(COURSE_PAGE_PATH, window.location.href);
+  url.searchParams.set('codigo', buildCourseAccessCode(orderRef));
+  return url.toString();
+}
+
+function showCourseReward({ orderRef = '', purchasedEntries = 0 }) {
+  const box = document.getElementById('courseRewardBox');
+  if (!box) return;
+  const qualifies = Number(purchasedEntries || 0) >= COURSE_MIN_ENTRIES;
+  const codeInput = document.getElementById('courseAccessCodeInput');
+  const openBtn = document.getElementById('openCourseBtn');
+  if (!qualifies) {
+    box.classList.remove('show');
+    if (codeInput) codeInput.value = '';
+    if (openBtn) openBtn.dataset.courseUrl = '';
+    return;
+  }
+
+  const accessCode = buildCourseAccessCode(orderRef);
+  const courseUrl = buildCourseUrl(orderRef);
+  document.getElementById('courseRewardCopy').textContent =
+    `Compraste ${Number(purchasedEntries).toLocaleString('es-AR')} chances y desbloqueaste gratis el curso Guia para comprar tu auto usado en Argentina.`;
+  codeInput.value = accessCode;
+  openBtn.dataset.courseUrl = courseUrl;
+  try {
+    localStorage.setItem('bonus_course_access_code', accessCode);
+    localStorage.setItem('bonus_course_url', courseUrl);
+  } catch (_) {
+    // ignore storage failures
+  }
+  box.classList.add('show');
+}
+
+function showPaymentCard({ kicker, title, copy, shareUrl = '' }) {
+  const card = document.getElementById('paymentStatusCard');
+  const row = document.getElementById('shareLinkRow');
+  document.getElementById('paymentStatusKicker').textContent = kicker;
+  document.getElementById('paymentStatusTitle').textContent = title;
+  document.getElementById('paymentStatusCopy').textContent = copy;
+  document.getElementById('shareLinkInput').value = shareUrl || '';
+  row.classList.toggle('hidden', !shareUrl);
+  card.classList.add('show', 'visible');
+}
+
+async function copyCourseCode() {
+  const value = document.getElementById('courseAccessCodeInput').value;
+  if (!value) return;
+  try {
+    await navigator.clipboard.writeText(value);
+    showToast('Codigo del curso copiado.');
+  } catch (_) {
+    showToast('No se pudo copiar el codigo del curso.');
+  }
+}
+
+function openBonusCourse() {
+  const url = document.getElementById('openCourseBtn')?.dataset.courseUrl || '';
+  if (!url) return;
+  window.open(url, '_blank');
+}
+
+async function copyShareLink() {
+  const value = document.getElementById('shareLinkInput').value;
+  if (!value) return;
+  try {
+    const label = (document.getElementById('paymentStatusTitle').textContent || 'Te invito').replace(' ya participa del sorteo', '');
+    await navigator.clipboard.writeText(buildReferralShareCopy(label, value));
+    showToast('Enlace copiado para compartir.');
+  } catch (_) {
+    showToast('No se pudo copiar el enlace.');
+  }
+}
+
+async function shareWhatsappLink() {
+  const value = document.getElementById('shareLinkInput').value;
+  if (!value) return;
+  const text = `Te comparto mi enlace del sorteo. Si compras desde acÃ¡ me regalÃ¡s 2 chances extra: ${value}`;
+  if (navigator.share) {
+    try {
+      await navigator.share({ text, url: value });
+      return;
+    } catch (_) {
+      // fall through to WhatsApp
+    }
+  }
+  window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+}
+
+function randomFrom(list) {
+  return list[Math.floor(Math.random() * list.length)];
+}
+
+function shuffleList(list) {
+  const copy = [...list];
+  for (let i = copy.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
+function getParticipantChances(participant) {
+  return Math.max(1, Number(participant.currentChances || participant.purchasedChances || participant.chances || 0));
+}
+
+function buildDrawEntryPoolBase() {
+  const pool = [];
+  currentParticipants.forEach((participant, participantIndex) => {
+    if (!participant) return;
+    const chances = getParticipantChances(participant);
+    for (let chanceNumber = 1; chanceNumber <= chances; chanceNumber += 1) {
+      pool.push({
+        participantIndex,
+        chanceNumber,
+        chanceLabel: `${participant.displayName || participant.name} Â· chance ${chanceNumber}`
+      });
+    }
+  });
+  return pool;
+}
+
+function refreshDrawEntryPool() {
+  drawShowcaseState.basePool = buildDrawEntryPoolBase();
+}
+
+function getDrawNarrative(participant, isSpotlight, cycleProgress) {
+  if (isSpotlight) {
+    return 'La demostracion alcanzo el punto final de la prueba y deja visible la chance exacta seleccionada dentro de la urna.';
+  }
+  if (cycleProgress < 0.2) return 'La demostracion comenzo a recorrer la urna completa, incluyendo cada chance activa de cada participante.';
+  if (cycleProgress > 0.72) return 'La prueba entra en su tramo final y empieza a acercarse a la chance donde se detendra automaticamente.';
+  return 'El sistema sigue recorriendo chances individuales en tiempo real para mostrar una simulacion mas fiel del mecanismo de seleccion.';
+}
+
+function getActiveDemoParticipant() {
+  if (drawShowcaseState.activeParticipantIndex < 0 || !currentParticipants[drawShowcaseState.activeParticipantIndex]) {
+    return null;
+  }
+  return currentParticipants[drawShowcaseState.activeParticipantIndex];
+}
+
+function renderDemoHistory() {
+  const grid = document.getElementById('demoHistoryGrid');
+  if (!grid) return;
+  if (!demoResults.length) {
+    grid.innerHTML = '<div class="demo-history-empty">Todavia no hay resultados de demostracion guardados.</div>';
+    return;
+  }
+  grid.innerHTML = demoResults.map((item) => `
+    <div class="demo-history-card">
+      <strong>${escapeHtml(item.display_name || item.full_name || 'Participante')}</strong>
+      <div class="demo-history-meta">
+        <span>${escapeHtml([item.city || '', item.province || ''].filter(Boolean).join(', ') || 'Argentina')}</span>
+        <span>${escapeHtml(item.recorded_at_label || '')}</span>
+      </div>
+      <div class="demo-history-meta">
+        <span>${escapeHtml(item.public_code || 'Registro demo')}</span>
+        <span>x${Number(item.chances || 0).toLocaleString('es-AR')}</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+function toggleDemoHistory() {
+  drawShowcaseState.historyOpen = !drawShowcaseState.historyOpen;
+  const panel = document.getElementById('demoHistoryPanel');
+  const button = document.getElementById('toggleDemoHistoryBtn');
+  panel?.classList.toggle('open', drawShowcaseState.historyOpen);
+  if (button) {
+    button.textContent = drawShowcaseState.historyOpen ? 'Ocultar participantes demo' : 'Participantes demostracion';
+  }
+}
+
+function toggleDemoShowcase() {
+  const showcase = document.getElementById('drawShowcase');
+  const button = document.getElementById('toggleDemoBtn');
+  if (!showcase || !button) return;
+  const willOpen = showcase.classList.contains('collapsed');
+  showcase.classList.toggle('collapsed', !willOpen);
+  button.textContent = willOpen ? 'Ocultar demostracion' : 'Iniciar demostracion';
+}
+
+function updateDrawControls() {
+  const showcase = document.getElementById('drawShowcase');
+  const startBtn = document.getElementById('drawStartBtn');
+  const saveBtn = document.getElementById('saveDemoResultBtn');
+  if (!showcase || !startBtn || !saveBtn) return;
+  showcase.classList.toggle('paused', drawShowcaseState.paused);
+  startBtn.disabled = !participants.length || drawShowcaseState.hasStarted;
+  startBtn.style.opacity = startBtn.disabled ? '0.5' : '1';
+  saveBtn.disabled = !getActiveDemoParticipant() || !drawShowcaseState.paused || !drawShowcaseState.hasStarted;
+  saveBtn.style.opacity = saveBtn.disabled ? '0.5' : '1';
+}
+
+function pauseDrawShowcase() {
+  drawShowcaseState.paused = true;
+  stopDrawShowcase();
+  updateDrawControls();
+  document.getElementById('drawPhaseLabel').textContent = 'Prueba detenida';
+  document.getElementById('drawPhaseName').textContent = 'El software freno en el foco actual';
+  document.getElementById('drawPhaseHint').textContent = 'Ahora puedes registrar este resultado de demostracion. Este dato sirve solo como evidencia visual del funcionamiento y no como resultado oficial.';
+}
+
+function startDemoTrial() {
+  if (!participants.length) {
+    renderDrawShowcaseEmpty();
+    return;
+  }
+  drawShowcaseState.hasStarted = true;
+  drawShowcaseState.paused = false;
+  updateDrawControls();
+  if (!drawShowcaseState.cycle.length || drawShowcaseState.cyclePosition >= drawShowcaseState.cycle.length) {
+    prepareDrawShowcaseRound();
+  }
+  document.getElementById('participantsTableScroller')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  tickDrawShowcase();
+  document.getElementById('drawPhaseLabel').textContent = 'Prueba en curso';
+  document.getElementById('drawPhaseName').textContent = 'El software esta recorriendo participantes en vivo';
+  document.getElementById('drawPhaseHint').textContent = 'La prueba se detendra sola en el elegido y luego podras registrar ese resultado.';
+}
+
+function syncParticipantTableFocus(activeIndex, isSpotlight) {
+  const rows = document.querySelectorAll('.participant-main-row');
+  if (!drawShowcaseState.hasStarted) {
+    rows.forEach((row) => {
+      row.classList.remove('is-draw-active', 'is-draw-spotlight');
+    });
+    document.getElementById('drawShowcase')?.classList.remove('is-focus-locked');
+    return;
+  }
+  rows.forEach((row) => {
+    const rowIndex = Number(row.dataset.participantIndex);
+    const isActive = rowIndex === activeIndex;
+    row.classList.toggle('is-draw-active', isActive && !isSpotlight);
+    row.classList.toggle('is-draw-spotlight', isActive && isSpotlight);
+  });
+
+  const activeRow = document.querySelector(`.participant-main-row[data-participant-index="${activeIndex}"]`);
+  if (!activeRow) return;
+
+  const scroller = document.getElementById('participantsTableScroller');
+  if (!scroller) return;
+
+  const rowTop = activeRow.offsetTop;
+  const rowBottom = rowTop + activeRow.offsetHeight;
+  const currentTop = scroller.scrollTop;
+  const visibleTop = currentTop + 54;
+  const visibleBottom = currentTop + scroller.clientHeight - 54;
+  const shouldLockView = isSpotlight || !drawShowcaseState.paused;
+  if (shouldLockView || rowTop < visibleTop || rowBottom > visibleBottom) {
+    const targetTop = Math.max(0, rowTop - (scroller.clientHeight * 0.45));
+    scroller.scrollTo({ top: targetTop, behavior: 'smooth' });
+  }
+
+  if (shouldLockView) {
+    const showcase = document.getElementById('drawShowcase');
+    showcase?.classList.add('is-focus-locked');
+  }
+}
+
+function getDrawDelay(participant, isSpotlight) {
+  const chanceWeight = Math.min(getParticipantChances(participant), 12);
+  const cycleProgress = drawShowcaseState.cycle.length
+    ? drawShowcaseState.cyclePosition / drawShowcaseState.cycle.length
+    : 0;
+  const introBoost = cycleProgress < 0.18 ? -32 : cycleProgress > 0.72 ? 42 : 0;
+  if (isSpotlight) {
+    return 2400 + (chanceWeight * 45) + Math.random() * 1200;
+  }
+  return Math.max(95, 150 + introBoost + (chanceWeight * 4) + (Math.random() * 90));
+}
+
+function renderDrawShowcaseEmpty() {
+  const rail = document.getElementById('drawRail');
+  const card = document.getElementById('drawFeaturedCard');
+  document.getElementById('drawShowcase')?.classList.remove('is-focus-locked');
+  drawShowcaseState.activeParticipantIndex = -1;
+  drawShowcaseState.activeEntryNumber = 0;
+  drawShowcaseState.activeEntryPosition = 0;
+  drawShowcaseState.activeSpotlight = false;
+  drawShowcaseState.hasStarted = false;
+  if (card) card.classList.remove('spotlight');
+  syncParticipantTableFocus(-1, false);
+  document.getElementById('drawRoundCounter').textContent = '0';
+  document.getElementById('drawFeaturedAvatar').textContent = '--';
+  document.getElementById('drawFeaturedAvatar').style.background = 'rgba(255,255,255,0.06)';
+  document.getElementById('drawFeaturedAvatar').style.color = 'var(--text)';
+  document.getElementById('drawFeaturedName').textContent = 'La animacion se activara sola';
+  document.getElementById('drawFeaturedMeta').innerHTML = '<span class="draw-featured-pill">Sin datos todavia</span>';
+  document.getElementById('drawFeaturedScore').textContent = '0';
+  document.getElementById('drawPhaseLabel').textContent = 'Prueba disponible';
+  document.getElementById('drawPhaseName').textContent = 'Lista para iniciar la demostracion del funcionamiento';
+  document.getElementById('drawPhaseHint').textContent = 'Pulsa iniciar prueba, deja que el sistema recorra la lista y luego registra el punto exacto donde freno.';
+  document.getElementById('drawIntelFill').style.width = '18%';
+  updateDrawControls();
+  if (rail) {
+    rail.innerHTML = '<div class="draw-rail-empty">Todavia no hay participantes visibles para iniciar el recorrido animado.</div>';
+  }
+}
+
+async function loadDemoResults() {
+  try {
+    const { data, error } = await supabaseClient.rpc('list_demo_draw_results', {
+      p_campaign_slug: CAMPAIGN_SLUG
+    });
+    if (error) throw error;
+    demoResults = (data || []).map((row) => ({
+      ...row,
+      recorded_at_label: row.recorded_at
+        ? new Date(row.recorded_at).toLocaleString('es-AR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })
+        : ''
+    }));
+  } catch (error) {
+    console.warn('No se pudo cargar el historial demo.', error);
+    demoResults = [];
+  }
+  renderDemoHistory();
+}
+
+async function saveCurrentDemoResult() {
+  const participant = getActiveDemoParticipant();
+  if (!participant) {
+    showToast('Todavia no hay un participante seleccionado donde freno la prueba.');
+    return;
+  }
+  try {
+    const { error } = await supabaseClient.rpc('record_demo_draw_result', {
+      p_campaign_slug: CAMPAIGN_SLUG,
+      p_participant_public_code: participant.publicCode || '',
+      p_display_name: participant.displayName || participant.name,
+      p_full_name: participant.name || participant.displayName || ''
+    });
+    if (error) throw error;
+    await loadDemoResults();
+    if (!drawShowcaseState.historyOpen) {
+      toggleDemoHistory();
+    }
+    showToast(`Resultado registrado donde freno: ${participant.displayName || participant.name}.`);
+  } catch (error) {
+    console.error(error);
+    showToast('No se pudo registrar donde freno la prueba. Revisa la migracion SQL.');
+  }
+}
+
+function renderDrawShowcase(entry, isSpotlight, delay) {
+  if (!currentParticipants.length || !entry || typeof entry.participantIndex !== 'number') {
+    renderDrawShowcaseEmpty();
+    return;
+  }
+
+  const activeIndex = entry.participantIndex;
+  const participant = currentParticipants[activeIndex];
+  if (!participant) {
+    renderDrawShowcaseEmpty();
+    return;
+  }
+  const activeColor = colorFor(activeIndex);
+  drawShowcaseState.activeParticipantIndex = activeIndex;
+  drawShowcaseState.activeEntryNumber = entry.chanceNumber;
+  drawShowcaseState.activeEntryPosition = drawShowcaseState.cyclePosition + 1;
+  drawShowcaseState.activeSpotlight = Boolean(isSpotlight);
+  syncParticipantTableFocus(activeIndex, isSpotlight);
+  const rail = document.getElementById('drawRail');
+  const featuredCard = document.getElementById('drawFeaturedCard');
+  const featuredAvatar = document.getElementById('drawFeaturedAvatar');
+  const featuredName = document.getElementById('drawFeaturedName');
+  const featuredMeta = document.getElementById('drawFeaturedMeta');
+  const featuredScore = document.getElementById('drawFeaturedScore');
+  const phaseLabel = document.getElementById('drawPhaseLabel');
+  const phaseName = document.getElementById('drawPhaseName');
+  const phaseHint = document.getElementById('drawPhaseHint');
+  const intelFill = document.getElementById('drawIntelFill');
+  const cycleProgress = drawShowcaseState.cycle.length
+    ? (drawShowcaseState.cyclePosition + 1) / drawShowcaseState.cycle.length
+    : 0;
+  document.getElementById('drawShowcase')?.classList.toggle('is-focus-locked', Boolean(isSpotlight));
+
+  featuredCard.classList.toggle('spotlight', Boolean(isSpotlight));
+  featuredAvatar.textContent = initials(participant.displayName || participant.name);
+  featuredAvatar.style.background = `${activeColor}22`;
+  featuredAvatar.style.color = activeColor;
+  featuredName.textContent = participant.displayName || participant.name;
+  featuredMeta.innerHTML = `
+    <span class="draw-featured-pill">${escapeHtml(participant.province || 'Argentina')}</span>
+    <span class="draw-featured-pill">${escapeHtml(participant.city || 'Sin ciudad')}</span>
+    <span class="draw-featured-pill">${escapeHtml(participant.date || 'Hoy')}</span>
+    <span class="draw-featured-pill">${participant.publicCode ? escapeHtml(participant.publicCode) : 'Registro visible'}</span>
+  `;
+  featuredScore.textContent = getParticipantChances(participant).toLocaleString('es-AR');
+  document.getElementById('drawRoundCounter').textContent = String(drawShowcaseState.round);
+
+  phaseLabel.textContent = isSpotlight ? 'Pausa aleatoria' : 'Recorrido dinamico';
+  phaseName.textContent = isSpotlight
+    ? `${participant.displayName || participant.name} quedo seleccionado en la demostracion`
+    : 'La lista esta recorriendo participantes en tiempo real';
+  phaseHint.textContent = getDrawNarrative(participant, isSpotlight, cycleProgress);
+  intelFill.style.width = `${Math.max(16, Math.min(100, cycleProgress * 100))}%`;
+
+  const visibleCards = [];
+  const cardCount = Math.min(Math.max(drawShowcaseState.cycle.length, 1), 5);
+  for (let offset = 0; offset < cardCount; offset += 1) {
+    const cyclePosition = (drawShowcaseState.cyclePosition + offset) % drawShowcaseState.cycle.length;
+    const cycleEntry = drawShowcaseState.cycle[cyclePosition];
+    if (!cycleEntry || typeof cycleEntry.participantIndex !== 'number') {
+      continue;
+    }
+    const item = currentParticipants[cycleEntry.participantIndex];
+    if (!item) {
+      continue;
+    }
+    visibleCards.push(`
+      <div class="draw-rail-card${offset === 0 ? ' active' : ''}${cyclePosition === drawShowcaseState.spotlightPosition ? ' spotlight' : ''}">
+        <span class="draw-rail-name">${escapeHtml(item.displayName || item.name)}</span>
+        <div class="draw-rail-meta">
+          <span>${escapeHtml(participantLocation(item))}</span>
+          <span>Chance ${cycleEntry.chanceNumber}</span>
+        </div>
+      </div>
+    `);
+  }
+  rail.innerHTML = visibleCards.join('');
+}
+
+function stopDrawShowcase() {
+  if (drawAnimationTimeout) {
+    clearTimeout(drawAnimationTimeout);
+    drawAnimationTimeout = null;
+  }
+}
+
+function prepareDrawShowcaseRound() {
+  drawShowcaseState.cycle = shuffleList(drawShowcaseState.basePool);
+  drawShowcaseState.cyclePosition = 0;
+  drawShowcaseState.spotlightPosition = drawShowcaseState.cycle.length ? Math.floor(Math.random() * drawShowcaseState.cycle.length) : -1;
+  drawShowcaseState.round += 1;
+}
+
+function tickDrawShowcase() {
+  if (!currentParticipants.length) {
+    stopDrawShowcase();
+    renderDrawShowcaseEmpty();
+    return;
+  }
+  if (drawShowcaseState.paused) {
+    updateDrawControls();
+    return;
+  }
+
+  if (!drawShowcaseState.cycle.length || drawShowcaseState.cyclePosition >= drawShowcaseState.cycle.length) {
+    prepareDrawShowcaseRound();
+  }
+  if (!drawShowcaseState.cycle.length) {
+    renderDrawShowcaseEmpty();
+    return;
+  }
+
+  const cyclePosition = drawShowcaseState.cyclePosition;
+  const entry = drawShowcaseState.cycle[cyclePosition];
+  if (!entry || typeof entry.participantIndex !== 'number' || !currentParticipants[entry.participantIndex]) {
+    drawShowcaseState.cyclePosition += 1;
+    if (drawShowcaseState.cyclePosition >= drawShowcaseState.cycle.length) {
+      prepareDrawShowcaseRound();
+    }
+    tickDrawShowcase();
+    return;
+  }
+  const isSpotlight = cyclePosition === drawShowcaseState.spotlightPosition;
+  const participant = currentParticipants[entry.participantIndex];
+  const delay = getDrawDelay(participant, isSpotlight);
+  renderDrawShowcase(entry, isSpotlight, delay);
+  drawShowcaseState.cyclePosition += 1;
+  if (isSpotlight) {
+    drawAnimationTimeout = setTimeout(() => {
+      pauseDrawShowcase();
+    }, delay);
+    return;
+  }
+  drawAnimationTimeout = setTimeout(() => {
+    if (drawShowcaseState.cyclePosition >= drawShowcaseState.cycle.length) {
+      prepareDrawShowcaseRound();
+    }
+    tickDrawShowcase();
+  }, delay);
+}
+
+function startDrawShowcase() {
+  stopDrawShowcase();
+  if (!currentParticipants.length) {
+    renderDrawShowcaseEmpty();
+    return;
+  }
+  drawShowcaseState.paused = true;
+  drawShowcaseState.hasStarted = false;
+  updateDrawControls();
+  prepareDrawShowcaseRound();
+  if (!drawShowcaseState.cycle.length) {
+    renderDrawShowcaseEmpty();
+    return;
+  }
+  const entry = drawShowcaseState.cycle[drawShowcaseState.cyclePosition];
+  if (!entry || typeof entry.participantIndex !== 'number' || !currentParticipants[entry.participantIndex]) {
+    renderDrawShowcaseEmpty();
+    return;
+  }
+  const participant = currentParticipants[entry.participantIndex];
+  const delay = getDrawDelay(participant, false);
+  renderDrawShowcase(entry, false, delay);
+}
+
+async function shareWhatsappLink() {
+  const value = document.getElementById('shareLinkInput').value;
+  if (!value) return;
+  const label = (document.getElementById('paymentStatusTitle').textContent || 'Te invito').replace(' ya participa del sorteo', '');
+  const text = buildReferralShareCopy(label, value);
+  if (navigator.share) {
+    try {
+      await navigator.share({ title: DEFAULT_SHARE_TITLE, text, url: value });
+      return;
+    } catch (_) {
+      // fall through to WhatsApp
+    }
+  }
+  window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+}
+
+function getRandomActivityMessage() {
+  if (!participants.length) {
+    return null;
+  }
+  const person = randomFrom(participants);
+  const template = randomFrom([
+    'acaba de reservar chances para el sorteo',
+    'se sumo hace instantes',
+    'esta participando ahora mismo',
+    'confirmo su interes en el sorteo'
+  ]);
+  return {
+    text: `${person.displayName || person.name} de ${participantLocation(person)} ${template}.`,
+    sub: person.date
+  };
+}
+
+function showLiveFeedNotification() {
+  const feed = document.getElementById('liveFeed');
+  const message = getRandomActivityMessage();
+  if (!message) return;
+  document.getElementById('liveFeedText').textContent = message.text;
+  document.getElementById('liveFeedSub').textContent = message.sub;
+  feed.classList.add('show');
+  setTimeout(() => feed.classList.remove('show'), 4600);
+}
+
+function scheduleLiveFeed() {
+  if (!participants.length) return;
+  if (liveFeedTimeout) clearTimeout(liveFeedTimeout);
+  const delay = 9000 + Math.random() * 11000;
+  liveFeedTimeout = setTimeout(() => {
+    showLiveFeedNotification();
+    scheduleLiveFeed();
+  }, delay);
+}
+
+function updateStats(){
+  return;
+}
+
+function renderPackages(){
+  const grid = document.getElementById('packagesGrid');
+  const tc = totalChances();
+  const baseChancePrice = getBaseChancePrice();
+  grid.innerHTML = '';
+
+  packages.forEach(pkg => {
+    const chances = Number(pkg.entries_qty || 0) + Number(pkg.bonus_entries || 0);
+    const totalPrice = Number(pkg.price_ars || 0);
+    const fillPct = Math.min(100, Math.round((tc / Math.max(currentMaxChances(), 1)) * 100));
+    const perChance = chances > 0 ? (totalPrice / chances).toLocaleString('es-AR', { maximumFractionDigits: 0 }) : '0';
+    const theoreticalPrice = baseChancePrice > 0 ? baseChancePrice * chances : 0;
+    const savings = theoreticalPrice > totalPrice ? theoreticalPrice - totalPrice : 0;
+    const savingsLabel = savings > 0 ? `Ahorras $${savings.toLocaleString('es-AR')}` : '&nbsp;';
+    const div = document.createElement('div');
+    div.className = 'pkg reveal' + (pkg.featured ? ' featured' : '');
+    div.innerHTML = `
+      ${pkg.featured ? '<span class="pkg-badge">MEJOR OPCION</span>' : ''}
+      <span class="pkg-chances">${chances >= 1000 ? (chances/1000)+'K' : chances}</span>
+      <span class="pkg-unit">CHANCE${chances > 1 ? 'S' : ''}</span>
+      <div class="pkg-progress"><div class="pkg-progress-fill" style="width:${fillPct}%"></div></div>
+      <span class="pkg-price">$${totalPrice.toLocaleString('es-AR')}</span>
+      <span class="pkg-price-unit">$${perChance} por chance</span>
+      <span class="pkg-saving">${savingsLabel}</span>
+      <span class="pkg-price-unit">${chances >= 3 ? 'Con 3 o mas chances se habilita tu link unico y cada referido aprobado te suma 2 chances extra' : '&nbsp;'}</span>
+      <button class="pkg-btn" onclick="openModal('${pkg.id}')">Quiero ${chances >= 1000 ? (chances/1000)+'K' : chances} chance${chances > 1 ? 's' : ''}</button>
+    `;
+    grid.appendChild(div);
+  });
+
+  repairDocumentText(grid);
+  observeReveal();
+}
+
+function renderParticipants(filter=''){
+  const body = document.getElementById('participantsBody');
+  body.innerHTML = '';
+  const normalizedFilter = filter.toLowerCase();
+  const filtered = filter
+    ? participants.filter(p =>
+        (p.displayName || p.name).toLowerCase().includes(normalizedFilter) ||
+        p.name.toLowerCase().includes(normalizedFilter) ||
+        (p.city || '').toLowerCase().includes(normalizedFilter) ||
+        (p.province || '').toLowerCase().includes(normalizedFilter) ||
+        (p.publicCode || '').toLowerCase().includes(normalizedFilter)
+      )
+    : participants;
+
+  filtered.forEach((p) => {
+    const sourceIndex = participants.indexOf(p);
+    const purchasedChances = Math.max(1, Number(p.currentChances || p.purchasedChances || p.chances || 0));
+    const detailId = `${p.publicCode || p.name}-${sourceIndex}-${p.date}`;
+    const row = document.createElement('tr');
+    row.className = 'participant-main-row';
+    row.dataset.detailId = detailId;
+    row.dataset.participantIndex = String(sourceIndex);
+    const avatarHtml = renderParticipantAvatar(p, p.displayName || p.name, colorFor(sourceIndex));
+    row.innerHTML = `
+      <td data-col="participant"><div class="td-name-cell">${avatarHtml}<div class="td-name-copy"><div class="td-name">${p.displayName || p.name}</div></div></div></td>
+      <td data-col="province"><span style="font-size:0.8rem;color:var(--text2)">${p.province || '-'}</span></td>
+      <td data-col="city"><span style="font-size:0.8rem;color:var(--text2)">${p.city || '-'}</span></td>
+      <td data-col="entries"><span class="chances-badge">x${purchasedChances.toLocaleString('es-AR')}</span></td>
+      <td data-col="date" style="font-size:0.8rem;color:var(--text2)">${p.date}</td>
+      <td data-col="message" class="message-cell"><button type="button" class="message-trigger${p.opinionMessage ? '' : ' empty'}" data-opinion="${encodeURIComponent(p.opinionMessage || '')}" data-author="${encodeURIComponent(p.displayName || p.name)}" data-city="${encodeURIComponent(participantLocation(p))}"><span class="message-trigger-icon">ðŸ’¬</span><span>${p.opinionMessage ? 'Ver mensaje' : 'Sin mensaje'}</span></button></td>
+    `;
+    body.appendChild(row);
+
+    if (expandedParticipantRows.has(detailId)) {
+      Array.from({ length: purchasedChances }, (_, idx) => idx + 1).forEach((chanceNumber) => {
+        const detailRow = document.createElement('tr');
+        const detailAvatarHtml = renderParticipantAvatar(p, p.detailLabel || p.displayName || p.name, colorFor(sourceIndex));
+        detailRow.className = 'participant-detail-row';
+        detailRow.innerHTML = `
+          <td data-col="participant"><div class="td-name-cell">${detailAvatarHtml}<div class="td-name-copy"><div class="td-name">${p.detailLabel || p.displayName || p.name}</div></div></div></td>
+          <td data-col="province"><span style="font-size:0.8rem;color:var(--text2)">${p.province || '-'}</span></td>
+          <td data-col="city"><span style="font-size:0.8rem;color:var(--text2)">${p.city || '-'}</span></td>
+          <td data-col="entries"><span class="chances-badge">x${chanceNumber}</span></td>
+          <td data-col="date" style="font-size:0.8rem;color:var(--text2)">${p.date}</td>
+          <td data-col="message" class="message-cell"><button type="button" class="message-trigger${p.opinionMessage ? '' : ' empty'}" data-opinion="${encodeURIComponent(p.opinionMessage || '')}" data-author="${encodeURIComponent(p.displayName || p.name)}" data-city="${encodeURIComponent(participantLocation(p))}"><span class="message-trigger-icon">ðŸ’¬</span><span>${p.opinionMessage ? 'Ver mensaje' : 'Sin mensaje'}</span></button></td>
+        `;
+        body.appendChild(detailRow);
+      });
+    }
+  });
+
+  syncParticipantTableFocus(drawShowcaseState.activeParticipantIndex, drawShowcaseState.activeSpotlight);
+
+  body.querySelectorAll('.message-trigger:not(.empty)').forEach((button) => {
+    button.addEventListener('click', (event) => {
+      event.stopPropagation();
+      openOpinionModal({
+        message: decodeURIComponent(button.dataset.opinion || ''),
+        author: decodeURIComponent(button.dataset.author || 'Participante'),
+        city: decodeURIComponent(button.dataset.city || 'Argentina')
+      });
+    });
+  });
+
+  body.querySelectorAll('.participant-main-row').forEach((row) => {
+    row.addEventListener('click', () => {
+      const { detailId } = row.dataset;
+      if (!detailId) return;
+      if (expandedParticipantRows.has(detailId)) {
+        expandedParticipantRows.delete(detailId);
+      } else {
+        expandedParticipantRows.add(detailId);
+      }
+      renderParticipants(document.getElementById('searchInput').value);
+    });
+  });
+
+  if (!filtered.length) {
+    body.innerHTML = '<tr><td colspan="6" style="padding:1rem;color:var(--text2)">Todavia no hay compras aprobadas para mostrar.</td></tr>';
+  }
+
+  updateStats();
+}
+
+function renderProofMessages() {
+  const grid = document.getElementById('proofGrid');
+  if (!grid) return;
+
+  const proofCutOff = new Date('2026-05-01T00:00:00-03:00');
+
+  const dynamicMessages = participants
+    .filter((p) => p.opinionMessage && p.joinedAt >= proofCutOff)
+    .map((p) => ({
+      name: p.displayName || p.name,
+      city: participantLocation(p),
+      message: p.opinionMessage,
+      photoUrl: p.photoUrl || ''
+    }));
+
+  const cards = dynamicMessages.length ? dynamicMessages : [];
+  grid.innerHTML = cards.map((item, index) => `
+    <div class="proof-card reveal" style="transition-delay:${Math.min(index * 0.08, 0.32)}s">
+      <div class="proof-head">
+        <div class="proof-avatar">${item.photoUrl ? `<img src="${escapeHtml(item.photoUrl)}" alt="${escapeHtml(item.name)}">` : ''}</div>
+        <div class="proof-head-copy">
+          <span class="proof-name">${escapeHtml(item.name)}</span>
+          <span class="proof-city">${escapeHtml(item.city)}</span>
+        </div>
+      </div>
+      <div class="proof-copy">"${escapeHtml(item.message)}"</div>
+    </div>
+  `).join('');
+
+  observeReveal();
+}
+
+function setCountdown(targetIso){
+  if (countdownInterval) clearInterval(countdownInterval);
+  const target = new Date(DRAW_TARGET_ISO);
+  const countdownBar = document.getElementById('countdownBar');
+
+  function tick(){
+    const diff = target - Date.now();
+    if (diff <= 0) {
+      clearInterval(countdownInterval);
+      countdownBar.classList.remove('hidden-until-thirty');
+      document.getElementById('countdownNote').textContent = 'Se acerca el cierre final. AprovechÃ¡ antes de que se agoten las chances.';
+      return;
+    }
+    const d = Math.floor(diff / 864e5);
+    const h = Math.floor((diff % 864e5) / 36e5);
+    const m = Math.floor((diff % 36e5) / 6e4);
+    const s = Math.floor((diff % 6e4) / 1e3);
+    if (d <= 30) {
+      countdownBar.classList.remove('hidden-until-thirty');
+    } else {
+      countdownBar.classList.add('hidden-until-thirty');
+    }
+    document.getElementById('cd-d').textContent = String(d).padStart(2,'0');
+    document.getElementById('cd-h').textContent = String(h).padStart(2,'0');
+    document.getElementById('cd-m').textContent = String(m).padStart(2,'0');
+    document.getElementById('cd-s').textContent = String(s).padStart(2,'0');
+    const note = document.getElementById('countdownNote');
+    if (d <= 3) {
+      note.textContent = 'Ultimos dias. Quedan pocos lugares para hacer el sorteo antes.';
+    } else if (d <= 10) {
+      note.textContent = 'Se viene el cierre. Quedan pocos lugares y puede sortearse antes al agotar chances.';
+    } else if (d <= 30) {
+      note.textContent = 'Ya comenzo la cuenta regresiva. Quedan pocos lugares para hacer el sorteo antes.';
+    } else {
+      note.textContent = 'Quedan pocos lugares para hacer el sorteo antes.';
+    }
+  }
+
+  tick();
+  countdownInterval = setInterval(tick, 1000);
+}
+
+function createSparks(){
+  const container = document.getElementById('sparks');
+  for(let i = 0; i < 30; i++){
+    const s = document.createElement('div');
+    s.className = 'spark';
+    const size = Math.random() * 4 + 2;
+    s.style.cssText = `
+      width:${size}px; height:${size}px;
+      left:${Math.random()*100}%;
+      background:${Math.random()>0.5?'#F5C842':'#E8192C'};
+      animation-duration:${4+Math.random()*8}s;
+      animation-delay:${Math.random()*6}s;
+    `;
+    container.appendChild(s);
+  }
+}
+
+function openModal(pkgId){
+  selectedPkg = packages.find(p => p.id === pkgId);
+  if (!selectedPkg) return;
+  const totalEntries = Number(selectedPkg.entries_qty || 0) + Number(selectedPkg.bonus_entries || 0);
+  document.getElementById('modal-pkg-name').textContent = `${totalEntries} chance${totalEntries > 1 ? 's' : ''}`;
+  document.getElementById('modal-pkg-price').textContent = '$' + Number(selectedPkg.price_ars || 0).toLocaleString('es-AR');
+  document.getElementById('f-name').value = '';
+  document.getElementById('f-phone').value = '';
+  document.getElementById('f-province').value = '';
+  document.getElementById('f-city').value = '';
+  document.getElementById('f-photo').value = '';
+  document.getElementById('f-message').value = '';
+  document.getElementById('f-anonymous').checked = false;
+  selectedPhotoFile = null;
+  updatePhotoPreview(null);
+  updateMessagePreview();
+  selectPaymentProvider('galiopay');
+  setModalOpen(true);
+}
+
+function setModalOpen(isOpen) {
+  document.getElementById('modal').classList.toggle('open', isOpen);
+  document.body.classList.toggle('modal-open', isOpen);
+}
+
+function selectPaymentProvider(provider) {
+  const chip = document.querySelector(`.pm-chip[data-provider="${provider}"]`);
+  if (!chip) return;
+  document.querySelectorAll('.pm-chip').forEach(c => c.classList.remove('selected'));
+  chip.classList.add('selected');
+  selectedPaymentProvider = chip.dataset.provider || 'manual';
+}
+
+document.getElementById('modalClose').onclick = () => setModalOpen(false);
+document.getElementById('modal').onclick = e => { if (e.target === document.getElementById('modal')) setModalOpen(false); };
+
+function selectPM(el){
+  document.querySelectorAll('.pm-chip').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedPaymentProvider = el.dataset.provider || 'manual';
+}
+
+function updateMessagePreview() {
+  const value = document.getElementById('f-message').value.trim();
+  const preview = document.getElementById('messagePreview');
+  const copy = document.getElementById('messagePreviewCopy');
+  copy.textContent = value;
+  preview.classList.toggle('show', Boolean(value));
+}
+
+document.getElementById('f-message').addEventListener('input', updateMessagePreview);
+document.getElementById('f-photo').addEventListener('change', (event) => {
+  const [file] = event.target.files || [];
+  selectedPhotoFile = file || null;
+  updatePhotoPreview(selectedPhotoFile);
+});
+document.getElementById('opinionModalClose').onclick = () => document.getElementById('opinionModal').classList.remove('open');
+document.getElementById('opinionModal').onclick = e => { if (e.target === document.getElementById('opinionModal')) document.getElementById('opinionModal').classList.remove('open'); };
+
+function openOpinionModal({ message, author, city }) {
+  document.getElementById('opinionAuthor').textContent = author;
+  document.getElementById('opinionMeta').textContent = `${city} Â· Mensaje compartido desde el formulario del sorteo.`;
+  document.getElementById('opinionModalCopy').textContent = message;
+  document.getElementById('opinionModal').classList.add('open');
+}
+
+function escapeHtml(value) {
+  return String(value || '')
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;');
+}
+
+function renderParticipantAvatar(participant, fallbackLabel, color) {
+  if (participant.photoUrl) {
+    return `<div class="td-avatar"><img src="${escapeHtml(participant.photoUrl)}" alt="${escapeHtml(fallbackLabel)}"></div>`;
+  }
+  return `<div class="td-avatar" style="background:${color}22;color:${color}">${escapeHtml(initials(fallbackLabel))}</div>`;
+}
+
+function participantLocation(participant) {
+  const province = participant.province || '';
+  const city = participant.city || '';
+  return province || city || 'Argentina';
+}
+
+function normalizeParticipantLocation(row) {
+  const rawProvince = (row.province || '').trim();
+  const rawCity = (row.city || '').trim();
+  const normalizedCity = rawCity.toLowerCase();
+  const hasLegacyLocation = !rawProvince && rawCity && normalizedCity !== 'argentina';
+  return {
+    province: hasLegacyLocation ? rawCity : rawProvince,
+    city: hasLegacyLocation || normalizedCity === 'argentina' ? '' : rawCity
+  };
+}
+
+async function submitOrder(){
+  const name = document.getElementById('f-name').value.trim();
+  const phone = document.getElementById('f-phone').value.trim();
+  const province = document.getElementById('f-province').value.trim() || 'Argentina';
+  const city = document.getElementById('f-city').value.trim() || '';
+  const opinionMessage = document.getElementById('f-message').value.trim();
+  const wantsAnonymous = document.getElementById('f-anonymous').checked;
+  if (!selectedPkg) return showToast('ElegÃ­ un paquete.');
+  if (!name || !phone) return alert('CompletÃ¡ nombre y WhatsApp');
+
+  const button = document.getElementById('modalConfirm');
+  const originalText = button.textContent;
+  button.disabled = true;
+  button.textContent = 'PROCESANDO...';
+
+  try {
+    const photoUrl = await uploadParticipantPhoto(selectedPhotoFile, phone);
+    const { data, error } = await supabaseClient.rpc('create_order_from_landing', {
+      p_campaign_slug: CAMPAIGN_SLUG,
+      p_package_id: selectedPkg.id,
+      p_full_name: name,
+      p_phone: phone,
+      p_province: province,
+      p_city: city,
+      p_photo_url: photoUrl,
+      p_show_public_name: !wantsAnonymous,
+      p_payment_provider: selectedPaymentProvider,
+      p_referral_code: getReferralCode() || null,
+      p_opinion_message: opinionMessage || null
+    });
+
+    if (error) throw error;
+
+    if (selectedPaymentProvider === 'galiopay') {
+      const response = await fetch(buildFunctionUrl('galiopay-create-payment'), {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'text/plain;charset=UTF-8'
+        },
+        body: JSON.stringify({
+          order_id: data.order_id,
+          provider: 'galiopay',
+          landing_url: window.location.origin + window.location.pathname,
+          landing_origin: window.location.origin
+        })
+      });
+
+      const checkout = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        throw new Error(checkout.error || 'No se pudo generar el link de pago de Galiopay.');
+      }
+
+      if (checkout.checkout_url) {
+        window.location.href = checkout.checkout_url;
+        return;
+      }
+    }
+
+    setModalOpen(false);
+    await loadParticipants();
+    renderPackages();
+    renderParticipants(document.getElementById('searchInput').value);
+
+    const shareHint = data?.share_unlocked_after_payment
+      ? ' Al aprobarse el pago se habilita tu enlace unico para compartir.'
+      : '';
+    showToast('Reserva creada correctamente.' + shareHint);
+    setTimeout(() => document.getElementById('participantes').scrollIntoView({behavior:'smooth'}), 400);
+  } catch (error) {
+    console.error(error);
+    showToast(error.message || 'No se pudo crear la orden.');
+  } finally {
+    button.disabled = false;
+    button.textContent = originalText;
+  }
+}
+
+async function loadCampaign(){
+  let { data, error } = await supabaseClient
+    .from('campaigns')
+    .select('*')
+    .eq('slug', CAMPAIGN_SLUG)
+    .eq('status', 'active')
+    .limit(1)
+    .maybeSingle();
+
+  if (error) throw error;
+  if (!data) {
+    const fallback = await supabaseClient
+      .from('campaigns')
+      .select('*')
+      .eq('status', 'active')
+      .order('created_at', { ascending: false })
+      .limit(1)
+      .maybeSingle();
+    if (fallback.error) throw fallback.error;
+    data = fallback.data;
+  }
+
+  if (!data) throw new Error('No hay una campana activa configurada.');
+  activeCampaign = data;
+  setCountdown(DRAW_TARGET_ISO);
+}
+
+async function loadPackages(){
+  const { data, error } = await supabaseClient
+    .from('packages')
+    .select('*')
+    .eq('campaign_id', activeCampaign.id)
+    .eq('status', 'active')
+    .order('sort_order')
+    .order('entries_qty');
+
+  if (error) throw error;
+  packages = data || [];
+}
+
+async function loadParticipants(){
+  const { data, error } = await supabaseClient.rpc('list_public_participants', {
+    p_campaign_slug: CAMPAIGN_SLUG
+  });
+
+  if (error) throw error;
+  participants = (data || []).map((row, index) => {
+    const location = normalizeParticipantLocation(row);
+    const displayName = row.display_name || row.full_name;
+    const fullName = row.full_name || displayName;
+    const province = location.province;
+    const city = location.city;
+    return {
+      sourceIndex: index,
+      name: fullName,
+      displayName,
+    detailLabel: row.is_anonymous ? (row.display_name || 'AnÃ³nimo') : row.full_name,
+      isAnonymous: Boolean(row.is_anonymous),
+      publicCode: row.public_code || '',
+      photoUrl: row.photo_url || '',
+      province: location.province,
+      city: location.city,
+      purchasedChances: Number(row.purchased_entries || row.total_entries || 0),
+      chances: Number(row.total_entries || 0),
+      currentChances: Math.max(Number(row.purchased_entries || 0), Number(row.total_entries || 0)),
+      opinionMessage: (row.opinion_message || '').trim(),
+      date: new Date(row.joined_at).toLocaleDateString('es-AR', { day: '2-digit', month: '2-digit', year: 'numeric' })
+    };
+  });
+  renderProofMessages();
+  startDrawShowcase();
+}
+
+async function loadPublicOrderStatus(orderRef) {
+  const { data, error } = await supabaseClient.rpc('get_public_order_status', {
+    p_external_reference: orderRef
+  });
+  if (error) throw error;
+  latestOrderStatus = data || null;
+  return latestOrderStatus;
+}
+
+function renderParticipants(filter=''){
+  const body = document.getElementById('participantsBody');
+  if (!body) return;
+  body.innerHTML = '';
+
+  const normalizedFilter = (filter || '').trim().toLowerCase();
+  const filtered = normalizedFilter
+    ? currentParticipants.filter((participant) => (participant.searchIndex || '').includes(normalizedFilter))
+    : currentParticipants;
+
+  if (!filtered.length) {
+    body.innerHTML = '<tr><td colspan="6" style="padding:1rem;color:var(--text2)">Todavia no hay compras aprobadas para mostrar.</td></tr>';
+    updateStats();
+    return;
+  }
+
+  const fragment = document.createDocumentFragment();
+  filtered.forEach((participant) => {
+    const sourceIndex = Number.isInteger(participant.sourceIndex) ? participant.sourceIndex : currentParticipants.indexOf(participant);
+    const purchasedChances = getParticipantChances(participant);
+    const detailId = `${participant.publicCode || participant.name}-${sourceIndex}-${participant.date}`;
+    const avatarHtml = renderParticipantAvatar(participant, participant.displayName || participant.name, colorFor(sourceIndex));
+
+    const row = document.createElement('tr');
+    row.className = 'participant-main-row';
+    row.dataset.detailId = detailId;
+    row.dataset.participantIndex = String(sourceIndex);
+    row.innerHTML = `
+      <td data-col="participant"><div class="participant-cell">${avatarHtml}<span class="participant-label">${escapeHtml(participant.displayName || participant.name)}</span></div></td>
+      <td data-col="province"><span style="font-size:0.8rem;color:var(--text2)">${escapeHtml(participant.province || '-')}</span></td>
+      <td data-col="city"><span style="font-size:0.8rem;color:var(--text2)">${escapeHtml(participant.city || '-')}</span></td>
+      <td data-col="entries"><span class="chances-badge">x${purchasedChances.toLocaleString('es-AR')}</span></td>
+      <td data-col="date" style="font-size:0.8rem;color:var(--text2)">${escapeHtml(participant.date)}</td>
+      <td data-col="message" class="message-cell"><button type="button" class="message-trigger${participant.opinionMessage ? '' : ' empty'}" data-opinion="${encodeURIComponent(participant.opinionMessage || '')}" data-author="${encodeURIComponent(participant.displayName || participant.name)}" data-city="${encodeURIComponent(participantLocation(participant))}"><span class="message-trigger-icon">ðŸ’¬</span><span>${participant.opinionMessage ? 'Ver mensaje' : 'Sin mensaje'}</span></button></td>
+    `;
+    fragment.appendChild(row);
+
+    if (expandedParticipantRows.has(detailId)) {
+      Array.from({ length: purchasedChances }, (_, idx) => idx + 1).forEach((chanceNumber) => {
+        const detailRow = document.createElement('tr');
+        detailRow.className = 'participant-detail-row';
+        detailRow.innerHTML = `
+          <td data-col="participant"><div class="participant-cell">${avatarHtml}<span class="participant-label">${escapeHtml(participant.detailLabel || participant.displayName || participant.name)}</span></div></td>
+          <td data-col="province"><span style="font-size:0.8rem;color:var(--text2)">${escapeHtml(participant.province || '-')}</span></td>
+          <td data-col="city"><span style="font-size:0.8rem;color:var(--text2)">${escapeHtml(participant.city || '-')}</span></td>
+          <td data-col="entries"><span class="chances-badge">x${chanceNumber}</span></td>
+          <td data-col="date" style="font-size:0.8rem;color:var(--text2)">${escapeHtml(participant.date)}</td>
+          <td data-col="message" class="message-cell"><button type="button" class="message-trigger${participant.opinionMessage ? '' : ' empty'}" data-opinion="${encodeURIComponent(participant.opinionMessage || '')}" data-author="${encodeURIComponent(participant.displayName || participant.name)}" data-city="${encodeURIComponent(participantLocation(participant))}"><span class="message-trigger-icon">ðŸ’¬</span><span>${participant.opinionMessage ? 'Ver mensaje' : 'Sin mensaje'}</span></button></td>
+        `;
+        fragment.appendChild(detailRow);
+      });
+    }
+  });
+
+  body.appendChild(fragment);
+  repairDocumentText(body);
+  syncParticipantTableFocus(drawShowcaseState.activeParticipantIndex, drawShowcaseState.activeSpotlight);
+
+  body.querySelectorAll('.message-trigger:not(.empty)').forEach((button) => {
+    button.addEventListener('click', (event) => {
+      event.stopPropagation();
+      openOpinionModal({
+        message: decodeURIComponent(button.dataset.opinion || ''),
+        author: decodeURIComponent(button.dataset.author || 'Participante'),
+        city: decodeURIComponent(button.dataset.city || 'Argentina')
+      });
+    });
+  });
+
+  body.querySelectorAll('.participant-main-row').forEach((row) => {
+    row.addEventListener('click', () => {
+      const { detailId } = row.dataset;
+      if (!detailId) return;
+      if (expandedParticipantRows.has(detailId)) {
+        expandedParticipantRows.delete(detailId);
+      } else {
+        expandedParticipantRows.add(detailId);
+      }
+      renderParticipants(document.getElementById('searchInput')?.value || '');
+    });
+  });
+
+  updateStats();
+}
+
+function formatPastParticipantName(fullName) {
+  if (!fullName) return 'Anónimo';
+  const parts = fullName.trim().split(' ');
+  if (parts.length < 2) return fullName;
+  const firstName = parts[0];
+  const lastName = parts[parts.length - 1];
+  return `${firstName} ${lastName.substring(0, 3)}...`;
+}
+
+function renderPastParticipants() {
+  const track = document.getElementById('pastParticipantsTrack');
+  const section = document.getElementById('pastParticipantsSection');
+  if (!track || !section) return;
+
+  if (!pastParticipants.length) {
+    section.classList.add('hidden');
+    return;
+  }
+
+  section.classList.remove('hidden');
+  
+  // Render past participants
+  track.innerHTML = pastParticipants.map(p => `
+    <div class="past-participant-item">
+      <div class="td-avatar" style="width:28px; height:28px; font-size:10px; background:${colorFor(participants.indexOf(p))}22; color:${colorFor(participants.indexOf(p))}">${p.photoUrl ? `<img src="${p.photoUrl}" class="past-participant-avatar">` : initials(p.displayName || p.name)}</div>
+      <div class="past-participant-info">
+        <span class="past-participant-name">${escapeHtml(formatPastParticipantName(p.name))}</span>
+        <span class="past-participant-date">${p.date}</span>
+      </div>
+    </div>
+  `).join('');
+
+  // Infinite scroll logic for participants
+  setupInfiniteScroll(track, pastParticipantsInterval, (interval) => pastParticipantsInterval = interval);
+}
+
+function renderPastMessages() {
+  const track = document.getElementById('pastCommentsTrack');
+  const section = document.getElementById('pastCommentsSection');
+  if (!track || !section) return;
+
+  if (!pastComments.length) {
+    section.classList.add('hidden');
+    return;
+  }
+
+  section.classList.remove('hidden');
+
+  track.innerHTML = pastComments.map(p => `
+    <div class="past-comment-item">
+      <div class="past-comment-location">${escapeHtml(p.city || p.province || 'Argentina')}</div>
+      <div class="past-comment-text">"${escapeHtml(p.opinionMessage)}"</div>
+      <div class="past-comment-tag">Sorteo anterior</div>
+    </div>
+  `).join('');
+
+  // Infinite scroll logic for comments
+  setupInfiniteScroll(track, pastCommentsInterval, (interval) => pastCommentsInterval = interval);
+}
+
+function setupInfiniteScroll(track, currentInterval, setIntervalCallback) {
+  if (currentInterval) clearInterval(currentInterval);
+  
+  // Duplicate items to ensure smooth loop if content is short
+  const originalContent = track.innerHTML;
+  track.innerHTML = originalContent + originalContent;
+
+  let currentX = 0;
+  const interval = setInterval(() => {
+    currentX -= 0.8; // Constant speed
+    
+    // Reset position when half of the track has passed (since we duplicated it)
+    if (Math.abs(currentX) >= track.scrollWidth / 2) {
+      currentX = 0;
+    }
+    track.style.transform = `translate3d(${currentX}px, 0, 0)`;
+  }, 20);
+  
+  setIntervalCallback(interval);
+}
+
+async function loadParticipants(){
+  const { data, error } = await supabaseClient.rpc('list_public_participants', {
+    p_campaign_slug: CAMPAIGN_SLUG
+  });
+
+  if (error) throw error;
+  
+  const cutOffDate = new Date('2026-05-01T00:00:00-03:00');
+  
+  participants = (data || []).map((row, index) => {
+    const location = normalizeParticipantLocation(row);
+    const displayName = row.display_name || row.full_name;
+    const fullName = row.full_name || displayName;
+    const joinedAt = new Date(row.joined_at);
+    return {
+      sourceIndex: index,
+      name: fullName,
+      displayName,
+      detailLabel: row.is_anonymous ? (displayName || 'AnÃƒÂ³nimo') : fullName,
+      isAnonymous: Boolean(row.is_anonymous),
+      publicCode: row.public_code || '',
+      photoUrl: row.photo_url || '',
+      province: location.province,
+      city: location.city,
+      purchasedChances: Number(row.purchased_entries || row.total_entries || 0),
+      chances: Number(row.total_entries || 0),
+      currentChances: Math.max(Number(row.purchased_entries || 0), Number(row.total_entries || 0)),
+      opinionMessage: (row.opinion_message || '').trim(),
+      searchIndex: [displayName, fullName, location.province, location.city, row.public_code || ''].join(' ').toLowerCase(),
+      date: joinedAt.toLocaleDateString('es-AR', { day: '2-digit', month: '2-digit', year: 'numeric' }),
+      joinedAt: joinedAt
+    };
+  });
+
+  // Split into current and past
+  currentParticipants = participants.filter(p => p.joinedAt >= cutOffDate);
+  pastParticipants = participants.filter(p => p.joinedAt < cutOffDate);
+  pastComments = pastParticipants.filter(p => p.opinionMessage.length > 0);
+
+  refreshDrawEntryPool();
+  renderProofMessages();
+  renderPastParticipants();
+  renderPastMessages();
+  startDrawShowcase();
+}
+
+async function handleReturnedPayment() {
+  const params = new URLSearchParams(window.location.search);
+  const paymentState = params.get('payment');
+  const orderRef = getOrderReferenceFromQuery();
+  if (!paymentState || !orderRef) return;
+
+  if (paymentState === 'failure') {
+    showCourseReward({ orderRef: '', purchasedEntries: 0 });
+    showPaymentCard({
+      kicker: 'Pago pendiente',
+      title: 'El pago no se aprobÃ³',
+      copy: 'PodÃ©s intentarlo de nuevo con otro medio o volver a elegir tu pack.'
+    });
+    showToast('El pago no fue aprobado.');
+    clearPaymentQueryState();
+    return;
+  }
+
+  let statusData = null;
+  for (let attempt = 0; attempt < 6; attempt += 1) {
+    statusData = await loadPublicOrderStatus(orderRef);
+    if (statusData?.status === 'paid') break;
+    await new Promise(resolve => setTimeout(resolve, 2500));
+  }
+
+  if (!statusData) {
+    showToast('No pudimos verificar tu pago todavÃ­a.');
+    return;
+  }
+
+  if (statusData.status !== 'paid') {
+    showCourseReward({ orderRef: '', purchasedEntries: 0 });
+    showPaymentCard({
+      kicker: 'Pago en revisiÃ³n',
+      title: 'Estamos confirmando tu compra',
+      copy: 'Cuando el pago se acredite, tu nombre aparecerÃ¡ en la lista automÃ¡ticamente.'
+    });
+    showToast('Tu pago quedÃ³ en revisiÃ³n.');
+    clearPaymentQueryState();
+    return;
+  }
+
+  await loadParticipants();
+  renderParticipants(document.getElementById('searchInput').value);
+  startDrawShowcase();
+  scheduleLiveFeed();
+
+  const shareUrl = statusData.referral_link_code ? buildLandingShareUrl(statusData.referral_link_code) : '';
+  const participantLabel = statusData.participant_name || 'Te invito';
+  const purchasedEntries = Number(statusData.purchased_entries || statusData.total_entries || 0);
+  if (shareUrl) {
+    updateShareMetadata({
+      title: `${participantLabel} te invita al Gran Sorteo`,
+      description: buildReferralShareCopy(participantLabel, shareUrl),
+      image: DEFAULT_SHARE_IMAGE,
+      url: shareUrl
+    });
+  }
+  showCourseReward({ orderRef, purchasedEntries });
+  showPaymentCard({
+    kicker: 'Pago aprobado',
+    title: `${participantLabel} ya participa del sorteo`,
+    copy: shareUrl
+      ? `Tus chances ya estÃ¡n activas, tu compra quedÃ³ registrada y tambiÃ©n se habilitÃ³ tu enlace Ãºnico. Cada compra aprobada desde ese enlace te suma 2 chances extra.`
+      : `Tus chances ya estÃ¡n activas, tu compra quedÃ³ registrada y ya aparecÃ©s en la lista pÃºblica de participantes.`,
+    shareUrl
+  });
+  showToast(
+    purchasedEntries >= COURSE_MIN_ENTRIES
+      ? 'Pago aprobado. Tambien desbloqueaste el curso gratis.'
+      : (shareUrl ? 'Pago aprobado. Ya podÃ©s compartir tu enlace Ãºnico.' : 'Pago aprobado. Ya aparecÃ©s en la lista.')
+  );
+  document.getElementById('participantes').scrollIntoView({ behavior: 'smooth' });
+  clearPaymentQueryState();
+}
+
+document.getElementById('searchInput').addEventListener('input', e => renderParticipants(e.target.value));
+document.getElementById('modalConfirm').onclick = submitOrder;
+document.getElementById('copyCourseCodeBtn').onclick = copyCourseCode;
+document.getElementById('openCourseBtn').onclick = openBonusCourse;
+document.getElementById('copyShareBtn').onclick = copyShareLink;
+document.getElementById('shareWhatsappBtn').onclick = shareWhatsappLink;
+document.getElementById('toggleDemoBtn').onclick = toggleDemoShowcase;
+document.getElementById('drawStartBtn').onclick = startDemoTrial;
+document.getElementById('saveDemoResultBtn').onclick = saveCurrentDemoResult;
+document.getElementById('toggleDemoHistoryBtn').onclick = toggleDemoHistory;
+
+document.querySelectorAll('.faq-q').forEach(btn => {
+  btn.onclick = () => {
+    const item = btn.parentElement;
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  };
+});
+
+function observeReveal(){
+  const els = document.querySelectorAll('.reveal:not(.visible)');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  els.forEach(el => obs.observe(el));
+}
+
+async function bootLanding(){
+  try {
+    repairDocumentText();
+    updateShareMetadata({
+      title: DEFAULT_SHARE_TITLE,
+      description: DEFAULT_SHARE_DESCRIPTION,
+      image: DEFAULT_SHARE_IMAGE,
+      url: window.location.href
+    });
+    createSparks();
+    await loadCampaign();
+    await loadPackages();
+    await loadParticipants();
+    await loadDemoResults();
+    renderPackages();
+    renderParticipants();
+    repairDocumentText();
+    startDrawShowcase();
+    observeReveal();
+    scheduleLiveFeed();
+    await handleReturnedPayment();
+
+    if (getReferralCode()) {
+      showToast('Entraste con un enlace referido. Si compras, ese enlace suma 2 chances extra a su titular.');
+    }
+  } catch (error) {
+    console.error(error);
+    showToast('No se pudo cargar la landing conectada a Supabase.');
+  }
+}
+
+bootLanding();
+</script>
+</body>
+</html>

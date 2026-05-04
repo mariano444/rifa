@@ -1,0 +1,1682 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AutoGuía Argentina</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,300&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f7f4ef;
+  --bg2: #f0ece4;
+  --bg3: #e8e2d8;
+  --ink: #1a1714;
+  --ink2: #6b645a;
+  --ink3: #a09890;
+  --cream: #faf8f4;
+  --gold: #b8860b;
+  --gold-light: #f0e4b8;
+  --gold-mid: #d4a820;
+  --red: #c0392b;
+  --red-light: #fde8e6;
+  --amber: #d4730a;
+  --amber-light: #fef0e0;
+  --green: #1a6b3a;
+  --green-light: #e4f4eb;
+  --blue: #1a4a6b;
+  --blue-light: #e4eef8;
+  --border: rgba(26,23,20,0.1);
+  --border2: rgba(26,23,20,0.18);
+  --shadow: 0 2px 12px rgba(26,23,20,0.08);
+  --shadow-lg: 0 8px 32px rgba(26,23,20,0.12);
+  --r: 10px;
+  --r-lg: 16px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Geist', sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  min-height: 100vh;
+}
+.course-gate {
+  position: fixed;
+  inset: 0;
+  background: rgba(26,23,20,0.72);
+  backdrop-filter: blur(8px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 1200;
+}
+.course-gate.show { display: flex; }
+.course-gate-card {
+  width: min(520px, 100%);
+  background: var(--cream);
+  border-radius: 20px;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border2);
+  padding: 28px;
+}
+.course-gate-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--gold-light);
+  color: var(--amber);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+.course-gate-title {
+  font-family: 'Fraunces', serif;
+  font-size: 34px;
+  line-height: 1.08;
+  margin: 18px 0 10px;
+}
+.course-gate-copy {
+  color: var(--ink2);
+  margin-bottom: 18px;
+}
+.course-gate-form {
+  display: grid;
+  gap: 12px;
+}
+.course-gate-input {
+  width: 100%;
+  border: 1px solid var(--border2);
+  border-radius: 12px;
+  padding: 14px 16px;
+  background: #fff;
+  color: var(--ink);
+  font-size: 15px;
+  text-transform: uppercase;
+}
+.course-gate-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.course-gate-btn {
+  border: none;
+  border-radius: 12px;
+  padding: 13px 18px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.course-gate-btn.primary {
+  background: linear-gradient(135deg, var(--gold-mid), var(--gold));
+  color: #1a1714;
+}
+.course-gate-btn.secondary {
+  background: var(--bg2);
+  color: var(--ink);
+}
+.course-gate-note {
+  font-size: 13px;
+  color: var(--ink2);
+}
+
+/* ── LAYOUT ── */
+.app { display: flex; min-height: 100vh; }
+.sidebar {
+  width: 272px; flex-shrink: 0;
+  background: var(--ink);
+  position: fixed; top: 0; left: 0; height: 100vh;
+  display: flex; flex-direction: column;
+  overflow-y: auto; z-index: 100;
+}
+.main { margin-left: 272px; flex: 1; }
+
+/* ── SIDEBAR ── */
+.sb-head {
+  padding: 28px 24px 22px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.logo {
+  display: flex; align-items: center; gap: 12px;
+  text-decoration: none;
+}
+.logo-mark {
+  width: 38px; height: 38px; border-radius: 10px;
+  background: var(--gold-mid);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.logo-mark svg { width: 20px; height: 20px; }
+.logo-name {
+  font-family: 'Fraunces', serif;
+  font-size: 19px; font-weight: 700;
+  color: #fff; letter-spacing: -.02em; line-height: 1.1;
+}
+.logo-name span { display: block; font-size: 11px; font-weight: 300; color: rgba(255,255,255,.45); font-family: 'Geist', sans-serif; letter-spacing: .04em; margin-top: 2px; }
+
+.sb-search {
+  padding: 14px 16px;
+  margin: 12px 16px 0;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  display: flex; align-items: center; gap: 8px;
+  cursor: pointer; transition: background .15s;
+}
+.sb-search:hover { background: rgba(255,255,255,0.1); }
+.sb-search input {
+  background: none; border: none; outline: none;
+  color: rgba(255,255,255,.6); font-size: 13px;
+  font-family: 'Geist', sans-serif; width: 100%;
+}
+.sb-search input::placeholder { color: rgba(255,255,255,.35); }
+.sb-search svg { opacity: .4; flex-shrink: 0; }
+
+.sb-nav { padding: 16px 16px 8px; flex: 1; }
+.sb-group-label {
+  font-size: 10px; font-weight: 500; letter-spacing: .1em;
+  text-transform: uppercase; color: rgba(255,255,255,.3);
+  padding: 0 8px; margin: 16px 0 6px;
+}
+.sb-group-label:first-child { margin-top: 0; }
+
+.nav-btn {
+  display: flex; align-items: center; gap: 10px;
+  width: 100%; padding: 9px 10px;
+  border-radius: 7px; border: none; background: none;
+  color: rgba(255,255,255,.55); font-size: 13.5px;
+  font-family: 'Geist', sans-serif; font-weight: 400;
+  cursor: pointer; transition: all .15s; text-align: left;
+}
+.nav-btn:hover { background: rgba(255,255,255,.07); color: rgba(255,255,255,.85); }
+.nav-btn.active {
+  background: rgba(212,168,32,.15);
+  color: var(--gold-mid);
+  font-weight: 500;
+}
+.nav-btn .nb-icon {
+  width: 28px; height: 28px; border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; flex-shrink: 0;
+  background: rgba(255,255,255,.05);
+  transition: background .15s;
+}
+.nav-btn.active .nb-icon { background: rgba(212,168,32,.2); }
+.nb-badge {
+  margin-left: auto; font-size: 10px; font-weight: 500;
+  background: rgba(212,168,32,.2); color: var(--gold-mid);
+  padding: 1px 6px; border-radius: 10px;
+}
+
+.sb-foot {
+  padding: 16px; border-top: 1px solid rgba(255,255,255,.07);
+  margin-top: auto;
+}
+.sb-progress-label {
+  font-size: 11px; color: rgba(255,255,255,.3);
+  margin-bottom: 8px; display: flex; justify-content: space-between;
+}
+.sb-progress-bar {
+  height: 3px; background: rgba(255,255,255,.1);
+  border-radius: 10px; overflow: hidden;
+}
+.sb-progress-fill {
+  height: 100%; background: var(--gold-mid);
+  border-radius: 10px; transition: width .4s ease;
+  width: 10%;
+}
+.sb-sources {
+  font-size: 11px; color: rgba(255,255,255,.25);
+  margin-top: 12px; line-height: 1.6;
+}
+
+/* ── HERO ── */
+.hero {
+  background: var(--ink);
+  padding: 52px 56px 48px;
+  position: relative; overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 60% 80% at 90% 50%, rgba(212,168,32,.07) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 60% at -10% 80%, rgba(212,168,32,.04) 0%, transparent 60%);
+}
+.hero-grid {
+  position: absolute; inset: 0; pointer-events: none; opacity: .04;
+  background-image: linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.5) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(212,168,32,.15); border: 1px solid rgba(212,168,32,.3);
+  border-radius: 20px; padding: 5px 14px;
+  font-size: 11.5px; color: var(--gold-mid); font-weight: 500;
+  letter-spacing: .04em; margin-bottom: 20px; position: relative; z-index: 1;
+}
+.hero-eyebrow-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold-mid); }
+.hero h1 {
+  font-family: 'Fraunces', serif;
+  font-size: 52px; font-weight: 700; letter-spacing: -.03em;
+  line-height: 1.05; color: #fff;
+  margin-bottom: 16px; position: relative; z-index: 1;
+  max-width: 580px;
+}
+.hero h1 em { color: var(--gold-mid); font-style: italic; }
+.hero-desc {
+  font-size: 15px; color: rgba(255,255,255,.55);
+  max-width: 500px; line-height: 1.75;
+  position: relative; z-index: 1; margin-bottom: 36px;
+}
+.hero-stats {
+  display: flex; gap: 0;
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: var(--r-lg); overflow: hidden;
+  max-width: 600px; position: relative; z-index: 1;
+}
+.hero-stat {
+  flex: 1; padding: 18px 20px;
+  border-right: 1px solid rgba(255,255,255,.1);
+}
+.hero-stat:last-child { border-right: none; }
+.hs-num {
+  font-family: 'Fraunces', serif; font-size: 30px;
+  font-weight: 700; color: var(--gold-mid);
+  letter-spacing: -.03em; line-height: 1;
+}
+.hs-label { font-size: 11px; color: rgba(255,255,255,.35); margin-top: 4px; line-height: 1.4; }
+
+/* ── CONTENT ── */
+.content { padding: 44px 56px 72px; }
+.section { display: none; animation: fadeUp .25s ease; }
+.section.active { display: block; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+.sec-header { margin-bottom: 32px; }
+.sec-eyebrow {
+  font-size: 11px; font-weight: 500; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 6px;
+}
+.sec-title {
+  font-family: 'Fraunces', serif;
+  font-size: 32px; font-weight: 700; letter-spacing: -.025em;
+  color: var(--ink); line-height: 1.1; margin-bottom: 8px;
+}
+.sec-sub { font-size: 14.5px; color: var(--ink2); line-height: 1.7; max-width: 600px; }
+
+/* ── CARDS ── */
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+.grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+.grid4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+
+.card {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 22px 24px;
+  transition: border-color .2s, box-shadow .2s;
+}
+.card:hover { border-color: var(--border2); box-shadow: var(--shadow); }
+.card-eyebrow {
+  font-size: 10px; font-weight: 600; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--ink3); margin-bottom: 14px;
+  display: flex; align-items: center; gap: 6px;
+}
+
+/* ── CHECKLIST ── */
+.chk {
+  display: flex; gap: 10px;
+  padding: 9px 0; border-bottom: 1px solid var(--border);
+  align-items: flex-start;
+}
+.chk:last-child { border-bottom: none; padding-bottom: 0; }
+.chk-badge {
+  flex-shrink: 0; margin-top: 1px;
+  font-size: 9.5px; font-weight: 700; letter-spacing: .03em;
+  padding: 3px 7px; border-radius: 5px; text-transform: uppercase;
+  white-space: nowrap;
+}
+.cb-red { background: var(--red-light); color: var(--red); }
+.cb-amber { background: var(--amber-light); color: var(--amber); }
+.cb-blue { background: var(--blue-light); color: var(--blue); }
+.cb-green { background: var(--green-light); color: var(--green); }
+.chk-body { flex: 1; }
+.chk-title { font-size: 13.5px; color: var(--ink); font-weight: 500; line-height: 1.4; }
+.chk-desc { font-size: 12px; color: var(--ink3); margin-top: 3px; line-height: 1.5; }
+
+/* ── LEGEND ── */
+.legend {
+  display: flex; gap: 14px; flex-wrap: wrap;
+  margin-bottom: 20px;
+  padding: 12px 16px;
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+}
+.leg { display: flex; align-items: center; gap: 7px; font-size: 12.5px; color: var(--ink2); }
+.leg-pill {
+  font-size: 9.5px; font-weight: 700; letter-spacing: .03em;
+  padding: 2px 7px; border-radius: 4px; text-transform: uppercase;
+}
+
+/* ── STEPS ── */
+.steps { display: flex; flex-direction: column; }
+.step { display: flex; gap: 18px; position: relative; }
+.step-track {
+  display: flex; flex-direction: column; align-items: center;
+  flex-shrink: 0;
+}
+.step-circle {
+  width: 34px; height: 34px; border-radius: 50%;
+  background: var(--ink); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Fraunces', serif; font-size: 14px; font-weight: 700;
+  flex-shrink: 0; z-index: 1; position: relative;
+}
+.step.done .step-circle { background: var(--green); }
+.step.current .step-circle { background: var(--gold); color: var(--ink); }
+.step-connector {
+  width: 1px; flex: 1; min-height: 20px;
+  background: var(--border2); margin: 4px 0;
+}
+.step:last-child .step-connector { display: none; }
+.step-body { flex: 1; padding-bottom: 26px; }
+.step-title { font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 5px; }
+.step-desc { font-size: 13.5px; color: var(--ink2); line-height: 1.7; }
+.step-meta {
+  display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px;
+}
+.step-tag {
+  font-size: 11.5px; font-weight: 500; padding: 3px 10px;
+  border-radius: 20px; border: 1px solid;
+}
+.st-gold { color: var(--gold); border-color: rgba(184,134,11,.25); background: rgba(240,228,184,.4); }
+.st-green { color: var(--green); border-color: rgba(26,107,58,.2); background: var(--green-light); }
+.st-red { color: var(--red); border-color: rgba(192,57,43,.2); background: var(--red-light); }
+.st-blue { color: var(--blue); border-color: rgba(26,74,107,.2); background: var(--blue-light); }
+
+/* ── ALERTS ── */
+.alert {
+  border-radius: var(--r); padding: 14px 18px;
+  margin-bottom: 14px; font-size: 13.5px; line-height: 1.7;
+  display: flex; gap: 12px; align-items: flex-start;
+  border: 1px solid;
+}
+.al-red { background: var(--red-light); border-color: rgba(192,57,43,.2); color: var(--red); }
+.al-amber { background: var(--amber-light); border-color: rgba(212,115,10,.2); color: var(--amber); }
+.al-green { background: var(--green-light); border-color: rgba(26,107,58,.2); color: var(--green); }
+.al-blue { background: var(--blue-light); border-color: rgba(26,74,107,.2); color: var(--blue); }
+.al-gold { background: rgba(240,228,184,.5); border-color: rgba(184,134,11,.25); color: var(--gold); }
+.al-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+.al-body { flex: 1; }
+.al-body strong { font-weight: 600; }
+
+/* ── HIGHLIGHT BOX ── */
+.hbox {
+  background: var(--gold-light);
+  border: 1px solid rgba(184,134,11,.25);
+  border-left: 3px solid var(--gold);
+  border-radius: 0 var(--r) var(--r) 0;
+  padding: 14px 18px; margin-bottom: 16px;
+  font-size: 14px; color: var(--ink); line-height: 1.75;
+}
+.hbox strong { font-weight: 600; color: var(--ink); }
+
+/* ── TABLE ── */
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  margin-bottom: 16px;
+  box-shadow: var(--shadow);
+}
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+thead th {
+  background: var(--ink); color: rgba(255,255,255,.75);
+  padding: 13px 16px; text-align: left;
+  font-size: 10.5px; font-weight: 600;
+  letter-spacing: .07em; text-transform: uppercase;
+}
+thead th:first-child { border-radius: var(--r-lg) 0 0 0; }
+thead th:last-child { border-radius: 0 var(--r-lg) 0 0; }
+tbody td {
+  padding: 12px 16px; border-bottom: 1px solid var(--border);
+  color: var(--ink2); vertical-align: top; line-height: 1.6;
+}
+tbody td:first-child { color: var(--ink); font-weight: 500; }
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover td { background: var(--bg2); }
+.tc { display: inline-block; font-size: 10.5px; padding: 2px 7px; border-radius: 5px; margin-top: 3px; font-weight: 500; }
+.tc-green { background: var(--green-light); color: var(--green); }
+.tc-amber { background: var(--amber-light); color: var(--amber); }
+.tc-red { background: var(--red-light); color: var(--red); }
+.tc-gold { background: rgba(240,228,184,.6); color: var(--gold); }
+.tc-blue { background: var(--blue-light); color: var(--blue); }
+
+/* ── GLOSARIO ── */
+.glos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.glos-item {
+  background: var(--cream); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 18px 20px;
+  transition: all .18s;
+}
+.glos-item:hover { border-color: var(--gold); transform: translateY(-1px); box-shadow: var(--shadow); }
+.glos-cat {
+  font-size: 10px; font-weight: 600; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--ink3); margin-bottom: 6px;
+}
+.glos-term {
+  font-family: 'Fraunces', serif; font-size: 20px;
+  font-weight: 700; color: var(--gold); margin-bottom: 6px;
+  letter-spacing: -.02em;
+}
+.glos-def { font-size: 13px; color: var(--ink2); line-height: 1.7; }
+
+/* ── ALERT ITEMS ── */
+.alert-card {
+  background: var(--cream); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 18px 20px;
+  margin-bottom: 10px; display: flex; gap: 16px;
+  align-items: flex-start; transition: all .18s;
+}
+.alert-card:hover { border-color: var(--border2); box-shadow: var(--shadow); }
+.ac-sev {
+  flex-shrink: 0; width: 36px; height: 36px; border-radius: 9px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 17px;
+}
+.sev-high { background: var(--red-light); }
+.sev-mid { background: var(--amber-light); }
+.sev-low { background: var(--blue-light); }
+.ac-body { flex: 1; }
+.ac-title { font-size: 14.5px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+.ac-desc { font-size: 13px; color: var(--ink2); line-height: 1.65; }
+.ac-tip {
+  margin-top: 8px; font-size: 12px; font-weight: 500;
+  color: var(--green); background: var(--green-light);
+  border-radius: 6px; padding: 6px 10px; display: inline-block;
+}
+.sev-badge {
+  margin-left: auto; flex-shrink: 0; align-self: flex-start;
+  font-size: 10px; font-weight: 600; letter-spacing: .05em;
+  text-transform: uppercase; padding: 3px 8px; border-radius: 5px;
+}
+.sb-high { background: var(--red-light); color: var(--red); }
+.sb-mid { background: var(--amber-light); color: var(--amber); }
+.sb-low { background: var(--blue-light); color: var(--blue); }
+
+/* ── TÁCTICAS ── */
+.tac-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.tac {
+  background: var(--cream); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 18px 20px;
+  display: flex; gap: 14px; transition: all .18s;
+}
+.tac:hover { border-color: var(--border2); box-shadow: var(--shadow); }
+.tac-num {
+  font-family: 'Fraunces', serif; font-size: 28px;
+  font-weight: 700; color: var(--bg3); line-height: 1;
+  flex-shrink: 0; min-width: 28px;
+}
+.tac-content strong { display: block; font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+.tac-content p { font-size: 13px; color: var(--ink2); line-height: 1.65; }
+
+/* ── INICIO CARDS ── */
+.inicio-card {
+  background: var(--cream); border: 1px solid var(--border);
+  border-radius: var(--r-lg); padding: 24px;
+  cursor: pointer; transition: all .2s; text-align: left;
+}
+.inicio-card:hover { border-color: var(--gold); transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+.ic-icon { font-size: 28px; margin-bottom: 14px; }
+.ic-title { font-family: 'Fraunces', serif; font-size: 17px; font-weight: 700; color: var(--ink); margin-bottom: 6px; letter-spacing: -.01em; }
+.ic-desc { font-size: 13px; color: var(--ink2); line-height: 1.6; }
+.ic-arrow { margin-top: 14px; font-size: 12px; color: var(--gold); font-weight: 500; }
+
+/* ── METRIC CARDS ── */
+.metric {
+  background: var(--cream); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 18px 20px; text-align: center;
+}
+.metric-num {
+  font-family: 'Fraunces', serif; font-size: 34px;
+  font-weight: 700; color: var(--ink); letter-spacing: -.03em;
+}
+.metric-label { font-size: 12px; color: var(--ink3); margin-top: 4px; line-height: 1.4; }
+
+/* ── DIVIDER ── */
+.divider { height: 1px; background: var(--border); margin: 28px 0; }
+
+/* ── SECTION TITLE SMALL ── */
+.s-label {
+  font-size: 10.5px; font-weight: 600; letter-spacing: .09em;
+  text-transform: uppercase; color: var(--ink3); margin-bottom: 14px;
+  display: flex; align-items: center; gap: 8px;
+}
+.s-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+/* ── PROGRESS BAR ── */
+.prog-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.prog-label { font-size: 13px; color: var(--ink2); width: 140px; flex-shrink: 0; }
+.prog-bar { flex: 1; height: 6px; background: var(--bg3); border-radius: 10px; overflow: hidden; }
+.prog-fill { height: 100%; border-radius: 10px; background: var(--gold); }
+.prog-val { font-size: 12px; font-weight: 600; color: var(--ink); width: 40px; text-align: right; flex-shrink: 0; }
+
+/* ── MOBILE ── */
+.mob-bar {
+  display: none; position: fixed; top: 0; left: 0; right: 0;
+  height: 56px; background: var(--ink); z-index: 200;
+  align-items: center; padding: 0 16px; gap: 12px;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+}
+.mob-menu-btn {
+  background: rgba(255,255,255,.1); border: none;
+  border-radius: 7px; width: 38px; height: 38px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; color: #fff;
+}
+.mob-title { font-family: 'Fraunces', serif; font-size: 17px; font-weight: 700; color: #fff; }
+.overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,.55); z-index: 90; backdrop-filter: blur(3px);
+}
+
+@media (max-width: 900px) {
+  .sidebar { transform: translateX(-100%); transition: transform .25s ease; }
+  .sidebar.open { transform: translateX(0); }
+  .main { margin-left: 0; }
+  .mob-bar { display: flex; }
+  .hero { padding: 72px 24px 36px; }
+  .hero h1 { font-size: 34px; }
+  .hero-stats { flex-direction: column; border: none; gap: 0; max-width: 100%; }
+  .hero-stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,.1); padding: 14px 0; }
+  .hero-stat:last-child { border-bottom: none; }
+  .content { padding: 24px 20px 60px; }
+  .grid2, .grid3, .grid4 { grid-template-columns: 1fr; }
+  .glos-grid, .tac-grid { grid-template-columns: 1fr; }
+  .sec-title { font-size: 26px; }
+  .overlay.open { display: block; }
+}
+</style>
+</head>
+<body>
+<div class="course-gate" id="courseGate">
+  <div class="course-gate-card">
+    <div class="course-gate-kicker">Bonus por compra</div>
+    <div class="course-gate-title">Desbloqueá tu curso gratis</div>
+    <div class="course-gate-copy">Si compraste 3 o más chances, ingresá tu código para acceder a la guía completa. Si llegaste desde el botón del sorteo, el acceso se completa solo.</div>
+    <div class="course-gate-form">
+      <input class="course-gate-input" id="courseGateInput" type="text" placeholder="CURSO-ABC123-0000" autocomplete="off">
+      <div class="course-gate-actions">
+        <button class="course-gate-btn primary" id="courseGateUnlockBtn" type="button">Ingresar al curso</button>
+        <button class="course-gate-btn secondary" id="courseGatePasteBtn" type="button">Usar mi último código</button>
+      </div>
+      <div class="course-gate-note" id="courseGateNote">Código de acceso simple y rápido para tus compradores bonificados.</div>
+    </div>
+  </div>
+</div>
+
+<!-- Mobile bar -->
+<div class="mob-bar">
+  <button class="mob-menu-btn" onclick="toggleMenu()">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+    </svg>
+  </button>
+  <span class="mob-title">AutoGuía</span>
+</div>
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+<div class="app">
+<!-- ══ SIDEBAR ══ -->
+<aside class="sidebar" id="sidebar">
+  <div class="sb-head">
+    <div class="logo">
+      <div class="logo-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#1a1714" stroke-width="2.5">
+          <circle cx="12" cy="12" r="9"/><path d="M7 12h10M12 7l5 5-5 5"/>
+        </svg>
+      </div>
+      <div class="logo-name">AutoGuía<span>Argentina · 2024–2025</span></div>
+    </div>
+  </div>
+
+  <div style="padding: 10px 16px 0;">
+    <div class="sb-search">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="2">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </svg>
+      <input type="text" placeholder="Buscar en la guía…" id="searchInput" oninput="doSearch(this.value)">
+    </div>
+  </div>
+
+  <nav class="sb-nav">
+    <div class="sb-group-label">Inicio</div>
+    <button class="nav-btn active" onclick="nav('inicio',this)">
+      <span class="nb-icon">🏠</span> Inicio
+    </button>
+
+    <div class="sb-group-label">Inspección</div>
+    <button class="nav-btn" onclick="nav('inspeccion',this)">
+      <span class="nb-icon">🔧</span> Inspección mecánica
+    </button>
+    <button class="nav-btn" onclick="nav('vin',this)">
+      <span class="nb-icon">🔍</span> VIN y antecedentes
+    </button>
+    <button class="nav-btn" onclick="nav('testdrive',this)">
+      <span class="nb-icon">🛣️</span> Prueba de manejo
+    </button>
+
+    <div class="sb-group-label">Legal y Trámites</div>
+    <button class="nav-btn" onclick="nav('documentos',this)">
+      <span class="nb-icon">📄</span> Documentación
+    </button>
+    <button class="nav-btn" onclick="nav('proceso',this)">
+      <span class="nb-icon">📋</span> Proceso de compra
+    </button>
+    <button class="nav-btn" onclick="nav('garantias',this)">
+      <span class="nb-icon">⚖️</span> Garantías legales
+    </button>
+    <button class="nav-btn" onclick="nav('seguros',this)">
+      <span class="nb-icon">🛡️</span> Seguros e impuestos
+    </button>
+
+    <div class="sb-group-label">Financiamiento</div>
+    <button class="nav-btn" onclick="nav('financiamiento',this)">
+      <span class="nb-icon">💰</span> Comparativa opciones
+    </button>
+    <button class="nav-btn" onclick="nav('calc',this)">
+      <span class="nb-icon">🧮</span> Simulador de cuotas <span class="nb-badge">nuevo</span>
+    </button>
+
+    <div class="sb-group-label">Estrategia</div>
+    <button class="nav-btn" onclick="nav('alertas',this)">
+      <span class="nb-icon">⚠️</span> Señales de alerta
+    </button>
+    <button class="nav-btn" onclick="nav('negociacion',this)">
+      <span class="nb-icon">🤝</span> Negociación
+    </button>
+
+    <div class="sb-group-label">Referencia</div>
+    <button class="nav-btn" onclick="nav('glosario',this)">
+      <span class="nb-icon">📖</span> Glosario completo
+    </button>
+    <button class="nav-btn" onclick="nav('fuentes',this)">
+      <span class="nb-icon">🔗</span> Fuentes oficiales
+    </button>
+  </nav>
+
+  <div class="sb-foot">
+    <div class="sb-progress-label">
+      <span>Progreso de lectura</span>
+      <span id="progPct">0%</span>
+    </div>
+    <div class="sb-progress-bar">
+      <div class="sb-progress-fill" id="progFill"></div>
+    </div>
+    <div class="sb-sources">
+      Basado en DNRPA · AFIP · Ley 24.240 · BCRA
+    </div>
+  </div>
+</aside>
+
+<!-- ══ MAIN ══ -->
+<main class="main">
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-dot"></div>
+      Guía completa · Autos 0 km y usados
+    </div>
+    <h1>Comprá tu auto<br>con <em>seguridad</em></h1>
+    <p class="hero-desc">Todo lo que necesitás saber para comprar un vehículo en Argentina: inspección mecánica, trámites legales, documentación, financiamiento y tácticas de negociación.</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hs-num">13</div>
+        <div class="hs-label">módulos de<br>información</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hs-num">30</div>
+        <div class="hs-label">días para<br>transferir</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hs-num">3</div>
+        <div class="hs-label">meses de<br>garantía legal</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hs-num">6</div>
+        <div class="hs-label">opciones de<br>financiamiento</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div id="searchResults" style="display:none"></div>
+
+    <!-- ══ INICIO ══ -->
+    <div id="inicio" class="section active">
+      <div class="sec-header">
+        <div class="sec-eyebrow">Bienvenido</div>
+        <div class="sec-title">¿Por dónde empezás?</div>
+        <div class="sec-sub">Elegí el módulo que necesitás o seguí la guía en orden. Cada sección incluye checklists, tablas y consejos prácticos.</div>
+      </div>
+      <div class="grid3">
+        <button class="inicio-card" onclick="navById('inspeccion')">
+          <div class="ic-icon">🔧</div>
+          <div class="ic-title">Inspección mecánica</div>
+          <div class="ic-desc">Checklist completo para revisar motor, carrocería, interior y suspensión.</div>
+          <div class="ic-arrow">Ver módulo →</div>
+        </button>
+        <button class="inicio-card" onclick="navById('documentos')">
+          <div class="ic-icon">📄</div>
+          <div class="ic-title">Documentación</div>
+          <div class="ic-desc">Form. 08, Informe de Dominio, CETA y todos los trámites ante el Registro.</div>
+          <div class="ic-arrow">Ver módulo →</div>
+        </button>
+        <button class="inicio-card" onclick="navById('proceso')">
+          <div class="ic-icon">📋</div>
+          <div class="ic-title">Proceso de compra</div>
+          <div class="ic-desc">Línea de tiempo con 8 pasos desde la búsqueda hasta los trámites finales.</div>
+          <div class="ic-arrow">Ver módulo →</div>
+        </button>
+        <button class="inicio-card" onclick="navById('financiamiento')">
+          <div class="ic-icon">💰</div>
+          <div class="ic-title">Financiamiento</div>
+          <div class="ic-desc">Comparativa de préstamos bancarios, UVA, planes de ahorro, leasing y contado.</div>
+          <div class="ic-arrow">Ver módulo →</div>
+        </button>
+        <button class="inicio-card" onclick="navById('calc')">
+          <div class="ic-icon">🧮</div>
+          <div class="ic-title">Simulador de cuotas</div>
+          <div class="ic-desc">Calculá las cuotas de un préstamo con distintas tasas y plazos.</div>
+          <div class="ic-arrow">Calcular →</div>
+        </button>
+        <button class="inicio-card" onclick="navById('alertas')">
+          <div class="ic-icon">⚠️</div>
+          <div class="ic-title">Señales de alerta</div>
+          <div class="ic-desc">Las 8 estafas más comunes en Argentina y cómo identificarlas a tiempo.</div>
+          <div class="ic-arrow">Ver módulo →</div>
+        </button>
+      </div>
+
+      <div class="divider"></div>
+      <div class="s-label">Datos clave</div>
+      <div class="grid4">
+        <div class="metric"><div class="metric-num">$10,9M</div><div class="metric-label">Umbral CETA obligatorio (abr. 2024)</div></div>
+        <div class="metric"><div class="metric-num">1,5%</div><div class="metric-label">Arancel de transferencia DNRPA</div></div>
+        <div class="metric"><div class="metric-num">30d</div><div class="metric-label">Plazo máximo para inscribir la transferencia</div></div>
+        <div class="metric"><div class="metric-num">3m</div><div class="metric-label">Garantía legal mínima (Ley 24.240)</div></div>
+      </div>
+      <div class="alert al-gold" style="margin-top:16px">
+        <div class="al-icon">★</div>
+        <div class="al-body">Esta guía se basa en fuentes oficiales: <strong>DNRPA, AFIP, Ley 24.240, Banco Central</strong> y la Cámara del Comercio Automotor. Los montos se actualizan por IPC anualmente.</div>
+      </div>
+    </div>
+
+    <!-- ══ INSPECCIÓN ══ -->
+    <div id="inspeccion" class="section">
+      <div class="sec-header">
+        <div class="sec-eyebrow">Módulo 1</div>
+        <div class="sec-title">Inspección mecánica</div>
+        <div class="sec-sub">Nunca completar la compra sin una revisión física detallada. Si no tenés conocimientos mecánicos, llevá un mecánico de confianza (el costo es mínimo vs. el riesgo).</div>
+      </div>
+      <div class="legend">
+        <div class="leg"><span class="leg-pill cb-red">Crítico</span> Motivo para abandonar la compra</div>
+        <div class="leg"><span class="leg-pill cb-amber">Alerta</span> Negociar precio o reparación previa</div>
+        <div class="leg"><span class="leg-pill cb-blue">Revisar</span> Control estándar de rutina</div>
+        <div class="leg"><span class="leg-pill cb-green">Positivo</span> Indica buen mantenimiento</div>
+      </div>
+      <div class="grid2">
+        <div class="card">
+          <div class="card-eyebrow">🔩 Motor y fluidos</div>
+          <div class="chk"><span class="chk-badge cb-red">Crítico</span><div class="chk-body"><div class="chk-title">Humo azul o blanco excesivo al arrancar</div><div class="chk-desc">Azul = consume aceite (anillos o válvulas). Blanco denso = junta de culata comprometida. Ambos son costosos de reparar.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-red">Crítico</span><div class="chk-body"><div class="chk-title">Ruidos metálicos o golpeteos con motor en marcha</div><div class="chk-desc">Ruidos de "biela" o "punteo" pueden significar motor próximo a fallar. Apagarlo y no continuar.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-amber">Alerta</span><div class="chk-body"><div class="chk-title">Manchas de aceite o refrigerante bajo el auto</div><div class="chk-desc">Posicionar sobre pavimento limpio. Fugas activas indican juntas, sellos o mangueras dañadas.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-amber">Alerta</span><div class="chk-body"><div class="chk-title">Niveles bajos de aceite, agua o dirección</div><div class="chk-desc">Con motor frío, revisar la varilla. Aceite muy negro = mucho tiempo sin cambio. Agua con espuma = posible junta.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-blue">Revisar</span><div class="chk-body"><div class="chk-title">Color y olor del aceite en la varilla</div><div class="chk-desc">Marrón oscuro normal; negro espeso con grumos = descuido severo. Olor a quemado en tapa de motor es señal.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-blue">Revisar</span><div class="chk-body"><div class="chk-title">Temperatura de operación en marcha</div><div class="chk-desc">Esperar que el motor alcance temperatura. El indicador no debe pasar la mitad ni subir y bajar.</div></div></div>
+        </div>
+        <div class="card">
+          <div class="card-eyebrow">🚗 Carrocería y estructura</div>
+          <div class="chk"><span class="chk-badge cb-red">Crítico</span><div class="chk-body"><div class="chk-title">VIN con signos de adulteración o retampado</div><div class="chk-desc">Revisar estampillas en el tablero y en el pilar de la puerta. Soldaduras o repintes en el área del chasis = posible auto robado.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-red">Crítico</span><div class="chk-body"><div class="chk-title">Test del imán en zonas sospechosas</div><div class="chk-desc">Sin adherencia magnética en paneles = masilla o fibra por choques reparados. Inspeccionar guardabarros, puertas y baúl.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-amber">Alerta</span><div class="chk-body"><div class="chk-title">Diferencias de alineado entre paneles</div><div class="chk-desc">Espacios irregulares entre puertas, capó o baúl indican deformación estructural por choque. Difícil de corregir.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-amber">Alerta</span><div class="chk-body"><div class="chk-title">Soldaduras visibles en pisos o largueros</div><div class="chk-desc">Los pisos deben verse de fábrica. Soldaduras o remaches extra indican reparaciones estructurales post-choque.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-blue">Revisar</span><div class="chk-body"><div class="chk-title">Uniformidad del brillo y textura de pintura</div><div class="chk-desc">Diferencias de tono entre paneles indican repintes parciales. Usar luz lateral rasante para detectar ondulaciones.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-blue">Revisar</span><div class="chk-body"><div class="chk-title">Puertas, capó y baúl cierran sin holguras</div><div class="chk-desc">Juegos excesivos o necesidad de forzar el cierre señalan deformación del marco o bisagras dobladas.</div></div></div>
+        </div>
+      </div>
+      <div class="grid2">
+        <div class="card">
+          <div class="card-eyebrow">🪑 Interior y equipamiento</div>
+          <div class="chk"><span class="chk-badge cb-red">Crítico</span><div class="chk-body"><div class="chk-title">Luces "Check Engine" o airbag encendidas</div><div class="chk-desc">No comprar sin resolver el diagnóstico con lector OBD. El vendedor debe eliminar el código antes de la venta.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-amber">Alerta</span><div class="chk-body"><div class="chk-title">Desgaste no coincide con el odómetro</div><div class="chk-desc">Pedales, volante y tapizado muy gastados con bajo km = adulteración. Leds de instrumentos marcados = manipulación.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-amber">Alerta</span><div class="chk-body"><div class="chk-title">Olor a humedad, moho o quemado interior</div><div class="chk-desc">Humedad puede indicar ingreso de agua por sellos rotos o anegamiento previo. El moho es difícil y costoso de eliminar.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-blue">Revisar</span><div class="chk-body"><div class="chk-title">A/C, calefacción, levantavidrios, cierre central</div><div class="chk-desc">Probar cada función individualmente. El A/C debe enfriar en ≤ 2 min. Los levantavidrios no deben tardar ni chirriar.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-blue">Revisar</span><div class="chk-body"><div class="chk-title">Estado de la batería y bornes</div><div class="chk-desc">Corrosión blanca en bornes = descuido general. La batería con + de 4 años suele necesitar reemplazo pronto.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-blue">Revisar</span><div class="chk-body"><div class="chk-title">Cinturones, airbags y sistemas de seguridad</div><div class="chk-desc">Los cinturones deben retraerse solos. Ninguna luz de airbag debe estar apagada si hubo despliegue previo.</div></div></div>
+        </div>
+        <div class="card">
+          <div class="card-eyebrow">🔋 Tren rodante y frenos</div>
+          <div class="chk"><span class="chk-badge cb-red">Crítico</span><div class="chk-body"><div class="chk-title">Frenos con recorrido excesivo o sin respuesta</div><div class="chk-desc">El pedal no debe hundirse al piso ni ser esponjoso. Servofreno roto = peligro inmediato.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-amber">Alerta</span><div class="chk-body"><div class="chk-title">Chirridos o vibraciones al frenar</div><div class="chk-desc">Chirrido agudo = pastillas al límite. Vibración del volante al frenar = discos deformados. Ambos tienen costo.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-amber">Alerta</span><div class="chk-body"><div class="chk-title">Desgaste irregular en los neumáticos</div><div class="chk-desc">Interior más gastado que exterior o viceversa = problemas de alineación o convergencia. Revisar los 4.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-blue">Revisar</span><div class="chk-body"><div class="chk-title">Presión y profundidad de labrado</div><div class="chk-desc">Mínimo legal: 1,6mm de labrado. Insertar una moneda: si no se ve el borde, están bien. Verificar la rueda de auxilio.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-blue">Revisar</span><div class="chk-body"><div class="chk-title">Amortiguadores: presionar esquinas</div><div class="chk-desc">Presionar cada esquina del auto y soltar. Debe volver sin rebotar. Más de un rebote = amortiguadores gastados.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-green">Positivo</span><div class="chk-body"><div class="chk-title">Neumáticos de la misma marca en todos los ejes</div><div class="chk-desc">Indica que se cambiaron de a pares o sets. Mezcla de marcas desiguales puede ser señal de descuido.</div></div></div>
+        </div>
+      </div>
+      <div class="alert al-amber">
+        <div class="al-icon">⚠</div>
+        <div class="al-body"><strong>Consejo clave:</strong> Si encontrás 3 o más ítems marcados como "Alerta", pedí una rebaja del precio o solicitá que se reparen antes de cerrar. Cada defecto es un argumento válido de negociación.</div>
+      </div>
+    </div>
+
+    <!-- ══ VIN Y ANTECEDENTES ══ -->
+    <div id="vin" class="section">
+      <div class="sec-header">
+        <div class="sec-eyebrow">Módulo 2</div>
+        <div class="sec-title">VIN y antecedentes</div>
+        <div class="sec-sub">El VIN es la identidad del vehículo. Verificarlo correctamente puede ahorrarte comprar un auto robado o con historial delictivo.</div>
+      </div>
+      <div class="grid2">
+        <div class="card">
+          <div class="card-eyebrow">🔢 Dónde encontrar el VIN</div>
+          <div class="chk"><span class="chk-badge cb-blue">Revisar</span><div class="chk-body"><div class="chk-title">Tablero (visible desde el parabrisas)</div><div class="chk-desc">En la esquina inferior del parabrisas, lado conductor. Visible desde afuera.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-blue">Revisar</span><div class="chk-body"><div class="chk-title">Pilar de la puerta del conductor</div><div class="chk-desc">En el marco entre la puerta y el techo. Debe coincidir exactamente con el del tablero.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-blue">Revisar</span><div class="chk-body"><div class="chk-title">Grabado en el chasis (baúl del motor)</div><div class="chk-desc">En autos argentinos, el número de chasis está grabado en el baúl del motor. Sin soldaduras ni repintes adyacentes.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-blue">Revisar</span><div class="chk-body"><div class="chk-title">Número de motor (en el bloque)</div><div class="chk-desc">Grabado directamente en el bloque del motor. Debe coincidir con el título del vehículo.</div></div></div>
+        </div>
+        <div class="card">
+          <div class="card-eyebrow">🚨 Señales de adulteración del VIN</div>
+          <div class="chk"><span class="chk-badge cb-red">Crítico</span><div class="chk-body"><div class="chk-title">Números de diferente tamaño o fuente</div><div class="chk-desc">El VIN de fábrica tiene tamaño y fuente uniforme. Irregularidades indican retampado.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-red">Crítico</span><div class="chk-body"><div class="chk-title">Soldaduras, pintura fresca o masilla en la zona</div><div class="chk-desc">El área alrededor del chasis grabado no debería tener intervención. Cualquier reparación es sospechosa.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-red">Crítico</span><div class="chk-body"><div class="chk-title">VINs que no coinciden entre sí</div><div class="chk-desc">Si el del tablero y el del chasis difieren, detenerse ahí. Puede ser un auto reconstruido con partes robadas.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-amber">Alerta</span><div class="chk-body"><div class="chk-title">No coincide con el título</div><div class="chk-desc">Un solo dígito diferente invalida la operación. Verificar dígito por dígito con el documento en mano.</div></div></div>
+        </div>
+      </div>
+      <div class="card" style="margin-bottom:14px">
+        <div class="card-eyebrow">📊 Qué revela el Informe de Dominio (DNRPA)</div>
+        <div class="grid2" style="margin-bottom:0">
+          <div>
+            <div class="chk"><span class="chk-badge cb-blue">Info</span><div class="chk-body"><div class="chk-title">Titularidad real del vehículo</div><div class="chk-desc">Confirma si el vendedor es efectivamente el dueño legal.</div></div></div>
+            <div class="chk"><span class="chk-badge cb-red">Clave</span><div class="chk-body"><div class="chk-title">Embargos e inhibiciones judiciales</div><div class="chk-desc">Si hay embargo, el auto puede ser secuestrado aunque lo hayas comprado legalmente.</div></div></div>
+            <div class="chk"><span class="chk-badge cb-red">Clave</span><div class="chk-body"><div class="chk-title">Denuncias de robo activas</div><div class="chk-desc">Un auto con denuncia activa no puede transferirse y puede ser secuestrado.</div></div></div>
+          </div>
+          <div>
+            <div class="chk"><span class="chk-badge cb-amber">Revisar</span><div class="chk-body"><div class="chk-title">Prendas (créditos prendarios)</div><div class="chk-desc">Si hay prenda, el banco es co-dueño. Necesitás la baja de prenda antes de transferir.</div></div></div>
+            <div class="chk"><span class="chk-badge cb-blue">Info</span><div class="chk-body"><div class="chk-title">Historial de transferencias previas</div><div class="chk-desc">Muchos dueños en poco tiempo puede indicar problemas ocultos recurrentes.</div></div></div>
+            <div class="chk"><span class="chk-badge cb-blue">Info</span><div class="chk-body"><div class="chk-title">Modelo, año y características registradas</div><div class="chk-desc">Verificar que coincidan con lo que dice el vendedor y lo que ves físicamente.</div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="alert al-blue">
+        <div class="al-icon">ℹ</div>
+        <div class="al-body"><strong>Cómo obtenerlo:</strong> El Informe de Dominio se solicita online en <strong>dnrpa.gov.ar</strong> ingresando la patente. También en cualquier agencia del Registro. Recomendamos solicitarlo <em>antes</em> de visitar el auto para no perder tiempo.</div>
+      </div>
+    </div>
+
+    <!-- ══ TEST DRIVE ══ -->
+    <div id="testdrive" class="section">
+      <div class="sec-header">
+        <div class="sec-eyebrow">Módulo 3</div>
+        <div class="sec-title">Prueba de manejo</div>
+        <div class="sec-sub">El test drive es obligatorio. Nunca firmar nada sin haber conducido el auto al menos 20 minutos en diferentes condiciones de ruta.</div>
+      </div>
+      <div class="grid2">
+        <div class="card">
+          <div class="card-eyebrow">🚦 Antes de arrancar</div>
+          <div class="chk"><span class="chk-badge cb-blue">Revisar</span><div class="chk-body"><div class="chk-title">Revisar neumáticos y presión</div><div class="chk-desc">Un neumático con baja presión oculta problemas de suspensión al amortiguarlos artificialmente.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-blue">Revisar</span><div class="chk-body"><div class="chk-title">Arranque en frío</div><div class="chk-desc">Notar el nivel de ruido, humo inicial y estabilidad de las rpm al ralentí. Un motor sano estabiliza en segundos.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-amber">Alerta</span><div class="chk-body"><div class="chk-title">Luces del tablero que no se apagan</div><div class="chk-desc">Al arrancar, todas las luces deben encenderse 2s y apagarse. Si alguna queda encendida, hay una falla registrada.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-blue">Revisar</span><div class="chk-body"><div class="chk-title">Posición correcta de manejo</div><div class="chk-desc">Regular asiento, espejos y volante. Si el vendedor se niega a que manejes vos, es señal de alerta.</div></div></div>
+        </div>
+        <div class="card">
+          <div class="card-eyebrow">🛣️ Durante la prueba</div>
+          <div class="chk"><span class="chk-badge cb-red">Crítico</span><div class="chk-body"><div class="chk-title">Dirección que tira hacia un lado</div><div class="chk-desc">Soltar el volante en línea recta unos segundos. Si tira claramente, hay problema de alineación o suspensión.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-red">Crítico</span><div class="chk-body"><div class="chk-title">Ruidos o vibraciones a velocidad</div><div class="chk-desc">Ruidos que aparecen a 80+ km/h pueden indicar cubiertas en mal estado, bujes desgastados o cardan dañado.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-amber">Alerta</span><div class="chk-body"><div class="chk-title">Suspensión: pasar baches y lomadas</div><div class="chk-desc">Buscar adoquines o reductores. Los ruidos tipo "kling" o "plop" al pasar indican buje o palier dañado.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-amber">Alerta</span><div class="chk-body"><div class="chk-title">Frenado de emergencia controlado</div><div class="chk-desc">En zona despejada, frenar fuerte. El auto debe ir recto, sin tirar, sin ruidos y el ABS no debe activarse en condiciones normales.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-blue">Revisar</span><div class="chk-body"><div class="chk-title">Caja de cambios: recorrido y enganche</div><div class="chk-desc">Las marchas deben entrar sin resistencia ni ruidos. El embrague no debe patinar ni tener recorrido excesivo.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-blue">Revisar</span><div class="chk-body"><div class="chk-title">Cambio automático: suavidad de cambios</div><div class="chk-desc">Las marchas deben subir y bajar sin golpes ni demoras. Un "tumb" al cambiar indica transmisión dañada.</div></div></div>
+        </div>
+      </div>
+      <div class="alert al-green">
+        <div class="al-icon">✓</div>
+        <div class="al-body"><strong>Un buen auto se reconoce:</strong> Andar silencioso a toda velocidad, frenos firmes y lineales, dirección centrada y precisa, cambios suaves y sin ruidos. Si tenés esa sensación en todos los puntos, el auto está bien cuidado.</div>
+      </div>
+    </div>
+
+    <!-- ══ DOCUMENTOS ══ -->
+    <div id="documentos" class="section">
+      <div class="sec-header">
+        <div class="sec-eyebrow">Módulo 4</div>
+        <div class="sec-title">Documentación y registro</div>
+        <div class="sec-sub">Verificar toda la documentación antes de firmar. Un error documental puede costarte el auto y el dinero invertido.</div>
+      </div>
+      <div class="grid2">
+        <div class="card">
+          <div class="card-eyebrow">📋 Documentos del vehículo</div>
+          <div class="chk"><span class="chk-badge cb-red">Crítico</span><div class="chk-body"><div class="chk-title">Título de propiedad vigente</div><div class="chk-desc">Debe estar a nombre del vendedor. Si dice "por transferir" o tiene enmiendas, investigar antes de avanzar.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-red">Crítico</span><div class="chk-body"><div class="chk-title">Cédula verde (titular) o azul (autorizado)</div><div class="chk-desc">Sin cédula no se puede circular legalmente. La azul solo autoriza al portador, no acredita propiedad.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-amber">Alerta</span><div class="chk-body"><div class="chk-title">Comprobantes de patente al día</div><div class="chk-desc">Las deudas de patente pasan al nuevo titular. Verificar en el municipio o AGIP que no haya deuda.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-amber">Alerta</span><div class="chk-body"><div class="chk-title">Baja de prenda (si hay crédito prendario)</div><div class="chk-desc">Si el banco figura como acreedor, pedir constancia de cancelación o autorización expresa del banco para transferir.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-blue">Revisar</span><div class="chk-body"><div class="chk-title">Historial de service o revisiones técnicas</div><div class="chk-desc">Libreta de mantenimiento o recibos de taller oficial validan el km declarado y el cuidado del auto.</div></div></div>
+        </div>
+        <div class="card">
+          <div class="card-eyebrow">🏛️ Trámites ante la DNRPA</div>
+          <div class="chk"><span class="chk-badge cb-red">Crítico</span><div class="chk-body"><div class="chk-title">Informe de Dominio (ANTES de visitar)</div><div class="chk-desc">Revela embargos, inhibiciones, denuncias de robo. Solicitar online en dnrpa.gov.ar ingresando la patente.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-red">Crítico</span><div class="chk-body"><div class="chk-title">Formulario 08 correcto y completo</div><div class="chk-desc">Contrato oficial de transferencia. Verificar que todos los datos coincidan antes de firmar. Errores anulan la operación.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-amber">Alerta</span><div class="chk-body"><div class="chk-title">Verificación Policial (autos 2–12 años)</div><div class="chk-desc">Inspector autorizado constata chasis y número de motor. Obligatoria en ese rango etario antes de transferir.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-blue">Revisar</span><div class="chk-body"><div class="chk-title">Formulario 13 provisorio post-firma</div><div class="chk-desc">Acredita la transferencia hasta que llegue el nuevo título. Circular con él mientras llega el definitivo.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-blue">Revisar</span><div class="chk-body"><div class="chk-title">Arancel de transferencia (~1,5% del valor)</div><div class="chk-desc">Acordar con el vendedor quién paga el arancel. 2% si el auto es importado. Simulador en web del Registro.</div></div></div>
+        </div>
+      </div>
+      <div class="card" style="margin-bottom:14px">
+        <div class="card-eyebrow">📊 CETA — Certificado de Transferencia Automotor (AFIP)</div>
+        <div class="hbox">Si el <strong>precio supera ~$10,9 millones</strong> (umbral actualizado por IPC desde abril 2024), es <strong>obligatorio tramitar el CETA en AFIP</strong> antes de firmar. El trámite es <strong>gratuito y 100% online</strong> en afip.gob.ar. Para montos ≥ $2,67M igualmente se debe informar la operación (RG 2032/2006).</div>
+        <div class="grid2" style="margin-bottom:0">
+          <div>
+            <div class="chk"><span class="chk-badge cb-blue">Info</span><div class="chk-body"><div class="chk-title">¿Quién tramita el CETA?</div><div class="chk-desc">Aplica a personas físicas y jurídicas. No aplica al Estado, remates judiciales ni herencias.</div></div></div>
+            <div class="chk"><span class="chk-badge cb-red">Plazo</span><div class="chk-body"><div class="chk-title">Inscripción máxima: 30 días desde la firma</div><div class="chk-desc">Pasado ese plazo, el vendedor sigue siendo el responsable legal ante multas, accidentes y deudas.</div></div></div>
+          </div>
+          <div>
+            <div class="chk"><span class="chk-badge cb-blue">Info</span><div class="chk-body"><div class="chk-title">El umbral se actualiza anualmente</div><div class="chk-desc">La AFIP ajusta el monto por IPC (Resolución General 5499/2024). Verificar el vigente antes de operar.</div></div></div>
+            <div class="chk"><span class="chk-badge cb-blue">Info</span><div class="chk-body"><div class="chk-title">Gastos adicionales a considerar</div><div class="chk-desc">Certificación de firmas + estampillas + nuevo título y cédula verde. Un gestor puede calcular el total exacto.</div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="alert al-blue">
+        <div class="al-icon">ℹ</div>
+        <div class="al-body">Un <strong>poder especial notarial</strong> permite que un tercero firme el Form. 08 si alguno de los titulares no puede concurrir. Se hace ante escribano o ante el propio Registro (copia certificada).</div>
+      </div>
+    </div>
+
+    <!-- ══ PROCESO ══ -->
+    <div id="proceso" class="section">
+      <div class="sec-header">
+        <div class="sec-eyebrow">Módulo 5</div>
+        <div class="sec-title">Proceso de compra</div>
+        <div class="sec-sub">8 pasos en orden para una compra segura, sin sorpresas legales ni pérdidas económicas.</div>
+      </div>
+      <div class="card">
+        <div class="steps">
+          <div class="step">
+            <div class="step-track"><div class="step-circle">1</div><div class="step-connector"></div></div>
+            <div class="step-body">
+              <div class="step-title">Búsqueda y preselección</div>
+              <div class="step-desc">Revisar anuncios en portales especializados. Comparar el precio pedido con libros de precios oficiales (Infoauto, Autocostos). Filtrar por año, km y estado. Contactar al vendedor y solicitar fotos detalladas del chasis.</div>
+              <div class="step-meta"><span class="step-tag st-blue">Duración: 1–7 días</span><span class="step-tag st-gold">Herramienta: libros de precios</span></div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-track"><div class="step-circle">2</div><div class="step-connector"></div></div>
+            <div class="step-body">
+              <div class="step-title">Informe de Dominio previo (online)</div>
+              <div class="step-desc">Antes de ir a ver el auto, solicitar el Informe de Dominio en dnrpa.gov.ar. Verificar que no haya embargos, inhibiciones judiciales, prenda activa ni denuncia de robo. Si hay problema, descartarlo.</div>
+              <div class="step-meta"><span class="step-tag st-green">Gratuito y online</span><span class="step-tag st-gold">Duración: 15 minutos</span></div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-track"><div class="step-circle">3</div><div class="step-connector"></div></div>
+            <div class="step-body">
+              <div class="step-title">Visita, inspección y prueba de manejo</div>
+              <div class="step-desc">Aplicar el checklist completo de inspección mecánica. Revisar VIN y documentos originales. Realizar test drive de mínimo 20 minutos en diferentes condiciones (ciudad, autopista, baches). Si es posible, llevar un mecánico.</div>
+              <div class="step-meta"><span class="step-tag st-red">No omitir el test drive</span><span class="step-tag st-gold">Duración: 1–2 horas</span></div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-track"><div class="step-circle">4</div><div class="step-connector"></div></div>
+            <div class="step-body">
+              <div class="step-title">Negociación y seña</div>
+              <div class="step-desc">Usar los defectos encontrados como argumentos de precio. Ofrecer 5–10% menos del precio pedido. Fijar precio final y condiciones (reparaciones, llaves extra). Si se deja seña, hacerlo por transferencia bancaria y exigir recibo con todos los datos del vehículo.</div>
+              <div class="step-meta"><span class="step-tag st-gold">Ofrecer 5–10% menos</span><span class="step-tag st-blue">Transferencia bancaria</span></div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-track"><div class="step-circle">5</div><div class="step-connector"></div></div>
+            <div class="step-body">
+              <div class="step-title">CETA y trámites AFIP (si aplica)</div>
+              <div class="step-desc">Si el precio supera el umbral vigente (~$10,9M), gestionar el Certificado de Transferencia Automotor en afip.gob.ar. Trámite gratuito y 100% online. Sin CETA emitido, el Registro no acepta la transferencia.</div>
+              <div class="step-meta"><span class="step-tag st-green">Gratuito y online</span><span class="step-tag st-gold">Previo a la firma</span></div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-track"><div class="step-circle">6</div><div class="step-connector"></div></div>
+            <div class="step-body">
+              <div class="step-title">Firma del Formulario 08 en el Registro</div>
+              <div class="step-desc">Ambas partes concurren al Registro Automotor. Se firma el Form. 08 ante el agente. Se abonan los aranceles (~1,5% del valor del auto). El Registro gestiona la baja del título anterior y emite el Form. 13 provisorio.</div>
+              <div class="step-meta"><span class="step-tag st-red">Plazo máximo: 30 días</span><span class="step-tag st-gold">Ambas partes presentes</span></div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-track"><div class="step-circle">7</div><div class="step-connector"></div></div>
+            <div class="step-body">
+              <div class="step-title">Entrega del vehículo</div>
+              <div class="step-desc">Verificar el estado en el momento de la entrega. Documentar cualquier diferencia con fotos. El vendedor debe entregar todas las llaves, manuales y formularios. Circular con el Form. 13 hasta recibir el título definitivo.</div>
+              <div class="step-meta"><span class="step-tag st-green">Exigir todas las llaves</span><span class="step-tag st-blue">Documentar con fotos</span></div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-track"><div class="step-circle">8</div><div class="step-connector"></div></div>
+            <div class="step-body">
+              <div class="step-title">Trámites post-compra</div>
+              <div class="step-desc">Contratar o transferir el seguro obligatorio antes de circular. Actualizar la patente en el municipio o provincia. Realizar service inicial: aceite, filtros y frenos. Inscribir en el municipio local si corresponde.</div>
+              <div class="step-meta"><span class="step-tag st-red">Seguro: antes de circular</span><span class="step-tag st-gold">Service inicial recomendado</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="alert al-red">
+        <div class="al-icon">⚠</div>
+        <div class="al-body"><strong>¡Atención!</strong> Si la transferencia no se inscribe en el Registro dentro de los <strong>30 días</strong>, el vendedor continúa siendo el responsable legal ante accidentes, multas de tránsito y deudas impositivas generadas por el vehículo.</div>
+      </div>
+    </div>
+
+    <!-- ══ GARANTÍAS ══ -->
+    <div id="garantias" class="section">
+      <div class="sec-header">
+        <div class="sec-eyebrow">Módulo 6</div>
+        <div class="sec-title">Garantías legales</div>
+        <div class="sec-sub">Conocé tus derechos como comprador. La Ley 24.240 te protege, pero tiene límites importantes según con quién compres.</div>
+      </div>
+      <div class="card" style="margin-bottom:14px; border-color:rgba(26,107,58,.25);">
+        <div class="card-eyebrow">⚖️ Garantía legal mínima</div>
+        <div class="hbox">La <strong>Establece una garantía mínima de <strong>3 meses</strong> para bienes usados, contados desde la entrega. El vendedor debe responder por defectos o vicios ocultos que aparezcan en ese plazo.</div>
+        <div class="grid2" style="margin-bottom:0">
+          <div>
+            <div class="chk"><span class="chk-badge cb-green">Aplica</span><div class="chk-body"><div class="chk-title">Vendedor es comerciante habilitado</div><div class="chk-desc">Concesionaria, agencia o revendedor registrado. Debe expedir comprobante escrito de la garantía.</div></div></div>
+            <div class="chk"><span class="chk-badge cb-green">Derecho</span><div class="chk-body"><div class="chk-title">Reparación o devolución parcial</div><div class="chk-desc">En fallas cubiertas, podés exigir reparación sin cargo o reducción proporcional del precio.</div></div></div>
+            
+          </div>
+          <div>
+            <div class="chk"><span class="chk-badge cb-red">No aplica</span><div class="chk-body"><div class="chk-title">Venta entre particulares no comerciantes</div><div class="chk-desc">Si comprás a un particular que no es vendedor habitual, la Ley 24.240 no aplica. Solo rigen vicios redhibitorios del Código Civil.</div></div></div>
+            <div class="chk"><span class="chk-badge cb-amber">Límite</span><div class="chk-body"><div class="chk-title">Vicios redhibitorios (Art. 2176 CCCN)</div><div class="chk-desc">Defectos graves y ocultos que hacen al auto impropio para su uso. El plazo de reclamo es de 3 años desde la entrega.</div></div></div>
+            <div class="chk"><span class="chk-badge cb-blue">Tip</span><div class="chk-body"><div class="chk-title">Documentar el estado al comprar</div><div class="chk-desc">Tomar fotos y video del estado del auto al recibirlo. Es la mejor prueba ante un reclamo posterior.</div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="grid2">
+        <div class="card">
+          <div class="card-eyebrow">📝 Contrato de compraventa</div>
+          <div class="chk"><span class="chk-badge cb-amber">Recomendado</span><div class="chk-body"><div class="chk-title">Boleto previo al Form. 08</div><div class="chk-desc">Aunque no es obligatorio, un boleto firmado protege a ambas partes ante arrepentimientos antes de ir al Registro.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-blue">Incluir</span><div class="chk-body"><div class="chk-title">Datos completos del vehículo</div><div class="chk-desc">Dominio, VIN, motor, año, km declarados, estado general y todos los accesorios incluidos.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-blue">Incluir</span><div class="chk-body"><div class="chk-title">Precio, forma de pago y condiciones</div><div class="chk-desc">Especificar si hay reparaciones comprometidas, plazos de entrega o repuestos incluidos.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-blue">Incluir</span><div class="chk-body"><div class="chk-title">Cláusula "sin vicios ocultos conocidos"</div><div class="chk-desc">El vendedor declara que no conoce defectos ocultos. Refuerza la posición del comprador ante reclamos.</div></div></div>
+        </div>
+        <div class="card">
+          <div class="card-eyebrow">🔑 Poder de gestión</div>
+          <div class="chk"><span class="chk-badge cb-blue">Info</span><div class="chk-body"><div class="chk-title">¿Para qué sirve?</div><div class="chk-desc">Si el titular no puede concurrir al Registro, un apoderado puede firmar el Form. 08 en su nombre.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-blue">Opciones</span><div class="chk-body"><div class="chk-title">Ante escribano o ante el Registro</div><div class="chk-desc">Un poder simple con CUIT y DNI suele bastar para tramitar. La copia certificada tiene el mismo valor.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-amber">Cuidado</span><div class="chk-body"><div class="chk-title">Poderes con fecha vencida</div><div class="chk-desc">Verificar que el poder no haya vencido y que no haya sido revocado. El Registro lo verificará antes de aceptarlo.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-red">Alerta</span><div class="chk-body"><div class="chk-title">Poderes "en blanco" o sin datos</div><div class="chk-desc">Un poder con espacios en blanco o sin destinatario específico es peligroso y puede usarse fraudulentamente.</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ SEGUROS ══ -->
+    <div id="seguros" class="section">
+      <div class="sec-header">
+        <div class="sec-eyebrow">Módulo 7</div>
+        <div class="sec-title">Seguros e impuestos</div>
+        <div class="sec-sub">Obligaciones legales que todo comprador debe resolver antes de circular con el vehículo.</div>
+      </div>
+      <div class="grid2">
+        <div class="card">
+          <div class="card-eyebrow">🛡️ Seguro obligatorio — Ley 24.449</div>
+          <div class="chk"><span class="chk-badge cb-red">Obligatorio</span><div class="chk-body"><div class="chk-title">Responsabilidad civil contra terceros</div><div class="chk-desc">Todo vehículo debe tener cobertura RC antes de circular. Sin seguro: multa + inmovilización del vehículo.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-red">Urgente</span><div class="chk-body"><div class="chk-title">Contratar a nombre del nuevo titular</div><div class="chk-desc">La póliza del vendedor no te cubre a vos. Contratar el seguro propio antes de retirar el auto.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-amber">Recomendado</span><div class="chk-body"><div class="chk-title">Cobertura contra robo e incendio</div><div class="chk-desc">En Argentina, la tasa de robo de vehículos es alta. La diferencia de costo con la cobertura básica es razonable.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-blue">Opcional</span><div class="chk-body"><div class="chk-title">Todo riesgo (daños propios)</div><div class="chk-desc">Cubre daños al propio auto en accidentes. Recomendable en autos nuevos o de alto valor.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-blue">Crédito</span><div class="chk-body"><div class="chk-title">Seguro de vida y cesantía (en prendarios)</div><div class="chk-desc">Obligatorio en préstamos prendarios. Cubre el saldo si perdés el trabajo o fallecés. Se suma al CFT.</div></div></div>
+        </div>
+        <div class="card">
+          <div class="card-eyebrow">💸 Patente e impuestos provinciales</div>
+          <div class="chk"><span class="chk-badge cb-red">Verificar</span><div class="chk-body"><div class="chk-title">Deudas de patente del vendedor</div><div class="chk-desc">Las deudas impagas pasan al nuevo titular al inscribir la transferencia. Consultar saldo en el organismo provincial.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-amber">Gestionar</span><div class="chk-body"><div class="chk-title">Actualizar patente tras la transferencia</div><div class="chk-desc">Informar el cambio de titular en la provincia para que la patente se genere a tu nombre y CUIT.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-blue">Info</span><div class="chk-body"><div class="chk-title">Cálculo proporcional al mes de compra</div><div class="chk-desc">Si comprás a mitad de año, el vendedor debería haber pagado las cuotas proporcionales. Verificarlo.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-blue">Info</span><div class="chk-body"><div class="chk-title">Impuesto de Sellos (provincias)</div><div class="chk-desc">Varias provincias cobran Sellos sobre la transferencia. Consultá el monto con un gestor o escribano local.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-blue">VTV</span><div class="chk-body"><div class="chk-title">Verificación Técnica (provincial)</div><div class="chk-desc">Desde 2026 no es obligatoria a nivel nacional para particulares, pero cada provincia puede exigirla. Verificar localmente.</div></div></div>
+        </div>
+      </div>
+      <div class="alert al-amber">
+        <div class="al-icon">⚠</div>
+        <div class="al-body"><strong>Sobre la VTV:</strong> Aunque ya no es obligatoria a nivel nacional (desde 2026), la ausencia de revisión técnica puede complicar la cobertura del seguro ante ciertos siniestros. Recomendamos realizarla igualmente.</div>
+      </div>
+    </div>
+
+    <!-- ══ FINANCIAMIENTO ══ -->
+    <div id="financiamiento" class="section">
+      <div class="sec-header">
+        <div class="sec-eyebrow">Módulo 8</div>
+        <div class="sec-title">Comparativa de financiamiento</div>
+        <div class="sec-sub">Siempre comparar el CFT (Costo Financiero Total), no solo la TNA. El CFT puede ser 20–30 puntos mayor.</div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Modalidad</th><th>Enganche</th><th>Tasa</th><th>Plazo</th><th>Ajuste</th><th>Pros</th><th>Contras</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Préstamo bancario fijo<br><span class="tc tc-blue">Banco Nación / Provincia</span></td>
+              <td>0–30%</td>
+              <td>TNA ~25–40%<br><span class="tc tc-amber">CFT ~40–60%</span></td>
+              <td>24–72 m</td>
+              <td>Pesos nominales</td>
+              <td>Cuota previsible; financiable hasta 100%</td>
+              <td>Tasas altas; cuota elevada al inicio</td>
+            </tr>
+            <tr>
+              <td>Préstamo UVA/CER<br><span class="tc tc-amber">Indexado por inflación</span></td>
+              <td>0–30%</td>
+              <td>TNAV ~20–25%<br><span class="tc tc-green">CFT ~25%</span></td>
+              <td>36–72 m</td>
+              <td>Inflación (UVA)</td>
+              <td>Cuota inicial baja; ingresos ajustables</td>
+              <td>Cuotas escalan con inflación; riesgo alto</td>
+            </tr>
+            <tr>
+              <td>Crédito agencia<br><span class="tc tc-amber">Concesionaria</span></td>
+              <td>0–30%</td>
+              <td>TNA ~15–30%<br><span class="tc tc-amber">+ seguros</span></td>
+              <td>12–60 m</td>
+              <td>Fijo o variable</td>
+              <td>Trámite rápido; pocas formalidades</td>
+              <td>Menos transparente; seguros extra obligatorios</td>
+            </tr>
+            <tr>
+              <td>Plan de ahorro<br><span class="tc tc-amber">Autoplan</span></td>
+              <td>Cuota 1</td>
+              <td>Sin interés nominal<br><span class="tc tc-amber">Ajuste CAC/CER</span></td>
+              <td>60–84 m</td>
+              <td>Índice CAC</td>
+              <td>Sin interés explícito; cuota inicial baja</td>
+              <td>Espera por sorteo; valor "móvil" del auto</td>
+            </tr>
+            <tr>
+              <td>Leasing automotor<br><span class="tc tc-blue">Principalmente empresas</span></td>
+              <td>20–30%</td>
+              <td>TNA ~25–35%</td>
+              <td>36–60 m</td>
+              <td>UVA o pesos</td>
+              <td>Deduce IVA e intereses; opción de compra</td>
+              <td>Garantías sólidas; penalidades por retiro</td>
+            </tr>
+            <tr style="background:rgba(26,107,58,0.04)">
+              <td>Pago al contado<br><span class="tc tc-green">Recomendado</span></td>
+              <td>100%</td>
+              <td>0%</td>
+              <td>Inmediato</td>
+              <td>—</td>
+              <td>Sin intereses; descuento negociable 3–7%</td>
+              <td>Requiere capital acumulado</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="grid2">
+        <div class="card">
+          <div class="card-eyebrow">❓ Qué preguntar siempre al banco</div>
+          <div class="chk"><span class="chk-badge cb-red">Siempre</span><div class="chk-body"><div class="chk-title">¿Cuál es el CFT total, no solo la TNA?</div><div class="chk-desc">El CFT incluye IVA, comisiones y seguros. Puede ser 15–25 puntos mayor que la TNA.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-amber">Revisar</span><div class="chk-body"><div class="chk-title">¿El seguro de vida y cesantía es obligatorio?</div><div class="chk-desc">Se suma al monto financiado. Preguntar si podés optar por tu propia aseguradora.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-blue">Info</span><div class="chk-body"><div class="chk-title">¿Hay penalidad por cancelación anticipada?</div><div class="chk-desc">Algunos bancos cobran entre 1% y 3% del capital cancelado anticipadamente.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-blue">Info</span><div class="chk-body"><div class="chk-title">¿Las cuotas son en UVA o pesos fijos?</div><div class="chk-desc">En UVA: cuota baja pero escala con inflación. En pesos fijos: cuota alta pero predecible.</div></div></div>
+        </div>
+        <div class="card">
+          <div class="card-eyebrow">⚡ Plan de ahorro: consideraciones</div>
+          <div class="chk"><span class="chk-badge cb-amber">Cuidado</span><div class="chk-body"><div class="chk-title">El auto es "móvil": las cuotas se ajustan por CAC</div><div class="chk-desc">El valor del auto sube con el índice de la construcción. Las cuotas pueden triplicarse en pocos años.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-amber">Cuidado</span><div class="chk-body"><div class="chk-title">Adjudicación por sorteo o licitación</div><div class="chk-desc">Podés tardar entre 60 y 90 meses en recibir el auto. Si necesitás uno ya, no es la opción correcta.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-blue">Info</span><div class="chk-body"><div class="chk-title">Seguros y gastos de entrega se suman</div><div class="chk-desc">El precio publicado no incluye seguro, patentamiento ni gastos de gestión de la entrega.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-green">Derecho</span><div class="chk-body"><div class="chk-title">Podés rescindirlo con devolución actualizada</div><div class="chk-desc">Según Defensa del Consumidor, al rescindir te devuelven las cuotas actualizadas al valor del último pago.</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ SIMULADOR ══ -->
+    <div id="calc" class="section">
+      <div class="sec-header">
+        <div class="sec-eyebrow">Módulo 9 · Herramienta</div>
+        <div class="sec-title">Simulador de cuotas</div>
+        <div class="sec-sub">Calculá las cuotas estimadas de un préstamo prendario o personal para comprar tu auto.</div>
+      </div>
+      <div class="grid2">
+        <div class="card">
+          <div class="card-eyebrow">⚙️ Parámetros del préstamo</div>
+          <div style="margin-bottom:16px">
+            <label style="font-size:12px;font-weight:500;color:var(--ink2);display:block;margin-bottom:6px">Precio del auto</label>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span style="font-size:13px;color:var(--ink3)">$</span>
+              <input type="number" id="calcPrecio" value="15000000" min="1000000" step="500000"
+                style="flex:1;padding:9px 12px;border:1px solid var(--border2);border-radius:var(--r);background:var(--bg);font-size:14px;font-family:'Geist',sans-serif;color:var(--ink);outline:none"
+                oninput="calcular()">
+            </div>
+          </div>
+          <div style="margin-bottom:16px">
+            <label style="font-size:12px;font-weight:500;color:var(--ink2);display:block;margin-bottom:6px">Enganche / anticipo: <strong id="engancheVal">20%</strong></label>
+            <input type="range" id="calcEnganche" min="0" max="80" value="20" step="5"
+              style="width:100%;accent-color:var(--gold)"
+              oninput="document.getElementById('engancheVal').textContent=this.value+'%';calcular()">
+          </div>
+          <div style="margin-bottom:16px">
+            <label style="font-size:12px;font-weight:500;color:var(--ink2);display:block;margin-bottom:6px">TNA: <strong id="tnaVal">38%</strong></label>
+            <input type="range" id="calcTNA" min="10" max="120" value="38" step="1"
+              style="width:100%;accent-color:var(--gold)"
+              oninput="document.getElementById('tnaVal').textContent=this.value+'%';calcular()">
+          </div>
+          <div style="margin-bottom:4px">
+            <label style="font-size:12px;font-weight:500;color:var(--ink2);display:block;margin-bottom:6px">Plazo: <strong id="plazoVal">36 meses</strong></label>
+            <input type="range" id="calcPlazo" min="6" max="72" value="36" step="6"
+              style="width:100%;accent-color:var(--gold)"
+              oninput="document.getElementById('plazoVal').textContent=this.value+' meses';calcular()">
+          </div>
+        </div>
+        <div class="card" id="calcResultados">
+          <div class="card-eyebrow">📊 Resultados estimados</div>
+          <div style="margin-bottom:20px">
+            <div style="font-size:12px;color:var(--ink3);margin-bottom:4px">Cuota mensual estimada</div>
+            <div style="font-family:'Fraunces',serif;font-size:38px;font-weight:700;color:var(--ink);letter-spacing:-.03em" id="calcCuota">$—</div>
+          </div>
+          <div class="divider" style="margin:14px 0"></div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div class="prog-row"><span class="prog-label">Capital a financiar</span><span class="prog-val" id="rCapital">—</span></div>
+            <div class="prog-row"><span class="prog-label">Total de intereses</span><span class="prog-val" id="rIntereses">—</span></div>
+            <div class="prog-row"><span class="prog-label">Total a pagar</span><span class="prog-val" id="rTotal">—</span></div>
+            <div class="prog-row"><span class="prog-label">Costo sobre el precio</span><span class="prog-val" id="rSobrecosto">—</span></div>
+          </div>
+          <div id="calcAlerta" style="margin-top:14px"></div>
+        </div>
+      </div>
+      <div class="alert al-gold">
+        <div class="al-icon">★</div>
+        <div class="al-body">Este simulador es una <strong>estimación aproximada</strong> usando el sistema francés (cuotas iguales). No incluye CFT completo (IVA, comisiones, seguros). Siempre pedir la liquidación oficial al banco antes de firmar.</div>
+      </div>
+    </div>
+
+    <!-- ══ ALERTAS ══ -->
+    <div id="alertas" class="section">
+      <div class="sec-header">
+        <div class="sec-eyebrow">Módulo 10</div>
+        <div class="sec-title">Señales de alerta y estafas</div>
+        <div class="sec-sub">En Argentina, las estafas en compraventa de autos son frecuentes. Conocerlas es la mejor defensa.</div>
+      </div>
+      <div class="alert-card">
+        <div class="ac-sev sev-high">🔴</div>
+        <div class="ac-body">
+          <div style="display:flex;align-items:flex-start;gap:8px"><div style="flex:1"><div class="ac-title">Precio muy por debajo del mercado</div></div><span class="sev-badge sb-high">Alta</span></div>
+          <div class="ac-desc">Puede ocultar deudas de patente, embargos judiciales, problemas mecánicos graves o que el auto sea robado. Ante un precio irreal, sospechar siempre. Usar el libro de precios para validar.</div>
+          <div class="ac-tip">✓ Comparar con al menos 5 publicaciones similares antes de llamar</div>
+        </div>
+      </div>
+      <div class="alert-card">
+        <div class="ac-sev sev-high">🔴</div>
+        <div class="ac-body">
+          <div style="display:flex;align-items:flex-start;gap:8px"><div style="flex:1"><div class="ac-title">Falta de documentos originales</div></div><span class="sev-badge sb-high">Alta</span></div>
+          <div class="ac-desc">Si el vendedor no puede mostrar el título original, la cédula verde o el historial de service al momento de la visita, es señal clara de fraude. No avanzar bajo ninguna circunstancia, aunque tenga "excusas razonables".</div>
+          <div class="ac-tip">✓ Pedir una foto del título antes de ir a verlo</div>
+        </div>
+      </div>
+      <div class="alert-card">
+        <div class="ac-sev sev-high">🔴</div>
+        <div class="ac-body">
+          <div style="display:flex;align-items:flex-start;gap:8px"><div style="flex:1"><div class="ac-title">Vendedor no es el titular registrado</div></div><span class="sev-badge sb-high">Alta</span></div>
+          <div class="ac-desc">Verificar que el nombre del vendedor coincida con el Informe de Dominio ANTES de la visita. Las agencias sin título visible o que "lo tienen en el escribano" son señales de alerta. Exigir verlo antes de negociar.</div>
+          <div class="ac-tip">✓ Informe de Dominio online en dnrpa.gov.ar — gratis</div>
+        </div>
+      </div>
+      <div class="alert-card">
+        <div class="ac-sev sev-high">🔴</div>
+        <div class="ac-body">
+          <div style="display:flex;align-items:flex-start;gap:8px"><div style="flex:1"><div class="ac-title">"Ferro" — pagos en negro o fuera del precio</div></div><span class="sev-badge sb-high">Alta</span></div>
+          <div class="ac-desc">Montos no declarados que supuestamente "reducen el precio". Son ilegales fiscalmente, no tienen garantía legal y te dejan sin protección. El vendedor que propone esto probablemente tiene otros problemas que ocultar. Siempre exigir recibo por todo lo pagado.</div>
+          <div class="ac-tip">✓ Solo transferencia bancaria y recibo formal</div>
+        </div>
+      </div>
+      <div class="alert-card">
+        <div class="ac-sev sev-mid">🟡</div>
+        <div class="ac-body">
+          <div style="display:flex;align-items:flex-start;gap:8px"><div style="flex:1"><div class="ac-title">VIN adulterado o retampado</div></div><span class="sev-badge sb-mid">Media</span></div>
+          <div class="ac-desc">Revisar que las estampillas de VIN no muestren signos de retampado, soldadura o repinte. Un VIN adulterado significa que el auto puede ser robado o tener historial delictivo. Usar linterna y lupa en la zona del tablero.</div>
+          <div class="ac-tip">✓ Comparar los 3 puntos de VIN entre sí y con el título</div>
+        </div>
+      </div>
+      <div class="alert-card">
+        <div class="ac-sev sev-mid">🟡</div>
+        <div class="ac-body">
+          <div style="display:flex;align-items:flex-start;gap:8px"><div style="flex:1"><div class="ac-title">CETA omitido o formularios con errores</div></div><span class="sev-badge sb-mid">Media</span></div>
+          <div class="ac-desc">Si corresponde y no está tramitado, el vendedor puede estar evadiendo impuestos. Los formularios con campos en blanco o errores pueden invalidar la transferencia. Verificar todo antes de firmar.</div>
+          <div class="ac-tip">✓ No firmar el Form. 08 con campos en blanco</div>
+        </div>
+      </div>
+      <div class="alert-card">
+        <div class="ac-sev sev-mid">🟡</div>
+        <div class="ac-body">
+          <div style="display:flex;align-items:flex-start;gap:8px"><div style="flex:1"><div class="ac-title">Presión para cerrar la operación rápido</div></div><span class="sev-badge sb-mid">Media</span></div>
+          <div class="ac-desc">Frases como "hay otro comprador", "lo tengo que vender hoy" o "si no cerrás ahora lo vendo mañana" son tácticas de presión. Un vendedor de buena fe te dará tiempo para revisar todo con calma.</div>
+          <div class="ac-tip">✓ Nunca apurarse. Si no hay tiempo para revisar, no es para vos</div>
+        </div>
+      </div>
+      <div class="alert-card">
+        <div class="ac-sev sev-low">🔵</div>
+        <div class="ac-body">
+          <div style="display:flex;align-items:flex-start;gap:8px"><div style="flex:1"><div class="ac-title">Odómetro adulterado (km borroneados)</div></div><span class="sev-badge sb-low">Baja</span></div>
+          <div class="ac-desc">No existe registro oficial de km en Argentina. Verificar que el desgaste general coincida con el odómetro. Un mecánico puede detectar marcas en el panel o histéresis en el marcador. Los recibos de taller son la mejor evidencia.</div>
+          <div class="ac-tip">✓ Solicitar historial de services o recibos de taller</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ NEGOCIACIÓN ══ -->
+    <div id="negociacion" class="section">
+      <div class="sec-header">
+        <div class="sec-eyebrow">Módulo 11</div>
+        <div class="sec-title">Tácticas de negociación</div>
+        <div class="sec-sub">En Argentina, el precio publicado casi nunca es el precio final. La negociación es parte del proceso y el vendedor lo espera.</div>
+      </div>
+      <div class="tac-grid" style="margin-bottom:16px">
+        <div class="tac"><div class="tac-num">01</div><div class="tac-content"><strong>Investigá el precio de mercado</strong><p>Consultá libros de precios (Infoauto, Autocostos) y portales con publicaciones similares. Con datos concretos, tu oferta tiene peso.</p></div></div>
+        <div class="tac"><div class="tac-num">02</div><div class="tac-content"><strong>Visitá 3 autos similares antes</strong><p>Ver varios autos da perspectiva real del mercado y elimina la presión de tomar una decisión apresurada.</p></div></div>
+        <div class="tac"><div class="tac-num">03</div><div class="tac-content"><strong>Oferta inicial: 5–10% menos</strong><p>Es esperado en el mercado argentino. Usar el estado del auto, defectos o kilómetros como argumentos concretos y verificables.</p></div></div>
+        <div class="tac"><div class="tac-num">04</div><div class="tac-content"><strong>Lista escrita de defectos con fotos</strong><p>Cada problema encontrado en la inspección es un argumento de precio. Presentarlos ordenados tiene más impacto que mencionarlos de palabra.</p></div></div>
+        <div class="tac"><div class="tac-num">05</div><div class="tac-content"><strong>Solo transferencia bancaria</strong><p>Evitar el efectivo en grandes montos. La transferencia deja rastro digital, protege ante fraudes y permite reclamar si algo sale mal.</p></div></div>
+        <div class="tac"><div class="tac-num">06</div><div class="tac-content"><strong>Acordar todo por escrito</strong><p>Reparaciones comprometidas, llaves de repuesto, rueda de auxilio completa, manuales. Si no está escrito en el contrato, no existe.</p></div></div>
+        <div class="tac"><div class="tac-num">07</div><div class="tac-content"><strong>Negociá el precio neto, no las cuotas</strong><p>Al financiar, el vendedor puede "bajar la cuota" aumentando el plazo. Siempre discutir primero el precio de contado del auto.</p></div></div>
+        <div class="tac"><div class="tac-num">08</div><div class="tac-content"><strong>Contado: pedí 3–7% de descuento</strong><p>Pagar de contado (o con transferencia inmediata) es un argumento válido. El vendedor evita gestiones de crédito y riesgos.</p></div></div>
+      </div>
+      <div class="s-label">Posibles concesiones alternativas al precio</div>
+      <div class="grid3">
+        <div class="card" style="padding:16px 18px">
+          <div style="font-size:22px;margin-bottom:8px">🔧</div>
+          <div style="font-size:14px;font-weight:500;margin-bottom:4px">Reparaciones previas</div>
+          <div style="font-size:12.5px;color:var(--ink2)">Pastillas de freno nuevas, neumáticos cambiados, batería nueva. Tiene el mismo valor económico que un descuento.</div>
+        </div>
+        <div class="card" style="padding:16px 18px">
+          <div style="font-size:22px;margin-bottom:8px">🔑</div>
+          <div style="font-size:14px;font-weight:500;margin-bottom:4px">Llaves y accesorios</div>
+          <div style="font-size:12.5px;color:var(--ink2)">Segunda llave (puede costar $150k–$400k), manual de usuario, fichas de garantía, tapetes originales.</div>
+        </div>
+        <div class="card" style="padding:16px 18px">
+          <div style="font-size:22px;margin-bottom:8px">📋</div>
+          <div style="font-size:14px;font-weight:500;margin-bottom:4px">Service al día</div>
+          <div style="font-size:12.5px;color:var(--ink2)">Que el vendedor haga el primer service antes de entregar: aceite, filtros, revisión general. Ahorrás el primer gasto.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ GLOSARIO ══ -->
+    <div id="glosario" class="section">
+      <div class="sec-header">
+        <div class="sec-eyebrow">Módulo 12</div>
+        <div class="sec-title">Glosario completo</div>
+        <div class="sec-sub">Definiciones de todos los términos técnicos, financieros y legales mencionados en la guía.</div>
+      </div>
+      <div class="s-label">Términos financieros</div>
+      <div class="glos-grid" style="margin-bottom:24px">
+        <div class="glos-item"><div class="glos-cat">Financiero</div><div class="glos-term">TNA</div><div class="glos-def">Tasa Nominal Anual. Interés anual sin considerar capitalización periódica. Es el número más publicitado pero no refleja el costo real total del crédito.</div></div>
+        <div class="glos-item"><div class="glos-cat">Financiero</div><div class="glos-term">TEA</div><div class="glos-def">Tasa Efectiva Anual. Incluye la capitalización de intereses. Es más representativa que la TNA para comparar productos de distintas entidades.</div></div>
+        <div class="glos-item"><div class="glos-cat">Financiero</div><div class="glos-term">CFT</div><div class="glos-def">Costo Financiero Total. Incluye TNA, IVA, comisiones, seguros y todos los gastos asociados. Es el indicador más completo del costo real de un préstamo.</div></div>
+        <div class="glos-item"><div class="glos-cat">Financiero</div><div class="glos-term">UVA</div><div class="glos-def">Unidad de Valor Adquisitivo. Índice creado en 2016 que ajusta contratos por inflación usando el CER (Coeficiente de Estabilización de Referencia) del BCRA.</div></div>
+        <div class="glos-item"><div class="glos-cat">Financiero</div><div class="glos-term">CER</div><div class="glos-def">Coeficiente de Estabilización de Referencia. Índice del Banco Central que sigue la evolución del IPC. Los créditos UVA se ajustan mensualmente por este coeficiente.</div></div>
+        <div class="glos-item"><div class="glos-cat">Plan de ahorro</div><div class="glos-term">CAC</div><div class="glos-def">Coeficiente de Actualización de la Construcción. Índice de la Cámara Argentina de la Construcción usado en planes de ahorro para ajustar el valor del auto y las cuotas.</div></div>
+        <div class="glos-item"><div class="glos-cat">Financiero</div><div class="glos-term">Enganche</div><div class="glos-def">Monto inicial (en % del precio total) abonado al momento de la compra. A mayor enganche, menor capital financiado y menor cuota mensual.</div></div>
+        <div class="glos-item"><div class="glos-cat">Seguro</div><div class="glos-term">Seg. cesantía</div><div class="glos-def">Póliza que cubre el saldo del crédito si el deudor pierde su empleo. Obligatorio en la mayoría de los préstamos prendarios. Se suma al CFT.</div></div>
+      </div>
+      <div class="s-label">Trámites y términos legales</div>
+      <div class="glos-grid">
+        <div class="glos-item"><div class="glos-cat">Organismo</div><div class="glos-term">DNRPA</div><div class="glos-def">Dirección Nacional de los Registros Nacionales de la Propiedad del Automotor. Organismo que gestiona transferencias de dominio, inscripción de vehículos y emisión de títulos.</div></div>
+        <div class="glos-item"><div class="glos-cat">Trámite</div><div class="glos-term">Formulario 08</div><div class="glos-def">Contrato oficial de transferencia de dominio ante el Registro Automotor. Firmado por vendedor y comprador ante el agente registral. Reemplaza al boleto privado.</div></div>
+        <div class="glos-item"><div class="glos-cat">AFIP</div><div class="glos-term">CETA</div><div class="glos-def">Certificado de Transferencia Automotor. Trámite gratuito obligatorio cuando el precio supera el umbral vigente (~$10,9M en 2024). Se gestiona online en afip.gob.ar.</div></div>
+        <div class="glos-item"><div class="glos-cat">Registro</div><div class="glos-term">Inf. de Dominio</div><div class="glos-def">Documento que acredita la titularidad real y revela embargos, inhibiciones judiciales o denuncias de robo activas. Disponible online en dnrpa.gov.ar.</div></div>
+        <div class="glos-item"><div class="glos-cat">Documento</div><div class="glos-term">Cédula verde</div><div class="glos-def">Acredita que el portador es el titular del vehículo. La cédula azul solo autoriza la circulación a un tercero no titular, sin acreditar propiedad.</div></div>
+        <div class="glos-item"><div class="glos-cat">Identificación</div><div class="glos-term">VIN</div><div class="glos-def">Vehicle Identification Number. Código único de 17 caracteres que identifica al vehículo. Debe coincidir entre tablero, pilar de puerta, chasis y documentación.</div></div>
+        <div class="glos-item"><div class="glos-cat">Financiero</div><div class="glos-term">Prenda</div><div class="glos-def">Garantía real registrada a favor de un acreedor (banco o financiera) sobre el vehículo. Debe cancelarse y registrarse la baja antes de poder transferir el dominio.</div></div>
+        <div class="glos-item"><div class="glos-cat">Legal</div><div class="glos-term">Vicios redhibitorios</div><div class="glos-def">Defectos graves y ocultos que hacen al bien impropio para su uso (Art. 2176 CCCN). Aplican en ventas entre particulares cuando no rige la Ley 24.240.</div></div>
+      </div>
+    </div>
+
+    <!-- ══ FUENTES ══ -->
+    <div id="fuentes" class="section">
+      <div class="sec-header">
+        <div class="sec-eyebrow">Módulo 13</div>
+        <div class="sec-title">Fuentes oficiales</div>
+        <div class="sec-sub">Toda la información de esta guía está basada en fuentes oficiales verificables. Accedé a ellas directamente.</div>
+      </div>
+      <div class="grid2">
+        <div class="card">
+          <div class="card-eyebrow">🏛️ Organismos del Estado</div>
+          <div class="chk"><span class="chk-badge cb-blue">DNRPA</span><div class="chk-body"><div class="chk-title">argentina.gob.ar — Transferencia de dominio</div><div class="chk-desc">Trámites, requisitos, Form. 08, Informe de Dominio, aranceles y Verificación Policial.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-blue">AFIP</span><div class="chk-body"><div class="chk-title">afip.gob.ar — CETA y RG 2032/2006</div><div class="chk-desc">Certificado de Transferencia Automotor, umbrales vigentes (RG 5499/2024) y gestión online.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-blue">BCRA</div><div class="chk-body"><div class="chk-title">bcra.gob.ar — Definiciones financieras</div><div class="chk-desc">UVA, CER, tasas de referencia y regulaciones de préstamos prendarios.</div></div></div>
+         
+        </div>
+        <div class="card">
+          <div class="card-eyebrow">📚 Leyes y normativa</div>
+          <div class="chk"><span class="chk-badge cb-amber">Ley</span><div class="chk-body"><div class="chk-title"></div><div class="chk-desc">Garantía legal de 3 meses en usados, derechos del comprador, planes de ahorro y rescisión.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-amber">Ley</span><div class="chk-body"><div class="chk-title">Ley 24.449 — Tránsito y Seguridad Vial</div><div class="chk-desc">Seguro obligatorio de responsabilidad civil, requisitos técnicos y circulación.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-amber">Código</span><div class="chk-body"><div class="chk-title">CCCN Art. 2176 — Vicios redhibitorios</div><div class="chk-desc">Defectos ocultos en compraventa entre particulares sin relación de consumo.</div></div></div>
+          <div class="chk"><span class="chk-badge cb-amber">CCA</span><div class="chk-body"><div class="chk-title">cca.org.ar — Cámara del Comercio Automotor</div><div class="chk-desc">Guía técnica de inspección pre-compra y recomendaciones del sector automotriz.</div></div></div>
+        </div>
+      </div>
+      <div class="alert al-blue">
+        <div class="al-icon">ℹ</div>
+        <div class="al-body">Los <strong>umbrales de CETA</strong> y los <strong>aranceles de la DNRPA</strong> se actualizan periódicamente por IPC. Verificar los valores vigentes en los sitios oficiales antes de realizar cualquier operación.</div>
+      </div>
+    </div>
+
+  </div><!-- end content -->
+</main>
+</div><!-- end app -->
+
+<script>
+// ── NAVIGATION ──
+const sections = ['inicio','inspeccion','vin','testdrive','documentos','proceso','garantias','seguros','financiamiento','calc','alertas','negociacion','glosario','fuentes'];
+let visited = new Set(['inicio']);
+
+function nav(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  visited.add(id);
+  updateProgress();
+  document.getElementById('searchResults').style.display = 'none';
+  if (window.innerWidth <= 900) {
+    document.getElementById('sidebar').classList.remove('open');
+    document.getElementById('overlay').classList.remove('open');
+  }
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function navById(id) {
+  const btns = document.querySelectorAll('.nav-btn');
+  const idx = sections.indexOf(id);
+  if (idx >= 0) nav(id, btns[idx]);
+}
+
+function toggleMenu() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('overlay').classList.toggle('open');
+}
+
+function updateProgress() {
+  const pct = Math.round((visited.size / sections.length) * 100);
+  document.getElementById('progPct').textContent = pct + '%';
+  document.getElementById('progFill').style.width = pct + '%';
+}
+
+// ── SEARCH ──
+const searchData = {
+  'inspeccion': ['motor','aceite','frenos','ruidos','humo','carrocería','pintura','imán','masilla','interior','check engine','airbag'],
+  'vin': ['vin','chasis','número de motor','adulteración','informe de dominio','embargo','prenda','robo'],
+  'testdrive': ['prueba de manejo','test drive','suspensión','baches','dirección','embrague','caja de cambios'],
+  'documentos': ['formulario 08','ceta','afip','título','cédula','verde','azul','patente','registro','transferencia','dnrpa'],
+  'proceso': ['pasos','proceso','seña','firma','entrega','30 días','plazo'],
+  'garantias': ['garantía','ley 24240','vicios','contrato','boleto','poder'],
+  'seguros': ['seguro','vtv','patente','impuesto','responsabilidad civil'],
+  'financiamiento': ['tna','cft','cuota','plazo','enganche','préstamo','uva','plan de ahorro','leasing','contado','banco'],
+  'alertas': ['estafa','fraude','ferro','negro','precio bajo','presión','adulterado'],
+  'negociacion': ['negociación','precio','descuento','oferta','concesiones'],
+  'glosario': ['tna','tea','cft','uva','cer','cac','enganche','dnrpa','form 08','ceta','cédula','vin','prenda'],
+};
+
+function doSearch(q) {
+  const sr = document.getElementById('searchResults');
+  if (!q || q.length < 2) { sr.style.display = 'none'; return; }
+  q = q.toLowerCase();
+  let results = [];
+  for (const [id, keywords] of Object.entries(searchData)) {
+    if (keywords.some(k => k.includes(q) || q.includes(k))) {
+      const names = {
+        inspeccion:'Inspección mecánica', vin:'VIN y antecedentes', testdrive:'Prueba de manejo',
+        documentos:'Documentación', proceso:'Proceso de compra', garantias:'Garantías legales',
+        seguros:'Seguros e impuestos', financiamiento:'Financiamiento', alertas:'Señales de alerta',
+        negociacion:'Negociación', glosario:'Glosario'
+      };
+      results.push({ id, name: names[id] });
+    }
+  }
+  if (results.length === 0) {
+    sr.style.display = 'block';
+    sr.innerHTML = `<div class="alert al-gold" style="margin-bottom:24px"><div class="al-icon">🔍</div><div class="al-body">No se encontraron resultados para "<strong>${q}</strong>".</div></div>`;
+    return;
+  }
+  sr.style.display = 'block';
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  sr.innerHTML = `
+    <div class="sec-header"><div class="sec-eyebrow">Búsqueda</div><div class="sec-title">Resultados para "${q}"</div></div>
+    <div class="grid3">
+      ${results.map(r => `<button class="inicio-card" onclick="navById('${r.id}')"><div class="ic-title">${r.name}</div><div class="ic-arrow">Ver módulo →</div></button>`).join('')}
+    </div>`;
+}
+
+// ── CALCULATOR ──
+function fmt(n) {
+  return '$' + Math.round(n).toLocaleString('es-AR');
+}
+function calcular() {
+  const precio = parseFloat(document.getElementById('calcPrecio').value) || 15000000;
+  const enganche = parseFloat(document.getElementById('calcEnganche').value) / 100;
+  const tna = parseFloat(document.getElementById('calcTNA').value) / 100;
+  const plazo = parseInt(document.getElementById('calcPlazo').value);
+
+  const capital = precio * (1 - enganche);
+  const tm = tna / 12;
+  let cuota;
+  if (tm === 0) {
+    cuota = capital / plazo;
+  } else {
+    cuota = capital * (tm * Math.pow(1 + tm, plazo)) / (Math.pow(1 + tm, plazo) - 1);
+  }
+  const totalPagar = cuota * plazo;
+  const totalIntereses = totalPagar - capital;
+  const sobrecosto = ((totalPagar / precio) - 1) * 100;
+
+  document.getElementById('calcCuota').textContent = fmt(cuota);
+  document.getElementById('rCapital').textContent = fmt(capital);
+  document.getElementById('rIntereses').textContent = fmt(totalIntereses);
+  document.getElementById('rTotal').textContent = fmt(totalPagar);
+  document.getElementById('rSobrecosto').textContent = '+' + sobrecosto.toFixed(0) + '%';
+
+  const alerta = document.getElementById('calcAlerta');
+  if (sobrecosto > 100) {
+    alerta.innerHTML = `<div class="alert al-red"><div class="al-icon">⚠</div><div class="al-body">Pagarás el doble del precio del auto en total. Considerá reducir el plazo o aumentar el enganche.</div></div>`;
+  } else if (sobrecosto > 50) {
+    alerta.innerHTML = `<div class="alert al-amber"><div class="al-icon">!</div><div class="al-body">El costo total supera el precio en más del 50%. Evaluar alternativas o mayor enganche.</div></div>`;
+  } else {
+    alerta.innerHTML = `<div class="alert al-green"><div class="al-icon">✓</div><div class="al-body">El costo de financiamiento es razonable para las condiciones actuales del mercado.</div></div>`;
+  }
+}
+function validarCodigoCurso(code) {
+  const normalized = String(code || '').trim().toUpperCase();
+  const match = normalized.match(/^CURSO-([A-Z0-9]{6})-(\d{4})$/);
+  if (!match) return false;
+  const base = match[1];
+  const expected = base
+    .split('')
+    .reduce((acc, char, index) => acc + (char.charCodeAt(0) * (index + 3)), 0)
+    .toString()
+    .slice(-4)
+    .padStart(4, '0');
+  return expected === match[2];
+}
+
+function desbloquearCurso(code) {
+  const gate = document.getElementById('courseGate');
+  if (!gate) return;
+  gate.classList.remove('show');
+  document.body.style.overflow = '';
+  try {
+    localStorage.setItem('bonus_course_access_code', code);
+  } catch (_) {
+    // ignore storage failures
+  }
+}
+
+function inicializarAccesoCurso() {
+  const gate = document.getElementById('courseGate');
+  const input = document.getElementById('courseGateInput');
+  const note = document.getElementById('courseGateNote');
+  const params = new URLSearchParams(window.location.search);
+  const queryCode = (params.get('codigo') || '').trim().toUpperCase();
+  let storedCode = '';
+  try {
+    storedCode = (localStorage.getItem('bonus_course_access_code') || '').trim().toUpperCase();
+  } catch (_) {
+    storedCode = '';
+  }
+
+  const attemptUnlock = (rawCode) => {
+    const code = String(rawCode || '').trim().toUpperCase();
+    input.value = code;
+    if (!validarCodigoCurso(code)) {
+      note.textContent = 'El código no es válido. Revisalo o volvé a copiarlo desde la confirmación de pago.';
+      return;
+    }
+    desbloquearCurso(code);
+  };
+
+  document.getElementById('courseGateUnlockBtn').addEventListener('click', () => attemptUnlock(input.value));
+  document.getElementById('courseGatePasteBtn').addEventListener('click', () => {
+    if (!storedCode) {
+      note.textContent = 'Todavía no hay un código guardado en este dispositivo.';
+      return;
+    }
+    attemptUnlock(storedCode);
+  });
+  input.addEventListener('input', () => {
+    input.value = input.value.toUpperCase();
+  });
+  input.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      attemptUnlock(input.value);
+    }
+  });
+
+  gate.classList.add('show');
+  document.body.style.overflow = 'hidden';
+  if (validarCodigoCurso(queryCode)) {
+    attemptUnlock(queryCode);
+  } else if (validarCodigoCurso(storedCode)) {
+    input.value = storedCode;
+    note.textContent = 'Encontramos tu último código guardado. Podés entrar con un click.';
+  }
+}
+
+calcular();
+inicializarAccesoCurso();
+</script>
+</body>
+</html>

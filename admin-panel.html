@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel Administrativo | Sorteos</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    :root {
+      --bg: #f6f1e8;
+      --paper: #fffaf3;
+      --ink: #1f1a15;
+      --muted: #74695d;
+      --line: #dbcbb7;
+      --accent: #c5481c;
+      --accent-2: #efb134;
+      --ok: #13795b;
+      --danger: #b42318;
+      --shadow: 0 18px 60px rgba(44, 29, 12, 0.12);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(239,177,52,0.16), transparent 26%),
+        radial-gradient(circle at top right, rgba(197,72,28,0.12), transparent 22%),
+        linear-gradient(180deg, #f7f0e5, #f2e8da 60%, #efe2cf);
+    }
+    .shell { max-width: 1380px; margin: 0 auto; padding: 24px; }
+    .hero, .card {
+      background: rgba(255,250,243,0.92);
+      border: 1px solid rgba(138, 102, 59, 0.15);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+    }
+    .hero { padding: 24px; margin-bottom: 24px; }
+    .hero h1 { margin: 0 0 8px; font-size: clamp(2rem, 4vw, 3.5rem); line-height: 0.95; }
+    .hero p { margin: 0; color: var(--muted); max-width: 780px; line-height: 1.55; }
+    .grid { display: grid; grid-template-columns: 320px 1fr; gap: 24px; }
+    .card { padding: 20px; }
+    .stack, .main { display: grid; gap: 18px; }
+    .title { margin: 0 0 12px; font-size: 1.2rem; }
+    label { display: block; font-size: 0.9rem; margin-bottom: 6px; color: var(--muted); }
+    input, textarea, select, button {
+      width: 100%; border-radius: 14px; border: 1px solid #ccbba7;
+      padding: 12px 14px; font: inherit; background: rgba(255,255,255,0.9); color: var(--ink);
+    }
+    textarea { min-height: 108px; resize: vertical; }
+    button { cursor: pointer; border: none; background: linear-gradient(135deg, var(--accent), #8d2f12); color: white; font-weight: 700; }
+    button.secondary { background: linear-gradient(135deg, #463124, #6f4b33); }
+    button.ghost { background: #fff; color: var(--ink); border: 1px solid var(--line); }
+    .row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .row-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+    .kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+    .kpi, .notice, .status {
+      background: rgba(255,255,255,0.7); border: 1px solid var(--line); border-radius: 16px; padding: 14px;
+    }
+    .kpi strong { display: block; font-size: 1.8rem; margin-top: 6px; }
+    .toolbar, .inline-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .toolbar button, .inline-actions button { width: auto; min-width: 160px; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+    th, td { text-align: left; padding: 12px 10px; border-bottom: 1px solid rgba(116,105,93,0.15); vertical-align: top; }
+    th { color: var(--muted); font-size: 0.85rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .pill { display: inline-block; padding: 5px 10px; border-radius: 999px; background: #f8ead5; color: #6d4210; font-size: 0.82rem; font-weight: 700; }
+    .status.ok { background: #ebfbf4; border-color: #c6eedc; color: var(--ok); }
+    .status.error { background: #fff1f2; border-color: #fecdd3; color: var(--danger); }
+    .muted { color: var(--muted); }
+    @media (max-width: 1100px) { .grid { grid-template-columns: 1fr; } .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 760px) { .row, .row-3, .kpis { grid-template-columns: 1fr; } .shell { padding: 14px; } }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <section class="hero">
+      <h1>Panel administrativo del sistema de sorteos</h1>
+      <p>Desde acá podés crear campañas, cargar paquetes de chances, subir fotos, revisar compradores y guardar las credenciales de Mercado Pago o Galiopay.</p>
+    </section>
+
+    <div class="grid">
+      <aside class="stack">
+        <section class="card">
+          <h2 class="title">Conexión a Supabase</h2>
+          <div class="stack">
+            <div>
+              <label for="supabaseUrl">Supabase URL</label>
+              <input id="supabaseUrl" placeholder="https://xxxx.supabase.co" value="https://asokopamdmuvuupywjzt.supabase.co">
+            </div>
+            <div>
+              <label for="supabaseAnonKey">Anon key</label>
+              <textarea id="supabaseAnonKey" placeholder="Pegá la anon key del proyecto">sb_publishable_zBhxdMJHw_uy_m3uRDj-ng_0yXz42EN</textarea>
+            </div>
+            <div class="inline-actions">
+              <button id="saveConfigBtn" class="secondary">Guardar conexión</button>
+            </div>
+            <div class="notice">
+              Creá el primer usuario en Authentication y después cargá su UUID en la tabla <code>admin_users</code> como <code>super_admin</code>.
+            </div>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2 class="title">Ingreso admin</h2>
+          <div class="stack">
+            <div>
+              <label for="loginEmail">Email</label>
+              <input id="loginEmail" type="email" placeholder="admin@tudominio.com">
+            </div>
+            <div>
+              <label for="loginPassword">Contraseña</label>
+              <input id="loginPassword" type="password" placeholder="••••••••">
+            </div>
+            <div class="inline-actions">
+              <button id="loginBtn">Iniciar sesión</button>
+              <button id="logoutBtn" class="ghost">Cerrar sesión</button>
+            </div>
+            <div id="authStatus" class="status">Esperando conexión.</div>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2 class="title">Campaña activa</h2>
+          <div class="stack">
+            <div>
+              <label for="campaignPicker">Seleccionar campaña</label>
+              <select id="campaignPicker">
+                <option value="">Cargá campañas</option>
+              </select>
+            </div>
+            <button id="refreshAllBtn" class="ghost">Refrescar datos</button>
+          </div>
+        </section>
+      </aside>
+
+      <main class="main">
+        <section class="card">
+          <div class="toolbar">
+            <button id="loadDashboardBtn">Cargar dashboard</button>
+            <button id="copyReferralTemplateBtn" class="secondary">Copiar plantilla de enlace</button>
+          </div>
+          <div class="kpis" style="margin-top: 16px;">
+            <div class="kpi">
+              <span class="muted">Participantes</span>
+              <strong id="kpiParticipants">0</strong>
+            </div>
+            <div class="kpi">
+              <span class="muted">Órdenes pagadas</span>
+              <strong id="kpiPaidOrders">0</strong>
+            </div>
+            <div class="kpi">
+              <span class="muted">Chances vendidas</span>
+              <strong id="kpiEntries">0</strong>
+            </div>
+            <div class="kpi">
+              <span class="muted">Monto cobrado</span>
+              <strong id="kpiRevenue">$0</strong>
+            </div>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2 class="title">Campaña de esta página</h2>
+          <div class="row">
+            <div>
+              <label for="campaignSlug">Slug</label>
+              <input id="campaignSlug" placeholder="sorteo-moto-tv-dinero" value="sorteo-moto-tv-dinero">
+            </div>
+            <div>
+              <label for="campaignTitle">Título</label>
+              <input id="campaignTitle" placeholder="Gran sorteo 2026">
+            </div>
+          </div>
+          <div class="row">
+            <div>
+              <label for="campaignStatus">Estado</label>
+              <select id="campaignStatus">
+                <option value="draft">draft</option>
+                <option value="active">active</option>
+                <option value="paused">paused</option>
+                <option value="finished">finished</option>
+              </select>
+            </div>
+            <div>
+              <label for="campaignDrawAt">Fecha de sorteo</label>
+              <input id="campaignDrawAt" type="datetime-local">
+            </div>
+          </div>
+          <div class="row-3">
+            <div>
+              <label for="campaignStartsAt">Inicio</label>
+              <input id="campaignStartsAt" type="datetime-local">
+            </div>
+            <div>
+              <label for="campaignEndsAt">Fin</label>
+              <input id="campaignEndsAt" type="datetime-local">
+            </div>
+            <div>
+              <label for="campaignMaxEntries">Máximo de chances</label>
+              <input id="campaignMaxEntries" type="number" min="0" value="100000">
+            </div>
+          </div>
+          <div class="row-3">
+            <div>
+              <label for="campaignBonusMin">Bono referido mínimo</label>
+              <input id="campaignBonusMin" type="number" min="0" value="2">
+            </div>
+            <div>
+              <label for="campaignBonusMax">Bono referido máximo</label>
+              <input id="campaignBonusMax" type="number" min="0" value="2">
+            </div>
+            <div>
+              <label for="campaignWhatsapp">WhatsApp</label>
+              <input id="campaignWhatsapp" placeholder="+54911...">
+            </div>
+          </div>
+          <div>
+            <label for="campaignDescription">Descripción</label>
+            <textarea id="campaignDescription" placeholder="Premios, reglas y mensaje comercial."></textarea>
+          </div>
+          <div class="inline-actions">
+            <button id="saveCampaignBtn">Guardar campaña</button>
+            <button id="newCampaignBtn" class="ghost">Nueva campaña</button>
+          </div>
+          <div class="notice" style="margin-top:16px;">
+            Esta administración apunta a la landing <code>sorteo-moto-tv-dinero.html</code> y usa por defecto el slug <code>sorteo-moto-tv-dinero</code>.
+          </div>
+        </section>
+
+        <section class="card">
+          <h2 class="title">Paquetes de chances</h2>
+          <div class="row-3">
+            <div>
+              <label for="packageName">Nombre</label>
+              <input id="packageName" placeholder="Pack ganador">
+            </div>
+            <div>
+              <label for="packageEntries">Chances</label>
+              <input id="packageEntries" type="number" min="1" value="1">
+            </div>
+            <div>
+              <label for="packageBonusEntries">Bonus</label>
+              <input id="packageBonusEntries" type="number" min="0" value="0">
+            </div>
+          </div>
+          <div class="row-3">
+            <div>
+              <label for="packagePrice">Precio ARS</label>
+              <input id="packagePrice" type="number" min="0" step="0.01" value="0">
+            </div>
+            <div>
+              <label for="packageStatus">Estado</label>
+              <select id="packageStatus">
+                <option value="active">active</option>
+                <option value="inactive">inactive</option>
+              </select>
+            </div>
+            <div>
+              <label for="packageFeatured">Destacado</label>
+              <select id="packageFeatured">
+                <option value="false">No</option>
+                <option value="true">Sí</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label for="packageDescription">Descripción</label>
+            <textarea id="packageDescription" placeholder="Mensaje comercial del paquete"></textarea>
+          </div>
+          <div class="inline-actions">
+            <button id="savePackageBtn">Guardar paquete</button>
+            <button id="seedPackagesBtn" class="secondary">Cargar paquetes base</button>
+            <button id="reloadPackagesBtn" class="ghost">Recargar paquetes</button>
+          </div>
+          <div style="overflow:auto; margin-top: 16px;">
+            <table>
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Chances</th>
+                  <th>Bonus</th>
+                  <th>Precio</th>
+                  <th>Ahorro</th>
+                  <th>Estado</th>
+                </tr>
+              </thead>
+              <tbody id="packagesTableBody">
+                <tr><td colspan="6" class="muted">Sin datos.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2 class="title">Fotos y media</h2>
+          <div class="row">
+            <div>
+              <label for="mediaFile">Archivo</label>
+              <input id="mediaFile" type="file" accept="image/*,video/*">
+            </div>
+            <div>
+              <label for="mediaAltText">Texto alternativo</label>
+              <input id="mediaAltText" placeholder="Moto 0 km en estudio">
+            </div>
+          </div>
+          <div class="inline-actions">
+            <button id="uploadMediaBtn">Subir archivo</button>
+            <button id="reloadMediaBtn" class="ghost">Recargar galería</button>
+          </div>
+          <div style="overflow:auto; margin-top: 16px;">
+            <table>
+              <thead>
+                <tr>
+                  <th>Archivo</th>
+                  <th>URL pública</th>
+                  <th>Cover</th>
+                </tr>
+              </thead>
+              <tbody id="mediaTableBody">
+                <tr><td colspan="3" class="muted">Sin archivos.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2 class="title">Credenciales de pago</h2>
+          <div class="notice" style="margin-bottom: 16px;">
+            Estas credenciales se guardan en <code>payment_provider_configs</code>. Más adelante podés migrar los secretos a Vault.
+          </div>
+          <div class="row-3">
+            <div>
+              <label for="providerName">Proveedor</label>
+              <select id="providerName">
+                <option value="mercado_pago">mercado_pago</option>
+                <option value="galiopay">galiopay</option>
+                <option value="manual">manual</option>
+              </select>
+            </div>
+            <div>
+              <label for="providerEnv">Entorno</label>
+              <select id="providerEnv">
+                <option value="sandbox">sandbox</option>
+                <option value="production">production</option>
+              </select>
+            </div>
+            <div>
+              <label for="providerIsActive">Activo</label>
+              <select id="providerIsActive">
+                <option value="true">Sí</option>
+                <option value="false">No</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div>
+              <label for="providerPublicKey">Public key</label>
+              <input id="providerPublicKey" placeholder="APP_USR-...">
+            </div>
+            <div>
+              <label for="providerAccessToken">Access token</label>
+              <input id="providerAccessToken" placeholder="Credencial privada">
+            </div>
+          </div>
+          <div class="row">
+            <div>
+              <label for="providerWebhookSecret">Webhook secret</label>
+              <input id="providerWebhookSecret" placeholder="secret para webhooks">
+            </div>
+            <div>
+              <label for="providerExtraJson">Extra config JSON</label>
+              <textarea id="providerExtraJson" placeholder='{"success_url":"https://tu-dominio.com/gracias"}'></textarea>
+            </div>
+          </div>
+          <div class="row">
+            <div>
+              <label for="galiopayCommerceId">Galiopay commerce id</label>
+              <input id="galiopayCommerceId" placeholder="commerce_id">
+            </div>
+            <div>
+              <label for="galiopayApiUrl">Galiopay API URL</label>
+              <input id="galiopayApiUrl" placeholder="https://api.galiopay.com/...">
+            </div>
+          </div>
+          <div class="inline-actions">
+            <button id="saveProviderBtn">Guardar credenciales</button>
+            <button id="reloadProvidersBtn" class="ghost">Recargar credenciales</button>
+          </div>
+          <div style="overflow:auto; margin-top: 16px;">
+            <table>
+              <thead>
+                <tr>
+                  <th>Proveedor</th>
+                  <th>Entorno</th>
+                  <th>Activo</th>
+                  <th>Actualizado</th>
+                </tr>
+              </thead>
+              <tbody id="providersTableBody">
+                <tr><td colspan="4" class="muted">Sin datos.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2 class="title">Compradores y órdenes</h2>
+          <div style="overflow:auto;">
+            <table>
+              <thead>
+                <tr>
+                  <th>Comprador</th>
+                  <th>Ciudad</th>
+                  <th>Chances</th>
+                  <th>Estado</th>
+                  <th>Monto</th>
+                  <th>Referido</th>
+                  <th>Acción</th>
+                </tr>
+              </thead>
+              <tbody id="ordersTableBody">
+                <tr><td colspan="7" class="muted">Sin datos.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2 class="title">Enlaces de referido</h2>
+          <div class="notice" style="margin-bottom: 16px;">
+            Se genera un enlace único cuando el comprador tiene una compra aprobada con 3 o más chances. Cada compra aprobada por ese enlace suma 2 chances extras al titular.
+          </div>
+          <div style="overflow:auto;">
+            <table>
+              <thead>
+                <tr>
+                  <th>Participante</th>
+                  <th>Código</th>
+                  <th>Clicks</th>
+                  <th>Bonus ganados</th>
+                  <th>Enlace</th>
+                </tr>
+              </thead>
+              <tbody id="referralsTableBody">
+                <tr><td colspan="5" class="muted">Sin datos.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+  <script>
+    const DEFAULT_SUPABASE_URL = 'https://asokopamdmuvuupywjzt.supabase.co';
+    const DEFAULT_SUPABASE_KEY = 'sb_publishable_zBhxdMJHw_uy_m3uRDj-ng_0yXz42EN';
+    const PAGE_CAMPAIGN_SLUG = 'sorteo-moto-tv-dinero';
+    let supabaseClient = null;
+    let currentCampaignId = '';
+    let currentCampaignRecord = null;
+
+    const $ = (id) => document.getElementById(id);
+    const formatMoney = (value) => new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', maximumFractionDigits: 0 }).format(value || 0);
+    const formatDate = (value) => value ? new Date(value).toLocaleString('es-AR') : '-';
+    const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
+    const calculateSavings = (packPrice, totalEntries, singleChancePrice) => {
+      if (!singleChancePrice || Number(totalEntries) <= 1) return 0;
+      const theoreticalPrice = Number(singleChancePrice) * Number(totalEntries);
+      return theoreticalPrice > Number(packPrice) ? theoreticalPrice - Number(packPrice) : 0;
+    };
+
+    function buildReferralUrl(code) {
+      const base = window.location.href.replace(/admin-panel\.html.*$/i, 'sorteo-moto-tv-dinero.html');
+      return `${base.split('?')[0]}?ref=${encodeURIComponent(code)}`;
+    }
+
+    async function copyText(text) {
+      await navigator.clipboard.writeText(text);
+    }
+
+    function setStatus(message, type = '') {
+      const el = $('authStatus');
+      el.textContent = message;
+      el.className = type ? `status ${type}` : 'status';
+    }
+
+    function persistConfig() {
+      localStorage.setItem('sorteo.supabase.url', $('supabaseUrl').value.trim());
+      localStorage.setItem('sorteo.supabase.anon', $('supabaseAnonKey').value.trim());
+    }
+
+    function loadConfig() {
+      $('supabaseUrl').value = localStorage.getItem('sorteo.supabase.url') || DEFAULT_SUPABASE_URL;
+      $('supabaseAnonKey').value = localStorage.getItem('sorteo.supabase.anon') || DEFAULT_SUPABASE_KEY;
+    }
+
+    function buildClient() {
+      const url = $('supabaseUrl').value.trim();
+      const anon = $('supabaseAnonKey').value.trim();
+      if (!url || !anon) {
+        throw new Error('Completá la URL y la anon key de Supabase.');
+      }
+      supabaseClient = window.supabase.createClient(url, anon);
+      return supabaseClient;
+    }
+
+    async function requireClient() {
+      if (!supabaseClient) {
+        buildClient();
+      }
+      return supabaseClient;
+    }
+
+    async function login() {
+      const sb = await requireClient();
+      const { error } = await sb.auth.signInWithPassword({
+        email: $('loginEmail').value.trim(),
+        password: $('loginPassword').value
+      });
+      if (error) throw error;
+      setStatus('Sesión iniciada correctamente.', 'ok');
+      await loadCampaigns();
+    }
+
+    async function logout() {
+      const sb = await requireClient();
+      await sb.auth.signOut();
+      setStatus('Sesión cerrada.');
+    }
+
+    function clearCampaignForm() {
+      currentCampaignRecord = null;
+      $('campaignSlug').value = PAGE_CAMPAIGN_SLUG;
+      $('campaignTitle').value = '';
+      $('campaignStatus').value = 'draft';
+      $('campaignDrawAt').value = '';
+      $('campaignStartsAt').value = '';
+      $('campaignEndsAt').value = '';
+      $('campaignMaxEntries').value = 100000;
+      $('campaignBonusMin').value = 2;
+      $('campaignBonusMax').value = 2;
+      $('campaignWhatsapp').value = '';
+      $('campaignDescription').value = '';
+    }
+
+    function hydrateCampaignForm(campaign) {
+      currentCampaignRecord = campaign;
+      $('campaignSlug').value = campaign.slug || '';
+      $('campaignTitle').value = campaign.title || '';
+      $('campaignStatus').value = campaign.status || 'draft';
+      $('campaignDrawAt').value = campaign.draw_at ? campaign.draw_at.slice(0, 16) : '';
+      $('campaignStartsAt').value = campaign.starts_at ? campaign.starts_at.slice(0, 16) : '';
+      $('campaignEndsAt').value = campaign.ends_at ? campaign.ends_at.slice(0, 16) : '';
+      $('campaignMaxEntries').value = campaign.max_entries || 0;
+      $('campaignBonusMin').value = campaign.referral_bonus_min ?? 2;
+      $('campaignBonusMax').value = campaign.referral_bonus_max ?? 2;
+      $('campaignWhatsapp').value = campaign.whatsapp_number || '';
+      $('campaignDescription').value = campaign.description || '';
+    }
+
+    async function loadCampaigns() {
+      const sb = await requireClient();
+      const { data, error } = await sb
+        .from('campaigns')
+        .select('*')
+        .order('created_at', { ascending: false });
+      if (error) throw error;
+
+      $('campaignPicker').innerHTML = '<option value="">Seleccioná una campaña</option>';
+      data.forEach((campaign) => {
+        const opt = document.createElement('option');
+        opt.value = campaign.id;
+        opt.textContent = `${campaign.title} (${campaign.status})`;
+        $('campaignPicker').appendChild(opt);
+      });
+
+      const preferredCampaign = data.find((campaign) => campaign.slug === PAGE_CAMPAIGN_SLUG) || data[0];
+
+      if (preferredCampaign && !currentCampaignId) {
+        currentCampaignId = preferredCampaign.id;
+        $('campaignPicker').value = currentCampaignId;
+        hydrateCampaignForm(preferredCampaign);
+      }
+    }
+
+    async function seedDefaultPackages() {
+      if (!currentCampaignId) throw new Error('Seleccioná o creá una campaña primero.');
+      const sb = await requireClient();
+      const packageSeed = [
+        { name: 'Starter', entries_qty: 1, bonus_entries: 0, price_ars: 2500, featured: false, sort_order: 1, description: 'Entrada simple' },
+        { name: 'Popular', entries_qty: 3, bonus_entries: 0, price_ars: 6000, featured: false, sort_order: 2, description: 'Desbloquea enlace único al pagarse' },
+        { name: 'Pro', entries_qty: 6, bonus_entries: 0, price_ars: 10000, featured: true, sort_order: 3, description: 'Pack sugerido' },
+        { name: 'Plus', entries_qty: 10, bonus_entries: 0, price_ars: 12000, featured: false, sort_order: 4, description: 'Más chances' },
+        { name: 'Power', entries_qty: 100, bonus_entries: 0, price_ars: 90000, featured: false, sort_order: 5, description: 'Pack grande' },
+        { name: 'Maximo', entries_qty: 1000, bonus_entries: 0, price_ars: 190000, featured: false, sort_order: 6, description: 'Pack mayorista' }
+      ].map((item) => ({ ...item, campaign_id: currentCampaignId, status: 'active' }));
+
+      const { error } = await sb.from('packages').insert(packageSeed);
+      if (error) throw error;
+      await loadPackages();
+      setStatus('Paquetes base cargados.', 'ok');
+    }
+
+    async function saveCampaign() {
+      const sb = await requireClient();
+      const payload = {
+        slug: $('campaignSlug').value.trim(),
+        title: $('campaignTitle').value.trim(),
+        status: $('campaignStatus').value,
+        draw_at: $('campaignDrawAt').value || null,
+        starts_at: $('campaignStartsAt').value || null,
+        ends_at: $('campaignEndsAt').value || null,
+        max_entries: Number($('campaignMaxEntries').value || 0),
+        referral_bonus_min: Number($('campaignBonusMin').value || 0),
+        referral_bonus_max: Number($('campaignBonusMax').value || 0),
+        whatsapp_number: $('campaignWhatsapp').value.trim() || null,
+        description: $('campaignDescription').value.trim() || null
+      };
+
+      if (!payload.slug || !payload.title) {
+        throw new Error('Slug y título son obligatorios.');
+      }
+
+      let result;
+      if (currentCampaignRecord?.id) {
+        result = await sb.from('campaigns').update(payload).eq('id', currentCampaignRecord.id).select().single();
+      } else {
+        result = await sb.from('campaigns').insert(payload).select().single();
+      }
+
+      if (result.error) throw result.error;
+      currentCampaignId = result.data.id;
+      currentCampaignRecord = result.data;
+      $('campaignPicker').value = currentCampaignId;
+      await refreshAll();
+      setStatus('Campaña guardada.', 'ok');
+    }
+
+    async function savePackage() {
+      if (!currentCampaignId) throw new Error('Seleccioná o creá una campaña primero.');
+      const sb = await requireClient();
+      const payload = {
+        campaign_id: currentCampaignId,
+        name: $('packageName').value.trim(),
+        description: $('packageDescription').value.trim() || null,
+        entries_qty: Number($('packageEntries').value || 0),
+        bonus_entries: Number($('packageBonusEntries').value || 0),
+        price_ars: Number($('packagePrice').value || 0),
+        status: $('packageStatus').value,
+        featured: $('packageFeatured').value === 'true'
+      };
+
+      if (!payload.name || payload.entries_qty <= 0) {
+        throw new Error('Nombre y cantidad de chances válidas son obligatorios.');
+      }
+
+      const { error } = await sb.from('packages').insert(payload);
+      if (error) throw error;
+
+      $('packageName').value = '';
+      $('packageDescription').value = '';
+      $('packageEntries').value = 1;
+      $('packageBonusEntries').value = 0;
+      $('packagePrice').value = 0;
+      $('packageStatus').value = 'active';
+      $('packageFeatured').value = 'false';
+      await loadPackages();
+      setStatus('Paquete guardado.', 'ok');
+    }
+
+    async function loadPackages() {
+      if (!currentCampaignId) return;
+      const sb = await requireClient();
+      const { data, error } = await sb
+        .from('packages')
+        .select('*')
+        .eq('campaign_id', currentCampaignId)
+        .order('sort_order')
+        .order('entries_qty');
+      if (error) throw error;
+
+      const singlePack = (data || []).find((pkg) => Number(pkg.entries_qty || 0) + Number(pkg.bonus_entries || 0) === 1);
+      const singleChancePrice = Number(singlePack?.price_ars || 0);
+      $('packagesTableBody').innerHTML = data.length ? '' : '<tr><td colspan="6" class="muted">Sin datos.</td></tr>';
+      data.forEach((pkg) => {
+        const totalEntries = Number(pkg.entries_qty || 0) + Number(pkg.bonus_entries || 0);
+        const savings = calculateSavings(pkg.price_ars, totalEntries, singleChancePrice);
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${pkg.name}<br><span class="muted">${pkg.description || ''}</span></td>
+          <td>${pkg.entries_qty}</td>
+          <td>${pkg.bonus_entries}</td>
+          <td>${formatMoney(pkg.price_ars)}</td>
+          <td>${savings > 0 ? formatMoney(savings) : '-'}</td>
+          <td><span class="pill">${pkg.status}${pkg.featured ? ' / destacado' : ''}</span></td>
+        `;
+        $('packagesTableBody').appendChild(tr);
+      });
+    }
+
+    async function uploadMedia() {
+      if (!currentCampaignId) throw new Error('Seleccioná una campaña antes de subir archivos.');
+      const file = $('mediaFile').files[0];
+      if (!file) throw new Error('Elegí un archivo para subir.');
+
+      const sb = await requireClient();
+      const path = `${currentCampaignId}/${Date.now()}-${file.name.replace(/\s+/g, '-')}`;
+      const upload = await sb.storage.from('campaign-media').upload(path, file, { upsert: false });
+      if (upload.error) throw upload.error;
+
+      const { data: publicData } = sb.storage.from('campaign-media').getPublicUrl(path);
+      const insert = await sb.from('campaign_media').insert({
+        campaign_id: currentCampaignId,
+        kind: file.type.startsWith('video/') ? 'video' : 'image',
+        storage_path: path,
+        public_url: publicData.publicUrl,
+        alt_text: $('mediaAltText').value.trim() || null
+      });
+      if (insert.error) throw insert.error;
+
+      $('mediaFile').value = '';
+      $('mediaAltText').value = '';
+      await loadMedia();
+      setStatus('Archivo subido correctamente.', 'ok');
+    }
+
+    async function loadMedia() {
+      if (!currentCampaignId) return;
+      const sb = await requireClient();
+      const { data, error } = await sb
+        .from('campaign_media')
+        .select('*')
+        .eq('campaign_id', currentCampaignId)
+        .order('sort_order');
+      if (error) throw error;
+
+      $('mediaTableBody').innerHTML = data.length ? '' : '<tr><td colspan="3" class="muted">Sin archivos.</td></tr>';
+      data.forEach((item) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${item.storage_path}</td>
+          <td><a href="${item.public_url}" target="_blank">${item.public_url || '-'}</a></td>
+          <td>${item.is_cover ? 'Sí' : 'No'}</td>
+        `;
+        $('mediaTableBody').appendChild(tr);
+      });
+    }
+
+    async function saveProviderConfig() {
+      const sb = await requireClient();
+      let extraConfig = {};
+      if ($('providerExtraJson').value.trim()) {
+        extraConfig = JSON.parse($('providerExtraJson').value.trim());
+      }
+
+      if ($('providerName').value === 'galiopay') {
+        extraConfig = {
+          ...extraConfig,
+          commerce_id: $('galiopayCommerceId').value.trim() || null,
+          api_url: $('galiopayApiUrl').value.trim() || null
+        };
+      }
+
+      const payload = {
+        provider: $('providerName').value,
+        environment: $('providerEnv').value,
+        is_active: $('providerIsActive').value === 'true',
+        public_key: $('providerPublicKey').value.trim() || null,
+        access_token: $('providerAccessToken').value.trim() || null,
+        webhook_secret: $('providerWebhookSecret').value.trim() || null,
+        extra_config: extraConfig
+      };
+
+      const { error } = await sb
+        .from('payment_provider_configs')
+        .upsert(payload, { onConflict: 'provider,environment' });
+      if (error) throw error;
+
+      await loadProviderConfigs();
+      setStatus('Credenciales guardadas.', 'ok');
+    }
+
+    async function loadProviderConfigs() {
+      const sb = await requireClient();
+      const { data, error } = await sb
+        .from('payment_provider_configs')
+        .select('provider, environment, is_active, updated_at')
+        .order('provider')
+        .order('environment');
+      if (error) throw error;
+
+      $('providersTableBody').innerHTML = data.length ? '' : '<tr><td colspan="4" class="muted">Sin datos.</td></tr>';
+      data.forEach((item) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${item.provider}</td>
+          <td>${item.environment}</td>
+          <td>${item.is_active ? 'Sí' : 'No'}</td>
+          <td>${formatDate(item.updated_at)}</td>
+        `;
+        $('providersTableBody').appendChild(tr);
+      });
+    }
+
+    function syncProviderFormByType() {
+      const isGaliopay = $('providerName').value === 'galiopay';
+      $('galiopayCommerceId').disabled = !isGaliopay;
+      $('galiopayApiUrl').disabled = !isGaliopay;
+      if (!isGaliopay) {
+        $('galiopayCommerceId').value = '';
+        $('galiopayApiUrl').value = '';
+      }
+    }
+
+    async function loadOrders() {
+      if (!currentCampaignId) return;
+      const sb = await requireClient();
+      const [{ data: orders, error: ordersError }, { data: participantsData, error: participantsError }] = await Promise.all([
+        sb.from('orders').select('id, participant_id, status, total_entries, amount_ars, referral_link_id, provider, external_reference').eq('campaign_id', currentCampaignId).order('created_at', { ascending: false }).limit(30),
+        sb.from('participants').select('id, full_name, city, referral_link_code').eq('campaign_id', currentCampaignId)
+      ]);
+      if (ordersError) throw ordersError;
+      if (participantsError) throw participantsError;
+
+      const participantsMap = new Map((participantsData || []).map((item) => [item.id, item]));
+      $('ordersTableBody').innerHTML = orders.length ? '' : '<tr><td colspan="7" class="muted">Sin datos.</td></tr>';
+      orders.forEach((order) => {
+        const participant = participantsMap.get(order.participant_id) || {};
+        const actionHtml = order.status === 'paid'
+          ? '<span class="pill">Pagada</span>'
+          : `<button class="ghost" style="min-width:auto" onclick="markOrderPaid('${order.id}')">Marcar pagada</button>`;
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${escapeHtml(participant.full_name || '-')}<br><span class="muted">${escapeHtml(order.external_reference || '')}</span></td>
+          <td>${escapeHtml(participant.city || '-')}</td>
+          <td>${order.total_entries}</td>
+          <td><span class="pill">${order.status}</span></td>
+          <td>${formatMoney(order.amount_ars)}</td>
+          <td>${order.referral_link_id ? 'Sí' : 'No'}</td>
+          <td>${actionHtml}</td>
+        `;
+        $('ordersTableBody').appendChild(tr);
+      });
+    }
+
+    async function markOrderPaid(orderId) {
+      if (!window.confirm('¿Confirmar esta orden como pagada?')) return;
+      const sb = await requireClient();
+      const { data, error } = await sb.rpc('admin_mark_order_paid', { p_order_id: orderId });
+      if (error) throw error;
+      await refreshAll();
+      if (data?.referral_link_code) {
+        setStatus(`Orden aprobada. Link generado: ${buildReferralUrl(data.referral_link_code)}`, 'ok');
+      } else {
+        setStatus('Orden aprobada.', 'ok');
+      }
+    }
+
+    window.markOrderPaid = async (orderId) => {
+      try {
+        await markOrderPaid(orderId);
+      } catch (error) {
+        setStatus(error.message, 'error');
+      }
+    };
+
+    async function loadReferralLinks() {
+      if (!currentCampaignId) return;
+      const sb = await requireClient();
+      const [{ data: links, error: linksError }, { data: participantsData, error: participantsError }, { data: referrals, error: referralsError }] = await Promise.all([
+        sb.from('referral_links').select('id, owner_participant_id, code, clicks_count').eq('campaign_id', currentCampaignId).order('created_at', { ascending: false }),
+        sb.from('participants').select('id, full_name').eq('campaign_id', currentCampaignId),
+        sb.from('referrals').select('referral_link_id, bonus_entries_awarded').eq('campaign_id', currentCampaignId)
+      ]);
+      if (linksError) throw linksError;
+      if (participantsError) throw participantsError;
+      if (referralsError) throw referralsError;
+
+      const participantsMap = new Map((participantsData || []).map((item) => [item.id, item.full_name]));
+      const bonusMap = new Map();
+      (referrals || []).forEach((row) => {
+        bonusMap.set(row.referral_link_id, (bonusMap.get(row.referral_link_id) || 0) + Number(row.bonus_entries_awarded || 0));
+      });
+
+      $('referralsTableBody').innerHTML = links.length ? '' : '<tr><td colspan="5" class="muted">Sin datos.</td></tr>';
+      links.forEach((link) => {
+        const shareUrl = buildReferralUrl(link.code);
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${escapeHtml(participantsMap.get(link.owner_participant_id) || '-')}</td>
+          <td><span class="pill">${escapeHtml(link.code)}</span></td>
+          <td>${link.clicks_count || 0}</td>
+          <td>${bonusMap.get(link.id) || 0}</td>
+          <td><button class="ghost" style="min-width:auto" onclick="copyReferralLink('${escapeHtml(shareUrl)}')">Copiar enlace</button></td>
+        `;
+        $('referralsTableBody').appendChild(tr);
+      });
+    }
+
+    window.copyReferralLink = async (url) => {
+      try {
+        await copyText(url);
+        setStatus('Enlace copiado al portapapeles.', 'ok');
+      } catch (error) {
+        setStatus(error.message, 'error');
+      }
+    };
+
+    async function loadDashboard() {
+      if (!currentCampaignId) return;
+      const sb = await requireClient();
+
+      const participantsQuery = sb.from('participants').select('id', { count: 'exact', head: true }).eq('campaign_id', currentCampaignId);
+      const paidOrdersQuery = sb.from('orders').select('id', { count: 'exact', head: true }).eq('campaign_id', currentCampaignId).eq('status', 'paid');
+      const ordersTotalsQuery = sb.from('orders').select('total_entries, amount_ars').eq('campaign_id', currentCampaignId).eq('status', 'paid');
+
+      const [{ count: participantsCount, error: participantsError }, { count: paidOrdersCount, error: paidError }, { data: totalsData, error: totalsError }] = await Promise.all([
+        participantsQuery,
+        paidOrdersQuery,
+        ordersTotalsQuery
+      ]);
+
+      if (participantsError) throw participantsError;
+      if (paidError) throw paidError;
+      if (totalsError) throw totalsError;
+
+      const totals = totalsData.reduce((acc, row) => {
+        acc.entries += Number(row.total_entries || 0);
+        acc.amount += Number(row.amount_ars || 0);
+        return acc;
+      }, { entries: 0, amount: 0 });
+
+      $('kpiParticipants').textContent = participantsCount || 0;
+      $('kpiPaidOrders').textContent = paidOrdersCount || 0;
+      $('kpiEntries').textContent = new Intl.NumberFormat('es-AR').format(totals.entries);
+      $('kpiRevenue').textContent = formatMoney(totals.amount);
+    }
+
+    async function refreshAll() {
+      await loadCampaigns();
+      if (!$('campaignPicker').value && currentCampaignId) {
+        $('campaignPicker').value = currentCampaignId;
+      }
+      currentCampaignId = $('campaignPicker').value || currentCampaignId;
+      if (currentCampaignId) {
+        const sb = await requireClient();
+        const { data, error } = await sb.from('campaigns').select('*').eq('id', currentCampaignId).single();
+        if (error) throw error;
+        currentCampaignRecord = data;
+        hydrateCampaignForm(data);
+      }
+      await Promise.all([loadPackages(), loadMedia(), loadProviderConfigs(), loadOrders(), loadReferralLinks(), loadDashboard()]);
+    }
+
+    function bindEvents() {
+      $('saveConfigBtn').addEventListener('click', () => {
+        try {
+          persistConfig();
+          buildClient();
+          setStatus('Conexión guardada. Ya podés iniciar sesión.', 'ok');
+        } catch (error) {
+          setStatus(error.message, 'error');
+        }
+      });
+      $('loginBtn').addEventListener('click', async () => {
+        try { await login(); } catch (error) { setStatus(error.message, 'error'); }
+      });
+      $('logoutBtn').addEventListener('click', async () => {
+        try { await logout(); } catch (error) { setStatus(error.message, 'error'); }
+      });
+      $('newCampaignBtn').addEventListener('click', () => clearCampaignForm());
+      $('saveCampaignBtn').addEventListener('click', async () => {
+        try { await saveCampaign(); } catch (error) { setStatus(error.message, 'error'); }
+      });
+      $('savePackageBtn').addEventListener('click', async () => {
+        try { await savePackage(); } catch (error) { setStatus(error.message, 'error'); }
+      });
+      $('seedPackagesBtn').addEventListener('click', async () => {
+        try { await seedDefaultPackages(); } catch (error) { setStatus(error.message, 'error'); }
+      });
+      $('uploadMediaBtn').addEventListener('click', async () => {
+        try { await uploadMedia(); } catch (error) { setStatus(error.message, 'error'); }
+      });
+      $('saveProviderBtn').addEventListener('click', async () => {
+        try { await saveProviderConfig(); } catch (error) { setStatus(error.message, 'error'); }
+      });
+      $('reloadPackagesBtn').addEventListener('click', async () => {
+        try { await loadPackages(); setStatus('Paquetes recargados.', 'ok'); } catch (error) { setStatus(error.message, 'error'); }
+      });
+      $('reloadMediaBtn').addEventListener('click', async () => {
+        try { await loadMedia(); setStatus('Galería recargada.', 'ok'); } catch (error) { setStatus(error.message, 'error'); }
+      });
+      $('reloadProvidersBtn').addEventListener('click', async () => {
+        try { await loadProviderConfigs(); setStatus('Credenciales recargadas.', 'ok'); } catch (error) { setStatus(error.message, 'error'); }
+      });
+      $('loadDashboardBtn').addEventListener('click', async () => {
+        try { await loadDashboard(); setStatus('Dashboard actualizado.', 'ok'); } catch (error) { setStatus(error.message, 'error'); }
+      });
+      $('refreshAllBtn').addEventListener('click', async () => {
+        try { await refreshAll(); setStatus('Datos actualizados.', 'ok'); } catch (error) { setStatus(error.message, 'error'); }
+      });
+      $('campaignPicker').addEventListener('change', async (event) => {
+        currentCampaignId = event.target.value;
+        try { await refreshAll(); setStatus('Campaña cargada.', 'ok'); } catch (error) { setStatus(error.message, 'error'); }
+      });
+      $('providerName').addEventListener('change', syncProviderFormByType);
+      $('copyReferralTemplateBtn').addEventListener('click', async () => {
+        const url = `${window.location.origin.replace(/\/$/, '')}/?ref={{codigo_unico}}`;
+        await navigator.clipboard.writeText(url);
+        setStatus('Plantilla de enlace copiada al portapapeles.', 'ok');
+      });
+    }
+
+    async function boot() {
+      loadConfig();
+      bindEvents();
+      syncProviderFormByType();
+      try {
+        if ($('supabaseUrl').value && $('supabaseAnonKey').value) {
+          buildClient();
+          const { data } = await supabaseClient.auth.getSession();
+          if (data.session) {
+            setStatus(`Sesión activa como ${data.session.user.email}.`, 'ok');
+            await refreshAll();
+          } else {
+            setStatus('Conexión lista. Iniciá sesión para administrar.', 'ok');
+          }
+        }
+      } catch (error) {
+        setStatus(error.message, 'error');
+      }
+    }
+
+    boot();
+  </script>
+</body>
+</html>
