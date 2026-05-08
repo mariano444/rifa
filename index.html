@@ -3023,6 +3023,7 @@ let packages = [];
 let participants = [];
 let currentParticipants = [];
 let pastParticipants = [];
+const LIVE_FEED_PARTICIPANTS_START_DATE = new Date('2026-05-01T00:00:00-03:00');
 let pastComments = [];
 let pastParticipantsIndex = 0;
 let pastParticipantsInterval = null;
@@ -3772,10 +3773,13 @@ async function shareWhatsappLink() {
 }
 
 function getRandomActivityMessage() {
-  if (!participants.length) {
+  const liveFeedParticipants = currentParticipants.length
+    ? currentParticipants
+    : participants.filter((participant) => participant?.joinedAt instanceof Date && !Number.isNaN(participant.joinedAt.getTime()) && participant.joinedAt >= LIVE_FEED_PARTICIPANTS_START_DATE);
+  if (!liveFeedParticipants.length) {
     return null;
   }
-  const person = randomFrom(participants);
+  const person = randomFrom(liveFeedParticipants);
   const template = randomFrom([
     'acaba de reservar chances para el sorteo',
     'se sumo hace instantes',
@@ -3799,7 +3803,10 @@ function showLiveFeedNotification() {
 }
 
 function scheduleLiveFeed() {
-  if (!participants.length) return;
+  const liveFeedParticipants = currentParticipants.length
+    ? currentParticipants
+    : participants.filter((participant) => participant?.joinedAt instanceof Date && !Number.isNaN(participant.joinedAt.getTime()) && participant.joinedAt >= LIVE_FEED_PARTICIPANTS_START_DATE);
+  if (!liveFeedParticipants.length) return;
   if (liveFeedTimeout) clearTimeout(liveFeedTimeout);
   const delay = 9000 + Math.random() * 11000;
   liveFeedTimeout = setTimeout(() => {
@@ -4452,8 +4459,6 @@ async function loadParticipants(){
 
   if (error) throw error;
   
-  const cutOffDate = new Date('2026-05-01T00:00:00-03:00');
-  
   participants = (data || []).map((row, index) => {
     const location = normalizeParticipantLocation(row);
     const displayName = row.display_name || row.full_name;
@@ -4480,8 +4485,8 @@ async function loadParticipants(){
   });
 
   // Split into current and past
-  currentParticipants = participants.filter(p => p.joinedAt >= cutOffDate);
-  pastParticipants = participants.filter(p => p.joinedAt < cutOffDate);
+  currentParticipants = participants.filter(p => p.joinedAt >= LIVE_FEED_PARTICIPANTS_START_DATE);
+  pastParticipants = participants.filter(p => p.joinedAt < LIVE_FEED_PARTICIPANTS_START_DATE);
   pastComments = pastParticipants.filter(p => p.opinionMessage.length > 0);
 
   refreshDrawEntryPool();
