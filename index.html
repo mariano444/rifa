@@ -4220,8 +4220,7 @@ function updateHeroDynamicElements() {
   // Visitor count simulation
   const visitorCountEl = document.getElementById('visitorCount');
   if (visitorCountEl) {
-    // Start with 0 as requested
-    visitorCountEl.textContent = "0 personas viendo esto ahora";
+    // We skip setting it to 0 and go directly from "Cargando..." to the random number
     
     // After a short random delay, set the first random number
     setTimeout(() => {
