@@ -2720,10 +2720,10 @@
   <div class="hero-progress-container reveal">
     <div class="hero-progress-label">
       <span>Chances reservadas</span>
-      <span id="heroProgressText">90% completado</span>
+      <span id="heroProgressText">96% completado</span>
     </div>
     <div class="hero-progress-bar">
-      <div class="hero-progress-fill" id="heroProgressFill" style="width: 90%"></div>
+      <div class="hero-progress-fill" id="heroProgressFill" style="width: 96%"></div>
     </div>
   </div>
 
@@ -2741,7 +2741,7 @@
     </div>
     <div class="hero-trust-badge">
       <img src="https://img.icons8.com/color/48/000000/checked-user-male.png" alt="Verificado">
-      <span>Sorteo Cifrado</span>
+      <span>Sorteo Auditado</span>
     </div>
     <div class="hero-trust-badge">
       <img src="https://img.icons8.com/color/48/000000/clock--v1.png" alt="Rapido">
@@ -4220,20 +4220,23 @@ function updateHeroDynamicElements() {
   // Visitor count simulation
   const visitorCountEl = document.getElementById('visitorCount');
   if (visitorCountEl) {
-    let count = 130 + Math.floor(Math.random() * 40);
+    // Start with a random number between 135 and 195
+    let count = 135 + Math.floor(Math.random() * 60);
+    visitorCountEl.textContent = `${count} personas viendo esto ahora`;
+    
     setInterval(() => {
-      count += Math.floor(Math.random() * 5) - 2;
+      // Small fluctuations
+      count += Math.floor(Math.random() * 7) - 3;
+      if (count < 110) count = 110;
       visitorCountEl.textContent = `${count} personas viendo esto ahora`;
-    }, 5000);
+    }, 4500);
   }
 
-  // Hero progress simulation based on actual chances
+  // Hero progress simulation - SET TO 96%
   const progressFill = document.getElementById('heroProgressFill');
   const progressText = document.getElementById('heroProgressText');
   if (progressFill && progressText) {
-    const total = currentMaxChances();
-    const current = totalChances();
-    const percent = Math.min(98, Math.max(90, Math.round((current / total) * 100)));
+    const percent = 96;
     progressFill.style.width = `${percent}%`;
     progressText.textContent = `${percent}% de chances reservadas`;
   }
