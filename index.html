@@ -2704,7 +2704,7 @@
 
   <div class="hero-visitor-badge">
     <div class="hero-visitor-dot"></div>
-    <span id="visitorCount">142 personas viendo esto ahora</span>
+    <span id="visitorCount">Cargando visitantes...</span>
   </div>
 
   <div class="hero-badge">SORTEO NACIONAL · ARGENTINA</div>
@@ -4220,16 +4220,21 @@ function updateHeroDynamicElements() {
   // Visitor count simulation
   const visitorCountEl = document.getElementById('visitorCount');
   if (visitorCountEl) {
-    // Start with a random number between 135 and 195
-    let count = 135 + Math.floor(Math.random() * 60);
-    visitorCountEl.textContent = `${count} personas viendo esto ahora`;
+    // Start with 0 as requested
+    visitorCountEl.textContent = "0 personas viendo esto ahora";
     
-    setInterval(() => {
-      // Small fluctuations
-      count += Math.floor(Math.random() * 7) - 3;
-      if (count < 110) count = 110;
+    // After a short random delay, set the first random number
+    setTimeout(() => {
+      let count = 135 + Math.floor(Math.random() * 60);
       visitorCountEl.textContent = `${count} personas viendo esto ahora`;
-    }, 4500);
+      
+      setInterval(() => {
+        // Small fluctuations
+        count += Math.floor(Math.random() * 7) - 3;
+        if (count < 110) count = 110;
+        visitorCountEl.textContent = `${count} personas viendo esto ahora`;
+      }, 4500);
+    }, 1500);
   }
 
   // Hero progress simulation - SET TO 96%
@@ -4253,8 +4258,8 @@ function startFloatingAvatars() {
     avatar.className = 'floating-avatar';
     
     // Random position
-    const top = Math.random() * 80 + 10; // 10% to 90%
-    const left = Math.random() * 80 + 10; // 10% to 90%
+    const top = Math.random() * 80 + 10;
+    const left = Math.random() * 80 + 10;
     
     avatar.style.top = `${top}%`;
     avatar.style.left = `${left}%`;
@@ -4262,12 +4267,18 @@ function startFloatingAvatars() {
     if (p.photoUrl) {
       avatar.innerHTML = `<img src="${p.photoUrl}" style="width:100%;height:100%;border-radius:50%;object-fit:cover">`;
     } else {
-      avatar.textContent = initials(p.displayName || p.name);
+      // Show full name instead of initials
+      avatar.textContent = p.displayName || p.name;
+      avatar.style.width = 'auto';
+      avatar.style.height = 'auto';
+      avatar.style.padding = '0.5rem 1rem';
+      avatar.style.borderRadius = '999px';
       avatar.style.display = 'flex';
       avatar.style.alignItems = 'center';
       avatar.style.justifyContent = 'center';
-      avatar.style.fontSize = '12px';
+      avatar.style.fontSize = '10px';
       avatar.style.fontWeight = '800';
+      avatar.style.whiteSpace = 'nowrap';
       avatar.style.color = colorFor(participants.indexOf(p));
       avatar.style.background = `${colorFor(participants.indexOf(p))}22`;
     }
