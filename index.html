@@ -1638,6 +1638,176 @@
   }
   .stat-label { font-size: 0.75rem; color: var(--text2); font-weight: 600; margin-top: 0.25rem; letter-spacing: 0.05em; }
 
+  /* ---- REFINED PACKAGES ---- */
+  .pkg {
+    background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 2rem;
+    padding: 2.5rem 1.5rem;
+    display: flex; flex-direction: column; align-items: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+  }
+  .pkg:hover {
+    transform: translateY(-10px);
+    border-color: var(--gold);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 20px rgba(245,200,66,0.1);
+    background: linear-gradient(145deg, rgba(245,200,66,0.05), rgba(255,255,255,0.02));
+  }
+  .pkg.featured {
+    border: 2px solid var(--gold);
+    background: linear-gradient(145deg, rgba(245,200,66,0.1), rgba(0,0,0,0.2));
+    transform: scale(1.05);
+    z-index: 2;
+  }
+  .pkg-badge {
+    position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    background: var(--gold); color: var(--dark);
+    padding: 0.4rem 1.2rem; border-radius: 0 0 1rem 1rem;
+    font-size: 0.7rem; font-weight: 900; text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .pkg-chances {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem; line-height: 1; color: #fff;
+    margin-bottom: 0.2rem;
+    text-shadow: 0 0 20px rgba(255,255,255,0.2);
+  }
+  .pkg-unit {
+    font-size: 0.8rem; font-weight: 800; color: var(--gold);
+    text-transform: uppercase; letter-spacing: 0.2em;
+    margin-bottom: 1.5rem;
+  }
+  .pkg-price {
+    font-size: 2rem; font-weight: 900; color: #fff;
+    margin-bottom: 0.5rem;
+  }
+  .pkg-price-unit {
+    font-size: 0.8rem; color: var(--text2);
+    margin-bottom: 1.5rem;
+  }
+  .pkg-features {
+    width: 100%; border-top: 1px solid rgba(255,255,255,0.05);
+    padding-top: 1.5rem; margin-bottom: 2rem;
+    display: flex; flex-direction: column; gap: 0.8rem;
+    text-align: left;
+  }
+  .pkg-feature {
+    display: flex; align-items: center; gap: 0.6rem;
+    font-size: 0.85rem; color: var(--text2);
+  }
+  .pkg-feature i { color: var(--gold); font-size: 0.9rem; }
+  .pkg-btn {
+    width: 100%; padding: 1.2rem; border-radius: 1rem;
+    background: var(--gold); color: var(--dark);
+    font-weight: 900; font-size: 0.9rem; text-transform: uppercase;
+    cursor: pointer; border: none; transition: 0.3s;
+  }
+  .pkg-btn:hover { background: #fff; transform: scale(1.02); }
+
+  /* ---- PREMIUM COURSE SECTION ---- */
+  .course-premium-card {
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    border-radius: 3rem;
+    padding: 4rem;
+    margin: 4rem 0;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    border: 1px solid rgba(245,200,66,0.2);
+    position: relative; overflow: hidden;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+  }
+  .course-premium-card::before {
+    content: ''; position: absolute; top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(245,200,66,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .course-premium-tag {
+    background: rgba(245,200,66,0.1); color: var(--gold);
+    padding: 0.5rem 1.5rem; border-radius: 2rem;
+    font-size: 0.8rem; font-weight: 800; display: inline-block;
+    margin-bottom: 1.5rem; border: 1px solid rgba(245,200,66,0.2);
+  }
+  .course-premium-title {
+    font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1;
+    font-family: 'Bebas Neue', sans-serif; color: #fff;
+    margin-bottom: 1.5rem;
+  }
+  .course-premium-title span { color: var(--gold); }
+  .course-premium-list {
+    display: grid; gap: 1.5rem; margin-bottom: 2.5rem;
+  }
+  .course-item {
+    display: flex; gap: 1.2rem; align-items: flex-start;
+  }
+  .course-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: rgba(245,200,66,0.1);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; flex-shrink: 0; color: var(--gold);
+    border: 1px solid rgba(245,200,66,0.2);
+  }
+  .course-text h4 { color: #fff; font-size: 1.1rem; margin-bottom: 0.3rem; }
+  .course-text p { color: var(--text2); font-size: 0.9rem; line-height: 1.4; }
+  
+  .course-visual {
+    position: relative; display: flex; align-items: center; justify-content: center;
+  }
+  .course-mockup {
+    width: 100%; max-width: 400px;
+    filter: drop-shadow(0 30px 60px rgba(0,0,0,0.5));
+    border-radius: 1.5rem;
+    transform: rotate(-5deg);
+    transition: 0.5s ease;
+  }
+  .course-premium-card:hover .course-mockup { transform: rotate(0) scale(1.05); }
+  .course-badge-trust {
+    position: absolute; bottom: 20px; right: 20px;
+    background: #fff; color: #000; padding: 1rem;
+    border-radius: 1rem; display: flex; align-items: center; gap: 0.8rem;
+    font-weight: 900; font-size: 0.8rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  }
+
+  /* ---- REFINED GALLERY ---- */
+  .gallery-grid-new {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+    margin: 3rem 0;
+  }
+  .gallery-item-new {
+    border-radius: 2rem; overflow: hidden; position: relative;
+    aspect-ratio: 4/3; cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: 0.4s;
+  }
+  .gallery-item-new:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+  .gallery-item-new img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
+  .gallery-item-new:hover img { transform: scale(1.1); }
+  .gallery-item-new::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(0deg, rgba(0,0,0,0.6) 0%, transparent 50%);
+    opacity: 0; transition: 0.3s;
+  }
+  .gallery-item-new:hover::after { opacity: 1; }
+  .gallery-tag {
+    position: absolute; bottom: 1.5rem; left: 1.5rem;
+    background: var(--gold); color: var(--dark);
+    padding: 0.4rem 1rem; border-radius: 2rem;
+    font-size: 0.7rem; font-weight: 800; text-transform: uppercase;
+    z-index: 2; opacity: 0; transform: translateY(10px); transition: 0.3s;
+  }
+  .gallery-item-new:hover .gallery-tag { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 992px) {
+    .course-premium-card { grid-template-columns: 1fr; gap: 3rem; padding: 2.5rem; }
+    .gallery-grid-new { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 576px) {
+    .gallery-grid-new { grid-template-columns: 1fr; }
+    .gallery-item-new:nth-child(1) { grid-column: span 1; grid-row: span 1; }
+  }
+
   .participants-table-wrap {
     background: var(--dark2);
     border: 1px solid rgba(255,255,255,0.08);
@@ -2671,57 +2841,86 @@
   </div>
 </div>
 
-<section class="bonus-section">
+<!-- GALLERY -->
+<section id="galeria" class="gallery-section">
   <div class="section-inner">
-    <div class="bonus-grid reveal">
-      <div class="bonus-card">
-        <span class="bonus-kicker">Bonus incluido</span>
-        <h2 class="bonus-title">Comprando <span>3 o más chances</span> también te llevás un curso gratis</h2>
-        <p class="bonus-copy">Además de participar por el Chevrolet Corsa, desbloqueás una guía práctica para comprar tu auto usado en Argentina con más criterio, más control y menos riesgo. El acceso se entrega después del pago aprobado con un código simple y un botón directo al curso.</p>
-        <div class="bonus-points">
-          <div class="bonus-point">
-            <strong>Acceso fácil</strong>
-            Recibís un código simple y un acceso directo apenas se confirma tu compra bonificada.
+    <span class="section-tag">📸 Estado Impecable</span>
+    <h2 class="section-title">Explora tu próximo<br><span style="color:var(--gold)">Chevrolet Corsa</span></h2>
+    <p class="section-sub">Fotos reales del premio. El vehículo se encuentra en excelentes condiciones, listo para que lo disfrutes desde el primer día.</p>
+    
+    <div class="gallery-grid-new">
+      <div class="gallery-item-new reveal">
+        <img src="./assets/premios/corsa.png" alt="Chevrolet Corsa Frontal">
+        <span class="gallery-tag">Vista Principal</span>
+      </div>
+      <div class="gallery-item-new reveal">
+        <img src="./assets/premios/corsa1.png" alt="Chevrolet Corsa Lateral">
+        <span class="gallery-tag">Perfil Deportivo</span>
+      </div>
+      <div class="gallery-item-new reveal">
+        <img src="./assets/premios/corsa4.png" alt="Chevrolet Corsa Interior">
+        <span class="gallery-tag">Interior Impecable</span>
+      </div>
+      <div class="gallery-item-new reveal">
+        <img src="./assets/premios/corsa5.png" alt="Chevrolet Corsa Motor">
+        <span class="gallery-tag">Mecánica Verificada</span>
+      </div>
+      <div class="gallery-item-new reveal">
+        <img src="./assets/premios/corsa2.png" alt="Chevrolet Corsa Trasera">
+        <span class="gallery-tag">Detalles de Calidad</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COURSE BONUS PREMIUM -->
+<section id="curso" class="course-section">
+  <div class="section-inner">
+    <div class="course-premium-card reveal">
+      <div class="course-content">
+        <span class="course-premium-tag">BONUS EXCLUSIVO</span>
+        <h2 class="course-premium-title">Guía Maestra: <span>Compra de Usados</span></h2>
+        <p class="course-text p" style="margin-bottom: 2rem; font-size: 1.1rem">No solo participas por el auto, te llevas el conocimiento para no fallar nunca más al comprar un vehículo usado en Argentina.</p>
+        
+        <div class="course-premium-list">
+          <div class="course-item">
+            <div class="course-icon">🔍</div>
+            <div class="course-text">
+              <h4>Inspección Técnica</h4>
+              <p>Aprende a detectar fallas ocultas en el motor y la estructura sin ser mecánico.</p>
+            </div>
           </div>
-          <div class="bonus-point">
-            <strong>Valor real</strong>
-            El curso acompaña la propuesta con contenido útil, no con un regalo simbólico.
+          <div class="course-item">
+            <div class="course-icon">⚖️</div>
+            <div class="course-text">
+              <h4>Trámites y Legalidad</h4>
+              <p>Evita estafas: todo sobre 08, verificación policial y estado de dominio.</p>
+            </div>
           </div>
-          <div class="bonus-point">
-            <strong>Más seguridad al comprar</strong>
-            Incluye alertas, chequeos y criterios para analizar un usado con más confianza.
-          </div>
-          <div class="bonus-point">
-            <strong>Beneficio concreto</strong>
-            Aunque no dependas del resultado final del sorteo, te llevás un recurso práctico para usar.
+          <div class="course-item">
+            <div class="course-icon">💰</div>
+            <div class="course-text">
+              <h4>Negociación Efectiva</h4>
+              <p>Estrategias para bajar el precio y cerrar el mejor trato posible.</p>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="bonus-proof">
-        <span class="bonus-kicker">Más credibilidad</span>
-        <h3 class="bonus-title" style="font-size:clamp(1.8rem,4vw,2.7rem)">Una propuesta más seria,<br><span>clara y confiable</span></h3>
-        <div class="bonus-proof-list">
-          <div class="bonus-proof-item">
-            <strong>Premio visible y explicado</strong>
-            El auto está publicado con fotos reales para que sepas exactamente por qué participás.
-          </div>
-          <div class="bonus-proof-item">
-            <strong>Condición simple y objetiva</strong>
-            Con 3 o más chances el acceso al curso se habilita automáticamente, sin sorteos extra ni pasos raros.
-          </div>
-          <div class="bonus-proof-item">
-            <strong>Registro claro de participación</strong>
-            Las compras aprobadas quedan reflejadas en la lista pública para reforzar transparencia.
-          </div>
-          <div class="bonus-proof-item">
-            <strong>Más valor para quien compra</strong>
-            No solo comprás chances: también te llevás información útil para una futura compra importante.
-          </div>
+
+        <div class="course-text" style="background: rgba(245,200,66,0.05); padding: 1.5rem; border-radius: 1.5rem; border: 1px dashed var(--gold)">
+          <p style="color: var(--gold); font-weight: 700; font-size: 0.9rem">🎁 ¡GRATIS con tu pack de 3 o más chances!</p>
+          <p style="font-size: 0.8rem; color: var(--text2)">Acceso instantáneo tras la confirmación de tu pago.</p>
         </div>
       </div>
-      <div class="faq-item">
-        <button class="faq-q">¿Cómo funciona el curso gratis? <span class="faq-arrow">▼</span></button>
-        <div class="faq-a">Si tu compra aprobada es de 3 o más chances, se habilita un código de acceso simple y un botón directo para entrar al curso. No depende de salir ganador: es un bonus concreto por la compra bonificada.</div>
+      
+      <div class="course-visual">
+        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=800" alt="Curso de Autos" class="course-mockup">
+        <div class="course-badge-trust">
+          <span style="font-size: 1.5rem">🛡️</span>
+          <div>
+            <div style="line-height: 1">VALOR REAL</div>
+            <div style="font-size: 0.6rem; opacity: 0.6">CONTENIDO PROFESIONAL</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
