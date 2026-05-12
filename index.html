@@ -65,6 +65,45 @@
     overflow: hidden;
   }
   /* ---- HERO ENHANCEMENTS ---- */
+  /* ---- HERO CAR PHOTO ---- */
+  .hero-car-featured {
+    position: relative; z-index: 3;
+    width: min(800px, 100%);
+    margin: 2rem auto;
+    filter: drop-shadow(0 20px 50px rgba(0,0,0,0.5));
+    animation: carFloat 6s ease-in-out infinite;
+  }
+  @keyframes carFloat {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-15px) scale(1.02); }
+  }
+
+  /* ---- FLOATING AVATARS ---- */
+  .hero-floating-avatars {
+    position: absolute; inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+  }
+  .floating-avatar {
+    position: absolute;
+    width: 50px; height: 50px;
+    border-radius: 50%;
+    border: 2px solid var(--gold);
+    background: var(--dark2);
+    box-shadow: 0 0 15px rgba(245,200,66,0.3);
+    opacity: 0;
+    transform: scale(0);
+    animation: avatarPop 4s ease-in-out forwards;
+  }
+  @keyframes avatarPop {
+    0% { transform: scale(0); opacity: 0; }
+    20% { transform: scale(1.2); opacity: 0.8; }
+    30% { transform: scale(1); opacity: 0.8; }
+    80% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(0.5); opacity: 0; }
+  }
+
   .hero-visitor-badge {
     position: relative; z-index: 2;
     background: rgba(0, 212, 106, 0.15);
@@ -2485,6 +2524,7 @@
 <div class="hero">
   <div class="hero-bg"></div>
   <div class="hero-sparks" id="sparks"></div>
+  <div class="hero-floating-avatars" id="floatingAvatarsContainer"></div>
 
   <div class="floating-badge">
     <span>Últimas</span>
@@ -2500,15 +2540,20 @@
   <div class="hero-badge">SORTEO NACIONAL · ARGENTINA</div>
 
   <h1 class="hero-title">GRAN SORTEO<span>CHEVROLET CORSA</span></h1>
+  
+  <div class="hero-car-featured reveal">
+    <img src="./assets/premios/corsa.png" alt="Chevrolet Corsa Impecable" style="width:100%">
+  </div>
+
   <p class="hero-subtitle">Impecable · Listo para transferir · ¡Puede ser tuyo hoy!</p>
   
   <div class="hero-progress-container reveal">
     <div class="hero-progress-label">
       <span>Chances reservadas</span>
-      <span id="heroProgressText">84% completado</span>
+      <span id="heroProgressText">90% completado</span>
     </div>
     <div class="hero-progress-bar">
-      <div class="hero-progress-fill" id="heroProgressFill" style="width: 84%"></div>
+      <div class="hero-progress-fill" id="heroProgressFill" style="width: 90%"></div>
     </div>
   </div>
 
@@ -2526,7 +2571,7 @@
     </div>
     <div class="hero-trust-badge">
       <img src="https://img.icons8.com/color/48/000000/checked-user-male.png" alt="Verificado">
-      <span>Sorteo</span>
+      <span>Sorteo Auditado</span>
     </div>
     <div class="hero-trust-badge">
       <img src="https://img.icons8.com/color/48/000000/clock--v1.png" alt="Rapido">
@@ -4105,10 +4150,53 @@ function updateHeroDynamicElements() {
   if (progressFill && progressText) {
     const total = currentMaxChances();
     const current = totalChances();
-    const percent = Math.min(98, Math.max(75, Math.round((current / total) * 100)));
+    const percent = Math.min(98, Math.max(90, Math.round((current / total) * 100)));
     progressFill.style.width = `${percent}%`;
     progressText.textContent = `${percent}% de chances reservadas`;
   }
+}
+
+function startFloatingAvatars() {
+  const container = document.getElementById('floatingAvatarsContainer');
+  if (!container) return;
+
+  function createAvatar() {
+    if (!participants.length) return;
+    const p = randomFrom(participants);
+    const avatar = document.createElement('div');
+    avatar.className = 'floating-avatar';
+    
+    // Random position
+    const top = Math.random() * 80 + 10; // 10% to 90%
+    const left = Math.random() * 80 + 10; // 10% to 90%
+    
+    avatar.style.top = `${top}%`;
+    avatar.style.left = `${left}%`;
+    
+    if (p.photoUrl) {
+      avatar.innerHTML = `<img src="${p.photoUrl}" style="width:100%;height:100%;border-radius:50%;object-fit:cover">`;
+    } else {
+      avatar.textContent = initials(p.displayName || p.name);
+      avatar.style.display = 'flex';
+      avatar.style.alignItems = 'center';
+      avatar.style.justifyContent = 'center';
+      avatar.style.fontSize = '12px';
+      avatar.style.fontWeight = '800';
+      avatar.style.color = colorFor(participants.indexOf(p));
+      avatar.style.background = `${colorFor(participants.indexOf(p))}22`;
+    }
+
+    container.appendChild(avatar);
+    
+    // Remove after animation
+    setTimeout(() => avatar.remove(), 4000);
+  }
+
+  // Initial burst
+  for(let i=0; i<5; i++) setTimeout(createAvatar, i * 500);
+  
+  // Infinite loop
+  setInterval(createAvatar, 2500);
 }
 
 function updateStats(){
@@ -4923,6 +5011,7 @@ async function bootLanding(){
     observeReveal();
     scheduleLiveFeed();
     updateHeroDynamicElements();
+    startFloatingAvatars();
     await handleReturnedPayment();
 
     if (getReferralCode()) {
