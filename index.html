@@ -1811,70 +1811,117 @@
   .participants-table-wrap {
     background: var(--dark2);
     border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 1.2rem;
+    border-radius: 1.5rem;
     overflow: hidden;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
   }
   #participantsTableScroller {
-    max-height: min(62vh, 640px);
+    max-height: 600px;
     overflow-y: auto;
+    overflow-x: auto;
     scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
   }
+  /* Custom Scrollbar */
+  #participantsTableScroller::-webkit-scrollbar { width: 6px; height: 6px; }
+  #participantsTableScroller::-webkit-scrollbar-track { background: rgba(255,255,255,0.02); }
+  #participantsTableScroller::-webkit-scrollbar-thumb { background: rgba(245,200,66,0.2); border-radius: 10px; }
+  #participantsTableScroller::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gold);
+    color: var(--dark);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    box-shadow: 0 4px 15px rgba(245,200,66,0.4);
+    animation: bounceDown 2s infinite;
+    pointer-events: none;
+    z-index: 10;
+    opacity: 1;
+    transition: opacity 0.3s;
+  }
+  .scroll-indicator.hidden { opacity: 0; }
+  @keyframes bounceDown {
+    0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+    40% { transform: translateX(-50%) translateY(-10px); }
+    60% { transform: translateX(-50%) translateY(-5px); }
+  }
+
   .table-header {
     display: flex; align-items: center; justify-content: space-between;
-    padding: 1rem 1.5rem;
+    padding: 1.2rem 1.5rem;
+    background: rgba(255,255,255,0.02);
     border-bottom: 1px solid rgba(255,255,255,0.07);
-    gap: 1rem; flex-wrap: wrap;
+    gap: 1rem;
   }
-  .table-title { font-weight: 700; font-size: 0.95rem; }
-  .live-badge {
-    display: flex; align-items: center; gap: 0.4rem;
-    font-size: 0.7rem; font-weight: 700; color: var(--green);
-    letter-spacing: 0.1em; text-transform: uppercase;
-  }
-  .live-dot {
-    width: 7px; height: 7px; border-radius: 50%;
-    background: var(--green);
-    animation: livePulse 1.2s ease-in-out infinite;
-  }
-  @keyframes livePulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(0.7); }
-  }
-  .search-input {
-    background: var(--dark3);
-    border: 1px solid rgba(255,255,255,0.1);
-    color: var(--text);
-    padding: 0.5rem 1rem; border-radius: 0.5rem;
-    font-size: 0.85rem; font-family: 'Barlow', sans-serif;
-    width: 200px; max-width: 100%;
-    outline: none;
-    transition: border-color 0.2s;
-  }
-  .search-input:focus { border-color: var(--gold); }
-  .search-input::placeholder { color: var(--text2); }
-
-  table { width: 100%; min-width: 980px; border-collapse: collapse; table-layout: auto; }
+  .table-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 0.05em; color: #fff; }
+  
+  table { width: 100%; border-collapse: collapse; min-width: 800px; }
   th {
+    position: sticky; top: 0; z-index: 5;
     background: var(--dark3);
-    font-size: 0.7rem; font-weight: 700;
-    text-transform: uppercase; letter-spacing: 0.12em;
-    color: var(--text2);
-    padding: 0.75rem 1.25rem;
+    padding: 1rem 1.2rem;
+    font-size: 0.75rem; font-weight: 800;
+    text-transform: uppercase; color: var(--text2);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
     text-align: left;
-    border-bottom: 1px solid rgba(255,255,255,0.07);
-  }
-  th[data-col="participant-head"] {
-    padding-left: 1rem;
   }
   td {
-    padding: 0.85rem 1.25rem;
+    padding: 1rem 1.2rem;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
     font-size: 0.9rem;
-    vertical-align: middle;
-    border-bottom: 1px solid rgba(255,255,255,0.04);
-    transition: background 0.22s ease, transform 0.22s ease, color 0.22s ease, border-color 0.22s ease;
+    color: var(--text);
   }
   tr:hover td { background: rgba(255,255,255,0.02); }
-  tr:last-child td { border-bottom: none; }
+
+  @media (max-width: 768px) {
+    .table-header { flex-direction: column; align-items: flex-start; }
+    .search-input { width: 100%; }
+    
+    /* Responsive advanced table */
+    table, thead, tbody, th, td, tr { display: block; }
+    thead tr { position: absolute; top: -9999px; left: -9999px; }
+    tr { 
+      border: 1px solid rgba(255,255,255,0.05); 
+      margin-bottom: 1rem; 
+      border-radius: 1rem; 
+      background: rgba(255,255,255,0.01);
+      padding: 0.5rem;
+    }
+    td {
+      border: none;
+      position: relative;
+      padding-left: 45% !important;
+      text-align: left !important;
+      min-height: 2.5rem;
+      display: flex;
+      align-items: center;
+    }
+    td::before {
+      position: absolute;
+      left: 1rem;
+      width: 40%;
+      white-space: nowrap;
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--gold);
+      content: attr(data-label);
+    }
+    td[data-col="participant"] { padding-left: 1rem !important; display: block; margin-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    td[data-col="participant"]::before { display: none; }
+    .td-name-cell { gap: 1rem; }
+  }
   .td-avatar {
     width: 32px; height: 32px; border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
@@ -2741,7 +2788,7 @@
     </div>
     <div class="hero-trust-badge">
       <img src="https://img.icons8.com/color/48/000000/checked-user-male.png" alt="Verificado">
-      <span>Sorteo Encriptado</span>
+      <span>Sorteo Auditado</span>
     </div>
     <div class="hero-trust-badge">
       <img src="https://img.icons8.com/color/48/000000/clock--v1.png" alt="Rapido">
@@ -2992,26 +3039,20 @@
 
     <div class="participants-table-wrap reveal">
       <div class="table-header">
-        <span class="table-title">Participantes registrados</span>
-        <span class="live-badge"><span class="live-dot"></span> EN VIVO</span>
+        <div>
+          <span class="table-title">Participantes registrados</span>
+          <span class="live-badge"><span class="live-dot"></span> EN VIVO</span>
+        </div>
         <input type="text" class="search-input" id="searchInput" placeholder="Buscar por nombre o cÃ³digo...">
       </div>
       <div style="overflow-x:auto" id="participantsTableScroller">
         <table>
-          <colgroup>
-            <col style="width:34%">
-            <col style="width:15%">
-            <col style="width:15%">
-            <col style="width:12%">
-            <col style="width:12%">
-            <col style="width:12%">
-          </colgroup>
           <thead>
             <tr>
               <th data-col="participant-head">Participante</th>
               <th>Provincia</th>
               <th>Ciudad</th>
-              <th>Compradas</th>
+              <th>Chances</th>
               <th>Fecha</th>
               <th>Mensaje</th>
             </tr>
@@ -3019,6 +3060,7 @@
           <tbody id="participantsBody"></tbody>
         </table>
       </div>
+      <div class="scroll-indicator" id="tableScrollIndicator">↓</div>
       <div class="past-participants-scroller hidden" id="pastParticipantsSection">
         <div class="past-participants-title">Participantes de sorteos anteriores</div>
         <div class="past-participants-track" id="pastParticipantsTrack"></div>
@@ -4797,12 +4839,12 @@ function renderParticipants(filter=''){
     row.dataset.detailId = detailId;
     row.dataset.participantIndex = String(sourceIndex);
     row.innerHTML = `
-      <td data-col="participant"><div class="participant-cell">${avatarHtml}<span class="participant-label">${escapeHtml(participant.displayName || participant.name)}${verifiedHtml}</span></div></td>
-      <td data-col="province"><span style="font-size:0.8rem;color:var(--text2)">${escapeHtml(participant.province || '-')}</span></td>
-      <td data-col="city"><span style="font-size:0.8rem;color:var(--text2)">${escapeHtml(participant.city || '-')}</span></td>
-      <td data-col="entries"><span class="chances-badge">x${purchasedChances.toLocaleString('es-AR')}</span></td>
-      <td data-col="date" style="font-size:0.8rem;color:var(--text2)">${escapeHtml(participant.date)}</td>
-      <td data-col="message" class="message-cell"><button type="button" class="message-trigger${participant.opinionMessage ? '' : ' empty'}" data-opinion="${encodeURIComponent(participant.opinionMessage || '')}" data-author="${encodeURIComponent(participant.displayName || participant.name)}" data-city="${encodeURIComponent(participantLocation(participant))}"><span class="message-trigger-icon">💬</span><span>${participant.opinionMessage ? 'Ver mensaje' : 'Sin mensaje'}</span></button></td>
+      <td data-col="participant" data-label="Participante"><div class="participant-cell">${avatarHtml}<span class="participant-label">${escapeHtml(participant.displayName || participant.name)}${verifiedHtml}</span></div></td>
+      <td data-col="province" data-label="Provincia"><span style="font-size:0.8rem;color:var(--text2)">${escapeHtml(participant.province || '-')}</span></td>
+      <td data-col="city" data-label="Ciudad"><span style="font-size:0.8rem;color:var(--text2)">${escapeHtml(participant.city || '-')}</span></td>
+      <td data-col="entries" data-label="Chances"><span class="chances-badge">x${purchasedChances.toLocaleString('es-AR')}</span></td>
+      <td data-col="date" data-label="Fecha" style="font-size:0.8rem;color:var(--text2)">${escapeHtml(participant.date)}</td>
+      <td data-col="message" data-label="Mensaje" class="message-cell"><button type="button" class="message-trigger${participant.opinionMessage ? '' : ' empty'}" data-opinion="${encodeURIComponent(participant.opinionMessage || '')}" data-author="${encodeURIComponent(participant.displayName || participant.name)}" data-city="${encodeURIComponent(participantLocation(participant))}"><span class="message-trigger-icon">💬</span><span>${participant.opinionMessage ? 'Ver mensaje' : 'Sin mensaje'}</span></button></td>
     `;
     fragment.appendChild(row);
 
