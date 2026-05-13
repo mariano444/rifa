@@ -1884,44 +1884,98 @@
   }
   tr:hover td { background: rgba(255,255,255,0.02); }
 
+  /* ---- ADVANCED RESPONSIVE TABLE (MOBILE CARDS) ---- */
   @media (max-width: 768px) {
-    .table-header { flex-direction: column; align-items: flex-start; }
-    .search-input { width: 100%; }
-    
-    /* Responsive advanced table */
-    table, thead, tbody, th, td, tr { display: block; }
-    thead tr { position: absolute; top: -9999px; left: -9999px; }
-    tr { 
-      border: 1px solid rgba(255,255,255,0.05); 
-      margin-bottom: 1rem; 
-      border-radius: 1rem; 
-      background: rgba(255,255,255,0.01);
+    .participants-table-wrap {
+      border: none;
+      background: transparent;
+      box-shadow: none;
+    }
+    #participantsTableScroller {
+      max-height: 700px;
+      overflow-x: hidden;
       padding: 0.5rem;
     }
-    td {
-      border: none;
+    table, thead, tbody, th, td, tr { display: block; }
+    thead tr { display: none; } /* Hide headers on mobile */
+
+    .participant-main-row {
+      background: var(--dark3);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 1.2rem;
+      margin-bottom: 1.2rem;
+      padding: 1.2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem;
       position: relative;
-      padding-left: 45% !important;
-      text-align: left !important;
-      min-height: 2.5rem;
-      display: flex;
-      align-items: center;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .participant-main-row:hover {
+      transform: translateY(-3px);
+      border-color: var(--gold);
+    }
+    
+    /* First cell (Avatar and Name) spans full width */
+    td[data-col="participant"] {
+      grid-column: 1 / -1;
+      padding: 0 0 1rem 0 !important;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      margin-bottom: 0.5rem;
+      display: block !important;
+      min-width: 0 !important;
+    }
+    td[data-col="participant"]::before { display: none !important; }
+    
+    .participant-cell { gap: 1rem; }
+    .participant-label { font-size: 1.1rem; }
+
+    /* Other cells style as key-value pairs */
+    td {
+      padding: 0.4rem 0 !important;
+      display: flex !important;
+      flex-direction: column;
+      align-items: flex-start !important;
+      border-bottom: none !important;
+      min-height: auto !important;
+      min-width: 0 !important;
     }
     td::before {
-      position: absolute;
-      left: 1rem;
-      width: 40%;
-      white-space: nowrap;
-      font-size: 0.7rem;
+      position: static !important;
+      width: auto !important;
+      content: attr(data-label);
+      font-size: 0.65rem;
       font-weight: 800;
       text-transform: uppercase;
       color: var(--gold);
-      content: attr(data-label);
+      margin-bottom: 0.2rem;
+      opacity: 0.8;
     }
-    td[data-col="participant"] { padding-left: 1rem !important; display: block; margin-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
-    td[data-col="participant"]::before { display: none; }
-    .td-name-cell { gap: 1rem; }
+    
+    /* Message cell spans full width at bottom */
+    td[data-col="message"] {
+      grid-column: 1 / -1;
+      margin-top: 0.5rem;
+      padding-top: 1rem !important;
+      border-top: 1px solid rgba(255,255,255,0.05) !important;
+      align-items: stretch !important;
+    }
+    .message-trigger {
+      width: 100%;
+      justify-content: center;
+      padding: 0.6rem !important;
+      background: rgba(245,200,66,0.05);
+    }
+
+    .scroll-indicator {
+      bottom: 0.5rem;
+      background: var(--gold);
+      width: 40px;
+      height: 40px;
+      font-size: 1.2rem;
+    }
   }
+
   .td-avatar {
     width: 32px; height: 32px; border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
@@ -4379,6 +4433,7 @@ function renderParticipants(filter=''){
   const body = document.getElementById('participantsBody');
   if (!body) return;
   body.innerHTML = '';
+  const normalizedFilter = filter.toLowerCase();
   const filtered = filter
     ? participants.filter(p =>
         (p.displayName || p.name).toLowerCase().includes(normalizedFilter) ||
@@ -4388,6 +4443,8 @@ function renderParticipants(filter=''){
         (p.publicCode || '').toLowerCase().includes(normalizedFilter)
       )
     : participants;
+
+  const verifiedHtml = `<span class="verified-badge"><svg viewBox="0 0 24 24"><path d="M23,12L20.56,9.22L20.9,5.54L17.29,4.72L15.4,1.54L12,3L8.6,1.54L6.71,4.72L3.1,5.53L3.44,9.21L1,12L3.44,14.78L3.1,18.47L6.71,19.29L8.6,22.47L12,21L15.4,22.46L17.29,19.28L20.9,18.46L20.56,14.78L23,12M10,17L6,13L7.41,11.59L10,14.17L16.59,7.58L18,9L10,17Z"></path></svg>Verificado</span>`;
 
   filtered.forEach((p) => {
     const sourceIndex = participants.indexOf(p);
@@ -4399,12 +4456,12 @@ function renderParticipants(filter=''){
     row.dataset.participantIndex = String(sourceIndex);
     const avatarHtml = renderParticipantAvatar(p, p.displayName || p.name, colorFor(sourceIndex));
     row.innerHTML = `
-      <td data-col="participant"><div class="td-name-cell">${avatarHtml}<div class="td-name-copy"><div class="td-name">${p.displayName || p.name}</div></div></div></td>
-      <td data-col="province"><span style="font-size:0.8rem;color:var(--text2)">${p.province || '-'}</span></td>
-      <td data-col="city"><span style="font-size:0.8rem;color:var(--text2)">${p.city || '-'}</span></td>
-      <td data-col="entries"><span class="chances-badge">x${purchasedChances.toLocaleString('es-AR')}</span></td>
-      <td data-col="date" style="font-size:0.8rem;color:var(--text2)">${p.date}</td>
-      <td data-col="message" class="message-cell"><button type="button" class="message-trigger${p.opinionMessage ? '' : ' empty'}" data-opinion="${encodeURIComponent(p.opinionMessage || '')}" data-author="${encodeURIComponent(p.displayName || p.name)}" data-city="${encodeURIComponent(participantLocation(p))}"><span class="message-trigger-icon">ðŸ’¬</span><span>${p.opinionMessage ? 'Ver mensaje' : 'Sin mensaje'}</span></button></td>
+      <td data-col="participant" data-label="Participante"><div class="td-name-cell">${avatarHtml}<div class="td-name-copy"><div class="td-name">${p.displayName || p.name}${verifiedHtml}</div></div></div></td>
+      <td data-col="province" data-label="Provincia"><span style="font-size:0.8rem;color:var(--text2)">${p.province || '-'}</span></td>
+      <td data-col="city" data-label="Ciudad"><span style="font-size:0.8rem;color:var(--text2)">${p.city || '-'}</span></td>
+      <td data-col="entries" data-label="Chances"><span class="chances-badge">x${purchasedChances.toLocaleString('es-AR')}</span></td>
+      <td data-col="date" data-label="Fecha" style="font-size:0.8rem;color:var(--text2)">${p.date}</td>
+      <td data-col="message" data-label="Mensaje" class="message-cell"><button type="button" class="message-trigger${p.opinionMessage ? '' : ' empty'}" data-opinion="${encodeURIComponent(p.opinionMessage || '')}" data-author="${encodeURIComponent(p.displayName || p.name)}" data-city="${encodeURIComponent(participantLocation(p))}"><span class="message-trigger-icon">💬</span><span>${p.opinionMessage ? 'Ver mensaje' : 'Sin mensaje'}</span></button></td>
     `;
     body.appendChild(row);
 
@@ -4414,12 +4471,12 @@ function renderParticipants(filter=''){
         const detailAvatarHtml = renderParticipantAvatar(p, p.detailLabel || p.displayName || p.name, colorFor(sourceIndex));
         detailRow.className = 'participant-detail-row';
         detailRow.innerHTML = `
-          <td data-col="participant"><div class="td-name-cell">${detailAvatarHtml}<div class="td-name-copy"><div class="td-name">${p.detailLabel || p.displayName || p.name}</div></div></div></td>
-          <td data-col="province"><span style="font-size:0.8rem;color:var(--text2)">${p.province || '-'}</span></td>
-          <td data-col="city"><span style="font-size:0.8rem;color:var(--text2)">${p.city || '-'}</span></td>
-          <td data-col="entries"><span class="chances-badge">x${chanceNumber}</span></td>
-          <td data-col="date" style="font-size:0.8rem;color:var(--text2)">${p.date}</td>
-          <td data-col="message" class="message-cell"><button type="button" class="message-trigger${p.opinionMessage ? '' : ' empty'}" data-opinion="${encodeURIComponent(p.opinionMessage || '')}" data-author="${encodeURIComponent(p.displayName || p.name)}" data-city="${encodeURIComponent(participantLocation(p))}"><span class="message-trigger-icon">ðŸ’¬</span><span>${p.opinionMessage ? 'Ver mensaje' : 'Sin mensaje'}</span></button></td>
+          <td data-col="participant" data-label="Participante"><div class="td-name-cell">${detailAvatarHtml}<div class="td-name-copy"><div class="td-name">${p.detailLabel || p.displayName || p.name}</div></div></div></td>
+          <td data-col="province" data-label="Provincia"><span style="font-size:0.8rem;color:var(--text2)">${p.province || '-'}</span></td>
+          <td data-col="city" data-label="Ciudad"><span style="font-size:0.8rem;color:var(--text2)">${p.city || '-'}</span></td>
+          <td data-col="entries" data-label="Chances"><span class="chances-badge">x${chanceNumber}</span></td>
+          <td data-col="date" data-label="Fecha" style="font-size:0.8rem;color:var(--text2)">${p.date}</td>
+          <td data-col="message" data-label="Mensaje" class="message-cell"><button type="button" class="message-trigger${p.opinionMessage ? '' : ' empty'}" data-opinion="${encodeURIComponent(p.opinionMessage || '')}" data-author="${encodeURIComponent(p.displayName || p.name)}" data-city="${encodeURIComponent(participantLocation(p))}"><span class="message-trigger-icon">💬</span><span>${p.opinionMessage ? 'Ver mensaje' : 'Sin mensaje'}</span></button></td>
         `;
         body.appendChild(detailRow);
       });
@@ -4457,6 +4514,29 @@ function renderParticipants(filter=''){
   }
 
   updateStats();
+  initTableScrollIndicator();
+}
+
+function initTableScrollIndicator() {
+  const scroller = document.getElementById('participantsTableScroller');
+  const indicator = document.getElementById('tableScrollIndicator');
+  if (!scroller || !indicator) return;
+
+  const updateIndicator = () => {
+    const isScrollable = scroller.scrollHeight > scroller.clientHeight;
+    const isAtBottom = scroller.scrollHeight - scroller.scrollTop <= scroller.clientHeight + 20;
+    
+    if (isScrollable && !isAtBottom) {
+      indicator.classList.remove('hidden');
+    } else {
+      indicator.classList.add('hidden');
+    }
+  };
+
+  scroller.onscroll = updateIndicator;
+  updateIndicator();
+  // Double check after a delay for dynamic content
+  setTimeout(updateIndicator, 500);
 }
 
 function renderProofMessages() {
