@@ -1884,95 +1884,144 @@
   }
   tr:hover td { background: rgba(255,255,255,0.02); }
 
-  /* ---- ADVANCED RESPONSIVE TABLE (MOBILE CARDS) ---- */
+  /* ---- ULTRA-PROFESSIONAL MOBILE CARDS ---- */
   @media (max-width: 768px) {
+    .table-header {
+      padding: 1.5rem;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 1.2rem;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), transparent);
+    }
+    .table-title {
+      font-size: 1.8rem;
+      text-align: center;
+    }
+    .live-badge {
+      justify-content: center;
+      margin-top: 0.3rem;
+    }
+    .search-input {
+      width: 100% !important;
+      height: 50px;
+      font-size: 1rem;
+      background: rgba(0,0,0,0.3);
+      border-radius: 12px;
+      text-align: center;
+    }
+
     .participants-table-wrap {
       border: none;
       background: transparent;
       box-shadow: none;
     }
     #participantsTableScroller {
-      max-height: 700px;
+      max-height: 750px;
       overflow-x: hidden;
       padding: 0.5rem;
     }
     table, thead, tbody, th, td, tr { display: block; }
-    thead tr { display: none; } /* Hide headers on mobile */
+    thead tr { display: none; }
 
     .participant-main-row {
-      background: var(--dark3);
+      background: linear-gradient(145deg, var(--dark3), rgba(255,255,255,0.02));
       border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 1.2rem;
-      margin-bottom: 1.2rem;
-      padding: 1.2rem;
+      border-radius: 1.5rem;
+      margin-bottom: 1.5rem;
+      padding: 1.5rem;
+      position: relative;
+      transition: all 0.3s ease;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 0.8rem;
-      position: relative;
-      transition: transform 0.2s, border-color 0.2s;
+      gap: 1.2rem;
     }
     .participant-main-row:hover {
-      transform: translateY(-3px);
       border-color: var(--gold);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
     }
     
-    /* First cell (Avatar and Name) spans full width */
+    /* Header of the card spans full width */
     td[data-col="participant"] {
       grid-column: 1 / -1;
-      padding: 0 0 1rem 0 !important;
+      padding: 0 !important;
       border-bottom: 1px solid rgba(255,255,255,0.05);
-      margin-bottom: 0.5rem;
-      display: block !important;
-      min-width: 0 !important;
+      padding-bottom: 1rem !important;
     }
     td[data-col="participant"]::before { display: none !important; }
     
-    .participant-cell { gap: 1rem; }
-    .participant-label { font-size: 1.1rem; }
+    .participant-cell { 
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .participant-label { 
+      font-size: 1.15rem; 
+      font-weight: 800;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
 
-    /* Other cells style as key-value pairs */
-    td {
-      padding: 0.4rem 0 !important;
+    /* Other cells (Data Grid) */
+    td:not([data-col="participant"]):not([data-col="message"]) {
+      padding: 0 !important;
       display: flex !important;
       flex-direction: column;
-      align-items: flex-start !important;
-      border-bottom: none !important;
-      min-height: auto !important;
-      min-width: 0 !important;
-    }
-    td::before {
-      position: static !important;
-      width: auto !important;
-      content: attr(data-label);
-      font-size: 0.65rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 0.2rem;
-      opacity: 0.8;
-    }
-    
-    /* Message cell spans full width at bottom */
-    td[data-col="message"] {
-      grid-column: 1 / -1;
-      margin-top: 0.5rem;
-      padding-top: 1rem !important;
-      border-top: 1px solid rgba(255,255,255,0.05) !important;
-      align-items: stretch !important;
-    }
-    .message-trigger {
-      width: 100%;
-      justify-content: center;
-      padding: 0.6rem !important;
-      background: rgba(245,200,66,0.05);
+      gap: 0.3rem;
+      min-width: 0; /* Prevents overflow */
     }
 
-    .scroll-indicator {
-      bottom: 0.5rem;
-      background: var(--gold);
-      width: 40px;
-      height: 40px;
-      font-size: 1.2rem;
+    td::before {
+      content: attr(data-label);
+      font-size: 0.65rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+      opacity: 0.7;
+    }
+
+    td span {
+      font-size: 0.95rem;
+      color: #fff;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: block;
+      width: 100%;
+    }
+
+    /* Message Button at bottom spans full width */
+    td[data-col="message"] {
+      grid-column: 1 / -1;
+      padding: 0 !important;
+      margin-top: 0.5rem;
+    }
+    td[data-col="message"]::before { display: none !important; }
+    
+    .message-trigger {
+      width: 100%;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(245,200,66,0.1);
+      border: 1px solid rgba(245,200,66,0.2);
+      color: var(--gold);
+      font-weight: 800;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+    }
+    .message-trigger.empty {
+      opacity: 0.5;
+      background: rgba(255,255,255,0.05);
+      border-color: transparent;
+      color: var(--text2);
     }
   }
 
