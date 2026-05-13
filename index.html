@@ -1811,241 +1811,70 @@
   .participants-table-wrap {
     background: var(--dark2);
     border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 1.5rem;
+    border-radius: 1.2rem;
     overflow: hidden;
-    position: relative;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
   }
   #participantsTableScroller {
-    max-height: 600px;
+    max-height: min(62vh, 640px);
     overflow-y: auto;
-    overflow-x: auto;
     scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
   }
-  /* Custom Scrollbar */
-  #participantsTableScroller::-webkit-scrollbar { width: 6px; height: 6px; }
-  #participantsTableScroller::-webkit-scrollbar-track { background: rgba(255,255,255,0.02); }
-  #participantsTableScroller::-webkit-scrollbar-thumb { background: rgba(245,200,66,0.2); border-radius: 10px; }
-  #participantsTableScroller::-webkit-scrollbar-thumb:hover { background: var(--gold); }
-
-  .scroll-indicator {
-    position: absolute;
-    bottom: 1.5rem;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--gold);
-    color: var(--dark);
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.8rem;
-    box-shadow: 0 4px 15px rgba(245,200,66,0.4);
-    animation: bounceDown 2s infinite;
-    pointer-events: none;
-    z-index: 10;
-    opacity: 1;
-    transition: opacity 0.3s;
-  }
-  .scroll-indicator.hidden { opacity: 0; }
-  @keyframes bounceDown {
-    0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-    40% { transform: translateX(-50%) translateY(-10px); }
-    60% { transform: translateX(-50%) translateY(-5px); }
-  }
-
   .table-header {
     display: flex; align-items: center; justify-content: space-between;
-    padding: 1.2rem 1.5rem;
-    background: rgba(255,255,255,0.02);
+    padding: 1rem 1.5rem;
     border-bottom: 1px solid rgba(255,255,255,0.07);
-    gap: 1rem;
+    gap: 1rem; flex-wrap: wrap;
   }
-  .table-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 0.05em; color: #fff; }
-  
-  table { width: 100%; border-collapse: collapse; min-width: 800px; }
-  th {
-    position: sticky; top: 0; z-index: 5;
+  .table-title { font-weight: 700; font-size: 0.95rem; }
+  .live-badge {
+    display: flex; align-items: center; gap: 0.4rem;
+    font-size: 0.7rem; font-weight: 700; color: var(--green);
+    letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .live-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--green);
+    animation: livePulse 1.2s ease-in-out infinite;
+  }
+  @keyframes livePulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.7); }
+  }
+  .search-input {
     background: var(--dark3);
-    padding: 1rem 1.2rem;
-    font-size: 0.75rem; font-weight: 800;
-    text-transform: uppercase; color: var(--text2);
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--text);
+    padding: 0.5rem 1rem; border-radius: 0.5rem;
+    font-size: 0.85rem; font-family: 'Barlow', sans-serif;
+    width: 200px; max-width: 100%;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .search-input:focus { border-color: var(--gold); }
+  .search-input::placeholder { color: var(--text2); }
+
+  table { width: 100%; min-width: 980px; border-collapse: collapse; table-layout: auto; }
+  th {
+    background: var(--dark3);
+    font-size: 0.7rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--text2);
+    padding: 0.75rem 1.25rem;
     text-align: left;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  th[data-col="participant-head"] {
+    padding-left: 1rem;
   }
   td {
-    padding: 1rem 1.2rem;
-    border-bottom: 1px solid rgba(255,255,255,0.03);
+    padding: 0.85rem 1.25rem;
     font-size: 0.9rem;
-    color: var(--text);
+    vertical-align: middle;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    transition: background 0.22s ease, transform 0.22s ease, color 0.22s ease, border-color 0.22s ease;
   }
   tr:hover td { background: rgba(255,255,255,0.02); }
-
-  /* ---- PREMIUM MOBILE CARDS (NIGHT MODE STYLE) ---- */
-  @media (max-width: 768px) {
-    .table-header {
-      padding: 1.5rem;
-      flex-direction: column;
-      align-items: stretch;
-      gap: 1.2rem;
-      background: linear-gradient(180deg, rgba(255,255,255,0.03), transparent);
-    }
-    .table-title {
-      font-size: 1.8rem;
-      text-align: center;
-    }
-    .live-badge {
-      justify-content: center;
-      margin-top: 0.3rem;
-    }
-    .search-input {
-      width: 100% !important;
-      height: 50px;
-      font-size: 1rem;
-      background: rgba(0,0,0,0.3);
-      border-radius: 12px;
-      text-align: center;
-    }
-
-    .participants-table-wrap {
-      border: none;
-      background: transparent;
-      box-shadow: none;
-    }
-    #participantsTableScroller {
-      max-height: 800px;
-      overflow-x: hidden;
-      padding: 0.8rem;
-    }
-    table, thead, tbody, th, td, tr { display: block; }
-    thead tr { display: none; }
-
-    .participant-main-row {
-      background: #1e293b;
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 1.2rem;
-      margin-bottom: 1rem;
-      padding: 1.2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      position: relative;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    }
-    
-    /* Header: Avatar + Name + Verified */
-    td[data-col="participant"] {
-      padding: 0 !important;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      padding-bottom: 0.8rem !important;
-      display: flex !important;
-      align-items: center;
-      gap: 0.8rem;
-    }
-    td[data-col="participant"]::before { display: none !important; }
-    
-    .participant-cell { 
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      width: 100%;
-    }
-    .participant-label { 
-      font-size: 1rem; 
-      font-weight: 700;
-      color: #fff;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 0.4rem;
-    }
-    /* Redesigned verification badge for mobile */
-    .verified-badge {
-      background: rgba(59, 139, 255, 0.15);
-      color: #3B8BFF;
-      padding: 2px 8px;
-      border-radius: 6px;
-      font-size: 0.65rem;
-      margin-left: 0;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-    }
-    .verified-badge svg {
-      width: 10px;
-      height: 10px;
-    }
-
-    /* Info Row: City/Province | Date | Chances */
-    .mobile-info-row {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      gap: 0.8rem;
-      font-size: 0.8rem;
-    }
-
-    td:not([data-col="participant"]):not([data-col="message"]) {
-      padding: 0 !important;
-      display: inline-flex !important;
-      flex-direction: row;
-      align-items: center;
-      gap: 0.3rem;
-      color: var(--text2);
-    }
-    td::before {
-      content: attr(data-label) ":";
-      font-size: 0.7rem;
-      font-weight: 600;
-      text-transform: none;
-      color: var(--gold);
-      opacity: 0.9;
-    }
-    td span {
-      font-size: 0.85rem;
-      color: #cbd5e1;
-      font-weight: 500;
-    }
-
-    /* Chances badge specific for mobile card */
-    .chances-badge {
-      background: var(--gold);
-      color: var(--dark);
-      font-size: 0.75rem;
-      padding: 2px 10px;
-      border-radius: 6px;
-      font-weight: 900;
-    }
-
-    /* Compact Message Button */
-    td[data-col="message"] {
-      padding: 0 !important;
-      border-top: 1px dashed rgba(255,255,255,0.1);
-      padding-top: 0.8rem !important;
-    }
-    td[data-col="message"]::before { display: none !important; }
-    
-    .message-trigger {
-      width: 100%;
-      height: 40px;
-      border-radius: 8px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.08);
-      color: #94a3b8;
-      font-size: 0.8rem;
-      font-weight: 600;
-    }
-    .message-trigger:not(.empty) {
-      color: var(--gold);
-      background: rgba(245,200,66,0.05);
-      border-color: rgba(245,200,66,0.2);
-    }
-  }
-
+  tr:last-child td { border-bottom: none; }
   .td-avatar {
     width: 32px; height: 32px; border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
@@ -2074,6 +1903,18 @@
     font-weight: 600;
     line-height: 1.2;
     color: var(--text);
+  }
+  .participant-info {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+  .participant-mobile-location {
+    display: none;
+    font-size: 0.72rem;
+    color: var(--text2);
+    margin-top: 0.15rem;
+    font-weight: 500;
   }
   .participant-main-row td[data-col="participant"],
   .participant-detail-row td[data-col="participant"] {
@@ -2839,6 +2680,13 @@
     }
     .share-link-row { grid-template-columns: 1fr; }
     .share-link-btn { width: 100%; }
+    .participant-mobile-location {
+      display: block;
+    }
+    th:nth-child(2), td:nth-child(2),
+    th:nth-child(3), td:nth-child(3) {
+      display: none;
+    }
   }
 </style>
   <!-- Meta Pixel Code -->
@@ -2912,7 +2760,7 @@
     </div>
     <div class="hero-trust-badge">
       <img src="https://img.icons8.com/color/48/000000/checked-user-male.png" alt="Verificado">
-      <span>Sorteo Auditado</span>
+      <span>Sorteo Encriptado</span>
     </div>
     <div class="hero-trust-badge">
       <img src="https://img.icons8.com/color/48/000000/clock--v1.png" alt="Rapido">
@@ -3163,20 +3011,26 @@
 
     <div class="participants-table-wrap reveal">
       <div class="table-header">
-        <div>
-          <span class="table-title">Participantes registrados</span>
-          <span class="live-badge"><span class="live-dot"></span> EN VIVO</span>
-        </div>
+        <span class="table-title">Participantes registrados</span>
+        <span class="live-badge"><span class="live-dot"></span> EN VIVO</span>
         <input type="text" class="search-input" id="searchInput" placeholder="Buscar por nombre o cÃ³digo...">
       </div>
       <div style="overflow-x:auto" id="participantsTableScroller">
         <table>
+          <colgroup>
+            <col style="width:34%">
+            <col style="width:15%">
+            <col style="width:15%">
+            <col style="width:12%">
+            <col style="width:12%">
+            <col style="width:12%">
+          </colgroup>
           <thead>
             <tr>
               <th data-col="participant-head">Participante</th>
               <th>Provincia</th>
               <th>Ciudad</th>
-              <th>Chances</th>
+              <th>Compradas</th>
               <th>Fecha</th>
               <th>Mensaje</th>
             </tr>
@@ -3184,7 +3038,6 @@
           <tbody id="participantsBody"></tbody>
         </table>
       </div>
-      <div class="scroll-indicator" id="tableScrollIndicator">↓</div>
       <div class="past-participants-scroller hidden" id="pastParticipantsSection">
         <div class="past-participants-title">Participantes de sorteos anteriores</div>
         <div class="past-participants-track" id="pastParticipantsTrack"></div>
@@ -4503,7 +4356,6 @@ function renderParticipants(filter=''){
   const body = document.getElementById('participantsBody');
   if (!body) return;
   body.innerHTML = '';
-  const normalizedFilter = filter.toLowerCase();
   const filtered = filter
     ? participants.filter(p =>
         (p.displayName || p.name).toLowerCase().includes(normalizedFilter) ||
@@ -4513,8 +4365,6 @@ function renderParticipants(filter=''){
         (p.publicCode || '').toLowerCase().includes(normalizedFilter)
       )
     : participants;
-
-  const verifiedHtml = `<span class="verified-badge"><svg viewBox="0 0 24 24"><path d="M23,12L20.56,9.22L20.9,5.54L17.29,4.72L15.4,1.54L12,3L8.6,1.54L6.71,4.72L3.1,5.53L3.44,9.21L1,12L3.44,14.78L3.1,18.47L6.71,19.29L8.6,22.47L12,21L15.4,22.46L17.29,19.28L20.9,18.46L20.56,14.78L23,12M10,17L6,13L7.41,11.59L10,14.17L16.59,7.58L18,9L10,17Z"></path></svg>Verificado</span>`;
 
   filtered.forEach((p) => {
     const sourceIndex = participants.indexOf(p);
@@ -4526,12 +4376,12 @@ function renderParticipants(filter=''){
     row.dataset.participantIndex = String(sourceIndex);
     const avatarHtml = renderParticipantAvatar(p, p.displayName || p.name, colorFor(sourceIndex));
     row.innerHTML = `
-      <td data-col="participant" data-label="Participante"><div class="td-name-cell">${avatarHtml}<div class="td-name-copy"><div class="td-name">${p.displayName || p.name}${verifiedHtml}</div></div></div></td>
-      <td data-col="province" data-label="Provincia"><span style="font-size:0.8rem;color:var(--text2)">${p.province || '-'}</span></td>
-      <td data-col="city" data-label="Ciudad"><span style="font-size:0.8rem;color:var(--text2)">${p.city || '-'}</span></td>
-      <td data-col="entries" data-label="Chances"><span class="chances-badge">x${purchasedChances.toLocaleString('es-AR')}</span></td>
-      <td data-col="date" data-label="Fecha" style="font-size:0.8rem;color:var(--text2)">${p.date}</td>
-      <td data-col="message" data-label="Mensaje" class="message-cell"><button type="button" class="message-trigger${p.opinionMessage ? '' : ' empty'}" data-opinion="${encodeURIComponent(p.opinionMessage || '')}" data-author="${encodeURIComponent(p.displayName || p.name)}" data-city="${encodeURIComponent(participantLocation(p))}"><span class="message-trigger-icon">💬</span><span>${p.opinionMessage ? 'Ver mensaje' : 'Sin mensaje'}</span></button></td>
+      <td data-col="participant"><div class="td-name-cell">${avatarHtml}<div class="td-name-copy"><div class="td-name">${p.displayName || p.name}</div></div></div></td>
+      <td data-col="province"><span style="font-size:0.8rem;color:var(--text2)">${p.province || '-'}</span></td>
+      <td data-col="city"><span style="font-size:0.8rem;color:var(--text2)">${p.city || '-'}</span></td>
+      <td data-col="entries"><span class="chances-badge">x${purchasedChances.toLocaleString('es-AR')}</span></td>
+      <td data-col="date" style="font-size:0.8rem;color:var(--text2)">${p.date}</td>
+      <td data-col="message" class="message-cell"><button type="button" class="message-trigger${p.opinionMessage ? '' : ' empty'}" data-opinion="${encodeURIComponent(p.opinionMessage || '')}" data-author="${encodeURIComponent(p.displayName || p.name)}" data-city="${encodeURIComponent(participantLocation(p))}"><span class="message-trigger-icon">ðŸ’¬</span><span>${p.opinionMessage ? 'Ver mensaje' : 'Sin mensaje'}</span></button></td>
     `;
     body.appendChild(row);
 
@@ -4541,12 +4391,12 @@ function renderParticipants(filter=''){
         const detailAvatarHtml = renderParticipantAvatar(p, p.detailLabel || p.displayName || p.name, colorFor(sourceIndex));
         detailRow.className = 'participant-detail-row';
         detailRow.innerHTML = `
-          <td data-col="participant" data-label="Participante"><div class="td-name-cell">${detailAvatarHtml}<div class="td-name-copy"><div class="td-name">${p.detailLabel || p.displayName || p.name}</div></div></div></td>
-          <td data-col="province" data-label="Provincia"><span style="font-size:0.8rem;color:var(--text2)">${p.province || '-'}</span></td>
-          <td data-col="city" data-label="Ciudad"><span style="font-size:0.8rem;color:var(--text2)">${p.city || '-'}</span></td>
-          <td data-col="entries" data-label="Chances"><span class="chances-badge">x${chanceNumber}</span></td>
-          <td data-col="date" data-label="Fecha" style="font-size:0.8rem;color:var(--text2)">${p.date}</td>
-          <td data-col="message" data-label="Mensaje" class="message-cell"><button type="button" class="message-trigger${p.opinionMessage ? '' : ' empty'}" data-opinion="${encodeURIComponent(p.opinionMessage || '')}" data-author="${encodeURIComponent(p.displayName || p.name)}" data-city="${encodeURIComponent(participantLocation(p))}"><span class="message-trigger-icon">💬</span><span>${p.opinionMessage ? 'Ver mensaje' : 'Sin mensaje'}</span></button></td>
+          <td data-col="participant"><div class="td-name-cell">${detailAvatarHtml}<div class="td-name-copy"><div class="td-name">${p.detailLabel || p.displayName || p.name}</div></div></div></td>
+          <td data-col="province"><span style="font-size:0.8rem;color:var(--text2)">${p.province || '-'}</span></td>
+          <td data-col="city"><span style="font-size:0.8rem;color:var(--text2)">${p.city || '-'}</span></td>
+          <td data-col="entries"><span class="chances-badge">x${chanceNumber}</span></td>
+          <td data-col="date" style="font-size:0.8rem;color:var(--text2)">${p.date}</td>
+          <td data-col="message" class="message-cell"><button type="button" class="message-trigger${p.opinionMessage ? '' : ' empty'}" data-opinion="${encodeURIComponent(p.opinionMessage || '')}" data-author="${encodeURIComponent(p.displayName || p.name)}" data-city="${encodeURIComponent(participantLocation(p))}"><span class="message-trigger-icon">ðŸ’¬</span><span>${p.opinionMessage ? 'Ver mensaje' : 'Sin mensaje'}</span></button></td>
         `;
         body.appendChild(detailRow);
       });
@@ -4584,29 +4434,6 @@ function renderParticipants(filter=''){
   }
 
   updateStats();
-  initTableScrollIndicator();
-}
-
-function initTableScrollIndicator() {
-  const scroller = document.getElementById('participantsTableScroller');
-  const indicator = document.getElementById('tableScrollIndicator');
-  if (!scroller || !indicator) return;
-
-  const updateIndicator = () => {
-    const isScrollable = scroller.scrollHeight > scroller.clientHeight;
-    const isAtBottom = scroller.scrollHeight - scroller.scrollTop <= scroller.clientHeight + 20;
-    
-    if (isScrollable && !isAtBottom) {
-      indicator.classList.remove('hidden');
-    } else {
-      indicator.classList.add('hidden');
-    }
-  };
-
-  scroller.onscroll = updateIndicator;
-  updateIndicator();
-  // Double check after a delay for dynamic content
-  setTimeout(updateIndicator, 500);
 }
 
 function renderProofMessages() {
@@ -4989,14 +4816,20 @@ function renderParticipants(filter=''){
     row.dataset.detailId = detailId;
     row.dataset.participantIndex = String(sourceIndex);
     row.innerHTML = `
-      <td data-col="participant" data-label="Participante"><div class="participant-cell">${avatarHtml}<span class="participant-label">${escapeHtml(participant.displayName || participant.name)}${verifiedHtml}</span></div></td>
-      <div class="mobile-info-row">
-        <td data-col="province" data-label="Provincia"><span>${escapeHtml(participant.province || '-')}</span></td>
-        <td data-col="city" data-label="Ciudad"><span>${escapeHtml(participant.city || '-')}</span></td>
-        <td data-col="entries" data-label="Chances"><span class="chances-badge">x${purchasedChances.toLocaleString('es-AR')}</span></td>
-        <td data-col="date" data-label="Fecha"><span>${escapeHtml(participant.date)}</span></td>
-      </div>
-      <td data-col="message" data-label="Mensaje" class="message-cell"><button type="button" class="message-trigger${participant.opinionMessage ? '' : ' empty'}" data-opinion="${encodeURIComponent(participant.opinionMessage || '')}" data-author="${encodeURIComponent(participant.displayName || participant.name)}" data-city="${encodeURIComponent(participantLocation(participant))}"><span class="message-trigger-icon">💬</span><span>${participant.opinionMessage ? 'Ver mensaje' : 'Sin mensaje'}</span></button></td>
+      <td data-col="participant">
+        <div class="participant-cell">
+          ${avatarHtml}
+          <div class="participant-info">
+            <span class="participant-label">${escapeHtml(participant.displayName || participant.name)}${verifiedHtml}</span>
+            <div class="participant-mobile-location">${escapeHtml(participant.province || '-')}${participant.city ? ', ' + escapeHtml(participant.city) : ''}</div>
+          </div>
+        </div>
+      </td>
+      <td data-col="province"><span style="font-size:0.8rem;color:var(--text2)">${escapeHtml(participant.province || '-')}</span></td>
+      <td data-col="city"><span style="font-size:0.8rem;color:var(--text2)">${escapeHtml(participant.city || '-')}</span></td>
+      <td data-col="entries"><span class="chances-badge">x${purchasedChances.toLocaleString('es-AR')}</span></td>
+      <td data-col="date" style="font-size:0.8rem;color:var(--text2)">${escapeHtml(participant.date)}</td>
+      <td data-col="message" class="message-cell"><button type="button" class="message-trigger${participant.opinionMessage ? '' : ' empty'}" data-opinion="${encodeURIComponent(participant.opinionMessage || '')}" data-author="${encodeURIComponent(participant.displayName || participant.name)}" data-city="${encodeURIComponent(participantLocation(participant))}"><span class="message-trigger-icon">💬</span><span>${participant.opinionMessage ? 'Ver mensaje' : 'Sin mensaje'}</span></button></td>
     `;
     fragment.appendChild(row);
 
@@ -5005,12 +4838,20 @@ function renderParticipants(filter=''){
         const detailRow = document.createElement('tr');
         detailRow.className = 'participant-detail-row';
         detailRow.innerHTML = `
-          <td data-col="participant"><div class="participant-cell">${avatarHtml}<span class="participant-label">${escapeHtml(participant.detailLabel || participant.displayName || participant.name)}</span></div></td>
+          <td data-col="participant">
+            <div class="participant-cell">
+              ${avatarHtml}
+              <div class="participant-info">
+                <span class="participant-label">${escapeHtml(participant.detailLabel || participant.displayName || participant.name)}</span>
+                <div class="participant-mobile-location">${escapeHtml(participant.province || '-')}${participant.city ? ', ' + escapeHtml(participant.city) : ''}</div>
+              </div>
+            </div>
+          </td>
           <td data-col="province"><span style="font-size:0.8rem;color:var(--text2)">${escapeHtml(participant.province || '-')}</span></td>
           <td data-col="city"><span style="font-size:0.8rem;color:var(--text2)">${escapeHtml(participant.city || '-')}</span></td>
           <td data-col="entries"><span class="chances-badge">x${chanceNumber}</span></td>
           <td data-col="date" style="font-size:0.8rem;color:var(--text2)">${escapeHtml(participant.date)}</td>
-          <td data-col="message" class="message-cell"><button type="button" class="message-trigger${participant.opinionMessage ? '' : ' empty'}" data-opinion="${encodeURIComponent(participant.opinionMessage || '')}" data-author="${encodeURIComponent(participant.displayName || participant.name)}" data-city="${encodeURIComponent(participantLocation(participant))}"><span class="message-trigger-icon">ðŸ’¬</span><span>${participant.opinionMessage ? 'Ver mensaje' : 'Sin mensaje'}</span></button></td>
+          <td data-col="message" class="message-cell"><button type="button" class="message-trigger${participant.opinionMessage ? '' : ' empty'}" data-opinion="${encodeURIComponent(participant.opinionMessage || '')}" data-author="${encodeURIComponent(participant.displayName || participant.name)}" data-city="${encodeURIComponent(participantLocation(participant))}"><span class="message-trigger-icon">💬</span><span>${participant.opinionMessage ? 'Ver mensaje' : 'Sin mensaje'}</span></button></td>
         `;
         fragment.appendChild(detailRow);
       });
