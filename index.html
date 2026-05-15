@@ -2471,18 +2471,35 @@
     background: linear-gradient(135deg, var(--gold), var(--gold2));
     color: var(--dark);
     font-family: 'Barlow', sans-serif;
-    font-size: 1rem; font-weight: 900;
-    padding: 0.9rem;
-    border-radius: 0.7rem;
+    font-size: 1.1rem; font-weight: 900;
+    padding: 1.1rem;
+    border-radius: 0.8rem;
     border: none; cursor: pointer;
-    transition: opacity 0.2s, transform 0.2s;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 1.5rem;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
   }
-  .modal-confirm:hover { opacity: 0.9; transform: scale(1.01); }
+  .modal-confirm:hover { opacity: 0.95; transform: translateY(-2px); box-shadow: 0 15px 30px rgba(245,200,66,0.3); }
+  .modal-confirm:active { transform: translateY(0); }
   .modal-trust {
-    display: flex; justify-content: center; gap: 1.5rem;
-    margin-top: 1rem;
-    font-size: 0.72rem; color: var(--text2); flex-wrap: wrap;
+    display: flex; justify-content: center; gap: 1.2rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    font-size: 0.75rem; color: var(--text2); flex-wrap: wrap;
+    text-align: center;
   }
+  .modal-trust-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    min-width: 80px;
+  }
+  .modal-trust-icon { font-size: 1.3rem; margin-bottom: 0.2rem; }
+  .modal-trust-text { font-weight: 700; color: var(--text); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.05em; }
   .opinion-modal-copy {
     color: var(--text2);
     font-size: 0.95rem;
@@ -2706,6 +2723,7 @@
   src="https://www.facebook.com/tr?id=675114246370648&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
+<script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script>
 </head>
 <body>
 
@@ -3299,8 +3317,10 @@
     <div class="modal-title">Â¡Casi listo! ðŸŽ‰</div>
     <p class="modal-sub">CompletÃ¡ tus datos para reservar tus chances y avanzar a un pago simple y seguro.</p>
     <div class="modal-assurance">
-      <strong>Tu reserva queda asociada a tus datos, al pack elegido y al estado del pago.</strong>
-      <span>Cuando el pago se acredita, tus chances se activan y tu participaciÃ³n se refleja en la lista pÃºblica o como anÃ³nimo si asÃ­ lo elegÃ­s. Eso ayuda a que el proceso sea mÃ¡s claro, ordenado y confiable.</span>
+      <strong>Pasos tras abonar por Transferencia:</strong>
+      <span style="margin-bottom:0.4rem">1. RealizÃ¡ la transferencia desde tu Home Banking o Billetera Virtual.</span>
+      <span style="margin-bottom:0.4rem">2. Una vez que el pago se acredita, el sistema te reconoce automÃ¡ticamente.</span>
+      <span>3. ¡Listo! AparecÃ©s en la lista pÃºblica en menos de 60 segundos y tus chances se activan.</span>
     </div>
     <div class="modal-pkg-display">
       <div class="modal-pkg-info">
@@ -3368,9 +3388,18 @@
     </div>
     <button class="modal-confirm" id="modalConfirm">CONFIRMAR Y PAGAR âœ“</button>
     <div class="modal-trust">
-      <span>ðŸ”’ Datos y reserva asociados a tu compra</span>
-      <span>âœ… Chances activadas al acreditarse el pago</span>
-      <span>ðŸ“‹ ParticipaciÃ³n visible o anÃ³nima, segÃºn elijas</span>
+      <div class="modal-trust-item">
+        <span class="modal-trust-icon">ðŸ”’</span>
+        <span class="modal-trust-text">Pago Seguro</span>
+      </div>
+      <div class="modal-trust-item">
+        <span class="modal-trust-icon">âœ…</span>
+        <span class="modal-trust-text">Acceso InstantÃ¡neo</span>
+      </div>
+      <div class="modal-trust-item">
+        <span class="modal-trust-icon">ðŸ“‹</span>
+        <span class="modal-trust-text">Lista PÃºblica</span>
+      </div>
     </div>
   </div>
 </div>
@@ -3599,20 +3628,42 @@ function repairDocumentText(root = document) {
   document.title = cleanMojibakeText(document.title);
 }
 
-function updatePhotoPreview(file) {
+async function updatePhotoPreview(file) {
   const preview = document.getElementById('photoPreview');
   const image = document.getElementById('photoPreviewImage');
   const copy = document.getElementById('photoPreviewCopy');
+  
   if (!file) {
     preview.classList.remove('show');
     image.removeAttribute('src');
     copy.textContent = 'Foto lista para subirse con tu participacion.';
     return;
   }
-  const objectUrl = URL.createObjectURL(file);
-  image.src = objectUrl;
-  copy.textContent = `${file.name} listo para acompaÃ±ar tu participacion.`;
-  preview.classList.add('show');
+
+  const isHeic = file.name.toLowerCase().endsWith('.heic');
+  
+  if (isHeic) {
+    copy.textContent = 'Procesando imagen iPhone (HEIC)...';
+    preview.classList.add('show');
+    try {
+      const blob = await heic2any({
+        blob: file,
+        toType: 'image/jpeg',
+        quality: 0.7
+      });
+      const objectUrl = URL.createObjectURL(Array.isArray(blob) ? blob[0] : blob);
+      image.src = objectUrl;
+      copy.textContent = `${file.name} (convertido) listo para acompañar tu participacion.`;
+    } catch (e) {
+      console.error('Error al convertir HEIC:', e);
+      copy.textContent = 'Error al procesar HEIC. Intenta con JPG o PNG.';
+    }
+  } else {
+    const objectUrl = URL.createObjectURL(file);
+    image.src = objectUrl;
+    copy.textContent = `${file.name} listo para acompañar tu participacion.`;
+    preview.classList.add('show');
+  }
 }
 
 async function uploadParticipantPhoto(file, phone) {
@@ -4604,7 +4655,13 @@ function escapeHtml(value) {
 
 function renderParticipantAvatar(participant, fallbackLabel, color) {
   if (participant.photoUrl) {
-    return `<div class="td-avatar"><img src="${escapeHtml(participant.photoUrl)}" alt="${escapeHtml(fallbackLabel)}"></div>`;
+    let finalUrl = participant.photoUrl;
+    // Si la imagen es HEIC y es de Supabase, usamos la transformaciÃ³n para que se vea en todos los navegadores
+    if (finalUrl.toLowerCase().endsWith('.heic') && finalUrl.includes('supabase.co')) {
+      finalUrl = finalUrl.replace('/storage/v1/object/public/', '/storage/v1/render/image/public/');
+      finalUrl += '?width=100&height=100&format=auto&quality=80';
+    }
+    return `<div class="td-avatar"><img src="${escapeHtml(finalUrl)}" alt="${escapeHtml(fallbackLabel)}" loading="lazy"></div>`;
   }
   return `<div class="td-avatar" style="background:${color}22;color:${color}">${escapeHtml(initials(fallbackLabel))}</div>`;
 }
