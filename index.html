@@ -3317,10 +3317,10 @@
     <div class="modal-title">Â¡Casi listo! ðŸŽ‰</div>
     <p class="modal-sub">CompletÃ¡ tus datos para reservar tus chances y avanzar a un pago simple y seguro.</p>
     <div class="modal-assurance">
-      <strong>Pasos tras abonar por Transferencia:</strong>
-      <span style="margin-bottom:0.4rem">1. RealizÃ¡ la transferencia desde tu Home Banking o Billetera Virtual.</span>
-      <span style="margin-bottom:0.4rem">2. Una vez que el pago se acredita, el sistema te reconoce automÃ¡ticamente.</span>
-      <span>3. ¡Listo! AparecÃ©s en la lista pÃºblica en menos de 60 segundos y tus chances se activan.</span>
+      <strong>Tu participaciÃ³n segura paso a paso:</strong>
+      <span style="margin-bottom:0.4rem">1. âœï¸ <strong>CompletÃ¡ el formulario:</strong> AsegurÃ¡ tu lugar registrando tus datos correctamente.</span>
+      <span style="margin-bottom:0.4rem">2. ðŸ’³ <strong>Habilitamos el pago:</strong> Al confirmar, te brindamos los datos necesarios para que puedas realizar la transferencia de forma directa.</span>
+      <span>3. âœ… <strong>Registro AutomÃ¡tico:</strong> Una vez aprobada, el sistema te registra automÃ¡ticamente en la lista pÃºblica donde podÃ©s ver con total transparencia tus chances compradas.</span>
     </div>
     <div class="modal-pkg-display">
       <div class="modal-pkg-info">
@@ -3668,13 +3668,34 @@ async function updatePhotoPreview(file) {
 
 async function uploadParticipantPhoto(file, phone) {
   if (!file) return null;
-  const fileExt = (file.name.split('.').pop() || 'jpg').toLowerCase();
+  
+  let fileToUpload = file;
+  let fileExt = (file.name.split('.').pop() || 'jpg').toLowerCase();
+  
+  // Si es HEIC, lo convertimos a JPG antes de subir para asegurar compatibilidad total
+  if (fileExt === 'heic') {
+    try {
+      const blob = await heic2any({
+        blob: file,
+        toType: 'image/jpeg',
+        quality: 0.8
+      });
+      fileToUpload = Array.isArray(blob) ? blob[0] : blob;
+      fileExt = 'jpg';
+    } catch (e) {
+      console.error('Error al convertir HEIC para subida:', e);
+      // Si falla la conversiÃ³n, intentamos subir el original
+    }
+  }
+
   const safePhone = phone.replace(/\D+/g, '') || Date.now().toString();
   const filePath = `landing/${CAMPAIGN_SLUG}/${safePhone}-${Date.now()}.${fileExt}`;
-  const { error } = await supabaseClient.storage.from('participant-profiles').upload(filePath, file, {
+  
+  const { error } = await supabaseClient.storage.from('participant-profiles').upload(filePath, fileToUpload, {
     cacheControl: '3600',
     upsert: true
   });
+  
   if (error) throw error;
   const { data } = supabaseClient.storage.from('participant-profiles').getPublicUrl(filePath);
   return data?.publicUrl || null;
@@ -4656,14 +4677,46 @@ function escapeHtml(value) {
 function renderParticipantAvatar(participant, fallbackLabel, color) {
   if (participant.photoUrl) {
     let finalUrl = participant.photoUrl;
-    // Si la imagen es HEIC y es de Supabase, usamos la transformaciÃ³n para que se vea en todos los navegadores
-    if (finalUrl.toLowerCase().endsWith('.heic') && finalUrl.includes('supabase.co')) {
-      finalUrl = finalUrl.replace('/storage/v1/object/public/', '/storage/v1/render/image/public/');
-      finalUrl += '?width=100&height=100&format=auto&quality=80';
+    const isHeic = finalUrl.toLowerCase().endsWith('.heic');
+    
+    // Si la imagen es HEIC e incluye supabase, intentamos transformaciÃ³n pero con fallback
+    if (isHeic && finalUrl.includes('supabase.co')) {
+      const transformUrl = finalUrl.replace('/storage/v1/object/public/', '/storage/v1/render/image/public/') + '?width=100&height=100&format=auto&quality=80';
+      return `<div class="td-avatar"><img src="${escapeHtml(transformUrl)}" data-heic="${escapeHtml(finalUrl)}" onerror="handleHeicError(this)" alt="${escapeHtml(fallbackLabel)}" loading="lazy"></div>`;
     }
+    
     return `<div class="td-avatar"><img src="${escapeHtml(finalUrl)}" alt="${escapeHtml(fallbackLabel)}" loading="lazy"></div>`;
   }
   return `<div class="td-avatar" style="background:${color}22;color:${color}">${escapeHtml(initials(fallbackLabel))}</div>`;
+}
+
+async function handleHeicError(img) {
+  const originalUrl = img.dataset.heic;
+  if (!originalUrl) return;
+  
+  // Si fallÃ³ la transformaciÃ³n o el navegador no soporta HEIC, convertimos por JS
+  try {
+    const response = await fetch(originalUrl);
+    const blob = await response.blob();
+    const convertedBlob = await heic2any({
+      blob: blob,
+      toType: 'image/jpeg',
+      quality: 0.7
+    });
+    const objectUrl = URL.createObjectURL(Array.isArray(convertedBlob) ? convertedBlob[0] : convertedBlob);
+    img.src = objectUrl;
+    img.onerror = null; // Evitar bucles infinitos
+  } catch (e) {
+    console.error('Error convirtiendo HEIC existente:', e);
+    // Si todo falla, mostrar iniciales
+    const parent = img.parentElement;
+    if (parent) {
+      const initialsText = initials(img.alt || 'P');
+      parent.innerHTML = initialsText;
+      parent.style.background = 'rgba(255,255,255,0.05)';
+      parent.style.color = 'var(--text2)';
+    }
+  }
 }
 
 function participantLocation(participant) {
