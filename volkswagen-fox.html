@@ -2507,6 +2507,37 @@
     margin-top: 1rem;
     white-space: pre-wrap;
   }
+  .opinion-modal-head {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+  .opinion-modal-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .opinion-modal-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .opinion-modal-info {
+    display: flex;
+    flex-direction: column;
+  }
+  .opinion-modal-author {
+    font-weight: 800;
+    color: var(--text);
+    font-size: 1rem;
+  }
+  .opinion-modal-city {
+    font-size: 0.75rem;
+    color: var(--text2);
+  }
 
   /* ---- TOAST ---- */
   .toast {
@@ -2677,6 +2708,10 @@
     }
     .draw-rail { grid-template-columns: 1fr; }
     th, td { padding: 0.6rem 0.75rem; }
+    td[data-col="participant"] { padding-left: 0.6rem; min-width: 0; }
+    .participant-cell { gap: 0.45rem; }
+    .td-avatar { width: 28px; height: 28px; font-size: 0.65rem; }
+    .participant-mobile-location { display: block; }
     .modal { padding: 1.5rem; }
     .hero-title { font-size: 4.5rem; }
     .prize-visual, .prize-moto-stack { height: 140px; }
@@ -4464,7 +4499,7 @@ function renderParticipants(filter=''){
       <td data-col="city"><span style="font-size:0.8rem;color:var(--text2)">${p.city || '-'}</span></td>
       <td data-col="entries"><span class="chances-badge">x${purchasedChances.toLocaleString('es-AR')}</span></td>
       <td data-col="date" style="font-size:0.8rem;color:var(--text2)">${p.date}</td>
-      <td data-col="message" class="message-cell"><button type="button" class="message-trigger${p.opinionMessage ? '' : ' empty'}" data-opinion="${encodeURIComponent(p.opinionMessage || '')}" data-author="${encodeURIComponent(p.displayName || p.name)}" data-city="${encodeURIComponent(participantLocation(p))}"><span class="message-trigger-icon">ðŸ’¬</span><span>${p.opinionMessage ? 'Ver mensaje' : 'Sin mensaje'}</span></button></td>
+      <td data-col="message" class="message-cell"><button type="button" class="message-trigger${p.opinionMessage ? '' : ' empty'}" data-opinion="${encodeURIComponent(p.opinionMessage || '')}" data-author="${encodeURIComponent(p.displayName || p.name)}" data-city="${encodeURIComponent(participantLocation(p))}" data-photo="${escapeHtml(p.photoUrl || '')}"><span class="message-trigger-icon">ðŸ’¬</span><span>${p.opinionMessage ? 'Ver mensaje' : 'Sin mensaje'}</span></button></td>
     `;
     body.appendChild(row);
 
@@ -4487,7 +4522,7 @@ function renderParticipants(filter=''){
           <td data-col="city"><span style="font-size:0.8rem;color:var(--text2)">${p.city || '-'}</span></td>
           <td data-col="entries"><span class="chances-badge">x${chanceNumber}</span></td>
           <td data-col="date" style="font-size:0.8rem;color:var(--text2)">${p.date}</td>
-          <td data-col="message" class="message-cell"><button type="button" class="message-trigger${p.opinionMessage ? '' : ' empty'}" data-opinion="${encodeURIComponent(p.opinionMessage || '')}" data-author="${encodeURIComponent(p.displayName || p.name)}" data-city="${encodeURIComponent(participantLocation(p))}"><span class="message-trigger-icon">ðŸ’¬</span><span>${p.opinionMessage ? 'Ver mensaje' : 'Sin mensaje'}</span></button></td>
+          <td data-col="message" class="message-cell"><button type="button" class="message-trigger${p.opinionMessage ? '' : ' empty'}" data-opinion="${encodeURIComponent(p.opinionMessage || '')}" data-author="${encodeURIComponent(p.displayName || p.name)}" data-city="${encodeURIComponent(participantLocation(p))}" data-photo="${escapeHtml(p.photoUrl || '')}"><span class="message-trigger-icon">ðŸ’¬</span><span>${p.opinionMessage ? 'Ver mensaje' : 'Sin mensaje'}</span></button></td>
         `;
         body.appendChild(detailRow);
       });
@@ -4502,7 +4537,8 @@ function renderParticipants(filter=''){
       openOpinionModal({
         message: decodeURIComponent(button.dataset.opinion || ''),
         author: decodeURIComponent(button.dataset.author || 'Participante'),
-        city: decodeURIComponent(button.dataset.city || 'Argentina')
+        city: decodeURIComponent(button.dataset.city || 'Argentina'),
+        photoUrl: button.dataset.photo || ''
       });
     });
   });
@@ -4677,11 +4713,30 @@ document.getElementById('f-photo').addEventListener('change', (event) => {
 document.getElementById('opinionModalClose').onclick = () => document.getElementById('opinionModal').classList.remove('open');
 document.getElementById('opinionModal').onclick = e => { if (e.target === document.getElementById('opinionModal')) document.getElementById('opinionModal').classList.remove('open'); };
 
-function openOpinionModal({ message, author, city }) {
-  document.getElementById('opinionAuthor').textContent = author;
-  document.getElementById('opinionMeta').textContent = `${city} Â· Mensaje compartido desde el formulario del sorteo.`;
-  document.getElementById('opinionModalCopy').textContent = message;
-  document.getElementById('opinionModal').classList.add('open');
+function openOpinionModal({ message, author, city, photoUrl }) {
+  const modal = document.getElementById('opinionModal');
+  const body = document.getElementById('opinionModalBody');
+  if (!modal || !body) return;
+
+  const color = colorFor(0);
+  const avatarHtml = photoUrl 
+    ? `<img src="${escapeHtml(photoUrl)}" alt="${escapeHtml(author)}">`
+    : initials(author);
+
+  body.innerHTML = `
+    <div class="opinion-modal-head">
+      <div class="opinion-modal-avatar" style="background:${color}22; color:${color}; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:14px;">
+        ${avatarHtml}
+      </div>
+      <div class="opinion-modal-info">
+        <span class="opinion-modal-author">${escapeHtml(author)}</span>
+        <span class="opinion-modal-city">${escapeHtml(city)} Â· Mensaje compartido desde el formulario del sorteo.</span>
+      </div>
+    </div>
+    <div class="opinion-modal-copy">${escapeHtml(message)}</div>
+  `;
+  modal.classList.add('open');
+  document.body.classList.add('modal-open');
 }
 
 function escapeHtml(value) {
