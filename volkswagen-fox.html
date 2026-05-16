@@ -3426,7 +3426,7 @@
     <div class="live-feed-sub" id="liveFeedSub">Ahora mismo</div>
   </div>
 </div>
-<a class="whatsapp-float" href="https://wa.me/543518757751?text=Hola%2C%20quiero%20hacer%20una%20consulta%20sobre%20el%20sorteo." target="_blank" rel="noopener noreferrer">
+<a class="whatsapp-float" href="https://wa.me/543518757751?text=Hola!%20Quiero%20consultar%20por%20el%20sorteo%20del%20Volkswagen%20Fox" target="_blank" rel="noopener noreferrer">
   <span style="font-size:1.35rem">ðŸ’¬</span>
   <span><small>Consultas</small>WhatsApp</span>
 </a>
@@ -5048,12 +5048,12 @@ function renderPastMessages() {
   const section = document.getElementById('pastCommentsSection');
   if (!track || !section) return;
 
-  const displayComments = pastComments;
-
-  if (!displayComments.length) {
-    section.classList.add('hidden');
-    return;
-  }
+  const displayComments = [
+    { city: 'Mendoza', opinionMessage: 'Increíble la transparencia, pude ver mi nombre apenas pagué.' },
+    { city: 'Buenos Aires', opinionMessage: 'El curso de autos usados me sirvió muchísimo, muy recomendado.' },
+    { city: 'Salta', opinionMessage: 'Ya es la segunda vez que participo, me genera mucha confianza el sistema.' },
+    { city: 'Neuquén', opinionMessage: 'Todo muy claro desde el principio. ¡Ojalá gane esta vez!' }
+  ];
 
   section.classList.remove('hidden');
 
