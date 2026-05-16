@@ -2748,13 +2748,13 @@
 
   <h1 class="hero-title">GRAN SORTEO<span>VOLKSWAGEN FOX</span></h1>
   
-  <div class="hero-car-featured reveal">
-    <img src="./assets/premios/fox-1.png" alt="Volkswagen Fox" style="width:100%">
+  <div class="hero-car-featured reveal" style="max-width: 650px; margin: 0 auto;">
+    <img src="./assets/premios/fox-1.png" alt="Volkswagen Fox" style="width:100%; filter: drop-shadow(0 10px 30px rgba(0,0,0,0.5));">
   </div>
 
   <p class="hero-subtitle">Impecable · Listo para transferir · ¡Puede ser tuyo hoy!</p>
   
-  <div class="hero-progress-container reveal">
+  <div class="hero-progress-container reveal" style="display: none;">
     <div class="hero-progress-label">
       <span>Chances reservadas</span>
       <span id="heroProgressText">91% completado</span>
@@ -3099,26 +3099,18 @@
     <h2 class="section-title">Explora tu próximo<br><span style="color:var(--gold)">Volkswagen Fox</span></h2>
     <p class="section-sub">Fotos reales del premio. El vehículo se encuentra en excelentes condiciones, listo para que lo disfrutes desde el primer día.</p>
     
-    <div class="gallery-grid-new">
+    <div class="gallery-grid-new" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
       <div class="gallery-item-new reveal">
-        <img src="./assets/premios/fox-1.png" alt="Volkswagen Fox Frontal">
+        <img src="./assets/premios/fox-1.png" alt="Volkswagen Fox Frontal Derecha">
         <span class="gallery-tag">Vista Principal</span>
       </div>
       <div class="gallery-item-new reveal">
-        <img src="./assets/premios/fox-2.png" alt="Volkswagen Fox Lateral">
+        <img src="./assets/premios/fox-2.png" alt="Volkswagen Fox Frontal Izquierda">
         <span class="gallery-tag">Perfil Moderno</span>
       </div>
       <div class="gallery-item-new reveal">
-        <img src="./assets/premios/fox-4.png" alt="Volkswagen Fox Frente">
+        <img src="./assets/premios/fox-3.png" alt="Volkswagen Fox Frente">
         <span class="gallery-tag">Frente Impecable</span>
-      </div>
-      <div class="gallery-item-new reveal">
-        <img src="./assets/premios/fox-3.png" alt="Volkswagen Fox Interior">
-        <span class="gallery-tag">Interior Confortable</span>
-      </div>
-      <div class="gallery-item-new reveal">
-        <img src="./assets/premios/fox-1.png" alt="Volkswagen Fox Detalles">
-        <span class="gallery-tag">Detalles de Calidad</span>
       </div>
     </div>
   </div>
@@ -4928,7 +4920,6 @@ function renderParticipants(filter=''){
     row.innerHTML = `
       <td data-col="participant">
         <div class="participant-cell">
-          ${avatarHtml}
           <div class="participant-info">
             <span class="participant-label">${escapeHtml(participant.displayName || participant.name)}${verifiedHtml}</span>
             <div class="participant-mobile-location">${escapeHtml(participant.province || '-')}${participant.city ? ', ' + escapeHtml(participant.city) : ''}</div>
