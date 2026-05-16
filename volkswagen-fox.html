@@ -2835,7 +2835,7 @@
 
 <!-- URGENCY STRIP -->
 <div class="urgency-strip">
-  <span>SORTEO · VOLKSWAGEN FOX · PREMIO · 5 DE JUNIO · ¡ÚLTIMAS CHANCES! · SORTEO NACIONAL · VOLKSWAGEN FOX · PREMIO UNICO · ¡ÚLTIMAS CHANCES! · </span>
+  <span>SORTEO · VOLKSWAGEN FOX · PREMIO · ¡ÚLTIMAS CHANCES! · SORTEO NACIONAL · VOLKSWAGEN FOX · PREMIO UNICO · ¡ÚLTIMAS CHANCES! · </span>
 </div>
 
 <!-- TRUST STRIP -->
@@ -5124,9 +5124,10 @@ async function loadParticipants(){
   });
 
   // Split into current and past
+  // Solo mostramos los participantes que se unieron despues de la fecha de inicio del feed vivo
   currentParticipants = participants.filter(p => p.joinedAt >= LIVE_FEED_PARTICIPANTS_START_DATE);
-  pastParticipants = participants.filter(p => p.joinedAt < LIVE_FEED_PARTICIPANTS_START_DATE);
-  pastComments = pastParticipants.filter(p => p.opinionMessage.length > 0);
+  pastParticipants = []; // No mostrar participantes de sorteos anteriores
+  pastComments = []; // No mostrar comentarios de sorteos anteriores
 
   refreshDrawEntryPool();
   renderProofMessages();
