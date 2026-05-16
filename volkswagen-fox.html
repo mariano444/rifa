@@ -4451,7 +4451,7 @@ function renderParticipants(filter=''){
     row.dataset.participantIndex = String(sourceIndex);
     const avatarHtml = renderParticipantAvatar(p, p.displayName || p.name, colorFor(sourceIndex));
     row.innerHTML = `
-      <td data-col="participant"><div class="td-name-cell">${avatarHtml}<div class="td-name-copy"><div class="td-name">${p.displayName || p.name}</div></div></div></td>
+      <td data-col="participant"><div class="participant-cell">${avatarHtml}<div class="participant-info"><span class="participant-label">${escapeHtml(p.displayName || p.name)}</span></div></div></td>
       <td data-col="province"><span style="font-size:0.8rem;color:var(--text2)">${p.province || '-'}</span></td>
       <td data-col="city"><span style="font-size:0.8rem;color:var(--text2)">${p.city || '-'}</span></td>
       <td data-col="entries"><span class="chances-badge">x${purchasedChances.toLocaleString('es-AR')}</span></td>
@@ -4466,7 +4466,7 @@ function renderParticipants(filter=''){
         const detailAvatarHtml = renderParticipantAvatar(p, p.detailLabel || p.displayName || p.name, colorFor(sourceIndex));
         detailRow.className = 'participant-detail-row';
         detailRow.innerHTML = `
-          <td data-col="participant"><div class="td-name-cell">${detailAvatarHtml}<div class="td-name-copy"><div class="td-name">${p.detailLabel || p.displayName || p.name}</div></div></div></td>
+          <td data-col="participant"><div class="participant-cell">${detailAvatarHtml}<div class="participant-info"><span class="participant-label">${escapeHtml(p.detailLabel || p.displayName || p.name)}</span></div></div></td>
           <td data-col="province"><span style="font-size:0.8rem;color:var(--text2)">${p.province || '-'}</span></td>
           <td data-col="city"><span style="font-size:0.8rem;color:var(--text2)">${p.city || '-'}</span></td>
           <td data-col="entries"><span class="chances-badge">x${chanceNumber}</span></td>
