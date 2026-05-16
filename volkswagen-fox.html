@@ -4449,9 +4449,17 @@ function renderParticipants(filter=''){
     row.className = 'participant-main-row';
     row.dataset.detailId = detailId;
     row.dataset.participantIndex = String(sourceIndex);
-    const avatarHtml = renderParticipantAvatar(p, p.displayName || p.name, colorFor(sourceIndex));
+    const verifiedHtml = `<span class="verified-badge"><svg viewBox="0 0 24 24"><path d="M23,12L20.56,9.22L20.9,5.54L17.29,4.72L15.4,1.54L12,3L8.6,1.54L6.71,4.72L3.1,5.53L3.44,9.21L1,12L3.44,14.78L3.1,18.47L6.71,19.29L8.6,22.47L12,21L15.4,22.46L17.29,19.28L20.9,18.46L20.56,14.78L23,12M10,17L6,13L7.41,11.59L10,14.17L16.59,7.58L18,9L10,17Z"></path></svg>Verificado</span>`;
     row.innerHTML = `
-      <td data-col="participant"><div class="participant-cell">${avatarHtml}<div class="participant-info"><span class="participant-label">${escapeHtml(p.displayName || p.name)}</span></div></div></td>
+      <td data-col="participant">
+        <div class="participant-cell">
+          ${avatarHtml}
+          <div class="participant-info">
+            <span class="participant-label">${escapeHtml(p.displayName || p.name)}${verifiedHtml}</span>
+            <div class="participant-mobile-location">${escapeHtml(p.province || '-')}${p.city ? ', ' + escapeHtml(p.city) : ''}</div>
+          </div>
+        </div>
+      </td>
       <td data-col="province"><span style="font-size:0.8rem;color:var(--text2)">${p.province || '-'}</span></td>
       <td data-col="city"><span style="font-size:0.8rem;color:var(--text2)">${p.city || '-'}</span></td>
       <td data-col="entries"><span class="chances-badge">x${purchasedChances.toLocaleString('es-AR')}</span></td>
@@ -4466,7 +4474,15 @@ function renderParticipants(filter=''){
         const detailAvatarHtml = renderParticipantAvatar(p, p.detailLabel || p.displayName || p.name, colorFor(sourceIndex));
         detailRow.className = 'participant-detail-row';
         detailRow.innerHTML = `
-          <td data-col="participant"><div class="participant-cell">${detailAvatarHtml}<div class="participant-info"><span class="participant-label">${escapeHtml(p.detailLabel || p.displayName || p.name)}</span></div></div></td>
+          <td data-col="participant">
+            <div class="participant-cell">
+              ${detailAvatarHtml}
+              <div class="participant-info">
+                <span class="participant-label">${escapeHtml(p.detailLabel || p.displayName || p.name)}${verifiedHtml}</span>
+                <div class="participant-mobile-location">${escapeHtml(p.province || '-')}${p.city ? ', ' + escapeHtml(p.city) : ''}</div>
+              </div>
+            </div>
+          </td>
           <td data-col="province"><span style="font-size:0.8rem;color:var(--text2)">${p.province || '-'}</span></td>
           <td data-col="city"><span style="font-size:0.8rem;color:var(--text2)">${p.city || '-'}</span></td>
           <td data-col="entries"><span class="chances-badge">x${chanceNumber}</span></td>
@@ -4930,6 +4946,7 @@ function renderParticipants(filter=''){
     row.innerHTML = `
       <td data-col="participant">
         <div class="participant-cell">
+          ${avatarHtml}
           <div class="participant-info">
             <span class="participant-label">${escapeHtml(participant.displayName || participant.name)}${verifiedHtml}</span>
             <div class="participant-mobile-location">${escapeHtml(participant.province || '-')}${participant.city ? ', ' + escapeHtml(participant.city) : ''}</div>
