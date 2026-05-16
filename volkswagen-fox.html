@@ -4355,7 +4355,19 @@ function startFloatingAvatars() {
     avatar.style.left = `${left}%`;
     
     if (p.photoUrl) {
-      avatar.innerHTML = `<img src="${p.photoUrl}" style="width:100%;height:100%;border-radius:50%;object-fit:cover">`;
+      // Forzar iniciales en lugar de fotos de perfil
+      const label = p.displayName || p.name;
+      avatar.textContent = initials(label);
+      avatar.style.width = '35px';
+      avatar.style.height = '35px';
+      avatar.style.borderRadius = '50%';
+      avatar.style.display = 'flex';
+      avatar.style.alignItems = 'center';
+      avatar.style.justifyContent = 'center';
+      avatar.style.fontSize = '12px';
+      avatar.style.fontWeight = '800';
+      avatar.style.color = colorFor(participants.indexOf(p));
+      avatar.style.background = `${colorFor(participants.indexOf(p))}22`;
     } else {
       // Show full name instead of initials
       avatar.textContent = p.displayName || p.name;
@@ -4396,7 +4408,10 @@ function renderPackages(){
   const baseChancePrice = getBaseChancePrice();
   grid.innerHTML = '';
 
-  packages.forEach(pkg => {
+  // Filtrar para ocultar los paquetes de 100 y 1000 chances
+  const visiblePackages = packages.filter(p => Number(p.entries_qty) < 100);
+
+  visiblePackages.forEach(pkg => {
     const chances = Number(pkg.entries_qty || 0) + Number(pkg.bonus_entries || 0);
     const totalPrice = Number(pkg.price_ars || 0);
     const fillPct = Math.min(100, Math.round((tc / Math.max(currentMaxChances(), 1)) * 100));
@@ -4524,10 +4539,15 @@ function renderProofMessages() {
     }));
 
   const cards = dynamicMessages.length ? dynamicMessages : [];
-  grid.innerHTML = cards.map((item, index) => `
+  grid.innerHTML = cards.map((item, index) => {
+    const initialsText = initials(item.name || 'P');
+    const color = colorFor(index);
+    return `
     <div class="proof-card reveal" style="transition-delay:${Math.min(index * 0.08, 0.32)}s">
       <div class="proof-head">
-        <div class="proof-avatar">${item.photoUrl ? `<img src="${escapeHtml(item.photoUrl)}" alt="${escapeHtml(item.name)}">` : ''}</div>
+        <div class="proof-avatar" style="background:${color}22; color:${color}; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:12px; border-radius:50%; width:35px; height:35px;">
+          ${escapeHtml(initialsText)}
+        </div>
         <div class="proof-head-copy">
           <span class="proof-name">${escapeHtml(item.name)}</span>
           <span class="proof-city">${escapeHtml(item.city)}</span>
@@ -4535,7 +4555,7 @@ function renderProofMessages() {
       </div>
       <div class="proof-copy">"${escapeHtml(item.message)}"</div>
     </div>
-  `).join('');
+  `}).join('');
 
   observeReveal();
 }
@@ -4675,18 +4695,7 @@ function escapeHtml(value) {
 }
 
 function renderParticipantAvatar(participant, fallbackLabel, color) {
-  if (participant.photoUrl) {
-    let finalUrl = participant.photoUrl;
-    const isHeic = finalUrl.toLowerCase().endsWith('.heic');
-    
-    // Si la imagen es HEIC e incluye supabase, intentamos transformaciÃ³n pero con fallback
-    if (isHeic && finalUrl.includes('supabase.co')) {
-      const transformUrl = finalUrl.replace('/storage/v1/object/public/', '/storage/v1/render/image/public/') + '?width=100&height=100&format=auto&quality=80';
-      return `<div class="td-avatar"><img src="${escapeHtml(transformUrl)}" data-heic="${escapeHtml(finalUrl)}" onerror="handleHeicError(this)" alt="${escapeHtml(fallbackLabel)}" loading="lazy"></div>`;
-    }
-    
-    return `<div class="td-avatar"><img src="${escapeHtml(finalUrl)}" alt="${escapeHtml(fallbackLabel)}" loading="lazy"></div>`;
-  }
+  // Siempre mostrar iniciales en lugar de fotos de perfil
   return `<div class="td-avatar" style="background:${color}22;color:${color}">${escapeHtml(initials(fallbackLabel))}</div>`;
 }
 
