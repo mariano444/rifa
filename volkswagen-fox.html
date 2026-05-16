@@ -5021,14 +5021,12 @@ function renderPastParticipants() {
   const section = document.getElementById('pastParticipantsSection');
   if (!track || !section) return;
 
-  // Persuasive fallback if no past participants found in DB
-  const displayList = pastParticipants.length ? pastParticipants : [
-    { name: 'Ricardo G.', date: '15/04/2026', photoUrl: 'https://i.pravatar.cc/150?u=r1' },
-    { name: 'Marta L.', date: '12/04/2026', photoUrl: 'https://i.pravatar.cc/150?u=r2' },
-    { name: 'Sebastian V.', date: '10/04/2026', photoUrl: 'https://i.pravatar.cc/150?u=r3' },
-    { name: 'Estefania M.', date: '08/04/2026', photoUrl: 'https://i.pravatar.cc/150?u=r4' },
-    { name: 'Oscar P.', date: '05/04/2026', photoUrl: 'https://i.pravatar.cc/150?u=r5' }
-  ];
+  const displayList = pastParticipants;
+
+  if (!displayList.length) {
+    section.classList.add('hidden');
+    return;
+  }
 
   section.classList.remove('hidden');
   
@@ -5050,12 +5048,12 @@ function renderPastMessages() {
   const section = document.getElementById('pastCommentsSection');
   if (!track || !section) return;
 
-  const displayComments = pastComments.length ? pastComments : [
-    { city: 'Mendoza', opinionMessage: 'Increíble la transparencia, pude ver mi nombre apenas pagué.' },
-    { city: 'Buenos Aires', opinionMessage: 'El curso de autos usados me sirvió muchísimo, muy recomendado.' },
-    { city: 'Salta', opinionMessage: 'Ya es la segunda vez que participo, me genera mucha confianza el sistema.' },
-    { city: 'Neuquén', opinionMessage: 'Todo muy claro desde el principio. ¡Ojalá gane esta vez!' }
-  ];
+  const displayComments = pastComments;
+
+  if (!displayComments.length) {
+    section.classList.add('hidden');
+    return;
+  }
 
   section.classList.remove('hidden');
 
