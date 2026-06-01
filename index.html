@@ -3,22 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gran Sorteo - Chevrolet Corsa Impecable</title>
-<meta name="description" content="Participa desde cualquier punto de Argentina por un Chevrolet Corsa impecable. ¡Últimas chances disponibles! El sorteo se hará al agotar stock.">
+<title>Gran Sorteo - Volkswagen Fox</title>
+<meta name="description" content="Participa desde cualquier punto de Argentina por un hermoso Volkswagen Fox. ¡Últimas chances disponibles! El sorteo se hará el 5 de junio.">
   <meta name="author" content="Gran Sorteo">
   
-  <meta property="og:title" content="Gran Sorteo - Chevrolet Corsa Impecable">
-  <meta property="og:description" content="Te invito a participar de este sorteo por un Chevrolet Corsa impecable. ¡Últimas chances disponibles! El sorteo se hará al agotar stock.">
-<meta property="og:image" content="/assets/share/share-sorteo.png">
-<meta property="og:image:alt" content="Imagen promocional del sorteo del Chevrolet Corsa">
+  <meta property="og:title" content="Gran Sorteo - Volkswagen Fox">
+  <meta property="og:description" content="Te invito a participar de este sorteo por un hermoso Volkswagen Fox. ¡Últimas chances disponibles! El sorteo se hará el 5 de junio.">
+<meta property="og:image" content="/assets/premios/fox-1.png">
+<meta property="og:image:alt" content="Imagen promocional del sorteo del Volkswagen Fox">
 <meta property="og:image:width" content="1080">
 <meta property="og:image:height" content="1350">
 <meta property="og:image:type" content="image/png">
 <meta property="og:locale" content="es_AR">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Gran Sorteo - Chevrolet Corsa Impecable">
-<meta name="twitter:description" content="Te invito a participar de este sorteo por un Chevrolet Corsa impecable. ¡Últimas chances disponibles! El sorteo se hará al agotar stock.">
-<meta name="twitter:image" content="/assets/share/share-sorteo.png">
+<meta name="twitter:title" content="Gran Sorteo - Volkswagen Fox">
+<meta name="twitter:description" content="Te invito a participar de este sorteo por un hermoso Volkswagen Fox. ¡Últimas chances disponibles! El sorteo se hará el 5 de junio.">
+<meta name="twitter:image" content="/assets/premios/fox-1.png">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -2507,6 +2507,37 @@
     margin-top: 1rem;
     white-space: pre-wrap;
   }
+  .opinion-modal-head {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+  .opinion-modal-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .opinion-modal-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .opinion-modal-info {
+    display: flex;
+    flex-direction: column;
+  }
+  .opinion-modal-author {
+    font-weight: 800;
+    color: var(--text);
+    font-size: 1rem;
+  }
+  .opinion-modal-city {
+    font-size: 0.75rem;
+    color: var(--text2);
+  }
 
   /* ---- TOAST ---- */
   .toast {
@@ -2677,6 +2708,10 @@
     }
     .draw-rail { grid-template-columns: 1fr; }
     th, td { padding: 0.6rem 0.75rem; }
+    td[data-col="participant"] { padding-left: 0.6rem; min-width: 0; }
+    .participant-cell { gap: 0.45rem; }
+    .td-avatar { width: 28px; height: 28px; font-size: 0.65rem; }
+    .participant-mobile-location { display: block; }
     .modal { padding: 1.5rem; }
     .hero-title { font-size: 4.5rem; }
     .prize-visual, .prize-moto-stack { height: 140px; }
@@ -2723,7 +2758,7 @@
   src="https://www.facebook.com/tr?id=675114246370648&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
-  <!-- Meta Pixel Code -->
+    <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -2782,10 +2817,10 @@ src="https://www.facebook.com/tr?id=1495740652346839&ev=PageView&noscript=1"
 
   <div class="hero-badge">SORTEO NACIONAL · ARGENTINA</div>
 
-  <h1 class="hero-title">GRAN SORTEO<span>CHEVROLET CORSA</span></h1>
+  <h1 class="hero-title">GRAN SORTEO<span>VOLKSWAGEN FOX</span></h1>
   
-  <div class="hero-car-featured reveal">
-    <img src="./assets/premios/corsa.png" alt="Chevrolet Corsa Impecable" style="width:100%">
+  <div class="hero-car-featured reveal" style="max-width: 650px; margin: 0 auto;">
+    <img src="./assets/premios/fox-1.png" alt="Volkswagen Fox" style="width:100%; filter: drop-shadow(0 10px 30px rgba(0,0,0,0.5));">
   </div>
 
   <p class="hero-subtitle">Impecable · Listo para transferir · ¡Puede ser tuyo hoy!</p>
@@ -2793,14 +2828,14 @@ src="https://www.facebook.com/tr?id=1495740652346839&ev=PageView&noscript=1"
   <div class="hero-progress-container reveal">
     <div class="hero-progress-label">
       <span>Chances reservadas</span>
-      <span id="heroProgressText">96% completado</span>
+      <span id="heroProgressText">91% completado</span>
     </div>
     <div class="hero-progress-bar">
-      <div class="hero-progress-fill" id="heroProgressFill" style="width: 96%"></div>
+      <div class="hero-progress-fill" id="heroProgressFill" style="width: 91%"></div>
     </div>
   </div>
 
-  <p class="hero-lead">Participá por el Chevrolet Corsa más buscado. <strong>Seguridad garantizada, lista pública en tiempo real</strong> y un beneficio exclusivo: con 3+ chances te llevás gratis el curso guía para comprar usados.</p>
+  <p class="hero-lead">Participá por un hermoso Volkswagen Fox. <strong>Seguridad garantizada, lista pública en tiempo real</strong> y un beneficio exclusivo: con 3+ chances te llevás gratis el curso guía para comprar usados.</p>
 
   <div class="hero-cta reveal" style="transition-delay:0.3s">
     <a href="#paquetes" class="btn-primary">¡QUIERO PARTICIPAR AHORA!</a>
@@ -2871,7 +2906,7 @@ src="https://www.facebook.com/tr?id=1495740652346839&ev=PageView&noscript=1"
 
 <!-- URGENCY STRIP -->
 <div class="urgency-strip">
-  <span>SORTEO · CHEVROLET CORSA IMPECABLE · PREMIO · AL AGOTAR STOCK · ¡ÚLTIMAS CHANCES! · SORTEO NACIONAL · CHEVROLET CORSA IMPECABLE · PREMIO UNICO · ¡ÚLTIMAS CHANCES! · </span>
+  <span>SORTEO · VOLKSWAGEN FOX · PREMIO · ¡ÚLTIMAS CHANCES! · SORTEO NACIONAL · VOLKSWAGEN FOX · PREMIO UNICO · ¡ÚLTIMAS CHANCES! · </span>
 </div>
 
 <!-- TRUST STRIP -->
@@ -2897,15 +2932,15 @@ src="https://www.facebook.com/tr?id=1495740652346839&ev=PageView&noscript=1"
 <!-- TICKER -->
 <div class="ticker">
   <div class="ticker-inner" id="ticker">
-    <span class="ticker-item">Chevrolet Corsa impecable</span>
-    <span class="ticker-item">Premio unico publicado con 6 fotos</span>
+    <span class="ticker-item">Volkswagen Fox impecable</span>
+    <span class="ticker-item">Premio unico publicado con fotos</span>
     <span class="ticker-item">1 ganador seleccionado al azar</span>
     <span class="ticker-item">Mas chances = mas posibilidades</span>
     <span class="ticker-item">Sorteo 100% transparente</span>
     <span class="ticker-item">Participas desde toda Argentina</span>
     <span class="ticker-item">Con 3 o mas chances te llevas un curso gratis</span>
-    <span class="ticker-item">Chevrolet Corsa impecable</span>
-    <span class="ticker-item">Premio unico publicado con 6 fotos</span>
+    <span class="ticker-item">Volkswagen Fox impecable</span>
+    <span class="ticker-item">Premio unico publicado con fotos reales</span>
     <span class="ticker-item">1 ganador seleccionado al azar</span>
     <span class="ticker-item">Mas chances = mas posibilidades</span>
     <span class="ticker-item">Sorteo 100% transparente</span>
@@ -2919,7 +2954,7 @@ src="https://www.facebook.com/tr?id=1495740652346839&ev=PageView&noscript=1"
   <div class="section-inner">
     <span class="section-tag">ðŸ’Ž Elige tu pack</span>
     <h2 class="section-title">MÃ¡s chances,<br><span style="color:var(--gold)">mÃ¡s posibilidades</span></h2>
-    <p class="section-sub">Cada chance suma una participación real dentro del sistema de selección. Mientras más chances tengas, más posibilidades acumulás de quedarte con el Chevrolet Corsa.</p>
+    <p class="section-sub">Cada chance suma una participación real dentro del sistema de selección. Mientras más chances tengas, más posibilidades acumulás de quedarte con el Volkswagen Fox.</p>
 
     <div class="packages-grid" id="packagesGrid">
       <!-- generado por JS -->
@@ -3132,29 +3167,29 @@ src="https://www.facebook.com/tr?id=1495740652346839&ev=PageView&noscript=1"
 <section id="galeria" class="gallery-section">
   <div class="section-inner">
     <span class="section-tag">📸 Estado Impecable</span>
-    <h2 class="section-title">Explora tu próximo<br><span style="color:var(--gold)">Chevrolet Corsa</span></h2>
-    <p class="section-sub">Fotos reales del premio. El vehículo se encuentra en excelentes condiciones, listo para que lo disfrutes desde el primer día.</p>
+    <h2 class="section-title">Explora tu próximo<br><span style="color:var(--gold)">Volkswagen Fox</span></h2>
+    <p class="section-sub">Fotos. El vehículo se encuentra en excelentes condiciones, listo para que lo disfrutes desde el primer día.</p>
     
     <div class="gallery-grid-new">
       <div class="gallery-item-new reveal">
-        <img src="./assets/premios/corsa.png" alt="Chevrolet Corsa Frontal">
+        <img src="./assets/premios/fox-1.png" alt="Volkswagen Fox Frontal Derecha">
         <span class="gallery-tag">Vista Principal</span>
       </div>
       <div class="gallery-item-new reveal">
-        <img src="./assets/premios/corsa1.png" alt="Chevrolet Corsa Lateral">
-        <span class="gallery-tag">Perfil Deportivo</span>
+        <img src="./assets/premios/fox-2.png" alt="Volkswagen Fox Frontal Izquierda">
+        <span class="gallery-tag">Perfil Moderno</span>
       </div>
       <div class="gallery-item-new reveal">
-        <img src="./assets/premios/corsa4.png" alt="Chevrolet Corsa Interior">
-        <span class="gallery-tag">Interior Impecable</span>
+        <img src="./assets/premios/fox-6.png" alt="Volkswagen Fox Frente">
+        <span class="gallery-tag">Frente Impecable</span>
       </div>
       <div class="gallery-item-new reveal">
-        <img src="./assets/premios/corsa5.png" alt="Chevrolet Corsa Motor">
-        <span class="gallery-tag">Mecánica Verificada</span>
+        <img src="./assets/premios/fox-4.png" alt="Volkswagen Fox Interior Trasero">
+        <span class="gallery-tag">Espacio Interior</span>
       </div>
       <div class="gallery-item-new reveal">
-        <img src="./assets/premios/corsa2.png" alt="Chevrolet Corsa Trasera">
-        <span class="gallery-tag">Detalles de Calidad</span>
+        <img src="./assets/premios/fox-5.png" alt="Volkswagen Fox Interior Tablero">
+        <span class="gallery-tag">Tablero y Control</span>
       </div>
     </div>
   </div>
@@ -3241,7 +3276,7 @@ src="https://www.facebook.com/tr?id=1495740652346839&ev=PageView&noscript=1"
         <span class="step-num">4</span>
         <span class="step-icon">ðŸŽ°</span>
         <div class="step-title">Sorteo nacional</div>
-        <p class="step-desc">El sistema realiza una seleccion aleatoria de 1 participante entre todas las chances activas. El sorteo se hace el 25 de mayo o antes si se agotan las chances.</p>
+        <p class="step-desc">El sistema realiza una seleccion aleatoria de 1 participante entre todas las chances activas. El sorteo se hace el 5 de junio o antes si se agotan las chances.</p>
       </div>
     </div>
   </div>
@@ -3268,7 +3303,7 @@ src="https://www.facebook.com/tr?id=1495740652346839&ev=PageView&noscript=1"
       </div>
       <div class="draw-card reveal" style="transition-delay:0.3s">
         <div class="draw-card-title">4. Entrega coordinada con el ganador</div>
-        <div class="draw-card-copy">Una vez confirmado el ganador, se coordina la entrega dentro de las 48 horas siguientes. Se organiza el retiro del Chevrolet Corsa publicado.</div>
+        <div class="draw-card-copy">Una vez confirmado el ganador, se coordina la entrega dentro de las 48 horas siguientes. Se organiza el retiro del Volkswagen Fox publicado.</div>
       </div>
     </div>
 
@@ -3304,7 +3339,7 @@ src="https://www.facebook.com/tr?id=1495740652346839&ev=PageView&noscript=1"
       </div>
       <div class="faq-item">
         <button class="faq-q">Â¿CuÃ¡ndo se entrega el premio? <span class="faq-arrow">â–¼</span></button>
-        <div class="faq-a">El premio se coordina con el ganador dentro de las 48 horas posteriores al sorteo. Se contacta al ganador, se valida la forma de entrega y se organiza el retiro del Chevrolet Corsa o su equivalente en dinero.</div>
+        <div class="faq-a">El premio se coordina con el ganador dentro de las 48 horas posteriores al sorteo. Se contacta al ganador, se valida la forma de entrega y se organiza el retiro del Volkswagen Fox o su equivalente en dinero.</div>
       </div>
       <div class="faq-item">
         <button class="faq-q">Â¿Puedo comprar mÃ¡s de un pack? <span class="faq-arrow">â–¼</span></button>
@@ -3462,7 +3497,7 @@ src="https://www.facebook.com/tr?id=1495740652346839&ev=PageView&noscript=1"
     <div class="live-feed-sub" id="liveFeedSub">Ahora mismo</div>
   </div>
 </div>
-<a class="whatsapp-float" href="https://wa.me/543518757751?text=Hola%2C%20quiero%20hacer%20una%20consulta%20sobre%20el%20sorteo." target="_blank" rel="noopener noreferrer">
+<a class="whatsapp-float" href="https://wa.me/543518757751?text=Hola!%20Quiero%20consultar%20por%20el%20sorteo%20del%20Volkswagen%20Fox" target="_blank" rel="noopener noreferrer">
   <span style="font-size:1.35rem">ðŸ’¬</span>
   <span><small>Consultas</small>WhatsApp</span>
 </a>
@@ -3471,23 +3506,23 @@ src="https://www.facebook.com/tr?id=1495740652346839&ev=PageView&noscript=1"
 <script>
 const SUPABASE_URL = 'https://asokopamdmuvuupywjzt.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_zBhxdMJHw_uy_m3uRDj-ng_0yXz42EN';
-const CAMPAIGN_SLUG = 'sorteo-moto-tv-dinero';
+const CAMPAIGN_SLUG = 'sorteo-volkswagen-fox';
 const MAX_FALLBACK_CHANCES = 5000;
 const FUNCTIONS_BASE_URL = `${SUPABASE_URL}/functions/v1`;
 const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-const DEFAULT_SHARE_IMAGE = new URL('./assets/share/share-sorteo.png', window.location.href).toString();
-const DEFAULT_SHARE_TITLE = 'Gran Sorteo - Chevrolet Corsa Impecable';
-const DEFAULT_SHARE_DESCRIPTION = 'Participa de este sorteo por un Chevrolet Corsa impecable. ¡Últimas chances disponibles! El sorteo se hará al agotar stock de chances.';
+const DEFAULT_SHARE_IMAGE = new URL('./assets/premios/fox-1.png', window.location.href).toString();
+const DEFAULT_SHARE_TITLE = 'Gran Sorteo - Volkswagen Fox';
+const DEFAULT_SHARE_DESCRIPTION = 'Participa de este sorteo por un hermoso Volkswagen Fox. ¡Últimas chances disponibles! El sorteo se hará el 5 de junio.';
 const COURSE_PAGE_PATH = './curso-guia-auto-argentina.html';
 const COURSE_MIN_ENTRIES = 3;
-const DRAW_TARGET_ISO = '2026-06-05T20:00:00-03:00';
+const DRAW_TARGET_ISO = '2026-06-05T21:00:00-03:00';
 
 let activeCampaign = null;
 let packages = [];
 let participants = [];
 let currentParticipants = [];
 let pastParticipants = [];
-const LIVE_FEED_PARTICIPANTS_START_DATE = new Date('2026-05-01T00:00:00-03:00');
+const LIVE_FEED_PARTICIPANTS_START_DATE = new Date('2026-05-15T00:00:00-03:00');
 let pastComments = [];
 let pastParticipantsIndex = 0;
 let pastParticipantsInterval = null;
@@ -4432,7 +4467,10 @@ function renderPackages(){
   const baseChancePrice = getBaseChancePrice();
   grid.innerHTML = '';
 
-  packages.forEach(pkg => {
+  // Filtrar para ocultar los paquetes de 100 y 1000 chances
+  const visiblePackages = packages.filter(p => Number(p.entries_qty) < 100);
+
+  visiblePackages.forEach(pkg => {
     const chances = Number(pkg.entries_qty || 0) + Number(pkg.bonus_entries || 0);
     const totalPrice = Number(pkg.price_ars || 0);
     const fillPct = Math.min(100, Math.round((tc / Math.max(currentMaxChances(), 1)) * 100));
@@ -4482,14 +4520,22 @@ function renderParticipants(filter=''){
     row.className = 'participant-main-row';
     row.dataset.detailId = detailId;
     row.dataset.participantIndex = String(sourceIndex);
-    const avatarHtml = renderParticipantAvatar(p, p.displayName || p.name, colorFor(sourceIndex));
+    const verifiedHtml = `<span class="verified-badge"><svg viewBox="0 0 24 24"><path d="M23,12L20.56,9.22L20.9,5.54L17.29,4.72L15.4,1.54L12,3L8.6,1.54L6.71,4.72L3.1,5.53L3.44,9.21L1,12L3.44,14.78L3.1,18.47L6.71,19.29L8.6,22.47L12,21L15.4,22.46L17.29,19.28L20.9,18.46L20.56,14.78L23,12M10,17L6,13L7.41,11.59L10,14.17L16.59,7.58L18,9L10,17Z"></path></svg>Verificado</span>`;
     row.innerHTML = `
-      <td data-col="participant"><div class="td-name-cell">${avatarHtml}<div class="td-name-copy"><div class="td-name">${p.displayName || p.name}</div></div></div></td>
+      <td data-col="participant">
+        <div class="participant-cell">
+          ${avatarHtml}
+          <div class="participant-info">
+            <span class="participant-label">${escapeHtml(p.displayName || p.name)}${verifiedHtml}</span>
+            <div class="participant-mobile-location">${escapeHtml(p.province || '-')}${p.city ? ', ' + escapeHtml(p.city) : ''}</div>
+          </div>
+        </div>
+      </td>
       <td data-col="province"><span style="font-size:0.8rem;color:var(--text2)">${p.province || '-'}</span></td>
       <td data-col="city"><span style="font-size:0.8rem;color:var(--text2)">${p.city || '-'}</span></td>
       <td data-col="entries"><span class="chances-badge">x${purchasedChances.toLocaleString('es-AR')}</span></td>
       <td data-col="date" style="font-size:0.8rem;color:var(--text2)">${p.date}</td>
-      <td data-col="message" class="message-cell"><button type="button" class="message-trigger${p.opinionMessage ? '' : ' empty'}" data-opinion="${encodeURIComponent(p.opinionMessage || '')}" data-author="${encodeURIComponent(p.displayName || p.name)}" data-city="${encodeURIComponent(participantLocation(p))}"><span class="message-trigger-icon">ðŸ’¬</span><span>${p.opinionMessage ? 'Ver mensaje' : 'Sin mensaje'}</span></button></td>
+      <td data-col="message" class="message-cell"><button type="button" class="message-trigger${p.opinionMessage ? '' : ' empty'}" data-opinion="${encodeURIComponent(p.opinionMessage || '')}" data-author="${encodeURIComponent(p.displayName || p.name)}" data-city="${encodeURIComponent(participantLocation(p))}" data-photo="${escapeHtml(p.photoUrl || '')}"><span class="message-trigger-icon">ðŸ’¬</span><span>${p.opinionMessage ? 'Ver mensaje' : 'Sin mensaje'}</span></button></td>
     `;
     body.appendChild(row);
 
@@ -4499,12 +4545,20 @@ function renderParticipants(filter=''){
         const detailAvatarHtml = renderParticipantAvatar(p, p.detailLabel || p.displayName || p.name, colorFor(sourceIndex));
         detailRow.className = 'participant-detail-row';
         detailRow.innerHTML = `
-          <td data-col="participant"><div class="td-name-cell">${detailAvatarHtml}<div class="td-name-copy"><div class="td-name">${p.detailLabel || p.displayName || p.name}</div></div></div></td>
+          <td data-col="participant">
+            <div class="participant-cell">
+              ${detailAvatarHtml}
+              <div class="participant-info">
+                <span class="participant-label">${escapeHtml(p.detailLabel || p.displayName || p.name)}${verifiedHtml}</span>
+                <div class="participant-mobile-location">${escapeHtml(p.province || '-')}${p.city ? ', ' + escapeHtml(p.city) : ''}</div>
+              </div>
+            </div>
+          </td>
           <td data-col="province"><span style="font-size:0.8rem;color:var(--text2)">${p.province || '-'}</span></td>
           <td data-col="city"><span style="font-size:0.8rem;color:var(--text2)">${p.city || '-'}</span></td>
           <td data-col="entries"><span class="chances-badge">x${chanceNumber}</span></td>
           <td data-col="date" style="font-size:0.8rem;color:var(--text2)">${p.date}</td>
-          <td data-col="message" class="message-cell"><button type="button" class="message-trigger${p.opinionMessage ? '' : ' empty'}" data-opinion="${encodeURIComponent(p.opinionMessage || '')}" data-author="${encodeURIComponent(p.displayName || p.name)}" data-city="${encodeURIComponent(participantLocation(p))}"><span class="message-trigger-icon">ðŸ’¬</span><span>${p.opinionMessage ? 'Ver mensaje' : 'Sin mensaje'}</span></button></td>
+          <td data-col="message" class="message-cell"><button type="button" class="message-trigger${p.opinionMessage ? '' : ' empty'}" data-opinion="${encodeURIComponent(p.opinionMessage || '')}" data-author="${encodeURIComponent(p.displayName || p.name)}" data-city="${encodeURIComponent(participantLocation(p))}" data-photo="${escapeHtml(p.photoUrl || '')}"><span class="message-trigger-icon">ðŸ’¬</span><span>${p.opinionMessage ? 'Ver mensaje' : 'Sin mensaje'}</span></button></td>
         `;
         body.appendChild(detailRow);
       });
@@ -4519,7 +4573,8 @@ function renderParticipants(filter=''){
       openOpinionModal({
         message: decodeURIComponent(button.dataset.opinion || ''),
         author: decodeURIComponent(button.dataset.author || 'Participante'),
-        city: decodeURIComponent(button.dataset.city || 'Argentina')
+        city: decodeURIComponent(button.dataset.city || 'Argentina'),
+        photoUrl: button.dataset.photo || ''
       });
     });
   });
@@ -4563,7 +4618,7 @@ function renderProofMessages() {
   grid.innerHTML = cards.map((item, index) => `
     <div class="proof-card reveal" style="transition-delay:${Math.min(index * 0.08, 0.32)}s">
       <div class="proof-head">
-        <div class="proof-avatar">${item.photoUrl ? `<img src="${escapeHtml(item.photoUrl)}" alt="${escapeHtml(item.name)}">` : ''}</div>
+        <div class="proof-avatar">${item.photoUrl ? `<img src="${escapeHtml(item.photoUrl)}" alt="${escapeHtml(item.name)}">` : initials(item.name)}</div>
         <div class="proof-head-copy">
           <span class="proof-name">${escapeHtml(item.name)}</span>
           <span class="proof-city">${escapeHtml(item.city)}</span>
@@ -4694,11 +4749,30 @@ document.getElementById('f-photo').addEventListener('change', (event) => {
 document.getElementById('opinionModalClose').onclick = () => document.getElementById('opinionModal').classList.remove('open');
 document.getElementById('opinionModal').onclick = e => { if (e.target === document.getElementById('opinionModal')) document.getElementById('opinionModal').classList.remove('open'); };
 
-function openOpinionModal({ message, author, city }) {
-  document.getElementById('opinionAuthor').textContent = author;
-  document.getElementById('opinionMeta').textContent = `${city} Â· Mensaje compartido desde el formulario del sorteo.`;
-  document.getElementById('opinionModalCopy').textContent = message;
-  document.getElementById('opinionModal').classList.add('open');
+function openOpinionModal({ message, author, city, photoUrl }) {
+  const modal = document.getElementById('opinionModal');
+  const body = document.getElementById('opinionModalBody');
+  if (!modal || !body) return;
+
+  const color = colorFor(0);
+  const avatarHtml = photoUrl 
+    ? `<img src="${escapeHtml(photoUrl)}" alt="${escapeHtml(author)}">`
+    : initials(author);
+
+  body.innerHTML = `
+    <div class="opinion-modal-head">
+      <div class="opinion-modal-avatar" style="background:${color}22; color:${color}; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:14px;">
+        ${avatarHtml}
+      </div>
+      <div class="opinion-modal-info">
+        <span class="opinion-modal-author">${escapeHtml(author)}</span>
+        <span class="opinion-modal-city">${escapeHtml(city)} Â· Mensaje compartido desde el formulario del sorteo.</span>
+      </div>
+    </div>
+    <div class="opinion-modal-copy">${escapeHtml(message)}</div>
+  `;
+  modal.classList.add('open');
+  document.body.classList.add('modal-open');
 }
 
 function escapeHtml(value) {
@@ -4715,7 +4789,6 @@ function renderParticipantAvatar(participant, fallbackLabel, color) {
     let finalUrl = participant.photoUrl;
     const isHeic = finalUrl.toLowerCase().endsWith('.heic');
     
-    // Si la imagen es HEIC e incluye supabase, intentamos transformaciÃ³n pero con fallback
     if (isHeic && finalUrl.includes('supabase.co')) {
       const transformUrl = finalUrl.replace('/storage/v1/object/public/', '/storage/v1/render/image/public/') + '?width=100&height=100&format=auto&quality=80';
       return `<div class="td-avatar"><img src="${escapeHtml(transformUrl)}" data-heic="${escapeHtml(finalUrl)}" onerror="handleHeicError(this)" alt="${escapeHtml(fallbackLabel)}" loading="lazy"></div>`;
@@ -5049,14 +5122,12 @@ function renderPastParticipants() {
   const section = document.getElementById('pastParticipantsSection');
   if (!track || !section) return;
 
-  // Persuasive fallback if no past participants found in DB
-  const displayList = pastParticipants.length ? pastParticipants : [
-    { name: 'Ricardo G.', date: '15/04/2026', photoUrl: 'https://i.pravatar.cc/150?u=r1' },
-    { name: 'Marta L.', date: '12/04/2026', photoUrl: 'https://i.pravatar.cc/150?u=r2' },
-    { name: 'Sebastian V.', date: '10/04/2026', photoUrl: 'https://i.pravatar.cc/150?u=r3' },
-    { name: 'Estefania M.', date: '08/04/2026', photoUrl: 'https://i.pravatar.cc/150?u=r4' },
-    { name: 'Oscar P.', date: '05/04/2026', photoUrl: 'https://i.pravatar.cc/150?u=r5' }
-  ];
+  const displayList = pastParticipants;
+
+  if (!displayList.length) {
+    section.classList.add('hidden');
+    return;
+  }
 
   section.classList.remove('hidden');
   
@@ -5078,7 +5149,7 @@ function renderPastMessages() {
   const section = document.getElementById('pastCommentsSection');
   if (!track || !section) return;
 
-  const displayComments = pastComments.length ? pastComments : [
+  const displayComments = [
     { city: 'Mendoza', opinionMessage: 'Increíble la transparencia, pude ver mi nombre apenas pagué.' },
     { city: 'Buenos Aires', opinionMessage: 'El curso de autos usados me sirvió muchísimo, muy recomendado.' },
     { city: 'Salta', opinionMessage: 'Ya es la segunda vez que participo, me genera mucha confianza el sistema.' },
@@ -5152,9 +5223,10 @@ async function loadParticipants(){
   });
 
   // Split into current and past
+  // Solo mostramos los participantes que se unieron despues de la fecha de inicio del feed vivo
   currentParticipants = participants.filter(p => p.joinedAt >= LIVE_FEED_PARTICIPANTS_START_DATE);
-  pastParticipants = participants.filter(p => p.joinedAt < LIVE_FEED_PARTICIPANTS_START_DATE);
-  pastComments = pastParticipants.filter(p => p.opinionMessage.length > 0);
+  pastParticipants = []; // No mostrar participantes de sorteos anteriores
+  pastComments = []; // No mostrar comentarios de sorteos anteriores
 
   refreshDrawEntryPool();
   renderProofMessages();
