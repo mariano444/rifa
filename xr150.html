@@ -3095,9 +3095,12 @@ function pauseDrawShowcase() {
   drawShowcaseState.paused = true;
   stopDrawShowcase();
   updateDrawControls();
-  document.getElementById('drawPhaseLabel').textContent = 'Prueba detenida';
-  document.getElementById('drawPhaseName').textContent = 'El software freno en el foco actual';
-  document.getElementById('drawPhaseHint').textContent = 'Ahora puedes registrar este resultado de demostracion. Este dato sirve solo como evidencia visual del funcionamiento y no como resultado oficial.';
+  const el1 = document.getElementById('drawPhaseLabel');
+  const el2 = document.getElementById('drawPhaseName');
+  const el3 = document.getElementById('drawPhaseHint');
+  if (el1) el1.textContent = 'Prueba detenida';
+  if (el2) el2.textContent = 'El software freno en el foco actual';
+  if (el3) el3.textContent = 'Ahora puedes registrar este resultado de demostracion. Este dato sirve solo como evidencia visual del funcionamiento y no como resultado oficial.';
 }
 
 function startDemoTrial() {
@@ -3113,9 +3116,12 @@ function startDemoTrial() {
   }
   document.getElementById('participantsTableScroller')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
   tickDrawShowcase();
-  document.getElementById('drawPhaseLabel').textContent = 'Prueba en curso';
-  document.getElementById('drawPhaseName').textContent = 'El software esta recorriendo participantes en vivo';
-  document.getElementById('drawPhaseHint').textContent = 'La prueba se detendra sola en el elegido y luego podras registrar ese resultado.';
+  const pl = document.getElementById('drawPhaseLabel');
+  const pn = document.getElementById('drawPhaseName');
+  const ph = document.getElementById('drawPhaseHint');
+  if (pl) pl.textContent = 'Prueba en curso';
+  if (pn) pn.textContent = 'El software esta recorriendo participantes en vivo';
+  if (ph) ph.textContent = 'La prueba se detendra sola en el elegido y luego podras registrar ese resultado.';
 }
 
 function syncParticipantTableFocus(activeIndex, isSpotlight) {
@@ -3180,17 +3186,24 @@ function renderDrawShowcaseEmpty() {
   drawShowcaseState.hasStarted = false;
   if (card) card.classList.remove('spotlight');
   syncParticipantTableFocus(-1, false);
-  document.getElementById('drawRoundCounter').textContent = '0';
-  document.getElementById('drawFeaturedAvatar').textContent = '--';
-  document.getElementById('drawFeaturedAvatar').style.background = 'rgba(255,255,255,0.06)';
-  document.getElementById('drawFeaturedAvatar').style.color = 'var(--text)';
-  document.getElementById('drawFeaturedName').textContent = 'La animacion se activara sola';
-  document.getElementById('drawFeaturedMeta').innerHTML = '<span class="draw-featured-pill">Sin datos todavia</span>';
-  document.getElementById('drawFeaturedScore').textContent = '0';
-  document.getElementById('drawPhaseLabel').textContent = 'Prueba disponible';
-  document.getElementById('drawPhaseName').textContent = 'Lista para iniciar la demostracion del funcionamiento';
-  document.getElementById('drawPhaseHint').textContent = 'Pulsa iniciar prueba, deja que el sistema recorra la lista y luego registra el punto exacto donde freno.';
-  document.getElementById('drawIntelFill').style.width = '18%';
+  const elRoundCounter = document.getElementById('drawRoundCounter');
+  const elAvatar = document.getElementById('drawFeaturedAvatar');
+  const elName = document.getElementById('drawFeaturedName');
+  const elMeta = document.getElementById('drawFeaturedMeta');
+  const elScore = document.getElementById('drawFeaturedScore');
+  const elPhaseLabel = document.getElementById('drawPhaseLabel');
+  const elPhaseName = document.getElementById('drawPhaseName');
+  const elPhaseHint = document.getElementById('drawPhaseHint');
+  const elIntelFill = document.getElementById('drawIntelFill');
+  if (elRoundCounter) elRoundCounter.textContent = '0';
+  if (elAvatar) { elAvatar.textContent = '--'; elAvatar.style.background = 'rgba(255,255,255,0.06)'; elAvatar.style.color = 'var(--silver)'; }
+  if (elName) elName.textContent = 'La animacion se activara sola';
+  if (elMeta) elMeta.innerHTML = '<span class="draw-featured-pill">Sin datos todavia</span>';
+  if (elScore) elScore.textContent = '0';
+  if (elPhaseLabel) elPhaseLabel.textContent = 'Prueba disponible';
+  if (elPhaseName) elPhaseName.textContent = 'Lista para iniciar la demostracion del funcionamiento';
+  if (elPhaseHint) elPhaseHint.textContent = 'Pulsa iniciar prueba, deja que el sistema recorra la lista y luego registra el punto exacto donde freno.';
+  if (elIntelFill) elIntelFill.style.width = '18%';
   updateDrawControls();
   if (rail) {
     rail.innerHTML = '<div class="draw-rail-empty">Todavia no hay participantes visibles para iniciar el recorrido animado.</div>';
@@ -3269,6 +3282,15 @@ function renderDrawShowcase(entry, isSpotlight, delay) {
   const phaseName = document.getElementById('drawPhaseName');
   const phaseHint = document.getElementById('drawPhaseHint');
   const intelFill = document.getElementById('drawIntelFill');
+
+  // Guard: if critical elements are missing, skip rendering silently
+  if (!featuredCard || !featuredAvatar || !featuredName || !featuredMeta || !featuredScore) {
+    if (delay && delay > 0) {
+      drawAnimationTimeout = setTimeout(tickDrawShowcase, delay);
+    }
+    return;
+  }
+
   const cycleProgress = drawShowcaseState.cycle.length
     ? (drawShowcaseState.cyclePosition + 1) / drawShowcaseState.cycle.length
     : 0;
@@ -3286,14 +3308,15 @@ function renderDrawShowcase(entry, isSpotlight, delay) {
     <span class="draw-featured-pill">${participant.publicCode ? escapeHtml(participant.publicCode) : 'Registro visible'}</span>
   `;
   featuredScore.textContent = getParticipantChances(participant).toLocaleString('es-AR');
-  document.getElementById('drawRoundCounter').textContent = String(drawShowcaseState.round);
+  const elRC = document.getElementById('drawRoundCounter');
+  if (elRC) elRC.textContent = String(drawShowcaseState.round);
 
-  phaseLabel.textContent = isSpotlight ? 'Pausa aleatoria' : 'Recorrido dinamico';
-  phaseName.textContent = isSpotlight
+  if (phaseLabel) phaseLabel.textContent = isSpotlight ? 'Pausa aleatoria' : 'Recorrido dinamico';
+  if (phaseName) phaseName.textContent = isSpotlight
     ? `${participant.displayName || participant.name} quedo seleccionado en la demostracion`
     : 'La lista esta recorriendo participantes en tiempo real';
-  phaseHint.textContent = getDrawNarrative(participant, isSpotlight, cycleProgress);
-  intelFill.style.width = `${Math.max(16, Math.min(100, cycleProgress * 100))}%`;
+  if (phaseHint) phaseHint.textContent = getDrawNarrative(participant, isSpotlight, cycleProgress);
+  if (intelFill) intelFill.style.width = `${Math.max(16, Math.min(100, cycleProgress * 100))}%`;
 
   const visibleCards = [];
   const cardCount = Math.min(Math.max(drawShowcaseState.cycle.length, 1), 5);
