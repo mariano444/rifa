@@ -3,20 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gran Sorteo - Volkswagen Fox</title>
-<meta name="description" content="Participa desde cualquier punto de Argentina por un hermoso Volkswagen Fox. ¡Últimas chances disponibles! El sorteo se hará el 5 de junio.">
+<title>Gran Sorteo - Volkswagen Gol Power</title>
+<meta name="description" content="Participa desde cualquier punto de Argentina por un hermoso Volkswagen Gol Power. ¡Últimas chances disponibles! El sorteo se hará el 5 de junio.">
 <meta name="author" content="Gran Sorteo">
-<meta property="og:title" content="Gran Sorteo - Volkswagen Fox">
-<meta property="og:description" content="Te invito a participar de este sorteo por un hermoso Volkswagen Fox. ¡Últimas chances disponibles! El sorteo se hará el 5 de junio.">
+<meta property="og:title" content="Gran Sorteo - Volkswagen Gol Power">
+<meta property="og:description" content="Te invito a participar de este sorteo por un hermoso Volkswagen Gol Power. ¡Últimas chances disponibles! El sorteo se hará el 5 de junio.">
 <meta property="og:image" content="/assets/premios/fox-1.png">
-<meta property="og:image:alt" content="Imagen promocional del sorteo del Volkswagen Fox">
+<meta property="og:image:alt" content="Imagen promocional del sorteo del Volkswagen Gol Power">
 <meta property="og:image:width" content="1080">
 <meta property="og:image:height" content="1350">
 <meta property="og:image:type" content="image/png">
 <meta property="og:locale" content="es_AR">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Gran Sorteo - Volkswagen Fox">
-<meta name="twitter:description" content="Te invito a participar de este sorteo por un hermoso Volkswagen Fox. ¡Últimas chances disponibles! El sorteo se hará el 5 de junio.">
+<meta name="twitter:title" content="Gran Sorteo - Volkswagen Gol Power">
+<meta name="twitter:description" content="Te invito a participar de este sorteo por un hermoso Volkswagen Gol Power. ¡Últimas chances disponibles! El sorteo se hará el 5 de junio.">
 <meta name="twitter:image" content="/assets/premios/fox-1.png">
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Rajdhani:wght@400;500;600;700&family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
 <style>
@@ -1757,9 +1757,13 @@ body.modal-open .whatsapp-float { opacity: 0; visibility: hidden; pointer-events
 
 /* ===== DRAW SHOWCASE COMPLETE STYLES ===== */
 #drawShowcase { margin-top: 1rem; }
-#drawShowcase.collapsed .draw-rail,
-#drawShowcase.collapsed .demo-history-gp { display: none; }
+#drawShowcase.collapsed { display: none; }
 #drawShowcase.hidden { display: none !important; }
+
+.draw-rail-name { display: block; font-weight: 700; color: var(--white); font-size: 0.82rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 180px; }
+.draw-rail-meta { display: flex; gap: 0.6rem; margin-top: 0.2rem; }
+.draw-rail-meta span { font-size: 0.7rem; color: var(--silver2); white-space: nowrap; }
+.draw-rail-empty { color: var(--silver2); font-size: 0.82rem; padding: 0.5rem; width: 100%; }
 
 .draw-showcase-stage-gp { flex: 1; display: grid; gap: 0.75rem; }
 .draw-stage-chip-gp {
@@ -1796,19 +1800,21 @@ body.modal-open .whatsapp-float { opacity: 0; visibility: hidden; pointer-events
   background: rgba(255,255,255,0.02);
   border: 1px solid rgba(255,255,255,0.05);
   border-radius: 0.4rem;
-  display: flex; flex-wrap: wrap; gap: 0.4rem;
-  max-height: 160px; overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.5rem;
+  max-height: 220px; overflow-y: auto;
   scrollbar-width: thin; scrollbar-color: rgba(200,255,0,0.2) transparent;
 }
-.draw-rail-empty-gp { color: var(--silver2); font-size: 0.82rem; }
+.draw-rail-empty-gp { color: var(--silver2); font-size: 0.82rem; grid-column: 1/-1; }
 .draw-rail-card {
-  padding: 0.35rem 0.65rem;
+  padding: 0.55rem 0.75rem;
   background: rgba(255,255,255,0.03);
   border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 0.3rem;
+  border-radius: 0.35rem;
   font-size: 0.78rem; color: var(--silver2);
   transition: all 0.15s;
-  white-space: nowrap;
+  overflow: hidden;
 }
 .draw-rail-card.active {
   background: rgba(200,255,0,0.08);
@@ -2019,11 +2025,11 @@ td[data-col="participant"] { min-width: 200px; padding-left: 1rem; }
   <h1 class="hero-title">
     GRAN
     <span class="title-highlight">SORTEO</span>
-    <span class="title-model">Volkswagen Fox</span>
+    <span class="title-model">Volkswagen Gol Power</span>
   </h1>
 
   <div class="hero-car-featured reveal" style="max-width: 650px; margin: 0 auto;">
-    <img src="./assets/premios/fox-1.png" alt="Volkswagen Fox" style="width:100%; filter: drop-shadow(0 10px 30px rgba(0,0,0,0.5));">
+    <img src="./assets/premios/fox-1.png" alt="Volkswagen Gol Power" style="width:100%; filter: drop-shadow(0 10px 30px rgba(0,0,0,0.5));">
   </div>
 
   <p class="hero-subtitle">Impecable · Listo para transferir · ¡Puede ser tuyo hoy!</p>
@@ -2038,7 +2044,7 @@ td[data-col="participant"] { min-width: 200px; padding-left: 1rem; }
     </div>
   </div>
 
-  <p class="hero-lead">Participá por un hermoso Volkswagen Fox. <strong>Seguridad garantizada, lista pública en tiempo real</strong> y un beneficio exclusivo: con 3+ chances te llevás gratis el curso guía para comprar usados.</p>
+  <p class="hero-lead">Participá por un hermoso Volkswagen Gol Power. <strong>Seguridad garantizada, lista pública en tiempo real</strong> y un beneficio exclusivo: con 3+ chances te llevás gratis el curso guía para comprar usados.</p>
 
   <div class="hero-cta reveal" style="transition-delay:0.2s">
     <a href="#paquetes" class="btn-primary">¡QUIERO PARTICIPAR AHORA!</a>
@@ -2086,7 +2092,7 @@ td[data-col="participant"] { min-width: 200px; padding-left: 1rem; }
 
 <!-- URGENCY STRIP -->
 <div class="urgency-strip">
-  <span>SORTEO · VOLKSWAGEN FOX · PREMIO · ¡ÚLTIMAS CHANCES! · SORTEO NACIONAL · VOLKSWAGEN FOX · PREMIO ÚNICO · ¡ÚLTIMAS CHANCES! · SORTEO · VOLKSWAGEN FOX · PREMIO · ¡ÚLTIMAS CHANCES! · SORTEO NACIONAL · VOLKSWAGEN FOX · PREMIO ÚNICO · ¡ÚLTIMAS CHANCES! · </span>
+  <span>SORTEO · VOLKSWAGEN GOL POWER · PREMIO · ¡ÚLTIMAS CHANCES! · SORTEO NACIONAL · VOLKSWAGEN GOL POWER · PREMIO ÚNICO · ¡ÚLTIMAS CHANCES! · SORTEO · VOLKSWAGEN GOL POWER · PREMIO · ¡ÚLTIMAS CHANCES! · SORTEO NACIONAL · VOLKSWAGEN GOL POWER · PREMIO ÚNICO · ¡ÚLTIMAS CHANCES! · </span>
 </div>
 
 <!-- TRUST STRIP -->
@@ -2112,14 +2118,14 @@ td[data-col="participant"] { min-width: 200px; padding-left: 1rem; }
 <!-- TICKER -->
 <div class="ticker">
   <div class="ticker-inner" id="ticker">
-    <span class="ticker-item">Volkswagen Fox impecable</span>
+    <span class="ticker-item">Volkswagen Gol Power impecable</span>
     <span class="ticker-item">Premio único con fotos reales</span>
     <span class="ticker-item">1 ganador seleccionado al azar</span>
     <span class="ticker-item">Más chances = más posibilidades</span>
     <span class="ticker-item">Sorteo 100% transparente</span>
     <span class="ticker-item">Participás desde toda Argentina</span>
     <span class="ticker-item">Con 3 o más chances llevate el curso gratis</span>
-    <span class="ticker-item">Volkswagen Fox impecable</span>
+    <span class="ticker-item">Volkswagen Gol Power impecable</span>
     <span class="ticker-item">Premio único con fotos reales</span>
     <span class="ticker-item">1 ganador seleccionado al azar</span>
     <span class="ticker-item">Más chances = más posibilidades</span>
@@ -2134,7 +2140,7 @@ td[data-col="participant"] { min-width: 200px; padding-left: 1rem; }
   <div class="section-inner">
     <span class="section-tag">💎 Elegí tu pack</span>
     <h2 class="section-title">Más chances,<br><span style="color:var(--volt)">más posibilidades</span></h2>
-    <p class="section-sub">Cada chance suma una participación real dentro del sistema de selección. Mientras más chances tengas, más posibilidades acumulás de quedarte con el Volkswagen Fox.</p>
+    <p class="section-sub">Cada chance suma una participación real dentro del sistema de selección. Mientras más chances tengas, más posibilidades acumulás de quedarte con el Volkswagen Gol Power.</p>
 
     <div class="packages-grid" id="packagesGrid">
       <!-- generado por JS -->
@@ -2218,28 +2224,28 @@ td[data-col="participant"] { min-width: 200px; padding-left: 1rem; }
 <section id="galeria" class="gallery-section">
   <div class="section-inner">
     <span class="section-tag">📸 Estado Impecable</span>
-    <h2 class="section-title">Explorá tu próximo<br><span style="color:var(--volt)">Volkswagen Fox</span></h2>
+    <h2 class="section-title">Explorá tu próximo<br><span style="color:var(--volt)">Volkswagen Gol Power</span></h2>
     <p class="section-sub">El vehículo se encuentra en excelentes condiciones, listo para que lo disfrutes desde el primer día.</p>
     
     <div class="gallery-grid-new">
       <div class="gallery-item-new reveal">
-        <img src="./assets/premios/fox-1.png" alt="Volkswagen Fox Frontal Derecha">
+        <img src="./assets/premios/fox-1.png" alt="Volkswagen Gol Power Frontal Derecha">
         <span class="gallery-tag">Vista Principal</span>
       </div>
       <div class="gallery-item-new reveal">
-        <img src="./assets/premios/fox-2.png" alt="Volkswagen Fox Frontal Izquierda">
+        <img src="./assets/premios/fox-2.png" alt="Volkswagen Gol Power Frontal Izquierda">
         <span class="gallery-tag">Perfil Moderno</span>
       </div>
       <div class="gallery-item-new reveal">
-        <img src="./assets/premios/fox-6.png" alt="Volkswagen Fox Frente">
+        <img src="./assets/premios/fox-6.png" alt="Volkswagen Gol Power Frente">
         <span class="gallery-tag">Frente Impecable</span>
       </div>
       <div class="gallery-item-new reveal">
-        <img src="./assets/premios/fox-4.png" alt="Volkswagen Fox Interior Trasero">
+        <img src="./assets/premios/fox-4.png" alt="Volkswagen Gol Power Interior Trasero">
         <span class="gallery-tag">Espacio Interior</span>
       </div>
       <div class="gallery-item-new reveal">
-        <img src="./assets/premios/fox-5.png" alt="Volkswagen Fox Interior Tablero">
+        <img src="./assets/premios/fox-5.png" alt="Volkswagen Gol Power Interior Tablero">
         <span class="gallery-tag">Tablero y Control</span>
       </div>
     </div>
@@ -2355,7 +2361,7 @@ td[data-col="participant"] { min-width: 200px; padding-left: 1rem; }
       </div>
       <div class="draw-card reveal" style="transition-delay:0.3s">
         <div class="draw-card-title">4. Entrega coordinada con el ganador</div>
-        <div class="draw-card-copy">Una vez confirmado el ganador, se coordina la entrega dentro de las 48 horas siguientes. Se organiza el retiro del Volkswagen Fox publicado.</div>
+        <div class="draw-card-copy">Una vez confirmado el ganador, se coordina la entrega dentro de las 48 horas siguientes. Se organiza el retiro del Volkswagen Gol Power publicado.</div>
       </div>
     </div>
 
@@ -2374,7 +2380,7 @@ td[data-col="participant"] { min-width: 200px; padding-left: 1rem; }
       <button class="btn-draw-sec" id="toggleDemoBtn" type="button">Mostrar / Ocultar demo</button>
     </div>
 
-    <div class="draw-showcase reveal collapsed hidden" id="drawShowcase">
+    <div class="draw-showcase reveal collapsed" id="drawShowcase">
       <div class="draw-showcase-panel">
         <div class="draw-showcase-copy">
           <div class="draw-showcase-kicker">Demostración de transparencia</div>
@@ -2433,7 +2439,7 @@ td[data-col="participant"] { min-width: 200px; padding-left: 1rem; }
   <div class="auto-showcase-wrap">
     <div class="auto-showcase-copy reveal">
       <div class="auto-showcase-kicker">El Premio</div>
-      <div class="auto-showcase-title">Volkswagen <span>Fox</span></div>
+      <div class="auto-showcase-title">Volkswagen <span>Gol Power</span></div>
       <div class="auto-showcase-text">Un auto impecable con todo listo para transferir. El premio es único, está publicado con fotos reales y la entrega se coordina directamente con el ganador.</div>
       <div class="auto-showcase-pills">
         <span class="auto-pill">✓ Impecable</span>
@@ -2444,7 +2450,7 @@ td[data-col="participant"] { min-width: 200px; padding-left: 1rem; }
     </div>
     <div class="auto-showcase-grid reveal" style="transition-delay:0.15s">
       <div class="auto-photo-card featured">
-        <img src="./assets/premios/fox-1.png" alt="Volkswagen Fox">
+        <img src="./assets/premios/fox-1.png" alt="Volkswagen Gol Power">
         <div class="auto-photo-label"><span class="auto-photo-label-text">Vista Principal</span></div>
       </div>
       <div class="auto-photo-card">
@@ -2517,7 +2523,7 @@ td[data-col="participant"] { min-width: 200px; padding-left: 1rem; }
       </div>
       <div class="faq-item">
         <button class="faq-q">¿Cuándo se entrega el premio? <span class="faq-arrow">▼</span></button>
-        <div class="faq-a">El premio se coordina con el ganador dentro de las 48 horas posteriores al sorteo. Se contacta al ganador, se valida la forma de entrega y se organiza el retiro del Volkswagen Fox o su equivalente en dinero.</div>
+        <div class="faq-a">El premio se coordina con el ganador dentro de las 48 horas posteriores al sorteo. Se contacta al ganador, se valida la forma de entrega y se organiza el retiro del Volkswagen Gol Power o su equivalente en dinero.</div>
       </div>
       <div class="faq-item">
         <button class="faq-q">¿Puedo comprar más de un pack? <span class="faq-arrow">▼</span></button>
@@ -2677,7 +2683,7 @@ td[data-col="participant"] { min-width: 200px; padding-left: 1rem; }
 </div>
 
 <!-- WHATSAPP FLOAT -->
-<a class="whatsapp-float" href="https://wa.me/543518757751?text=Hola!%20Quiero%20consultar%20por%20el%20sorteo%20del%20Volkswagen%20Fox" target="_blank" rel="noopener noreferrer">
+<a class="whatsapp-float" href="https://wa.me/543518757751?text=Hola!%20Quiero%20consultar%20por%20el%20sorteo%20del%20Volkswagen%20Gol%20Power" target="_blank" rel="noopener noreferrer">
   <span style="font-size:1.3rem">💬</span>
   <span><small>Consultas</small>WhatsApp</span>
 </a>
@@ -2691,8 +2697,8 @@ const MAX_FALLBACK_CHANCES = 5000;
 const FUNCTIONS_BASE_URL = `${SUPABASE_URL}/functions/v1`;
 const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 const DEFAULT_SHARE_IMAGE = new URL('./assets/premios/fox-1.png', window.location.href).toString();
-const DEFAULT_SHARE_TITLE = 'Gran Sorteo - Volkswagen Fox';
-const DEFAULT_SHARE_DESCRIPTION = 'Participa de este sorteo por un hermoso Volkswagen Fox. ¡Últimas chances disponibles! El sorteo se hará el 5 de junio.';
+const DEFAULT_SHARE_TITLE = 'Gran Sorteo - Volkswagen Gol Power';
+const DEFAULT_SHARE_DESCRIPTION = 'Participa de este sorteo por un hermoso Volkswagen Gol Power. ¡Últimas chances disponibles! El sorteo se hará el 5 de junio.';
 const COURSE_PAGE_PATH = './curso-guia-auto-argentina.html';
 const COURSE_MIN_ENTRIES = 3;
 const DRAW_TARGET_ISO = '2026-06-28T21:00:00-03:00';
@@ -3146,9 +3152,11 @@ function toggleDemoShowcase() {
   const showcase = document.getElementById('drawShowcase');
   const button = document.getElementById('toggleDemoBtn');
   if (!showcase || !button) return;
+  // Remove hidden if present
+  showcase.classList.remove('hidden');
   const willOpen = showcase.classList.contains('collapsed');
   showcase.classList.toggle('collapsed', !willOpen);
-  button.textContent = willOpen ? 'Ocultar demostracion' : 'Iniciar demostracion';
+  button.textContent = willOpen ? 'Ocultar demostración' : 'Mostrar demostración';
 }
 
 function updateDrawControls() {
@@ -3479,10 +3487,18 @@ function tickDrawShowcase() {
 
 function startDrawShowcase() {
   stopDrawShowcase();
+  const showcase = document.getElementById('drawShowcase');
   if (!currentParticipants.length) {
     renderDrawShowcaseEmpty();
     return;
   }
+  // Auto-show the showcase when participants are available
+  if (showcase) {
+    showcase.classList.remove('hidden');
+    showcase.classList.remove('collapsed');
+  }
+  const btn = document.getElementById('toggleDemoBtn');
+  if (btn) btn.textContent = 'Ocultar demostración';
   drawShowcaseState.paused = true;
   drawShowcaseState.hasStarted = false;
   updateDrawControls();
