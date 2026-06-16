@@ -2253,6 +2253,11 @@
     border: 1px solid rgba(255,255,255,0.08);
     background: #050507;
     min-height: 220px;
+    pointer-events: auto;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
   }
   body.has-official-winner .demo-history-card,
   body.has-official-winner .draw-rail-card:not(.spotlight) {
@@ -2589,7 +2594,7 @@
       <span id="winnerModalMeta"></span>
     </div>
     <div class="winner-modal-grid">
-      <video class="winner-modal-video" id="winnerModalVideo" controls playsinline preload="metadata"></video>
+      <video class="winner-modal-video" id="winnerModalVideo" controls playsinline preload="metadata" controlslist="nodownload" disablepictureinpicture oncontextmenu="return false;"></video>
       <div class="winner-claim-status" id="winnerDeliveryStatus"></div>
       <div class="winner-claim-summary show" id="winnerClaimSummary">
         <strong id="winnerClaimSummaryTitle"></strong>
@@ -2652,6 +2657,25 @@ function renderWinnerModal(result) {
 }
 
 renderWinnerModal(FIXED_RESULT);
+
+// Prevent right-click on the whole page
+document.addEventListener('contextmenu', function(e) {
+  e.preventDefault();
+  return false;
+});
+
+// Prevent common download/inspect keyboard shortcuts
+document.addEventListener('keydown', function(e) {
+  // Ctrl+S, Ctrl+U, Ctrl+Shift+I, Ctrl+Shift+J, F12
+  if (
+    (e.ctrlKey && (e.key === 's' || e.key === 'u' || e.key === 'S' || e.key === 'U')) ||
+    (e.ctrlKey && e.shiftKey && (e.key === 'i' || e.key === 'j' || e.key === 'I' || e.key === 'J')) ||
+    (e.key === 'F12')
+  ) {
+    e.preventDefault();
+    return false;
+  }
+});
 </script>
 </body>
 </html>
