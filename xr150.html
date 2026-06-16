@@ -1682,6 +1682,235 @@ body.modal-open .whatsapp-float { opacity: 0; visibility: hidden; pointer-events
 .draw-showcase-copy { padding: 0; }
 .draw-featured-empty { padding: 1.2rem; background: rgba(255,255,255,0.02); border-radius: 0.4rem; border: 1px dashed rgba(255,255,255,0.08); color: var(--silver2); font-size: 0.85rem; text-align: center; }
 .draw-queue-copy { display: none; }
+
+/* ===== DRAW SHOWCASE COMPLETE STYLES ===== */
+#drawShowcase { margin-top: 1rem; }
+#drawShowcase.collapsed .draw-rail,
+#drawShowcase.collapsed .demo-history-gp { display: none; }
+#drawShowcase.hidden { display: none !important; }
+
+.draw-showcase-stage-gp { flex: 1; display: grid; gap: 0.75rem; }
+.draw-stage-chip-gp {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.72rem; font-weight: 700;
+  color: var(--silver2); text-transform: uppercase; letter-spacing: 0.1em;
+}
+.draw-stage-chip-gp strong { color: var(--volt); }
+
+.draw-featured-body-gp { flex: 1; min-width: 0; }
+.draw-featured-label-gp { display: block; font-size: 0.68rem; color: var(--silver2); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.1rem; }
+.draw-featured-name-gp { display: block; font-weight: 700; color: var(--white); font-size: 0.95rem; }
+.draw-featured-meta-gp { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.35rem; }
+.draw-featured-pill {
+  display: inline-block; padding: 0.15rem 0.5rem;
+  background: rgba(200,255,0,0.07);
+  border: 1px solid rgba(200,255,0,0.15);
+  border-radius: 1rem; font-size: 0.68rem;
+  color: var(--volt2); font-weight: 600;
+}
+.draw-featured-score-wrap-gp { text-align: right; flex-shrink: 0; }
+.draw-featured-score-label-gp { display: block; font-size: 0.62rem; color: var(--silver2); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.1rem; }
+.draw-featured-score-value-gp { font-family: 'Black Han Sans', sans-serif; font-size: 1.5rem; color: var(--volt); }
+
+.draw-showcase-status-gp { display: grid; gap: 0.3rem; }
+.draw-showcase-status-label { font-family: 'Rajdhani', sans-serif; font-size: 0.68rem; font-weight: 700; color: var(--silver2); text-transform: uppercase; letter-spacing: 0.12em; }
+.draw-showcase-status-name { display: block; color: var(--white); font-weight: 700; font-size: 0.9rem; }
+.draw-showcase-status-hint { display: block; color: var(--silver2); font-size: 0.8rem; line-height: 1.5; }
+.draw-intel-bar-gp { margin-top: 0.5rem; height: 4px; background: rgba(255,255,255,0.07); border-radius: 2px; overflow: hidden; }
+.draw-intel-fill { height: 100%; background: linear-gradient(90deg, var(--volt2), var(--volt)); width: 18%; transition: width 0.4s; box-shadow: 0 0 8px rgba(200,255,0,0.4); }
+
+.draw-rail {
+  margin-top: 1rem; padding: 0.75rem;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 0.4rem;
+  display: flex; flex-wrap: wrap; gap: 0.4rem;
+  max-height: 160px; overflow-y: auto;
+  scrollbar-width: thin; scrollbar-color: rgba(200,255,0,0.2) transparent;
+}
+.draw-rail-empty-gp { color: var(--silver2); font-size: 0.82rem; }
+.draw-rail-card {
+  padding: 0.35rem 0.65rem;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 0.3rem;
+  font-size: 0.78rem; color: var(--silver2);
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.draw-rail-card.active {
+  background: rgba(200,255,0,0.08);
+  border-color: rgba(200,255,0,0.3);
+  color: var(--volt);
+  font-weight: 700;
+}
+.draw-rail-card.spotlight {
+  background: rgba(255,61,0,0.12);
+  border-color: rgba(255,61,0,0.35);
+  color: var(--fire);
+  box-shadow: 0 0 12px rgba(255,61,0,0.2);
+}
+
+.demo-history-gp { margin-top: 1rem; display: none; }
+.demo-history-gp.open { display: block; }
+.demo-history-head-gp { margin-bottom: 0.75rem; }
+.demo-history-title-gp { font-family: 'Rajdhani', sans-serif; font-weight: 700; color: var(--white); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; }
+.demo-history-sub-gp { color: var(--silver2); font-size: 0.78rem; margin-top: 0.1rem; }
+.demo-history-grid-gp { display: grid; gap: 0.5rem; }
+.demo-history-empty-gp { color: var(--silver2); font-size: 0.82rem; }
+.demo-history-item {
+  display: flex; align-items: center; gap: 0.75rem;
+  padding: 0.55rem 0.75rem;
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 0.3rem;
+  font-size: 0.82rem;
+}
+.demo-history-num { font-family: 'Black Han Sans', sans-serif; color: var(--volt); font-size: 0.9rem; min-width: 24px; }
+.demo-history-name { color: var(--white); font-weight: 700; }
+.demo-history-detail { color: var(--silver2); font-size: 0.75rem; margin-left: auto; }
+
+/* ===== PARTICIPANTS TABLE (GP STYLE) ===== */
+.table-header-gp {
+  display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+  padding: 0.9rem 1rem;
+  background: var(--ink3);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+.table-title-gp {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.82rem; font-weight: 800;
+  color: var(--white); text-transform: uppercase; letter-spacing: 0.08em;
+  flex: 1; min-width: 120px;
+}
+.live-badge-gp {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.65rem; font-weight: 800;
+  color: var(--green); text-transform: uppercase; letter-spacing: 0.12em;
+  background: rgba(0,230,118,0.08);
+  border: 1px solid rgba(0,230,118,0.2);
+  padding: 0.25rem 0.6rem; border-radius: 1rem;
+}
+.live-dot-gp {
+  width: 6px; height: 6px;
+  background: var(--green); border-radius: 50%;
+  box-shadow: 0 0 6px var(--green);
+  animation: blink 1.2s infinite;
+}
+.search-input-gp {
+  background: var(--ink4);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--white);
+  padding: 0.45rem 0.8rem;
+  border-radius: 0.3rem;
+  font-size: 0.85rem; font-family: 'Barlow', sans-serif;
+  outline: none; width: 200px;
+  transition: border-color 0.2s;
+}
+.search-input-gp:focus { border-color: var(--volt); }
+.search-input-gp::placeholder { color: var(--silver2); }
+
+.participants-table-gp {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+.participants-table-gp th {
+  background: rgba(255,255,255,0.02);
+  color: var(--silver2);
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.7rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  padding: 0.6rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  white-space: nowrap;
+}
+.participants-table-gp td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  color: var(--silver);
+  vertical-align: middle;
+}
+.participants-table-gp tbody tr:hover td { background: rgba(200,255,0,0.02); }
+.participants-table-gp tbody tr:last-child td { border-bottom: none; }
+
+/* Participant row cells */
+.p-cell-name { font-weight: 700; color: var(--white); }
+.p-cell-code { font-size: 0.72rem; color: var(--silver2); margin-top: 0.1rem; }
+.p-cell-avatar {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 30px; height: 30px; border-radius: 50%;
+  font-family: 'Black Han Sans', sans-serif;
+  font-size: 0.7rem; margin-right: 0.6rem;
+  vertical-align: middle; flex-shrink: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.p-cell-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+.p-chances {
+  font-family: 'Black Han Sans', sans-serif;
+  font-size: 1rem; color: var(--volt);
+}
+.p-opinion-btn {
+  background: none; border: none;
+  color: var(--volt2); font-size: 0.72rem;
+  cursor: pointer; font-family: 'Rajdhani', sans-serif;
+  font-weight: 700; letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.p-opinion-btn:hover { color: var(--volt); }
+
+.past-participants-scroller, .past-comments-scroller {
+  margin-top: 1.5rem; overflow: hidden;
+}
+.past-participants-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.72rem; font-weight: 700;
+  color: var(--silver2); text-transform: uppercase;
+  letter-spacing: 0.12em; margin-bottom: 0.75rem;
+}
+.past-participants-track { display: flex; gap: 0.75rem; will-change: transform; }
+
+/* ===== PARTICIPANT TABLE CELL CLASSES (used by JS) ===== */
+.participant-cell { display: flex; align-items: center; gap: 0.55rem; min-width: 0; }
+td[data-col="participant"] { min-width: 200px; padding-left: 1rem; }
+.participant-label { display: block; min-width: 0; font-weight: 600; line-height: 1.2; color: var(--white); }
+.participant-info { display: flex; flex-direction: column; min-width: 0; }
+.participant-mobile-location { display: none; font-size: 0.72rem; color: var(--silver2); margin-top: 0.1rem; }
+.participant-main-row { cursor: pointer; animation: fadeInSlide 0.45s ease backwards; position: relative; }
+@keyframes fadeInSlide { from { opacity: 0; transform: translateX(-8px); } to { opacity: 1; transform: none; } }
+.participant-main-row.is-draw-active td { background: rgba(200,255,0,0.06); box-shadow: inset 0 0 0 1px rgba(200,255,0,0.15); }
+.participant-main-row.is-draw-active::before, .participant-main-row.is-draw-spotlight::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; }
+.participant-main-row.is-draw-active::before { width: 3px; background: var(--volt); }
+.participant-main-row.is-draw-active .participant-label, .participant-main-row.is-draw-active .chances-badge { color: var(--volt); }
+.participant-main-row.is-draw-spotlight td { background: linear-gradient(90deg, rgba(255,61,0,0.12), rgba(255,61,0,0.04)); box-shadow: inset 3px 0 0 var(--fire), inset 0 0 0 1px rgba(255,61,0,0.2); animation: drawRowPulse 1.15s ease-in-out infinite; }
+.participant-main-row.is-draw-spotlight::before { width: 5px; background: var(--fire); }
+.participant-main-row.is-draw-spotlight .participant-label { color: var(--fire); }
+@keyframes drawRowPulse { 0%,100% { box-shadow: inset 3px 0 0 var(--fire), inset 0 0 0 1px rgba(255,61,0,0.2); } 50% { box-shadow: inset 3px 0 0 var(--fire), inset 0 0 0 1px rgba(255,61,0,0.35); } }
+.participant-detail-row td { background: rgba(255,255,255,0.02); padding-top: 0.4rem; padding-bottom: 0.8rem; }
+.participant-detail-wrap { display: flex; flex-direction: column; gap: 0.4rem; }
+.participant-detail-title { font-size: 0.83rem; font-weight: 700; color: var(--white); }
+.participant-detail-grid { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.participant-detail-chip { display: inline-flex; align-items: center; background: rgba(200,255,0,0.07); border: 1px solid rgba(200,255,0,0.16); color: var(--volt2); font-size: 0.74rem; font-weight: 700; padding: 0.25rem 0.5rem; border-radius: 999px; }
+.chances-badge { display: inline-flex; align-items: center; background: rgba(200,255,0,0.1); color: var(--volt); font-size: 0.75rem; font-weight: 700; padding: 0.2rem 0.55rem; border-radius: 0.3rem; }
+.td-city { font-size: 0.75rem; color: var(--silver2); }
+.td-avatar { width: 32px; height: 32px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-family: 'Black Han Sans', sans-serif; font-size: 0.75rem; flex-shrink: 0; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+.td-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+.verified-badge { display: inline-flex; align-items: center; gap: 0.2rem; color: var(--blue); font-size: 0.68rem; font-weight: 700; margin-left: 0.35rem; }
+.verified-badge svg { width: 11px; height: 11px; fill: currentColor; }
+.message-trigger { display: inline-flex; align-items: center; gap: 0.35rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: var(--silver); border-radius: 999px; padding: 0.3rem 0.65rem; font-size: 0.72rem; font-weight: 700; cursor: pointer; transition: all 0.2s; font-family: 'Barlow', sans-serif; }
+.message-trigger:hover { border-color: var(--volt); background: rgba(200,255,0,0.06); color: var(--volt); transform: translateY(-1px); }
+.message-trigger.empty { opacity: 0.4; cursor: default; pointer-events: none; }
+.message-trigger-icon { font-size: 0.9rem; line-height: 1; }
+.chances-list { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+.chances-bar { display: flex; gap: 2px; }
+.chance-dot { width: 8px; height: 8px; border-radius: 1px; background: rgba(200,255,0,0.25); }
+.chance-dot.filled { background: var(--volt); }
+.draw-showcase.is-focus-locked { scroll-margin-top: 84px; }
 </style>
 </head>
 <body>
@@ -1848,19 +2077,36 @@ body.modal-open .whatsapp-float { opacity: 0; visibility: hidden; pointer-events
     <h2 class="section-title">Lista de<br><span style="color:var(--volt)">participantes</span></h2>
     <p class="section-sub" id="participantsSummary">Cargando participantes...</p>
 
-    <div class="search-wrapper">
-      <span class="search-icon">🔍</span>
-      <input id="searchInput" placeholder="Buscar por nombre, ciudad o código...">
-    </div>
-
-    <div class="participants-count" id="participantsCount"></div>
-
-    <div class="participants-table-wrap">
-      <div id="participantsList"></div>
-    </div>
-
-    <div class="past-participants-section">
-      <div class="past-participants-scroll hidden" id="pastParticipantsSection">
+    <div class="participants-table-wrap reveal">
+      <div class="table-header-gp">
+        <span class="table-title-gp">Participantes registrados</span>
+        <span class="live-badge-gp"><span class="live-dot-gp"></span>EN VIVO</span>
+        <input type="text" class="search-input-gp" id="searchInput" placeholder="Buscar por nombre o código...">
+      </div>
+      <div style="overflow-x:auto" id="participantsTableScroller">
+        <table class="participants-table-gp">
+          <colgroup>
+            <col style="width:34%">
+            <col style="width:15%">
+            <col style="width:15%">
+            <col style="width:12%">
+            <col style="width:12%">
+            <col style="width:12%">
+          </colgroup>
+          <thead>
+            <tr>
+              <th>Participante</th>
+              <th>Provincia</th>
+              <th>Ciudad</th>
+              <th>Compradas</th>
+              <th>Fecha</th>
+              <th>Mensaje</th>
+            </tr>
+          </thead>
+          <tbody id="participantsBody"></tbody>
+        </table>
+      </div>
+      <div class="past-participants-scroller hidden" id="pastParticipantsSection">
         <div class="past-participants-title">Participantes de sorteos anteriores</div>
         <div class="past-participants-track" id="pastParticipantsTrack"></div>
       </div>
@@ -2052,40 +2298,58 @@ body.modal-open .whatsapp-float { opacity: 0; visibility: hidden; pointer-events
   <div class="section-inner">
     <span class="section-tag">🎮 Demo en tiempo real</span>
     <h2 class="section-title">Así funciona<br><span style="color:var(--volt)">la selección</span></h2>
+    <div style="margin-bottom:1rem">
+      <button class="btn-draw-sec" id="toggleDemoBtn" type="button">Mostrar / Ocultar demo</button>
+    </div>
 
-    <div class="draw-showcase">
+    <div class="draw-showcase reveal collapsed hidden" id="drawShowcase">
       <div class="draw-showcase-panel">
         <div class="draw-showcase-copy">
-          <div class="draw-showcase-kicker">Sistema de sorteo</div>
-          <div class="draw-showcase-title">Podés ver cómo funciona el sistema</div>
-          <div class="draw-showcase-sub">Probá el demo y mirá cómo el sistema recorre las chances activas antes de elegir un ganador al azar.</div>
-
-          <div style="margin-top:1rem; margin-bottom:0.75rem">
-            <div class="draw-featured-card" id="drawFeaturedCard">
-              <div class="draw-featured-avatar" id="drawFeaturedAvatar" style="background:#1C2630"></div>
-              <div>
-                <div class="draw-featured-name" id="drawFeaturedName">Esperando inicio...</div>
-                <div class="draw-featured-detail" id="drawFeaturedDetail">Iniciá el demo para ver el proceso</div>
-              </div>
-              <div class="draw-featured-entry" id="drawFeaturedEntry" style="display:none">
-                <div id="drawFeaturedEntryNum"></div>
-                <span>chance</span>
+          <div class="draw-showcase-kicker">Demostración de transparencia</div>
+          <div class="draw-showcase-title">Probador visual del <span>software de selección</span></div>
+          <div class="draw-showcase-sub">Iniciá la demostración para observar en tiempo real cómo el sistema recorre participantes y se detiene automáticamente.</div>
+          <div class="demo-launcher" style="margin-top:1rem">
+            <button class="btn-draw" id="drawStartBtn" type="button">▶ Iniciar prueba</button>
+            <button class="btn-draw-sec" id="saveDemoResultBtn" type="button">Registrar resultado</button>
+            <button class="btn-draw-sec" id="toggleDemoHistoryBtn" type="button">Historial demo</button>
+          </div>
+        </div>
+        <div class="draw-showcase-stage-gp">
+          <div class="draw-stage-chip-gp">Ronda actual <strong id="drawRoundCounter">0</strong></div>
+          <div class="draw-featured-card" id="drawFeaturedCard">
+            <div class="draw-featured-avatar" id="drawFeaturedAvatar">--</div>
+            <div class="draw-featured-body-gp">
+              <span class="draw-featured-label-gp">Esperando participantes</span>
+              <strong class="draw-featured-name-gp" id="drawFeaturedName">La animación se activará sola</strong>
+              <div class="draw-featured-meta-gp" id="drawFeaturedMeta">
+                <span class="draw-featured-pill">Se mostrará aquí</span>
               </div>
             </div>
+            <div class="draw-featured-score-wrap-gp">
+              <span class="draw-featured-score-label-gp">Chances</span>
+              <strong class="draw-featured-score-value-gp" id="drawFeaturedScore">0</strong>
+            </div>
           </div>
-
-          <div class="demo-launcher">
-            <button class="btn-draw" id="drawStartBtn">▶ Iniciar demo</button>
-            <button class="btn-draw-sec" id="toggleDemoBtn">Ver / Ocultar</button>
-            <button class="btn-draw-sec hidden" id="saveDemoResultBtn">Guardar resultado</button>
+          <div class="draw-showcase-status-gp">
+            <span class="draw-showcase-status-label" id="drawPhaseLabel">Estado del sistema</span>
+            <strong class="draw-showcase-status-name" id="drawPhaseName">Esperando el listado en vivo</strong>
+            <span class="draw-showcase-status-hint" id="drawPhaseHint">Cuando haya participantes cargados, el sistema empezará a recorrerlos en bucle.</span>
+            <div class="draw-intel-bar-gp">
+              <div class="draw-intel-fill" id="drawIntelFill"></div>
+            </div>
           </div>
-
-          <button class="btn-draw-sec" id="toggleDemoHistoryBtn" style="margin-top:0.5rem">Ver historial</button>
-          <div class="draw-history" id="demoHistory"></div>
         </div>
-
-        <div class="draw-stage-wrap">
-          <div class="draw-queue" id="drawQueue"></div>
+      </div>
+      <div class="draw-rail" id="drawRail">
+        <div class="draw-rail-empty-gp">Todavía no hay participantes visibles para iniciar el recorrido animado.</div>
+      </div>
+      <div class="demo-history-gp" id="demoHistoryPanel">
+        <div class="demo-history-head-gp">
+          <div class="demo-history-title-gp">Historial de demostración</div>
+          <div class="demo-history-sub-gp">Participantes asentados manualmente desde esta demostración.</div>
+        </div>
+        <div class="demo-history-grid-gp" id="demoHistoryGrid">
+          <div class="demo-history-empty-gp">Todavía no hay resultados guardados.</div>
         </div>
       </div>
     </div>
