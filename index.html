@@ -3,22 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gran Sorteo - Volkswagen Fox</title>
-<meta name="description" content="Participa desde cualquier punto de Argentina por un hermoso Volkswagen Fox. ¡Últimas chances disponibles! El sorteo se hará el 5 de junio.">
-  <meta name="author" content="Gran Sorteo">
-  
-  <meta property="og:title" content="Gran Sorteo - Volkswagen Fox">
-  <meta property="og:description" content="Te invito a participar de este sorteo por un hermoso Volkswagen Fox. ¡Últimas chances disponibles! El sorteo se hará el 5 de junio.">
-<meta property="og:image" content="/assets/premios/fox-1.png">
-<meta property="og:image:alt" content="Imagen promocional del sorteo del Volkswagen Fox">
+<title>Resultado Final</title>
+<meta name="description" content="Participa desde cualquier punto de Argentina por un Fiat Uno 2014 impecable. Quedan pocos lugares y el sorteo puede hacerse antes al agotar chances.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Resultado Final">
+<meta property="og:description" content="Resultado Final">
+<meta property="og:image:alt" content="Imagen promocional del sorteo">
 <meta property="og:image:width" content="1080">
 <meta property="og:image:height" content="1350">
 <meta property="og:image:type" content="image/png">
 <meta property="og:locale" content="es_AR">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Gran Sorteo - Volkswagen Fox">
-<meta name="twitter:description" content="Te invito a participar de este sorteo por un hermoso Volkswagen Fox. ¡Últimas chances disponibles! El sorteo se hará el 5 de junio.">
-<meta name="twitter:image" content="/assets/premios/fox-1.png">
+<meta name="twitter:title" content="Resultado Final">
+<meta name="twitter:description" content="Resultado Final">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -64,179 +61,6 @@
     padding: 2rem 1rem 4rem;
     overflow: hidden;
   }
-  /* ---- HERO ENHANCEMENTS ---- */
-  /* ---- HERO CAR PHOTO ---- */
-  .hero-car-featured {
-    position: relative; z-index: 3;
-    width: min(800px, 100%);
-    margin: 2rem auto;
-    filter: drop-shadow(0 20px 50px rgba(0,0,0,0.5));
-    animation: carFloat 6s ease-in-out infinite;
-  }
-  @keyframes carFloat {
-    0%, 100% { transform: translateY(0) scale(1); }
-    50% { transform: translateY(-15px) scale(1.02); }
-  }
-
-  /* ---- FLOATING AVATARS ---- */
-  .hero-floating-avatars {
-    position: absolute; inset: 0;
-    pointer-events: none;
-    z-index: 1;
-    overflow: hidden;
-  }
-  .floating-avatar {
-    position: absolute;
-    width: 50px; height: 50px;
-    border-radius: 50%;
-    border: 2px solid var(--gold);
-    background: var(--dark2);
-    box-shadow: 0 0 15px rgba(245,200,66,0.3);
-    opacity: 0;
-    transform: scale(0);
-    animation: avatarPop 4s ease-in-out forwards;
-  }
-  @keyframes avatarPop {
-    0% { transform: scale(0); opacity: 0; }
-    20% { transform: scale(1.2); opacity: 0.8; }
-    30% { transform: scale(1); opacity: 0.8; }
-    80% { transform: scale(1); opacity: 0.8; }
-    100% { transform: scale(0.5); opacity: 0; }
-  }
-
-  .hero-visitor-badge {
-    position: relative; z-index: 2;
-    background: rgba(0, 212, 106, 0.15);
-    color: var(--green);
-    font-size: 0.75rem; font-weight: 700;
-    padding: 0.4rem 1rem;
-    border-radius: 2rem;
-    border: 1px solid rgba(0, 212, 106, 0.3);
-    margin-bottom: 1rem;
-    display: flex; align-items: center; gap: 0.5rem;
-    animation: fadeInDown 0.8s ease backwards;
-  }
-  .hero-visitor-dot {
-    width: 8px; height: 8px; background: var(--green);
-    border-radius: 50%;
-    box-shadow: 0 0 10px var(--green);
-    animation: pulseGreen 1.5s infinite;
-  }
-  @keyframes pulseGreen {
-    0% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.3); opacity: 0.5; }
-    100% { transform: scale(1); opacity: 1; }
-  }
-  @keyframes fadeInDown {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .hero-title {
-    position: relative; z-index: 2;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(4.5rem, 14vw, 10rem);
-    line-height: 0.85;
-    color: #fff;
-    text-shadow: 0 0 80px rgba(245,200,66,0.4);
-    margin-bottom: 0.5rem;
-    letter-spacing: -0.02em;
-    background: linear-gradient(180deg, #fff 30%, var(--gold) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  .hero-title span {
-    display: block;
-    font-size: 0.4em;
-    letter-spacing: 0.4em;
-    margin-top: -0.1em;
-    color: var(--gold);
-    -webkit-text-fill-color: var(--gold);
-    text-shadow: none;
-  }
-
-  .hero-progress-container {
-    position: relative; z-index: 2;
-    width: min(400px, 90%);
-    margin: 1.5rem auto;
-    text-align: left;
-  }
-  .hero-progress-label {
-    display: flex; justify-content: space-between;
-    font-size: 0.75rem; font-weight: 700; color: var(--text2);
-    margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em;
-  }
-  .hero-progress-bar {
-    height: 8px; background: rgba(255,255,255,0.1);
-    border-radius: 10px; overflow: hidden;
-    border: 1px solid rgba(255,255,255,0.05);
-  }
-  .hero-progress-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--gold2), var(--gold), #fff);
-    width: 0%;
-    transition: width 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-    box-shadow: 0 0 20px rgba(245,200,66,0.4);
-  }
-
-  .trust-strip {
-    display: flex; flex-wrap: wrap; gap: 3rem;
-    justify-content: center; align-items: center;
-    padding: 3rem 1.5rem;
-    background: linear-gradient(180deg, transparent, rgba(255,255,255,0.02), transparent);
-    border-top: 1px solid rgba(255,255,255,0.05);
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-  }
-  .trust-item {
-    display: flex; flex-direction: column; align-items: center; gap: 0.8rem;
-    text-align: center;
-    transition: transform 0.3s ease;
-  }
-  .trust-item:hover { transform: translateY(-5px); }
-  .trust-icon {
-    width: 50px; height: 50px; border-radius: 14px;
-    background: linear-gradient(145deg, rgba(245,200,66,0.2), rgba(245,200,66,0.05));
-    border: 1px solid rgba(245,200,66,0.3);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.2rem; flex-shrink: 0;
-    color: var(--gold);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-  }
-  .trust-label { font-size: 0.85rem; font-weight: 700; color: var(--text); line-height: 1.3; }
-  .trust-label span { color: var(--text2); font-weight: 500; font-size: 0.75rem; display: block; margin-top: 0.2rem; }
-
-  /* ---- FLOATING BADGE ---- */
-  .floating-badge {
-    position: absolute;
-    top: 20%; right: 10%;
-    background: var(--red);
-    color: #fff;
-    padding: 1rem;
-    border-radius: 50%;
-    width: 80px; height: 80px;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    font-size: 0.7rem; font-weight: 900;
-    text-transform: uppercase;
-    text-align: center;
-    line-height: 1;
-    z-index: 5;
-    transform: rotate(15deg);
-    box-shadow: 0 10px 30px rgba(232,25,44,0.4);
-    animation: floatBadge 4s ease-in-out infinite;
-  }
-  @keyframes floatBadge {
-    0%, 100% { transform: rotate(15deg) translateY(0); }
-    50% { transform: rotate(15deg) translateY(-15px); }
-  }
-  .floating-badge strong { font-size: 1.2rem; display: block; }
-
-  @media (max-width: 768px) {
-    .floating-badge { width: 60px; height: 60px; font-size: 0.55rem; right: 5%; top: 15%; }
-    .floating-badge strong { font-size: 0.9rem; }
-    .hero-title { font-size: 5rem; }
-    .trust-strip { gap: 1.5rem; }
-  }
-
   .hero-bg {
     position: absolute; inset: 0;
     background: radial-gradient(ellipse 120% 80% at 50% 20%, #3a1500 0%, var(--dark) 65%);
@@ -815,28 +639,6 @@
     color: var(--gold);
     font-weight: 800;
   }
-  .verified-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.2rem;
-    color: #3B8BFF;
-    font-size: 0.7rem;
-    font-weight: 700;
-    margin-left: 0.4rem;
-  }
-  .verified-badge svg {
-    width: 12px;
-    height: 12px;
-    fill: currentColor;
-  }
-  .participant-main-row {
-    animation: fadeInSlide 0.5s ease backwards;
-  }
-  @keyframes fadeInSlide {
-    from { opacity: 0; transform: translateX(-10px); }
-    to { opacity: 1; transform: translateX(0); }
-  }
-
   .live-feed {
     position: fixed;
     right: 18px;
@@ -872,107 +674,6 @@
   .live-feed-text {
     font-size: 0.92rem;
     line-height: 1.35;
-  }
-  .past-participants-scroller {
-    margin-top: 1.5rem;
-    background: linear-gradient(90deg, rgba(245,200,66,0.05), rgba(0,0,0,0.2), rgba(245,200,66,0.05));
-    border-top: 1px solid rgba(245,200,66,0.1);
-    border-bottom: 1px solid rgba(245,200,66,0.1);
-    padding: 1.5rem 1rem;
-    overflow: hidden;
-    position: relative;
-  }
-  .past-participants-title {
-    font-size: 0.8rem;
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    color: var(--gold);
-    margin-bottom: 1.2rem;
-    text-align: center;
-    text-shadow: 0 0 10px rgba(245,200,66,0.2);
-  }
-  .past-participants-track {
-    display: flex;
-    gap: 3rem;
-    align-items: center;
-    width: max-content;
-    will-change: transform;
-  }
-  .past-participant-item {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    flex-shrink: 0;
-    white-space: nowrap;
-    background: rgba(255,255,255,0.03);
-    padding: 0.5rem 1rem;
-    border-radius: 999px;
-    border: 1px solid rgba(255,255,255,0.05);
-  }
-  .past-participant-avatar {
-    width: 32px; height: 32px; border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid var(--gold);
-  }
-  .past-participant-info {
-    display: flex;
-    flex-direction: column;
-  }
-  .past-participant-name { font-weight: 700; color: var(--text); font-size: 0.85rem; }
-  .past-participant-date { color: var(--gold); font-size: 0.7rem; font-weight: 600; }
-
-  /* Past Comments Scroller */
-  .past-comments-scroller {
-    margin-top: 1.5rem;
-    background: rgba(10,10,15,0.6);
-    border-radius: 1.5rem;
-    padding: 2rem 1rem;
-    overflow: hidden;
-    position: relative;
-    border: 1px solid rgba(245,200,66,0.1);
-    box-shadow: inset 0 0 40px rgba(0,0,0,0.5);
-  }
-  .past-comment-item {
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-    flex-shrink: 0;
-    padding: 1.2rem 1.5rem;
-    background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(0,0,0,0));
-    border-radius: 1.2rem;
-    border: 1px solid rgba(255,255,255,0.08);
-    max-width: 350px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-  }
-  .past-comment-location {
-    font-size: 0.75rem;
-    font-weight: 800;
-    color: var(--gold);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-  }
-  .past-comment-location::before {
-    content: '📍';
-    font-size: 0.9rem;
-  }
-  .past-comment-text {
-    font-size: 0.9rem;
-    line-height: 1.5;
-    color: var(--text);
-    font-style: italic;
-    font-weight: 500;
-  }
-  .past-comment-tag {
-    font-size: 0.65rem;
-    font-weight: 700;
-    color: rgba(245,200,66,0.4);
-    text-align: right;
-    margin-top: 0.4rem;
-    text-transform: uppercase;
   }
   .live-feed-sub {
     color: var(--text2);
@@ -1210,6 +911,12 @@
     justify-content: space-between;
     gap: 1rem;
     flex-wrap: wrap;
+  }
+  .demo-launcher-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
   }
   .demo-launcher-copy {
     display: grid;
@@ -1488,6 +1195,13 @@
     display: grid;
     gap: 0.18rem;
   }
+  .draw-status-topline {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.65rem;
+  }
   .draw-showcase-status-label {
     color: var(--gold);
     font-size: 0.78rem;
@@ -1504,32 +1218,40 @@
     font-size: 0.85rem;
     color: var(--text2);
   }
-  .draw-intel-bar {
-    position: relative;
-    height: 9px;
+  .draw-live-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.38rem 0.72rem;
     border-radius: 999px;
-    overflow: hidden;
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.06);
+    background: rgba(232, 25, 44, 0.18);
+    border: 1px solid rgba(232, 25, 44, 0.42);
+    color: #ffd6da;
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    box-shadow: 0 0 22px rgba(232,25,44,0.18);
   }
-  .draw-intel-fill {
-    width: 24%;
-    height: 100%;
-    border-radius: inherit;
-    background: linear-gradient(90deg, var(--blue), var(--gold), #fff2b8);
-    box-shadow: 0 0 16px rgba(245,200,66,0.22);
-    transition: width 0.28s ease;
+  .draw-live-badge::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ff5667;
+    box-shadow: 0 0 0 0 rgba(255,86,103,0.8);
+    animation: livePulse 1.25s infinite;
   }
-  .draw-intel-glow {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.55), transparent);
-    transform: translateX(-100%);
-    animation: drawSweep 1.8s linear infinite;
-    opacity: 0.45;
+  @keyframes livePulse {
+    0% { box-shadow: 0 0 0 0 rgba(255,86,103,0.8); }
+    70% { box-shadow: 0 0 0 10px rgba(255,86,103,0); }
+    100% { box-shadow: 0 0 0 0 rgba(255,86,103,0); }
   }
-  @keyframes drawSweep {
-    to { transform: translateX(100%); }
+  .draw-recording-state {
+    font-size: 0.76rem;
+    color: var(--text2);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
   }
   .draw-controls {
     display: flex;
@@ -1565,14 +1287,54 @@
     border-color: rgba(0,212,106,0.3);
     color: #8ff0be;
   }
-  .draw-showcase.paused .draw-intel-glow {
-    animation-play-state: paused;
-    opacity: 0.18;
+  .draw-control-btn.record {
+    background: linear-gradient(135deg, rgba(232,25,44,0.18), rgba(232,25,44,0.08));
+    border-color: rgba(232,25,44,0.35);
+    color: #ffd6da;
   }
   .draw-showcase.paused .draw-featured-card {
     border-color: rgba(255,255,255,0.12);
     transform: none;
     animation: none;
+  }
+  .demo-video-panel {
+    display: none;
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.03);
+    gap: 0.85rem;
+  }
+  .demo-video-panel.open {
+    display: grid;
+  }
+  .demo-video-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.7rem;
+  }
+  .demo-video-title {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--text);
+  }
+  .demo-video-sub {
+    font-size: 0.8rem;
+    color: var(--text2);
+  }
+  .demo-video-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+  }
+  .demo-video-player {
+    width: 100%;
+    border-radius: 0.9rem;
+    background: #05070d;
+    border: 1px solid rgba(255,255,255,0.06);
   }
   .draw-rail {
     display: none;
@@ -1637,176 +1399,6 @@
     display: block;
   }
   .stat-label { font-size: 0.75rem; color: var(--text2); font-weight: 600; margin-top: 0.25rem; letter-spacing: 0.05em; }
-
-  /* ---- REFINED PACKAGES ---- */
-  .pkg {
-    background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 2rem;
-    padding: 2.5rem 1.5rem;
-    display: flex; flex-direction: column; align-items: center;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    position: relative;
-    overflow: hidden;
-  }
-  .pkg:hover {
-    transform: translateY(-10px);
-    border-color: var(--gold);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 20px rgba(245,200,66,0.1);
-    background: linear-gradient(145deg, rgba(245,200,66,0.05), rgba(255,255,255,0.02));
-  }
-  .pkg.featured {
-    border: 2px solid var(--gold);
-    background: linear-gradient(145deg, rgba(245,200,66,0.1), rgba(0,0,0,0.2));
-    transform: scale(1.05);
-    z-index: 2;
-  }
-  .pkg-badge {
-    position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-    background: var(--gold); color: var(--dark);
-    padding: 0.4rem 1.2rem; border-radius: 0 0 1rem 1rem;
-    font-size: 0.7rem; font-weight: 900; text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-  .pkg-chances {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 4rem; line-height: 1; color: #fff;
-    margin-bottom: 0.2rem;
-    text-shadow: 0 0 20px rgba(255,255,255,0.2);
-  }
-  .pkg-unit {
-    font-size: 0.8rem; font-weight: 800; color: var(--gold);
-    text-transform: uppercase; letter-spacing: 0.2em;
-    margin-bottom: 1.5rem;
-  }
-  .pkg-price {
-    font-size: 2rem; font-weight: 900; color: #fff;
-    margin-bottom: 0.5rem;
-  }
-  .pkg-price-unit {
-    font-size: 0.8rem; color: var(--text2);
-    margin-bottom: 1.5rem;
-  }
-  .pkg-features {
-    width: 100%; border-top: 1px solid rgba(255,255,255,0.05);
-    padding-top: 1.5rem; margin-bottom: 2rem;
-    display: flex; flex-direction: column; gap: 0.8rem;
-    text-align: left;
-  }
-  .pkg-feature {
-    display: flex; align-items: center; gap: 0.6rem;
-    font-size: 0.85rem; color: var(--text2);
-  }
-  .pkg-feature i { color: var(--gold); font-size: 0.9rem; }
-  .pkg-btn {
-    width: 100%; padding: 1.2rem; border-radius: 1rem;
-    background: var(--gold); color: var(--dark);
-    font-weight: 900; font-size: 0.9rem; text-transform: uppercase;
-    cursor: pointer; border: none; transition: 0.3s;
-  }
-  .pkg-btn:hover { background: #fff; transform: scale(1.02); }
-
-  /* ---- PREMIUM COURSE SECTION ---- */
-  .course-premium-card {
-    background: linear-gradient(135deg, #0f172a, #1e293b);
-    border-radius: 3rem;
-    padding: 4rem;
-    margin: 4rem 0;
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    border: 1px solid rgba(245,200,66,0.2);
-    position: relative; overflow: hidden;
-    box-shadow: 0 40px 100px rgba(0,0,0,0.6);
-  }
-  .course-premium-card::before {
-    content: ''; position: absolute; top: -50%; left: -50%;
-    width: 200%; height: 200%;
-    background: radial-gradient(circle, rgba(245,200,66,0.05) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .course-premium-tag {
-    background: rgba(245,200,66,0.1); color: var(--gold);
-    padding: 0.5rem 1.5rem; border-radius: 2rem;
-    font-size: 0.8rem; font-weight: 800; display: inline-block;
-    margin-bottom: 1.5rem; border: 1px solid rgba(245,200,66,0.2);
-  }
-  .course-premium-title {
-    font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1;
-    font-family: 'Bebas Neue', sans-serif; color: #fff;
-    margin-bottom: 1.5rem;
-  }
-  .course-premium-title span { color: var(--gold); }
-  .course-premium-list {
-    display: grid; gap: 1.5rem; margin-bottom: 2.5rem;
-  }
-  .course-item {
-    display: flex; gap: 1.2rem; align-items: flex-start;
-  }
-  .course-icon {
-    width: 44px; height: 44px; border-radius: 12px;
-    background: rgba(245,200,66,0.1);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.2rem; flex-shrink: 0; color: var(--gold);
-    border: 1px solid rgba(245,200,66,0.2);
-  }
-  .course-text h4 { color: #fff; font-size: 1.1rem; margin-bottom: 0.3rem; }
-  .course-text p { color: var(--text2); font-size: 0.9rem; line-height: 1.4; }
-  
-  .course-visual {
-    position: relative; display: flex; align-items: center; justify-content: center;
-  }
-  .course-mockup {
-    width: 100%; max-width: 400px;
-    filter: drop-shadow(0 30px 60px rgba(0,0,0,0.5));
-    border-radius: 1.5rem;
-    transform: rotate(-5deg);
-    transition: 0.5s ease;
-  }
-  .course-premium-card:hover .course-mockup { transform: rotate(0) scale(1.05); }
-  .course-badge-trust {
-    position: absolute; bottom: 20px; right: 20px;
-    background: #fff; color: #000; padding: 1rem;
-    border-radius: 1rem; display: flex; align-items: center; gap: 0.8rem;
-    font-weight: 900; font-size: 0.8rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  }
-
-  /* ---- REFINED GALLERY ---- */
-  .gallery-grid-new {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
-    margin: 3rem 0;
-  }
-  .gallery-item-new {
-    border-radius: 2rem; overflow: hidden; position: relative;
-    aspect-ratio: 4/3; cursor: pointer;
-    border: 1px solid rgba(255,255,255,0.05);
-    transition: 0.4s;
-  }
-  .gallery-item-new:nth-child(1) { grid-column: span 2; grid-row: span 2; }
-  .gallery-item-new img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
-  .gallery-item-new:hover img { transform: scale(1.1); }
-  .gallery-item-new::after {
-    content: ''; position: absolute; inset: 0;
-    background: linear-gradient(0deg, rgba(0,0,0,0.6) 0%, transparent 50%);
-    opacity: 0; transition: 0.3s;
-  }
-  .gallery-item-new:hover::after { opacity: 1; }
-  .gallery-tag {
-    position: absolute; bottom: 1.5rem; left: 1.5rem;
-    background: var(--gold); color: var(--dark);
-    padding: 0.4rem 1rem; border-radius: 2rem;
-    font-size: 0.7rem; font-weight: 800; text-transform: uppercase;
-    z-index: 2; opacity: 0; transform: translateY(10px); transition: 0.3s;
-  }
-  .gallery-item-new:hover .gallery-tag { opacity: 1; transform: translateY(0); }
-
-  @media (max-width: 992px) {
-    .course-premium-card { grid-template-columns: 1fr; gap: 3rem; padding: 2.5rem; }
-    .gallery-grid-new { grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (max-width: 576px) {
-    .gallery-grid-new { grid-template-columns: 1fr; }
-    .gallery-item-new:nth-child(1) { grid-column: span 1; grid-row: span 1; }
-  }
 
   .participants-table-wrap {
     background: var(--dark2);
@@ -1903,18 +1495,6 @@
     font-weight: 600;
     line-height: 1.2;
     color: var(--text);
-  }
-  .participant-info {
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-  }
-  .participant-mobile-location {
-    display: none;
-    font-size: 0.72rem;
-    color: var(--text2);
-    margin-top: 0.15rem;
-    font-weight: 500;
   }
   .participant-main-row td[data-col="participant"],
   .participant-detail-row td[data-col="participant"] {
@@ -2291,6 +1871,69 @@
     transition: opacity 0.3s;
   }
   .modal-overlay.open { opacity: 1; pointer-events: all; }
+  body.modal-open > *:not(#winnerModal) {
+    filter: blur(8px);
+    pointer-events: none;
+    user-select: none;
+  }
+  body.winner-preloading > *:not(#winnerModalPreload) {
+    opacity: 0;
+    pointer-events: none;
+    user-select: none;
+  }
+  body.modal-open #winnerModal {
+    filter: none;
+    pointer-events: all;
+  }
+  .winner-preload {
+    position: fixed;
+    inset: 0;
+    z-index: 1800;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    background:
+      radial-gradient(circle at top, rgba(245,200,66,0.18), transparent 38%),
+      rgba(8,8,12,0.94);
+  }
+  body.winner-preloading .winner-preload {
+    display: flex;
+  }
+  .winner-preload-card {
+    width: min(100%, 420px);
+    padding: 1.35rem 1.25rem;
+    border-radius: 1.25rem;
+    border: 1px solid rgba(245,200,66,0.24);
+    background: linear-gradient(145deg, rgba(20,20,28,0.96), rgba(10,10,14,0.98));
+    box-shadow: 0 28px 60px rgba(0,0,0,0.36);
+    text-align: center;
+    display: grid;
+    gap: 0.85rem;
+  }
+  .winner-preload-spinner {
+    width: 52px;
+    height: 52px;
+    margin: 0 auto;
+    border-radius: 50%;
+    border: 3px solid rgba(255,255,255,0.14);
+    border-top-color: var(--gold);
+    animation: spin 0.9s linear infinite;
+  }
+  .winner-preload-title {
+    color: var(--gold);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.9rem;
+    letter-spacing: 0.03em;
+  }
+  .winner-preload-copy {
+    color: var(--text2);
+    line-height: 1.6;
+    font-size: 0.92rem;
+  }
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
   .modal {
     background: var(--dark2);
     border: 1px solid rgba(245,200,66,0.3);
@@ -2471,35 +2114,18 @@
     background: linear-gradient(135deg, var(--gold), var(--gold2));
     color: var(--dark);
     font-family: 'Barlow', sans-serif;
-    font-size: 1.1rem; font-weight: 900;
-    padding: 1.1rem;
-    border-radius: 0.8rem;
+    font-size: 1rem; font-weight: 900;
+    padding: 0.9rem;
+    border-radius: 0.7rem;
     border: none; cursor: pointer;
-    transition: all 0.2s;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-top: 1.5rem;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    transition: opacity 0.2s, transform 0.2s;
   }
-  .modal-confirm:hover { opacity: 0.95; transform: translateY(-2px); box-shadow: 0 15px 30px rgba(245,200,66,0.3); }
-  .modal-confirm:active { transform: translateY(0); }
+  .modal-confirm:hover { opacity: 0.9; transform: scale(1.01); }
   .modal-trust {
-    display: flex; justify-content: center; gap: 1.2rem;
-    margin-top: 1.5rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid rgba(255,255,255,0.08);
-    font-size: 0.75rem; color: var(--text2); flex-wrap: wrap;
-    text-align: center;
+    display: flex; justify-content: center; gap: 1.5rem;
+    margin-top: 1rem;
+    font-size: 0.72rem; color: var(--text2); flex-wrap: wrap;
   }
-  .modal-trust-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.4rem;
-    min-width: 80px;
-  }
-  .modal-trust-icon { font-size: 1.3rem; margin-bottom: 0.2rem; }
-  .modal-trust-text { font-weight: 700; color: var(--text); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.05em; }
   .opinion-modal-copy {
     color: var(--text2);
     font-size: 0.95rem;
@@ -2507,36 +2133,185 @@
     margin-top: 1rem;
     white-space: pre-wrap;
   }
-  .opinion-modal-head {
+  .winner-result-card {
+    display: none;
+    margin: 1.4rem 0 1.8rem;
+    padding: 1.25rem;
+    border-radius: 1.25rem;
+    background: linear-gradient(145deg, rgba(245,200,66,0.12), rgba(24,24,34,0.96));
+    border: 1px solid rgba(245,200,66,0.28);
+    box-shadow: 0 20px 44px rgba(0,0,0,0.26);
+  }
+  .winner-result-card.show {
+    display: grid;
+    gap: 1rem;
+  }
+  .winner-result-head {
     display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 0.5rem;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: flex-start;
+    flex-wrap: wrap;
   }
-  .opinion-modal-avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    overflow: hidden;
-    flex-shrink: 0;
-  }
-  .opinion-modal-avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .opinion-modal-info {
-    display: flex;
-    flex-direction: column;
-  }
-  .opinion-modal-author {
+  .winner-result-kicker {
+    color: var(--gold);
+    font-size: 0.74rem;
     font-weight: 800;
-    color: var(--text);
-    font-size: 1rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
   }
-  .opinion-modal-city {
-    font-size: 0.75rem;
+  .winner-result-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    line-height: 0.92;
+    color: var(--text);
+  }
+  .winner-result-copy,
+  .winner-result-meta,
+  .winner-claim-status {
     color: var(--text2);
+    line-height: 1.6;
+    font-size: 0.92rem;
+  }
+  .winner-result-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  .winner-result-video {
+    width: 100%;
+    border-radius: 1rem;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: #050507;
+    min-height: 240px;
+  }
+  .winner-claim-note {
+    margin-top: 0.5rem;
+    padding: 0.9rem 1rem;
+    border-radius: 0.9rem;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: var(--text2);
+    font-size: 0.86rem;
+    line-height: 1.55;
+  }
+  .winner-modal {
+    max-width: 640px;
+  }
+  .winner-modal.fixed .modal-close {
+    display: none;
+  }
+  .winner-modal .modal-title {
+    padding-right: 2rem;
+  }
+  .winner-modal-grid {
+    display: grid;
+    gap: 0.9rem;
+  }
+  .winner-claim-gated {
+    display: none;
+    gap: 0.9rem;
+  }
+  .winner-claim-public {
+    display: grid;
+    gap: 0.9rem;
+  }
+  .winner-claim-gated.show {
+    display: grid;
+  }
+  .winner-claim-summary {
+    display: none;
+    gap: 0.75rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .winner-claim-summary.show {
+    display: grid;
+  }
+  .winner-claim-summary strong {
+    color: var(--gold);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .winner-claim-summary span {
+    color: var(--text2);
+    line-height: 1.6;
+    white-space: pre-wrap;
+  }
+  .winner-claim-summary .winner-claim-received-quote {
+    color: var(--gold);
+    font-style: italic;
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+  .winner-modal-video {
+    width: 100%;
+    border-radius: 1rem;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: #050507;
+    min-height: 220px;
+  }
+  body.has-official-winner .demo-history-card,
+  body.has-official-winner .draw-rail-card:not(.spotlight) {
+    filter: blur(3px);
+    opacity: 0.42;
+  }
+  body.has-official-winner .draw-featured-card:not(.spotlight) {
+    filter: blur(3px);
+    opacity: 0.45;
+  }
+  body.has-official-winner .demo-launcher,
+  body.has-official-winner #drawShowcase,
+  body.has-official-winner .participants-table-wrap,
+  body.has-official-winner section:not(.course-hook-section),
+  body.has-official-winner .hero,
+  body.has-official-winner footer,
+  body.has-official-winner .live-feed,
+  body.has-official-winner .whatsapp-float,
+  body.has-official-winner .toast,
+  body.has-official-winner .winner-result-card {
+    display: none !important;
+  }
+  body.has-official-winner .course-hook-section {
+    filter: none;
+    opacity: 1;
+    transition: filter 0.3s ease, opacity 0.3s ease;
+    display: block !important;
+  }
+  body.has-official-winner.modal-open .course-hook-section {
+    filter: blur(8px);
+    opacity: 0.38;
+  }
+  body.has-official-winner .draw-rail-card:not(.spotlight)::after,
+  body.has-official-winner .demo-history-card::after {
+    content: 'DEMO';
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    padding: 0.2rem 0.45rem;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.14);
+    border: 1px solid rgba(255,255,255,0.16);
+    color: #fff;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+  }
+  body.has-official-winner .draw-rail-card:not(.spotlight),
+  body.has-official-winner .demo-history-card {
+    position: relative;
+  }
+  body.has-official-winner #winnerModal {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .winner-modal-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
   }
 
   /* ---- TOAST ---- */
@@ -2708,10 +2483,6 @@
     }
     .draw-rail { grid-template-columns: 1fr; }
     th, td { padding: 0.6rem 0.75rem; }
-    td[data-col="participant"] { padding-left: 0.6rem; min-width: 0; }
-    .participant-cell { gap: 0.45rem; }
-    .td-avatar { width: 28px; height: 28px; font-size: 0.65rem; }
-    .participant-mobile-location { display: block; }
     .modal { padding: 1.5rem; }
     .hero-title { font-size: 4.5rem; }
     .prize-visual, .prize-moto-stack { height: 140px; }
@@ -2732,13 +2503,6 @@
     }
     .share-link-row { grid-template-columns: 1fr; }
     .share-link-btn { width: 100%; }
-    .participant-mobile-location {
-      display: block;
-    }
-    th:nth-child(2), td:nth-child(2),
-    th:nth-child(3), td:nth-child(3) {
-      display: none;
-    }
   }
 </style>
   <!-- Meta Pixel Code -->
@@ -2758,489 +2522,57 @@
   src="https://www.facebook.com/tr?id=675114246370648&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
-    <!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '717335459401864');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=717335459401864&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
-<script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script>
-
-  <!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1495740652346839');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1495740652346839&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
-  
 </head>
 <body>
-
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-sparks" id="sparks"></div>
-  <div class="hero-floating-avatars" id="floatingAvatarsContainer"></div>
-
-  <div class="floating-badge">
-    <span>Últimas</span>
-    <strong>CHANCES</strong>
-    <span>disponibles</span>
-  </div>
-
-  <div class="hero-visitor-badge">
-    <div class="hero-visitor-dot"></div>
-    <span id="visitorCount">Cargando visitantes...</span>
-  </div>
-
-  <div class="hero-badge">SORTEO NACIONAL · ARGENTINA</div>
-
-  <h1 class="hero-title">GRAN SORTEO<span>VOLKSWAGEN FOX</span></h1>
-  
-  <div class="hero-car-featured reveal" style="max-width: 650px; margin: 0 auto;">
-    <img src="./assets/premios/fox-1.png" alt="Volkswagen Fox" style="width:100%; filter: drop-shadow(0 10px 30px rgba(0,0,0,0.5));">
-  </div>
-
-  <p class="hero-subtitle">Impecable · Listo para transferir · ¡Puede ser tuyo hoy!</p>
-  
-  <div class="hero-progress-container reveal">
-    <div class="hero-progress-label">
-      <span>Chances reservadas</span>
-      <span id="heroProgressText">91% completado</span>
-    </div>
-    <div class="hero-progress-bar">
-      <div class="hero-progress-fill" id="heroProgressFill" style="width: 91%"></div>
-    </div>
-  </div>
-
-  <p class="hero-lead">Participá por un hermoso Volkswagen Fox. <strong>Seguridad garantizada, lista pública en tiempo real</strong> y un beneficio exclusivo: con 3+ chances te llevás gratis el curso guía para comprar usados.</p>
-
-  <div class="hero-cta reveal" style="transition-delay:0.3s">
-    <a href="#paquetes" class="btn-primary">¡QUIERO PARTICIPAR AHORA!</a>
-  </div>
-
-  <!-- FLOATING TRUST BADGES -->
-  <div class="hero-trust-badges reveal" style="transition-delay:0.4s">
-    <div class="hero-trust-badge">
-      <img src="https://img.icons8.com/color/48/000000/shield.png" alt="Seguro">
-      <span>Pago 100% Protegido</span>
-    </div>
-    <div class="hero-trust-badge">
-      <img src="https://img.icons8.com/color/48/000000/checked-user-male.png" alt="Verificado">
-      <span>Sorteo Encriptado</span>
-    </div>
-    <div class="hero-trust-badge">
-      <img src="https://img.icons8.com/color/48/000000/clock--v1.png" alt="Rapido">
-      <span>Carga Instantánea</span>
-    </div>
-  </div>
-
-  <style>
-    .hero-trust-badges {
-      display: flex;
-      gap: 2rem;
-      margin-top: 2.5rem;
-      flex-wrap: wrap;
-      justify-content: center;
-      position: relative; z-index: 2;
-    }
-    .hero-trust-badge {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      background: rgba(255,255,255,0.03);
-      padding: 0.6rem 1.2rem;
-      border-radius: 1rem;
-      border: 1px solid rgba(255,255,255,0.05);
-      backdrop-filter: blur(5px);
-    }
-    .hero-trust-badge img { width: 24px; height: 24px; }
-    .hero-trust-badge span { font-size: 0.85rem; font-weight: 600; color: var(--text2); }
-  </style>
-
-  <div class="countdown-bar reveal hidden-until-thirty" id="countdownBar" style="transition-delay:0.4s; display: none;">
-    <div class="countdown-unit">
-      <span class="countdown-num" id="cd-d">00</span>
-      <span class="countdown-label">DÃ­as</span>
-    </div>
-    <div class="countdown-sep">:</div>
-    <div class="countdown-unit">
-      <span class="countdown-num" id="cd-h">00</span>
-      <span class="countdown-label">Horas</span>
-    </div>
-    <div class="countdown-sep">:</div>
-    <div class="countdown-unit">
-      <span class="countdown-num" id="cd-m">00</span>
-      <span class="countdown-label">Min</span>
-    </div>
-    <div class="countdown-sep">:</div>
-    <div class="countdown-unit">
-      <span class="countdown-num" id="cd-s">00</span>
-      <span class="countdown-label">Seg</span>
-    </div>
-  </div>
-  <div class="countdown-note reveal" id="countdownNote" style="transition-delay:0.45s">Quedan pocos lugares para hacer el sorteo antes.</div>
-</div>
-
-<!-- URGENCY STRIP -->
-<div class="urgency-strip">
-  <span>SORTEO · VOLKSWAGEN FOX · PREMIO · ¡ÚLTIMAS CHANCES! · SORTEO NACIONAL · VOLKSWAGEN FOX · PREMIO UNICO · ¡ÚLTIMAS CHANCES! · </span>
-</div>
-
-<!-- TRUST STRIP -->
-<div class="trust-strip">
-  <div class="trust-item reveal">
-    <div class="trust-icon">🔒</div>
-    <span class="trust-label">Reserva Segura<span>Tus datos y pago protegidos</span></span>
-  </div>
-  <div class="trust-item reveal" style="transition-delay:0.1s">
-    <div class="trust-icon">📊</div>
-    <span class="trust-label">Transparencia Real<span>Lista pública actualizada en vivo</span></span>
-  </div>
-  <div class="trust-item reveal" style="transition-delay:0.2s">
-    <div class="trust-icon">🇦🇷</div>
-    <span class="trust-label">Alcance Nacional<span>Participantes de toda Argentina</span></span>
-  </div>
-  <div class="trust-item reveal" style="transition-delay:0.3s">
-    <div class="trust-icon">✓</div>
-    <span class="trust-label">Entrega Pactada<span>Coordinación directa con el ganador</span></span>
-  </div>
-</div>
-
-<!-- TICKER -->
-<div class="ticker">
-  <div class="ticker-inner" id="ticker">
-    <span class="ticker-item">Volkswagen Fox impecable</span>
-    <span class="ticker-item">Premio unico publicado con fotos</span>
-    <span class="ticker-item">1 ganador seleccionado al azar</span>
-    <span class="ticker-item">Mas chances = mas posibilidades</span>
-    <span class="ticker-item">Sorteo 100% transparente</span>
-    <span class="ticker-item">Participas desde toda Argentina</span>
-    <span class="ticker-item">Con 3 o mas chances te llevas un curso gratis</span>
-    <span class="ticker-item">Volkswagen Fox impecable</span>
-    <span class="ticker-item">Premio unico publicado con fotos reales</span>
-    <span class="ticker-item">1 ganador seleccionado al azar</span>
-    <span class="ticker-item">Mas chances = mas posibilidades</span>
-    <span class="ticker-item">Sorteo 100% transparente</span>
-    <span class="ticker-item">Participas desde toda Argentina</span>
-    <span class="ticker-item">Con 3 o mas chances te llevas un curso gratis</span>
-  </div>
-</div>
-
-<!-- PACKAGES -->
-<section id="paquetes" class="packages-section">
-  <div class="section-inner">
-    <span class="section-tag">ðŸ’Ž Elige tu pack</span>
-    <h2 class="section-title">MÃ¡s chances,<br><span style="color:var(--gold)">mÃ¡s posibilidades</span></h2>
-    <p class="section-sub">Cada chance suma una participación real dentro del sistema de selección. Mientras más chances tengas, más posibilidades acumulás de quedarte con el Volkswagen Fox.</p>
-
-    <div class="packages-grid" id="packagesGrid">
-      <!-- generado por JS -->
-    </div>
-  </div>
-</section>
-
-<!-- PARTICIPANTS -->
-<section id="participantes" class="participants-section">
-  <div class="section-inner">
-    <span class="section-tag">ðŸ‘¥ Transparencia total</span>
-    <h2 class="section-title">Lista de<br><span style="color:var(--gold)">participantes</span></h2>
-    <p class="section-sub">Cada participaciÃ³n aprobada aparece aquÃ­ con su fecha y cantidad de chances, para que puedas ver que el ingreso quedÃ³ registrado y que el proceso se mantiene visible.</p>
-
-    <p class="section-sub" style="margin-top:0.9rem; max-width:760px">Cuando una compra se acredita, queda asociada al participante y pasa a formar parte del registro visible del sorteo. Eso ayuda a dar seguimiento real y a reforzar la confianza de quien participa.</p>
-
-    <!-- WHY PARTICIPATE TODAY BOX -->
-    <div class="why-participate-box reveal">
-      <div class="why-item">
-        <span class="why-icon">🔒</span>
-        <div class="why-content">
-          <strong>Seguridad total</strong>
-          <p>Tu participación queda grabada en blockchain y es auditable en tiempo real.</p>
-        </div>
-      </div>
-      <div class="why-item">
-        <span class="why-icon">⚡</span>
-        <div class="why-content">
-          <strong>Carga instantánea</strong>
-          <p>Al pagar, aparecés en la lista en menos de 60 segundos.</p>
-        </div>
-      </div>
-      <div class="why-item">
-        <span class="why-icon">💎</span>
-        <div class="why-content">
-          <strong>Beneficios exclusivos</strong>
-          <p>Pack de 3+ chances incluye curso valuado en $15.000 GRATIS.</p>
-        </div>
-      </div>
-    </div>
-
-    <style>
-      .why-participate-box {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1.5rem;
-        margin-bottom: 2.5rem;
-        background: rgba(255,255,255,0.02);
-        padding: 1.5rem;
-        border-radius: 1.5rem;
-        border: 1px dashed rgba(245,200,66,0.2);
-      }
-      .why-item {
-        display: flex;
-        gap: 1rem;
-        align-items: flex-start;
-      }
-      .why-icon {
-        font-size: 1.5rem;
-        background: rgba(245,200,66,0.1);
-        padding: 0.5rem;
-        border-radius: 0.8rem;
-        line-height: 1;
-      }
-      .why-content strong {
-        display: block;
-        color: var(--gold);
-        font-size: 0.9rem;
-        margin-bottom: 0.2rem;
-      }
-      .why-content p {
-        font-size: 0.8rem;
-        color: var(--text2);
-        line-height: 1.4;
-      }
-    </style>
-
-    <div class="demo-launcher reveal hidden">
-      <div class="demo-launcher-copy">
-        <div class="demo-launcher-title">Demostracion en tiempo real</div>
-        <div class="demo-launcher-sub">Este bloque permite probar en vivo el funcionamiento del software para reforzar transparencia, confianza y claridad del proceso. Es una demostracion del sistema inteligente y sus resultados no son oficiales ni reemplazan el sorteo real.</div>
-      </div>
-      <button class="draw-control-btn primary" type="button" id="toggleDemoBtn">Iniciar demostracion</button>
-    </div>
-
-    <div class="draw-showcase reveal collapsed hidden" id="drawShowcase">
-      <div class="draw-showcase-panel">
-        <div class="draw-showcase-copy">
-          <div class="draw-showcase-topline">
-            <span class="draw-showcase-kicker">Demostracion de transparencia</span>
-            <span class="draw-demo-badge">Demostracion</span>
+<section class="course-hook-section">
+  <div class="course-hook-wrap reveal visible">
+    <div class="course-hook-grid">
+      <div class="course-hook-copy">
+        <div class="course-hook-lead">
+          <span class="course-hook-kicker">Curso incluido</span>
+          <h2 class="course-hook-lead-title">Una guía práctica para comprar mejor tu <span>próximo auto usado</span></h2>
+          <p class="course-hook-lead-copy">Este curso fue pensado para ayudarte a revisar publicaciones, detectar alertas y tomar decisiones con más seguridad antes de poner plata en un vehículo.</p>
+          <div class="course-hook-highlight">
+            <strong>Contenido útil y directo</strong>
+            <span>Te ayuda a mirar papeles, estado general, señales de riesgo y preguntas clave antes de avanzar con una compra.</span>
           </div>
-          <h3 class="draw-showcase-title">Probador visual del <span>software de seleccion</span></h3>
-          <p class="draw-showcase-sub">Inicia la demostracion para observar en tiempo real como el sistema recorre participantes, se detiene automaticamente y deja asentado el punto exacto donde finaliza la prueba. Este modulo existe solo para demostrar el funcionamiento y no define resultados oficiales.</p>
-          <div class="draw-controls">
-            <button class="draw-control-btn primary" type="button" id="drawStartBtn">Iniciar prueba</button>
-            <button class="draw-control-btn accent" type="button" id="saveDemoResultBtn">Registrar resultado</button>
-            <button class="draw-control-btn" type="button" id="toggleDemoHistoryBtn">Participantes demostracion</button>
+          <div class="course-hook-pills">
+            <span class="course-hook-pill">Acceso simple</span>
+            <span class="course-hook-pill">Contenido práctico</span>
+            <span class="course-hook-pill">Más criterio para decidir</span>
+            <span class="course-hook-pill">Orientado a usados en Argentina</span>
+          </div>
+          <div class="course-hook-cta">
+            <a href="./curso-guia-auto-argentina.html" class="btn-primary">Ver curso</a>
+            <span class="course-hook-note">Material pensado para revisar mejor una compra importante y evitar errores caros.</span>
           </div>
         </div>
-        <div class="draw-showcase-stage">
-          <div class="draw-stage-chip">Ronda actual <strong id="drawRoundCounter">0</strong></div>
-          <div class="draw-featured-card" id="drawFeaturedCard">
-            <div class="draw-featured-avatar" id="drawFeaturedAvatar">--</div>
-            <div class="draw-featured-body">
-              <span class="draw-featured-label">Esperando participantes</span>
-              <strong class="draw-featured-name" id="drawFeaturedName">La animacion se activara sola</strong>
-              <div class="draw-featured-meta" id="drawFeaturedMeta">
-                <span class="draw-featured-pill">Se mostrara aqui</span>
-              </div>
-            </div>
-            <div class="draw-featured-score">
-              <span class="draw-featured-score-label">Chances</span>
-              <strong class="draw-featured-score-value" id="drawFeaturedScore">0</strong>
-            </div>
-          </div>
-          <div class="draw-showcase-status">
-            <span class="draw-showcase-status-label" id="drawPhaseLabel">Estado del sistema</span>
-            <strong class="draw-showcase-status-name" id="drawPhaseName">Esperando el listado en vivo</strong>
-            <span class="draw-showcase-status-hint" id="drawPhaseHint">Cuando haya participantes cargados, el sistema empezara a recorrerlos en bucle.</span>
-            <div class="draw-intel-bar">
-              <div class="draw-intel-fill" id="drawIntelFill"></div>
-              <div class="draw-intel-glow"></div>
-            </div>
-          </div>
+        <span class="course-hook-kicker">Temas principales</span>
+        <h2 class="course-hook-title">Lo que vas a aprender para <span>comprar con más seguridad</span></h2>
+        <p>La guía resume qué mirar, qué preguntar y cómo detectar problemas frecuentes antes de avanzar con un auto usado.</p>
+      </div>
+      <div class="course-hook-syllabus">
+        <div class="course-hook-header">
+          <span class="course-syllabus-kicker">Temario del curso</span>
+          <div class="course-syllabus-title">Qué incluye la guía</div>
+          <div class="course-syllabus-copy">Un recorrido claro, práctico y pensado para personas que quieren decidir mejor sin necesidad de ser mecánicas.</div>
         </div>
-      </div>
-      <div class="draw-rail" id="drawRail">
-        <div class="draw-rail-empty">Todavia no hay participantes visibles para iniciar el recorrido animado.</div>
-      </div>
-      <div class="demo-history" id="demoHistoryPanel">
-        <div class="demo-history-head">
-          <div>
-            <div class="demo-history-title">Participantes demostracion</div>
-            <div class="demo-history-sub">Historial de participantes asentados manualmente desde esta demostracion.</div>
+        <div class="course-syllabus-grid">
+          <div class="course-topic">
+            <strong>Qué revisar antes de señar</strong>
+            <span>Cómo analizar publicaciones, hacer preguntas clave y detectar señales de alerta.</span>
           </div>
-        </div>
-        <div class="demo-history-grid" id="demoHistoryGrid">
-          <div class="demo-history-empty">Todavia no hay resultados de demostracion guardados.</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="participants-table-wrap reveal">
-      <div class="table-header">
-        <span class="table-title">Participantes registrados</span>
-        <span class="live-badge"><span class="live-dot"></span> EN VIVO</span>
-        <input type="text" class="search-input" id="searchInput" placeholder="Buscar por nombre o cÃ³digo...">
-      </div>
-      <div style="overflow-x:auto" id="participantsTableScroller">
-        <table>
-          <colgroup>
-            <col style="width:34%">
-            <col style="width:15%">
-            <col style="width:15%">
-            <col style="width:12%">
-            <col style="width:12%">
-            <col style="width:12%">
-          </colgroup>
-          <thead>
-            <tr>
-              <th data-col="participant-head">Participante</th>
-              <th>Provincia</th>
-              <th>Ciudad</th>
-              <th>Compradas</th>
-              <th>Fecha</th>
-              <th>Mensaje</th>
-            </tr>
-          </thead>
-          <tbody id="participantsBody"></tbody>
-        </table>
-      </div>
-      <div class="past-participants-scroller hidden" id="pastParticipantsSection">
-        <div class="past-participants-title">Participantes de sorteos anteriores</div>
-        <div class="past-participants-track" id="pastParticipantsTrack"></div>
-      </div>
-      <div class="past-comments-scroller hidden" id="pastCommentsSection">
-        <div class="past-participants-title">Mensajes de sorteos anteriores</div>
-        <div class="past-participants-track" id="pastCommentsTrack"></div>
-      </div>
-    </div>
-
-    <div class="payment-status-card reveal" id="paymentStatusCard">
-      <div class="payment-status-kicker" id="paymentStatusKicker">Pago confirmado</div>
-      <div class="payment-status-title" id="paymentStatusTitle">Ya estÃ¡s participando</div>
-      <div class="payment-status-copy" id="paymentStatusCopy">Cuando tu pago quede aprobado, tus chances quedan activas, tu participaciÃ³n aparece en la lista y se habilita tu enlace Ãºnico si corresponde.</div>
-      <div class="payment-status-reward" id="courseRewardBox">
-        <div class="payment-status-reward-title">Curso gratis desbloqueado</div>
-        <div class="payment-status-reward-copy" id="courseRewardCopy">Con tu compra habilitaste el acceso al curso bonus.</div>
-        <div class="share-link-row">
-          <input class="share-link-input" id="courseAccessCodeInput" type="text" readonly>
-          <button class="share-link-btn secondary" id="copyCourseCodeBtn" type="button">Copiar codigo</button>
-          <button class="share-link-btn primary" id="openCourseBtn" type="button">Abrir curso</button>
-        </div>
-      </div>
-      <div class="share-link-row hidden" id="shareLinkRow">
-        <input class="share-link-input" id="shareLinkInput" type="text" readonly>
-        <button class="share-link-btn secondary" id="copyShareBtn" type="button">Copiar enlace</button>
-        <button class="share-link-btn primary" id="shareWhatsappBtn" type="button">Compartir</button>
-      </div>
-    </div>
-
-    <div style="text-align:center; margin-top:2rem">
-      <a href="#paquetes" class="btn-primary">Â¡Sumate ahora!</a>
-    </div>
-  </div>
-</section>
-
-<!-- GALLERY -->
-<section id="galeria" class="gallery-section">
-  <div class="section-inner">
-    <span class="section-tag">📸 Estado Impecable</span>
-    <h2 class="section-title">Explora tu próximo<br><span style="color:var(--gold)">Volkswagen Fox</span></h2>
-    <p class="section-sub">Fotos. El vehículo se encuentra en excelentes condiciones, listo para que lo disfrutes desde el primer día.</p>
-    
-    <div class="gallery-grid-new">
-      <div class="gallery-item-new reveal">
-        <img src="./assets/premios/fox-1.png" alt="Volkswagen Fox Frontal Derecha">
-        <span class="gallery-tag">Vista Principal</span>
-      </div>
-      <div class="gallery-item-new reveal">
-        <img src="./assets/premios/fox-2.png" alt="Volkswagen Fox Frontal Izquierda">
-        <span class="gallery-tag">Perfil Moderno</span>
-      </div>
-      <div class="gallery-item-new reveal">
-        <img src="./assets/premios/fox-6.png" alt="Volkswagen Fox Frente">
-        <span class="gallery-tag">Frente Impecable</span>
-      </div>
-      <div class="gallery-item-new reveal">
-        <img src="./assets/premios/fox-4.png" alt="Volkswagen Fox Interior Trasero">
-        <span class="gallery-tag">Espacio Interior</span>
-      </div>
-      <div class="gallery-item-new reveal">
-        <img src="./assets/premios/fox-5.png" alt="Volkswagen Fox Interior Tablero">
-        <span class="gallery-tag">Tablero y Control</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- COURSE BONUS PREMIUM -->
-<section id="curso" class="course-section">
-  <div class="section-inner">
-    <div class="course-premium-card reveal">
-      <div class="course-content">
-        <span class="course-premium-tag">BONUS EXCLUSIVO</span>
-        <h2 class="course-premium-title">Guía Maestra: <span>Compra de Usados</span></h2>
-        <p class="course-text p" style="margin-bottom: 2rem; font-size: 1.1rem">No solo participas por el auto, te llevas el conocimiento para no fallar nunca más al comprar un vehículo usado en Argentina.</p>
-        
-        <div class="course-premium-list">
-          <div class="course-item">
-            <div class="course-icon">🔍</div>
-            <div class="course-text">
-              <h4>Inspección Técnica</h4>
-              <p>Aprende a detectar fallas ocultas en el motor y la estructura sin ser mecánico.</p>
-            </div>
+          <div class="course-topic">
+            <strong>Chequeo mecánico básico</strong>
+            <span>Qué observar en motor, carrocería, interior y prueba de manejo.</span>
           </div>
-          <div class="course-item">
-            <div class="course-icon">⚖️</div>
-            <div class="course-text">
-              <h4>Trámites y Legalidad</h4>
-              <p>Evita estafas: todo sobre 08, verificación policial y estado de dominio.</p>
-            </div>
+          <div class="course-topic">
+            <strong>Documentación y legalidad</strong>
+            <span>Qué papeles pedir y qué validar para evitar problemas posteriores.</span>
           </div>
-          <div class="course-item">
-            <div class="course-icon">💰</div>
-            <div class="course-text">
-              <h4>Negociación Efectiva</h4>
-              <p>Estrategias para bajar el precio y cerrar el mejor trato posible.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="course-text" style="background: rgba(245,200,66,0.05); padding: 1.5rem; border-radius: 1.5rem; border: 1px dashed var(--gold)">
-          <p style="color: var(--gold); font-weight: 700; font-size: 0.9rem">🎁 ¡GRATIS con tu pack de 3 o más chances!</p>
-          <p style="font-size: 0.8rem; color: var(--text2)">Acceso instantáneo tras la confirmación de tu pago.</p>
-        </div>
-      </div>
-      
-      <div class="course-visual">
-        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=800" alt="Curso de Autos" class="course-mockup">
-        <div class="course-badge-trust">
-          <span style="font-size: 1.5rem">🛡️</span>
-          <div>
-            <div style="line-height: 1">VALOR REAL</div>
-            <div style="font-size: 0.6rem; opacity: 0.6">CONTENIDO PROFESIONAL</div>
+          <div class="course-topic">
+            <strong>Errores caros que conviene evitar</strong>
+            <span>Los fallos más comunes al comprar un usado y cómo anticiparte.</span>
           </div>
         </div>
       </div>
@@ -3248,2131 +2580,78 @@ src="https://www.facebook.com/tr?id=1495740652346839&ev=PageView&noscript=1"
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
-<section class="how-section">
-  <div class="section-inner">
-    <span class="section-tag">â“ Â¿CÃ³mo funciona?</span>
-    <h2 class="section-title">Simple,<br><span style="color:var(--gold)">transparente, real</span></h2>
-    <div class="steps-grid">
-      <div class="step reveal">
-        <span class="step-num">1</span>
-        <span class="step-icon">ðŸŽ¯</span>
-        <div class="step-title">ElegÃ­ tu pack</div>
-        <p class="step-desc">ElegÃ­s el pack que mÃ¡s te conviene. Cada chance representa una participaciÃ³n real dentro del sistema de selecciÃ³n aleatoria, por eso mientras mÃ¡s chances tengas, mÃ¡s posibilidades acumulÃ¡s.</p>
-      </div>
-      <div class="step reveal" style="transition-delay:0.1s">
-        <span class="step-num">2</span>
-        <span class="step-icon">ðŸ’³</span>
-        <div class="step-title">CompletÃ¡ el pago</div>
-        <p class="step-desc">CompletÃ¡s tus datos y pagÃ¡s de forma simple. Tu reserva queda registrada y, cuando el pago se acredita, tus chances quedan activas con seguimiento claro del proceso.</p>
-      </div>
-      <div class="step reveal" style="transition-delay:0.2s">
-        <span class="step-num">3</span>
-        <span class="step-icon">ðŸ“‹</span>
-        <div class="step-title">AparecÃ©s en la lista</div>
-        <p class="step-desc">Tu participaciÃ³n se refleja en la lista pÃºblica o, si preferÃ­s privacidad, podÃ©s figurar como anÃ³nimo con un cÃ³digo Ãºnico para conservar transparencia sin exponer tu nombre.</p>
-      </div>
-      <div class="step reveal" style="transition-delay:0.3s">
-        <span class="step-num">4</span>
-        <span class="step-icon">ðŸŽ°</span>
-        <div class="step-title">Sorteo nacional</div>
-        <p class="step-desc">El sistema realiza una seleccion aleatoria de 1 participante entre todas las chances activas. El sorteo se hace el 5 de junio o antes si se agotan las chances.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="draw-process-section">
-  <div class="section-inner">
-    <span class="section-tag">ðŸŽ² SelecciÃ³n transparente</span>
-    <h2 class="section-title">Como se elige<br><span style="color:var(--gold)">al ganador</span></h2>
-    <p class="section-sub">El proceso esta pensado para que cada chance cuente como una participacion dentro de una seleccion aleatoria. No importa de donde participes: si tu chance esta activa, entra en el sorteo.</p>
-
-    <div class="draw-process-grid">
-      <div class="draw-card reveal">
-        <div class="draw-card-title">1. Se registran las chances activas</div>
-        <div class="draw-card-copy">Cada pago aprobado activa la cantidad exacta de chances compradas. Esas participaciones quedan asociadas al participante y visibles en la lista.</div>
-      </div>
-      <div class="draw-card reveal" style="transition-delay:0.1s">
-        <div class="draw-card-title">2. Un sistema avanzado selecciona al azar</div>
-        <div class="draw-card-copy">Al cierre del sorteo, un sistema de seleccion aleatoria toma todas las chances activas y elige 1 ganador de forma imparcial.</div>
-      </div>
-      <div class="draw-card reveal" style="transition-delay:0.2s">
-        <div class="draw-card-title">3. MÃ¡s chances, mÃ¡s posibilidades</div>
-        <div class="draw-card-copy">Si una persona tiene mÃ¡s chances, participa mÃ¡s veces dentro del sistema. Eso no garantiza ganar, pero sÃ­ aumenta sus posibilidades frente a quien tiene menos chances.</div>
-      </div>
-      <div class="draw-card reveal" style="transition-delay:0.3s">
-        <div class="draw-card-title">4. Entrega coordinada con el ganador</div>
-        <div class="draw-card-copy">Una vez confirmado el ganador, se coordina la entrega dentro de las 48 horas siguientes. Se organiza el retiro del Volkswagen Fox publicado.</div>
-      </div>
-    </div>
-
-    <div class="draw-highlight reveal" style="transition-delay:0.35s">
-      El objetivo es que el proceso sea simple de entender: compras chances, tu pago se acredita, tus participaciones quedan activas y luego entras en una seleccion aleatoria de 1 ganador. Mientras mas chances acumulas, mas posibilidades tenes de ganar.
-    </div>
-  </div>
-</section>
-
-<section class="proof-section">
-  <div class="section-inner">
-    <span class="section-tag">ðŸ’¬ Opiniones y expectativas</span>
-    <h2 class="section-title">Mensajes que suman<br><span style="color:var(--gold)">confianza</span></h2>
-    <p class="section-sub">Compartimos opiniones y expectativas frecuentes de personas que valoran la claridad del proceso, la lista pÃºblica y la coordinaciÃ³n de la entrega con cada ganador.</p>
-
-    <div class="proof-grid" id="proofGrid"></div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section style="background:var(--dark)">
-  <div class="section-inner">
-    <span class="section-tag">â“ Preguntas frecuentes</span>
-    <h2 class="section-title">Todo lo que<br><span style="color:var(--gold)">necesitÃ¡s saber</span></h2>
-    <div class="faq-list">
-      <div class="faq-item">
-        <button class="faq-q">Â¿CÃ³mo sÃ© que el sorteo es real? <span class="faq-arrow">â–¼</span></button>
-        <div class="faq-a">La lista de participantes se actualiza con pagos aprobados y muestra la cantidad de chances activas de cada persona. Eso permite ver que cada participaciÃ³n queda registrada y que el proceso sea mucho mÃ¡s claro, visible y confiable.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">Â¿CÃ³mo se realizarÃ¡ el sorteo? <span class="faq-arrow">â–¼</span></button>
-        <div class="faq-a">Cada chance equivale a una participacion dentro del sistema. Al cierre del sorteo, un sistema avanzado de seleccion aleatoria toma todas las chances activas y elige 1 ganador. Si compras mas chances, participas mas veces y aumentas tus posibilidades.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">Â¿CuÃ¡ndo se entrega el premio? <span class="faq-arrow">â–¼</span></button>
-        <div class="faq-a">El premio se coordina con el ganador dentro de las 48 horas posteriores al sorteo. Se contacta al ganador, se valida la forma de entrega y se organiza el retiro del Volkswagen Fox o su equivalente en dinero.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">Â¿Puedo comprar mÃ¡s de un pack? <span class="faq-arrow">â–¼</span></button>
-        <div class="faq-a">SÃ­. PodÃ©s comprar mÃ¡s de un pack y todas tus chances se acumulan en tu mismo usuario. Eso hace que tengas mÃ¡s oportunidades dentro del sorteo final.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">Â¿QuÃ© mÃ©todos de pago aceptan? <span class="faq-arrow">â–¼</span></button>
-        <div class="faq-a">PodÃ©s abonar con los medios habilitados en el formulario. Una vez aprobado el pago, tus chances quedan activas y tu participaciÃ³n aparece en la lista pÃºblica o como anÃ³nimo, segÃºn elijas, para que siempre haya registro visible del ingreso.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">Â¿CÃ³mo funcionan los referidos? <span class="faq-arrow">â–¼</span></button>
-        <div class="faq-a">Si tu compra aprobada habilita tu enlace Ãºnico, podÃ©s compartirlo. Cuando otra persona compra desde ese enlace y se acredita el pago, el sistema suma 2 chances extra a tu cuenta automÃ¡ticamente, aumentando tus posibilidades dentro de la selecciÃ³n.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">Â¿Hay fecha lÃ­mite para participar? <span class="faq-arrow">â–¼</span></button>
-        <div class="faq-a">Al agotar las chances. Quedan pocos lugares, asÃ­ que te recomendamos no esperar al Ãºltimo momento.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">¿Cómo funciona el curso gratis? <span class="faq-arrow">▼</span></button>
-        <div class="faq-a">Si tu compra aprobada es de 3 o más chances, se habilita un código de acceso simple y un botón directo para entrar al curso. No depende de salir ganador: es un bonus concreto por la compra bonificada.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- BOTTOM CTA -->
-<section class="bottom-cta">
-  <h2 class="bottom-cta-title reveal">Â¿Y si sos<br>el prÃ³ximo ganador?</h2>
-  <p class="bottom-cta-sub reveal">Participás con un proceso claro, con registro visible y una selección aleatoria de 1 ganador. Y si elegís 3 o más chances, además te llevás el curso bonus como beneficio extra.</p>
-  <div class="reveal" style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap">
-    <a href="#paquetes" class="btn-primary">Â¡COMPRAR CHANCES AHORA!</a>
-    <a href="#participantes" class="btn-secondary">Ver participantes</a>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <strong style="color:var(--gold)">Gran Sorteo</strong><br>
-  Lista publica de participantes · Nacional para toda la Argentina · 1 premio garantizado
-</footer>
-
-<!-- MODAL -->
-<div class="modal-overlay" id="modal">
-  <div class="modal">
-    <button class="modal-close" id="modalClose">âœ•</button>
-    <div class="modal-title">Â¡Casi listo! ðŸŽ‰</div>
-    <p class="modal-sub">CompletÃ¡ tus datos para reservar tus chances y avanzar a un pago simple y seguro.</p>
+<div class="modal-overlay open" id="winnerModal">
+  <div class="modal winner-modal fixed">
+    <div class="modal-title">Ganador oficial del premio</div>
+    <p class="modal-sub" id="winnerModalSub"></p>
     <div class="modal-assurance">
-      <strong>Tu participaciÃ³n segura paso a paso:</strong>
-      <span style="margin-bottom:0.4rem">1. âœï¸ <strong>CompletÃ¡ el formulario:</strong> AsegurÃ¡ tu lugar registrando tus datos correctamente.</span>
-      <span style="margin-bottom:0.4rem">2. ðŸ’³ <strong>Habilitamos el pago:</strong> Al confirmar, te brindamos los datos necesarios para que puedas realizar la transferencia de forma directa.</span>
-      <span>3. âœ… <strong>Registro AutomÃ¡tico:</strong> Una vez aprobada, el sistema te registra automÃ¡ticamente en la lista pÃºblica donde podÃ©s ver con total transparencia tus chances compradas.</span>
+      <strong id="winnerModalName"></strong>
+      <span id="winnerModalMeta"></span>
     </div>
-    <div class="modal-pkg-display">
-      <div class="modal-pkg-info">
-        <span class="label">Pack seleccionado</span>
-        <span class="value" id="modal-pkg-name">â€”</span>
+    <div class="winner-modal-grid">
+      <video class="winner-modal-video" id="winnerModalVideo" controls playsinline preload="metadata"></video>
+      <div class="winner-claim-status" id="winnerDeliveryStatus"></div>
+      <div class="winner-claim-summary show" id="winnerClaimSummary">
+        <strong id="winnerClaimSummaryTitle"></strong>
+        <span id="winnerClaimSummaryDate"></span>
+        <span id="winnerClaimSummaryExperience"></span>
+        <span id="winnerClaimSummaryFeeling"></span>
+        <span id="winnerClaimSummaryReceived"></span>
+        <span class="winner-claim-received-quote" id="winnerClaimSummaryReceivedQuote"></span>
       </div>
-      <div class="modal-pkg-info" style="text-align:right">
-        <span class="label">Total a pagar</span>
-        <span class="value" id="modal-pkg-price">â€”</span>
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="form-label">Nombre completo *</label>
-      <input class="form-input" type="text" id="f-name" placeholder="Tu nombre y apellido">
-    </div>
-    <div class="form-group">
-      <label class="form-label">WhatsApp *</label>
-      <input class="form-input" type="tel" id="f-phone" placeholder="Ej: 3516012345">
-    </div>
-    <div class="form-group">
-      <label class="form-label">Provincia</label>
-      <input class="form-input" type="text" id="f-province" placeholder="Tu provincia">
-    </div>
-    <div class="form-group">
-      <label class="form-label">Ciudad/localidad</label>
-      <input class="form-input" type="text" id="f-city" placeholder="Tu ciudad">
-    </div>
-    <div class="form-group">
-      <label class="form-label">Foto de perfil opcional</label>
-      <div class="file-upload">
-        <input class="file-upload-input" type="file" id="f-photo" accept="image/*">
-        <div class="file-upload-help">Si subis una foto, se guardara con tu participacion y se mostrara en la lista publica.</div>
-        <div class="photo-preview" id="photoPreview">
-          <img id="photoPreviewImage" alt="Vista previa de foto de perfil">
-          <div class="photo-preview-copy" id="photoPreviewCopy">Foto lista para subirse con tu participacion.</div>
-        </div>
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="form-label">OpiniÃ³n o expectativa opcional</label>
-      <textarea class="form-input form-textarea" id="f-message" placeholder="Ej: Me encanta participar, ojalÃ¡ tenga suerte. / Me gusta que la lista sea pÃºblica y transparente."></textarea>
-      <div class="form-help">Si querÃ©s, podÃ©s dejar una reseÃ±a breve, quÃ© te parece el sorteo o cuÃ¡les son tus expectativas. Es completamente opcional y se muestra abajo dentro del formulario como referencia.</div>
-    </div>
-    <div class="message-preview" id="messagePreview">
-      <span class="message-preview-label">Tu opiniÃ³n o expectativa</span>
-      <div class="message-preview-copy" id="messagePreviewCopy"></div>
-    </div>
-    <div class="form-group">
-      <label class="form-check">
-        <input type="checkbox" id="f-anonymous">
-        <span class="form-check-copy">
-          <span class="form-check-title">Quiero aparecer de forma anÃ³nima</span>
-          <span class="form-check-sub">En la lista pÃºblica vas a figurar como â€œAnÃ³nimoâ€ junto con un cÃ³digo Ãºnico de usuario.</span>
-        </span>
-      </label>
-    </div>
-    <div class="form-group">
-      <label class="form-label">MÃ©todo de pago preferido</label>
-      <div class="payment-methods">
-        <!--span class="pm-chip selected" data-provider="mercado_pago" onclick="selectPM(this)">ðŸ’³ Mercado Pago</span-->
-        <span class="pm-chip selected" data-provider="galiopay" onclick="selectPM(this)">ðŸ¦ Transferencia</span>
-        <!--span class="pm-chip" data-provider="manual" onclick="selectPM(this)">ðŸ¦ Transferencia</span>
-        <span class="pm-chip" data-provider="manual" onclick="selectPM(this)">ðŸ’µ Efectivo</span-->
-      </div>
-    </div>
-    <button class="modal-confirm" id="modalConfirm">CONFIRMAR Y PAGAR âœ“</button>
-    <div class="modal-trust">
-      <div class="modal-trust-item">
-        <span class="modal-trust-icon">ðŸ”’</span>
-        <span class="modal-trust-text">Pago Seguro</span>
-      </div>
-      <div class="modal-trust-item">
-        <span class="modal-trust-icon">âœ…</span>
-        <span class="modal-trust-text">Acceso InstantÃ¡neo</span>
-      </div>
-      <div class="modal-trust-item">
-        <span class="modal-trust-icon">ðŸ“‹</span>
-        <span class="modal-trust-text">Lista PÃºblica</span>
-      </div>
+      <div class="winner-claim-status" id="winnerModalClaimStatus"></div>
     </div>
   </div>
 </div>
 
-<div class="modal-overlay" id="opinionModal">
-  <div class="modal">
-    <button class="modal-close" id="opinionModalClose">âœ•</button>
-    <div class="modal-title">ðŸ’¬ OpiniÃ³n o expectativa</div>
-    <p class="modal-sub">Mensaje compartido por una persona que ya participa del sorteo.</p>
-    <div class="modal-assurance">
-      <strong id="opinionAuthor">Participante</strong>
-      <span id="opinionMeta">Su mensaje aparece como parte de las opiniones visibles del sorteo.</span>
-    </div>
-    <div class="opinion-modal-copy" id="opinionModalCopy"></div>
-  </div>
-</div>
-
-<!-- TOAST -->
-<div class="toast" id="toast">âœ… Â¡Ya sos parte del sorteo! Te contactaremos por WhatsApp.</div>
-<div class="live-feed" id="liveFeed">
-  <div class="live-feed-card">
-    <div class="live-feed-kicker">Actividad en vivo</div>
-    <div class="live-feed-text" id="liveFeedText">Se actualiza con ingresos reales y demo.</div>
-    <div class="live-feed-sub" id="liveFeedSub">Ahora mismo</div>
-  </div>
-</div>
-<a class="whatsapp-float" href="https://wa.me/543518757751?text=Hola!%20Quiero%20consultar%20por%20el%20sorteo%20del%20Volkswagen%20Fox" target="_blank" rel="noopener noreferrer">
-  <span style="font-size:1.35rem">ðŸ’¬</span>
-  <span><small>Consultas</small>WhatsApp</span>
-</a>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const SUPABASE_URL = 'https://asokopamdmuvuupywjzt.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_zBhxdMJHw_uy_m3uRDj-ng_0yXz42EN';
-const CAMPAIGN_SLUG = 'sorteo-volkswagen-fox';
-const MAX_FALLBACK_CHANCES = 5000;
-const FUNCTIONS_BASE_URL = `${SUPABASE_URL}/functions/v1`;
-const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-const DEFAULT_SHARE_IMAGE = new URL('./assets/premios/fox-1.png', window.location.href).toString();
-const DEFAULT_SHARE_TITLE = 'Gran Sorteo - Volkswagen Fox';
-const DEFAULT_SHARE_DESCRIPTION = 'Participa de este sorteo por un hermoso Volkswagen Fox. ¡Últimas chances disponibles! El sorteo se hará el 5 de junio.';
-const COURSE_PAGE_PATH = './curso-guia-auto-argentina.html';
-const COURSE_MIN_ENTRIES = 3;
-const DRAW_TARGET_ISO = '2026-06-28T21:00:00-03:00';
-
-let activeCampaign = null;
-let packages = [];
-let participants = [];
-let currentParticipants = [];
-let pastParticipants = [];
-const LIVE_FEED_PARTICIPANTS_START_DATE = new Date('2026-05-15T00:00:00-03:00');
-let pastComments = [];
-let pastParticipantsIndex = 0;
-let pastParticipantsInterval = null;
-let pastCommentsInterval = null;
-let demoResults = [];
-let selectedPkg = null;
-let selectedPhotoFile = null;
-let selectedPaymentProvider = 'galiopay';
-let countdownInterval = null;
-let liveFeedTimeout = null;
-let drawAnimationTimeout = null;
-const fallbackProofMessages = [
-  {
-    name: 'Mariana',
-    city: 'Cordoba',
-    message: 'Me dio confianza ver que las participaciones aparecen con fecha y cantidad de chances. Eso hace que el sorteo se sienta mÃ¡s claro y serio.'
-  },
-  {
-    name: 'Leandro',
-    city: 'Rosario',
-    message: 'Me gusta que expliquen que mientras mÃ¡s chances comprÃ¡s, mÃ¡s veces participÃ¡s en la selecciÃ³n aleatoria. Se entiende rÃ¡pido y genera seguridad.'
-  },
-  {
-    name: 'Camila',
-    city: 'Buenos Aires',
-    message: 'Saber que la entrega se coordina directamente con el ganador del Chevrolet Corsa me transmite mucha mas tranquilidad.'
-  },
-  {
-    name: 'Franco',
-    city: 'Mendoza',
-    message: 'La opciÃ³n de aparecer anÃ³nimo pero seguir participando con registro visible me parece una muy buena forma de combinar privacidad con transparencia.'
-  }
-];
-let latestOrderStatus = null;
-const expandedParticipantRows = new Set();
-const drawShowcaseState = {
-  basePool: [],
-  cycle: [],
-  cyclePosition: 0,
-  spotlightPosition: -1,
-  round: 0,
-  activeParticipantIndex: -1,
-  activeEntryNumber: 0,
-  activeEntryPosition: 0,
-  activeSpotlight: false,
-  paused: false,
-  historyOpen: false,
-  hasStarted: false
+const FIXED_RESULT = {
+  display_name: 'Daniel Saldiviar',
+  full_name: 'Daniel Saldiviar',
+  participant_public_code: 'Sin código público',
+  saved_at: '2026-06-15T17:30:00-03:00',
+  claim_submitted_at: '2026-06-15T18:00:00-03:00',
+  delivery_confirmed_at: '2026-06-15T19:30:00-03:00',
+  delivery_status: 'delivered',
+  delivery_status_label: 'Premio Verificado',
+  delivery_received_message: 'Premio recibido por el ganador.',
+  delivery_received_item: 'Premio en dinero',
+  claim_experience: 'Estoy muy agradecido, participé sin pensar que iba a ganar y hoy se comunicaron, es algo increíble y se los agradezco muchísimo, todavía no lo puedo creer, nunca había ganado nada.',
+  claim_feeling: 'Se comunicaron y me ofrecieron el premio o dinero y me resultó mejor el dinero para poder terminar de construir mi casa que llevo años tratando de terminar, estoy muy feliz y agradecido.',
+  public_announcement: 'El sorteo se realizó de forma automática e imparcial.',
+  video_data_url: './oficial.mp4'
 };
 
-const COLORS = ['#F5C842','#3B8BFF','#00D46A','#FF6B3B','#BF5FFF','#FF3B7A'];
-function colorFor(i){ return COLORS[i % COLORS.length]; }
-function initials(name){ return name.split(' ').map(w => w[0]).join('').substring(0,2).toUpperCase(); }
-function totalChances(){ return participants.reduce((s, p) => s + (p.chances || 0), 0); }
-function currentMaxChances(){ return activeCampaign?.max_entries || MAX_FALLBACK_CHANCES; }
-function getBaseChancePrice(){
-  const singlePack = packages.find((pkg) => Number(pkg.entries_qty || 0) + Number(pkg.bonus_entries || 0) === 1);
-  return Number(singlePack?.price_ars || 0);
-}
-
-function getReferralCode(){
-  const params = new URLSearchParams(window.location.search);
-  const code = params.get('ref');
-  if (code) {
-    localStorage.setItem('raffle_referral_code', code);
-    return code;
-  }
-  return localStorage.getItem('raffle_referral_code') || '';
-}
-
-function getOrderReferenceFromQuery() {
-  const params = new URLSearchParams(window.location.search);
-  return params.get('order_ref') || '';
-}
-
-function clearPaymentQueryState() {
-  const url = new URL(window.location.href);
-  url.searchParams.delete('payment');
-  url.searchParams.delete('order_ref');
-  window.history.replaceState({}, '', url.toString());
-}
-
-function buildLandingShareUrl(code) {
-  const url = new URL(window.location.href);
-  url.search = '';
-  url.hash = '';
-  url.searchParams.set('ref', code);
-  return url.toString();
-}
-
-function setMetaContent(selector, content) {
-  const el = document.querySelector(selector);
-  if (el) el.setAttribute('content', content);
-}
-
-function updateShareMetadata({ title, description, image, url }) {
-  const nextTitle = cleanMojibakeText(title || DEFAULT_SHARE_TITLE);
-  const nextDescription = cleanMojibakeText(description || DEFAULT_SHARE_DESCRIPTION);
-  const nextImage = image || DEFAULT_SHARE_IMAGE;
-  const nextUrl = url || window.location.href;
-
-  document.title = nextTitle;
-  setMetaContent('meta[name="description"]', nextDescription);
-  setMetaContent('meta[property="og:title"]', nextTitle);
-  setMetaContent('meta[property="og:description"]', nextDescription);
-  setMetaContent('meta[property="og:image"]', nextImage);
-  setMetaContent('meta[name="twitter:title"]', nextTitle);
-  setMetaContent('meta[name="twitter:description"]', nextDescription);
-  setMetaContent('meta[name="twitter:image"]', nextImage);
-
-  let canonical = document.querySelector('link[rel="canonical"]');
-  if (!canonical) {
-    canonical = document.createElement('link');
-    canonical.setAttribute('rel', 'canonical');
-    document.head.appendChild(canonical);
-  }
-  canonical.setAttribute('href', nextUrl);
-}
-
-function buildReferralShareCopy(label, shareUrl) {
-  return cleanMojibakeText(`${label} te invita a participar de este sorteo. Quedan pocos lugares y puede hacerse antes al agotar chances. Sumate ahora: ${shareUrl}`);
-}
-
-function showToast(msg){
-  const t = document.getElementById('toast');
-  t.textContent = cleanMojibakeText(msg);
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 4500);
-}
-
-function cleanMojibakeText(value) {
-  if (value == null) return value;
-  let text = String(value);
-  const replacements = [
-    ['Ã¡', 'á'], ['Ã©', 'é'], ['Ã­', 'í'], ['Ã³', 'ó'], ['Ãº', 'ú'],
-    ['Ã', 'Á'], ['Ã‰', 'É'], ['Ã', 'Í'], ['Ã“', 'Ó'], ['Ãš', 'Ú'],
-    ['Ã±', 'ñ'], ['Ã‘', 'Ñ'], ['Ã¼', 'ü'],
-    ['Â¡', '¡'], ['Â¿', '¿'], ['Â·', '·'], ['Â', ''], ['â€”', '-'], ['â€œ', '"'], ['â€', '"'],
-    ['â€™', "'"], ['â€¢', '•'], ['âœ•', '×'], ['âœ“', '✓'], ['âœ…', '✓'],
-    ['âš¡', '⚡'], ['â­', '★'], ['â“', '?'], ['â–¼', '▼'],
-    ['ðŸ”¥', '🔥'], ['ðŸ’¬', '💬'], ['ðŸ’Ž', '💎'], ['ðŸ‘¥', '👥'], ['ðŸŽ¥', '🎥'],
-    ['ðŸŽ¯', '🎯'], ['ðŸ’³', '💳'], ['ðŸ“‹', '📋'], ['ðŸŽ°', '🎰'], ['ðŸŽ²', '🎲'],
-    ['ðŸŽ‰', '🎉'], ['ðŸ¦', '🏦'], ['ðŸš—', '🚗'], ['ðŸ‡¦ðŸ‡·', '🇦🇷'], ['ðŸ”’', '🔒'], ['ðŸ†', '🏆'], ['ðŸ’µ', '💵'],
-    ['mÃ¡s', 'más'], ['MÃ¡s', 'Más'], ['selecciÃ³n', 'selección'], ['participaciÃ³n', 'participación'],
-    ['participaciones activas', 'participaciones activas'], ['registrÃ³', 'registró'], ['publica', 'publica']
-  ];
-  replacements.forEach(([from, to]) => {
-    text = text.split(from).join(to);
+function formatDateTime(value) {
+  return new Date(value).toLocaleString('es-AR', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit'
   });
-  return text;
 }
 
-function repairDocumentText(root = document) {
-  const scope = root instanceof Element ? root : document;
-  const textRoot = root.body || root;
-  if (textRoot) {
-    const walker = document.createTreeWalker(textRoot, NodeFilter.SHOW_TEXT);
-    const textNodes = [];
-    while (walker.nextNode()) textNodes.push(walker.currentNode);
-    textNodes.forEach((node) => {
-      node.nodeValue = cleanMojibakeText(node.nodeValue);
-    });
-  }
-  scope.querySelectorAll?.('[placeholder],[title],[aria-label]').forEach((el) => {
-    ['placeholder', 'title', 'aria-label'].forEach((attr) => {
-      if (el.hasAttribute(attr)) {
-        el.setAttribute(attr, cleanMojibakeText(el.getAttribute(attr)));
-      }
-    });
-  });
-  document.querySelectorAll('meta[content]').forEach((meta) => {
-    meta.setAttribute('content', cleanMojibakeText(meta.getAttribute('content')));
-  });
-  document.title = cleanMojibakeText(document.title);
-}
-
-async function updatePhotoPreview(file) {
-  const preview = document.getElementById('photoPreview');
-  const image = document.getElementById('photoPreviewImage');
-  const copy = document.getElementById('photoPreviewCopy');
-  
-  if (!file) {
-    preview.classList.remove('show');
-    image.removeAttribute('src');
-    copy.textContent = 'Foto lista para subirse con tu participacion.';
-    return;
-  }
-
-  const isHeic = file.name.toLowerCase().endsWith('.heic');
-  
-  if (isHeic) {
-    copy.textContent = 'Procesando imagen iPhone (HEIC)...';
-    preview.classList.add('show');
-    try {
-      const blob = await heic2any({
-        blob: file,
-        toType: 'image/jpeg',
-        quality: 0.7
-      });
-      const objectUrl = URL.createObjectURL(Array.isArray(blob) ? blob[0] : blob);
-      image.src = objectUrl;
-      copy.textContent = `${file.name} (convertido) listo para acompañar tu participacion.`;
-    } catch (e) {
-      console.error('Error al convertir HEIC:', e);
-      copy.textContent = 'Error al procesar HEIC. Intenta con JPG o PNG.';
-    }
-  } else {
-    const objectUrl = URL.createObjectURL(file);
-    image.src = objectUrl;
-    copy.textContent = `${file.name} listo para acompañar tu participacion.`;
-    preview.classList.add('show');
-  }
-}
-
-async function uploadParticipantPhoto(file, phone) {
-  if (!file) return null;
-  
-  let fileToUpload = file;
-  let fileExt = (file.name.split('.').pop() || 'jpg').toLowerCase();
-  
-  // Si es HEIC, lo convertimos a JPG antes de subir para asegurar compatibilidad total
-  if (fileExt === 'heic') {
-    try {
-      const blob = await heic2any({
-        blob: file,
-        toType: 'image/jpeg',
-        quality: 0.8
-      });
-      fileToUpload = Array.isArray(blob) ? blob[0] : blob;
-      fileExt = 'jpg';
-    } catch (e) {
-      console.error('Error al convertir HEIC para subida:', e);
-      // Si falla la conversiÃ³n, intentamos subir el original
-    }
-  }
-
-  const safePhone = phone.replace(/\D+/g, '') || Date.now().toString();
-  const filePath = `landing/${CAMPAIGN_SLUG}/${safePhone}-${Date.now()}.${fileExt}`;
-  
-  const { error } = await supabaseClient.storage.from('participant-profiles').upload(filePath, fileToUpload, {
-    cacheControl: '3600',
-    upsert: true
-  });
-  
-  if (error) throw error;
-  const { data } = supabaseClient.storage.from('participant-profiles').getPublicUrl(filePath);
-  return data?.publicUrl || null;
-}
-
-function buildFunctionUrl(name) {
-  return `${FUNCTIONS_BASE_URL}/${name}`;
-}
-
-function buildCourseAccessCode(orderRef = '') {
-  const normalized = String(orderRef || '').replace(/[^a-z0-9]/gi, '').toUpperCase();
-  const base = (normalized.slice(-6) || 'BONUS3').padStart(6, '0');
-  const checksum = base
-    .split('')
-    .reduce((acc, char, index) => acc + (char.charCodeAt(0) * (index + 3)), 0)
-    .toString()
-    .slice(-4)
-    .padStart(4, '0');
-  return `CURSO-${base}-${checksum}`;
-}
-
-function buildCourseUrl(orderRef = '') {
-  const url = new URL(COURSE_PAGE_PATH, window.location.href);
-  url.searchParams.set('codigo', buildCourseAccessCode(orderRef));
-  return url.toString();
-}
-
-function showCourseReward({ orderRef = '', purchasedEntries = 0 }) {
-  const box = document.getElementById('courseRewardBox');
-  if (!box) return;
-  const qualifies = Number(purchasedEntries || 0) >= COURSE_MIN_ENTRIES;
-  const codeInput = document.getElementById('courseAccessCodeInput');
-  const openBtn = document.getElementById('openCourseBtn');
-  if (!qualifies) {
-    box.classList.remove('show');
-    if (codeInput) codeInput.value = '';
-    if (openBtn) openBtn.dataset.courseUrl = '';
-    return;
-  }
-
-  const accessCode = buildCourseAccessCode(orderRef);
-  const courseUrl = buildCourseUrl(orderRef);
-  document.getElementById('courseRewardCopy').textContent =
-    `Compraste ${Number(purchasedEntries).toLocaleString('es-AR')} chances y desbloqueaste gratis el curso Guia para comprar tu auto usado en Argentina.`;
-  codeInput.value = accessCode;
-  openBtn.dataset.courseUrl = courseUrl;
-  try {
-    localStorage.setItem('bonus_course_access_code', accessCode);
-    localStorage.setItem('bonus_course_url', courseUrl);
-  } catch (_) {
-    // ignore storage failures
-  }
-  box.classList.add('show');
-}
-
-function showPaymentCard({ kicker, title, copy, shareUrl = '' }) {
-  const card = document.getElementById('paymentStatusCard');
-  const row = document.getElementById('shareLinkRow');
-  document.getElementById('paymentStatusKicker').textContent = kicker;
-  document.getElementById('paymentStatusTitle').textContent = title;
-  document.getElementById('paymentStatusCopy').textContent = copy;
-  document.getElementById('shareLinkInput').value = shareUrl || '';
-  row.classList.toggle('hidden', !shareUrl);
-  card.classList.add('show', 'visible');
-}
-
-async function copyCourseCode() {
-  const value = document.getElementById('courseAccessCodeInput').value;
-  if (!value) return;
-  try {
-    await navigator.clipboard.writeText(value);
-    showToast('Codigo del curso copiado.');
-  } catch (_) {
-    showToast('No se pudo copiar el codigo del curso.');
-  }
-}
-
-function openBonusCourse() {
-  const url = document.getElementById('openCourseBtn')?.dataset.courseUrl || '';
-  if (!url) return;
-  window.open(url, '_blank');
-}
-
-async function copyShareLink() {
-  const value = document.getElementById('shareLinkInput').value;
-  if (!value) return;
-  try {
-    const label = (document.getElementById('paymentStatusTitle').textContent || 'Te invito').replace(' ya participa del sorteo', '');
-    await navigator.clipboard.writeText(buildReferralShareCopy(label, value));
-    showToast('Enlace copiado para compartir.');
-  } catch (_) {
-    showToast('No se pudo copiar el enlace.');
-  }
-}
-
-async function shareWhatsappLink() {
-  const value = document.getElementById('shareLinkInput').value;
-  if (!value) return;
-  const text = `Te comparto mi enlace del sorteo. Si compras desde acÃ¡ me regalÃ¡s 2 chances extra: ${value}`;
-  if (navigator.share) {
-    try {
-      await navigator.share({ text, url: value });
-      return;
-    } catch (_) {
-      // fall through to WhatsApp
-    }
-  }
-  window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
-}
-
-function randomFrom(list) {
-  return list[Math.floor(Math.random() * list.length)];
-}
-
-function shuffleList(list) {
-  const copy = [...list];
-  for (let i = copy.length - 1; i > 0; i -= 1) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [copy[i], copy[j]] = [copy[j], copy[i]];
-  }
-  return copy;
-}
-
-function getParticipantChances(participant) {
-  return Math.max(1, Number(participant.currentChances || participant.purchasedChances || participant.chances || 0));
-}
-
-function buildDrawEntryPoolBase() {
-  const pool = [];
-  currentParticipants.forEach((participant, participantIndex) => {
-    if (!participant) return;
-    const chances = getParticipantChances(participant);
-    for (let chanceNumber = 1; chanceNumber <= chances; chanceNumber += 1) {
-      pool.push({
-        participantIndex,
-        chanceNumber,
-        chanceLabel: `${participant.displayName || participant.name} Â· chance ${chanceNumber}`
-      });
-    }
-  });
-  return pool;
-}
-
-function refreshDrawEntryPool() {
-  drawShowcaseState.basePool = buildDrawEntryPoolBase();
-}
-
-function getDrawNarrative(participant, isSpotlight, cycleProgress) {
-  if (isSpotlight) {
-    return 'La demostracion alcanzo el punto final de la prueba y deja visible la chance exacta seleccionada dentro de la urna.';
-  }
-  if (cycleProgress < 0.2) return 'La demostracion comenzo a recorrer la urna completa, incluyendo cada chance activa de cada participante.';
-  if (cycleProgress > 0.72) return 'La prueba entra en su tramo final y empieza a acercarse a la chance donde se detendra automaticamente.';
-  return 'El sistema sigue recorriendo chances individuales en tiempo real para mostrar una simulacion mas fiel del mecanismo de seleccion.';
-}
-
-function getActiveDemoParticipant() {
-  if (drawShowcaseState.activeParticipantIndex < 0 || !currentParticipants[drawShowcaseState.activeParticipantIndex]) {
-    return null;
-  }
-  return currentParticipants[drawShowcaseState.activeParticipantIndex];
-}
-
-function renderDemoHistory() {
-  const grid = document.getElementById('demoHistoryGrid');
-  if (!grid) return;
-  if (!demoResults.length) {
-    grid.innerHTML = '<div class="demo-history-empty">Todavia no hay resultados de demostracion guardados.</div>';
-    return;
-  }
-  grid.innerHTML = demoResults.map((item) => `
-    <div class="demo-history-card">
-      <strong>${escapeHtml(item.display_name || item.full_name || 'Participante')}</strong>
-      <div class="demo-history-meta">
-        <span>${escapeHtml([item.city || '', item.province || ''].filter(Boolean).join(', ') || 'Argentina')}</span>
-        <span>${escapeHtml(item.recorded_at_label || '')}</span>
-      </div>
-      <div class="demo-history-meta">
-        <span>${escapeHtml(item.public_code || 'Registro demo')}</span>
-        <span>x${Number(item.chances || 0).toLocaleString('es-AR')}</span>
-      </div>
-    </div>
-  `).join('');
-}
-
-function toggleDemoHistory() {
-  drawShowcaseState.historyOpen = !drawShowcaseState.historyOpen;
-  const panel = document.getElementById('demoHistoryPanel');
-  const button = document.getElementById('toggleDemoHistoryBtn');
-  panel?.classList.toggle('open', drawShowcaseState.historyOpen);
-  if (button) {
-    button.textContent = drawShowcaseState.historyOpen ? 'Ocultar participantes demo' : 'Participantes demostracion';
-  }
-}
-
-function toggleDemoShowcase() {
-  const showcase = document.getElementById('drawShowcase');
-  const button = document.getElementById('toggleDemoBtn');
-  if (!showcase || !button) return;
-  const willOpen = showcase.classList.contains('collapsed');
-  showcase.classList.toggle('collapsed', !willOpen);
-  button.textContent = willOpen ? 'Ocultar demostracion' : 'Iniciar demostracion';
-}
-
-function updateDrawControls() {
-  const showcase = document.getElementById('drawShowcase');
-  const startBtn = document.getElementById('drawStartBtn');
-  const saveBtn = document.getElementById('saveDemoResultBtn');
-  if (!showcase || !startBtn || !saveBtn) return;
-  showcase.classList.toggle('paused', drawShowcaseState.paused);
-  startBtn.disabled = !participants.length || drawShowcaseState.hasStarted;
-  startBtn.style.opacity = startBtn.disabled ? '0.5' : '1';
-  saveBtn.disabled = !getActiveDemoParticipant() || !drawShowcaseState.paused || !drawShowcaseState.hasStarted;
-  saveBtn.style.opacity = saveBtn.disabled ? '0.5' : '1';
-}
-
-function pauseDrawShowcase() {
-  drawShowcaseState.paused = true;
-  stopDrawShowcase();
-  updateDrawControls();
-  document.getElementById('drawPhaseLabel').textContent = 'Prueba detenida';
-  document.getElementById('drawPhaseName').textContent = 'El software freno en el foco actual';
-  document.getElementById('drawPhaseHint').textContent = 'Ahora puedes registrar este resultado de demostracion. Este dato sirve solo como evidencia visual del funcionamiento y no como resultado oficial.';
-}
-
-function startDemoTrial() {
-  if (!participants.length) {
-    renderDrawShowcaseEmpty();
-    return;
-  }
-  drawShowcaseState.hasStarted = true;
-  drawShowcaseState.paused = false;
-  updateDrawControls();
-  if (!drawShowcaseState.cycle.length || drawShowcaseState.cyclePosition >= drawShowcaseState.cycle.length) {
-    prepareDrawShowcaseRound();
-  }
-  document.getElementById('participantsTableScroller')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  tickDrawShowcase();
-  document.getElementById('drawPhaseLabel').textContent = 'Prueba en curso';
-  document.getElementById('drawPhaseName').textContent = 'El software esta recorriendo participantes en vivo';
-  document.getElementById('drawPhaseHint').textContent = 'La prueba se detendra sola en el elegido y luego podras registrar ese resultado.';
-}
-
-function syncParticipantTableFocus(activeIndex, isSpotlight) {
-  const rows = document.querySelectorAll('.participant-main-row');
-  if (!drawShowcaseState.hasStarted) {
-    rows.forEach((row) => {
-      row.classList.remove('is-draw-active', 'is-draw-spotlight');
-    });
-    document.getElementById('drawShowcase')?.classList.remove('is-focus-locked');
-    return;
-  }
-  rows.forEach((row) => {
-    const rowIndex = Number(row.dataset.participantIndex);
-    const isActive = rowIndex === activeIndex;
-    row.classList.toggle('is-draw-active', isActive && !isSpotlight);
-    row.classList.toggle('is-draw-spotlight', isActive && isSpotlight);
-  });
-
-  const activeRow = document.querySelector(`.participant-main-row[data-participant-index="${activeIndex}"]`);
-  if (!activeRow) return;
-
-  const scroller = document.getElementById('participantsTableScroller');
-  if (!scroller) return;
-
-  const rowTop = activeRow.offsetTop;
-  const rowBottom = rowTop + activeRow.offsetHeight;
-  const currentTop = scroller.scrollTop;
-  const visibleTop = currentTop + 54;
-  const visibleBottom = currentTop + scroller.clientHeight - 54;
-  const shouldLockView = isSpotlight || !drawShowcaseState.paused;
-  if (shouldLockView || rowTop < visibleTop || rowBottom > visibleBottom) {
-    const targetTop = Math.max(0, rowTop - (scroller.clientHeight * 0.45));
-    scroller.scrollTo({ top: targetTop, behavior: 'smooth' });
-  }
-
-  if (shouldLockView) {
-    const showcase = document.getElementById('drawShowcase');
-    showcase?.classList.add('is-focus-locked');
-  }
-}
-
-function getDrawDelay(participant, isSpotlight) {
-  const chanceWeight = Math.min(getParticipantChances(participant), 12);
-  const cycleProgress = drawShowcaseState.cycle.length
-    ? drawShowcaseState.cyclePosition / drawShowcaseState.cycle.length
-    : 0;
-  const introBoost = cycleProgress < 0.18 ? -32 : cycleProgress > 0.72 ? 42 : 0;
-  if (isSpotlight) {
-    return 2400 + (chanceWeight * 45) + Math.random() * 1200;
-  }
-  return Math.max(95, 150 + introBoost + (chanceWeight * 4) + (Math.random() * 90));
-}
-
-function renderDrawShowcaseEmpty() {
-  const rail = document.getElementById('drawRail');
-  const card = document.getElementById('drawFeaturedCard');
-  document.getElementById('drawShowcase')?.classList.remove('is-focus-locked');
-  drawShowcaseState.activeParticipantIndex = -1;
-  drawShowcaseState.activeEntryNumber = 0;
-  drawShowcaseState.activeEntryPosition = 0;
-  drawShowcaseState.activeSpotlight = false;
-  drawShowcaseState.hasStarted = false;
-  if (card) card.classList.remove('spotlight');
-  syncParticipantTableFocus(-1, false);
-  document.getElementById('drawRoundCounter').textContent = '0';
-  document.getElementById('drawFeaturedAvatar').textContent = '--';
-  document.getElementById('drawFeaturedAvatar').style.background = 'rgba(255,255,255,0.06)';
-  document.getElementById('drawFeaturedAvatar').style.color = 'var(--text)';
-  document.getElementById('drawFeaturedName').textContent = 'La animacion se activara sola';
-  document.getElementById('drawFeaturedMeta').innerHTML = '<span class="draw-featured-pill">Sin datos todavia</span>';
-  document.getElementById('drawFeaturedScore').textContent = '0';
-  document.getElementById('drawPhaseLabel').textContent = 'Prueba disponible';
-  document.getElementById('drawPhaseName').textContent = 'Lista para iniciar la demostracion del funcionamiento';
-  document.getElementById('drawPhaseHint').textContent = 'Pulsa iniciar prueba, deja que el sistema recorra la lista y luego registra el punto exacto donde freno.';
-  document.getElementById('drawIntelFill').style.width = '18%';
-  updateDrawControls();
-  if (rail) {
-    rail.innerHTML = '<div class="draw-rail-empty">Todavia no hay participantes visibles para iniciar el recorrido animado.</div>';
-  }
-}
-
-async function loadDemoResults() {
-  try {
-    const { data, error } = await supabaseClient.rpc('list_demo_draw_results', {
-      p_campaign_slug: CAMPAIGN_SLUG
-    });
-    if (error) throw error;
-    demoResults = (data || []).map((row) => ({
-      ...row,
-      recorded_at_label: row.recorded_at
-        ? new Date(row.recorded_at).toLocaleString('es-AR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })
-        : ''
-    }));
-  } catch (error) {
-    console.warn('No se pudo cargar el historial demo.', error);
-    demoResults = [];
-  }
-  renderDemoHistory();
-}
-
-async function saveCurrentDemoResult() {
-  const participant = getActiveDemoParticipant();
-  if (!participant) {
-    showToast('Todavia no hay un participante seleccionado donde freno la prueba.');
-    return;
-  }
-  try {
-    const { error } = await supabaseClient.rpc('record_demo_draw_result', {
-      p_campaign_slug: CAMPAIGN_SLUG,
-      p_participant_public_code: participant.publicCode || '',
-      p_display_name: participant.displayName || participant.name,
-      p_full_name: participant.name || participant.displayName || ''
-    });
-    if (error) throw error;
-    await loadDemoResults();
-    if (!drawShowcaseState.historyOpen) {
-      toggleDemoHistory();
-    }
-    showToast(`Resultado registrado donde freno: ${participant.displayName || participant.name}.`);
-  } catch (error) {
-    console.error(error);
-    showToast('No se pudo registrar donde freno la prueba. Revisa la migracion SQL.');
-  }
-}
-
-function renderDrawShowcase(entry, isSpotlight, delay) {
-  if (!currentParticipants.length || !entry || typeof entry.participantIndex !== 'number') {
-    renderDrawShowcaseEmpty();
-    return;
-  }
-
-  const activeIndex = entry.participantIndex;
-  const participant = currentParticipants[activeIndex];
-  if (!participant) {
-    renderDrawShowcaseEmpty();
-    return;
-  }
-  const activeColor = colorFor(activeIndex);
-  drawShowcaseState.activeParticipantIndex = activeIndex;
-  drawShowcaseState.activeEntryNumber = entry.chanceNumber;
-  drawShowcaseState.activeEntryPosition = drawShowcaseState.cyclePosition + 1;
-  drawShowcaseState.activeSpotlight = Boolean(isSpotlight);
-  syncParticipantTableFocus(activeIndex, isSpotlight);
-  const rail = document.getElementById('drawRail');
-  const featuredCard = document.getElementById('drawFeaturedCard');
-  const featuredAvatar = document.getElementById('drawFeaturedAvatar');
-  const featuredName = document.getElementById('drawFeaturedName');
-  const featuredMeta = document.getElementById('drawFeaturedMeta');
-  const featuredScore = document.getElementById('drawFeaturedScore');
-  const phaseLabel = document.getElementById('drawPhaseLabel');
-  const phaseName = document.getElementById('drawPhaseName');
-  const phaseHint = document.getElementById('drawPhaseHint');
-  const intelFill = document.getElementById('drawIntelFill');
-  const cycleProgress = drawShowcaseState.cycle.length
-    ? (drawShowcaseState.cyclePosition + 1) / drawShowcaseState.cycle.length
-    : 0;
-  document.getElementById('drawShowcase')?.classList.toggle('is-focus-locked', Boolean(isSpotlight));
-
-  featuredCard.classList.toggle('spotlight', Boolean(isSpotlight));
-  featuredAvatar.textContent = initials(participant.displayName || participant.name);
-  featuredAvatar.style.background = `${activeColor}22`;
-  featuredAvatar.style.color = activeColor;
-  featuredName.textContent = participant.displayName || participant.name;
-  featuredMeta.innerHTML = `
-    <span class="draw-featured-pill">${escapeHtml(participant.province || 'Argentina')}</span>
-    <span class="draw-featured-pill">${escapeHtml(participant.city || 'Sin ciudad')}</span>
-    <span class="draw-featured-pill">${escapeHtml(participant.date || 'Hoy')}</span>
-    <span class="draw-featured-pill">${participant.publicCode ? escapeHtml(participant.publicCode) : 'Registro visible'}</span>
-  `;
-  featuredScore.textContent = getParticipantChances(participant).toLocaleString('es-AR');
-  document.getElementById('drawRoundCounter').textContent = String(drawShowcaseState.round);
-
-  phaseLabel.textContent = isSpotlight ? 'Pausa aleatoria' : 'Recorrido dinamico';
-  phaseName.textContent = isSpotlight
-    ? `${participant.displayName || participant.name} quedo seleccionado en la demostracion`
-    : 'La lista esta recorriendo participantes en tiempo real';
-  phaseHint.textContent = getDrawNarrative(participant, isSpotlight, cycleProgress);
-  intelFill.style.width = `${Math.max(16, Math.min(100, cycleProgress * 100))}%`;
-
-  const visibleCards = [];
-  const cardCount = Math.min(Math.max(drawShowcaseState.cycle.length, 1), 5);
-  for (let offset = 0; offset < cardCount; offset += 1) {
-    const cyclePosition = (drawShowcaseState.cyclePosition + offset) % drawShowcaseState.cycle.length;
-    const cycleEntry = drawShowcaseState.cycle[cyclePosition];
-    if (!cycleEntry || typeof cycleEntry.participantIndex !== 'number') {
-      continue;
-    }
-    const item = currentParticipants[cycleEntry.participantIndex];
-    if (!item) {
-      continue;
-    }
-    visibleCards.push(`
-      <div class="draw-rail-card${offset === 0 ? ' active' : ''}${cyclePosition === drawShowcaseState.spotlightPosition ? ' spotlight' : ''}">
-        <span class="draw-rail-name">${escapeHtml(item.displayName || item.name)}</span>
-        <div class="draw-rail-meta">
-          <span>${escapeHtml(participantLocation(item))}</span>
-          <span>Chance ${cycleEntry.chanceNumber}</span>
-        </div>
-      </div>
-    `);
-  }
-  rail.innerHTML = visibleCards.join('');
-}
-
-function stopDrawShowcase() {
-  if (drawAnimationTimeout) {
-    clearTimeout(drawAnimationTimeout);
-    drawAnimationTimeout = null;
-  }
-}
-
-function prepareDrawShowcaseRound() {
-  drawShowcaseState.cycle = shuffleList(drawShowcaseState.basePool);
-  drawShowcaseState.cyclePosition = 0;
-  drawShowcaseState.spotlightPosition = drawShowcaseState.cycle.length ? Math.floor(Math.random() * drawShowcaseState.cycle.length) : -1;
-  drawShowcaseState.round += 1;
-}
-
-function tickDrawShowcase() {
-  if (!currentParticipants.length) {
-    stopDrawShowcase();
-    renderDrawShowcaseEmpty();
-    return;
-  }
-  if (drawShowcaseState.paused) {
-    updateDrawControls();
-    return;
-  }
-
-  if (!drawShowcaseState.cycle.length || drawShowcaseState.cyclePosition >= drawShowcaseState.cycle.length) {
-    prepareDrawShowcaseRound();
-  }
-  if (!drawShowcaseState.cycle.length) {
-    renderDrawShowcaseEmpty();
-    return;
-  }
-
-  const cyclePosition = drawShowcaseState.cyclePosition;
-  const entry = drawShowcaseState.cycle[cyclePosition];
-  if (!entry || typeof entry.participantIndex !== 'number' || !currentParticipants[entry.participantIndex]) {
-    drawShowcaseState.cyclePosition += 1;
-    if (drawShowcaseState.cyclePosition >= drawShowcaseState.cycle.length) {
-      prepareDrawShowcaseRound();
-    }
-    tickDrawShowcase();
-    return;
-  }
-  const isSpotlight = cyclePosition === drawShowcaseState.spotlightPosition;
-  const participant = currentParticipants[entry.participantIndex];
-  const delay = getDrawDelay(participant, isSpotlight);
-  renderDrawShowcase(entry, isSpotlight, delay);
-  drawShowcaseState.cyclePosition += 1;
-  if (isSpotlight) {
-    drawAnimationTimeout = setTimeout(() => {
-      pauseDrawShowcase();
-    }, delay);
-    return;
-  }
-  drawAnimationTimeout = setTimeout(() => {
-    if (drawShowcaseState.cyclePosition >= drawShowcaseState.cycle.length) {
-      prepareDrawShowcaseRound();
-    }
-    tickDrawShowcase();
-  }, delay);
-}
-
-function startDrawShowcase() {
-  stopDrawShowcase();
-  if (!currentParticipants.length) {
-    renderDrawShowcaseEmpty();
-    return;
-  }
-  drawShowcaseState.paused = true;
-  drawShowcaseState.hasStarted = false;
-  updateDrawControls();
-  prepareDrawShowcaseRound();
-  if (!drawShowcaseState.cycle.length) {
-    renderDrawShowcaseEmpty();
-    return;
-  }
-  const entry = drawShowcaseState.cycle[drawShowcaseState.cyclePosition];
-  if (!entry || typeof entry.participantIndex !== 'number' || !currentParticipants[entry.participantIndex]) {
-    renderDrawShowcaseEmpty();
-    return;
-  }
-  const participant = currentParticipants[entry.participantIndex];
-  const delay = getDrawDelay(participant, false);
-  renderDrawShowcase(entry, false, delay);
-}
-
-async function shareWhatsappLink() {
-  const value = document.getElementById('shareLinkInput').value;
-  if (!value) return;
-  const label = (document.getElementById('paymentStatusTitle').textContent || 'Te invito').replace(' ya participa del sorteo', '');
-  const text = buildReferralShareCopy(label, value);
-  if (navigator.share) {
-    try {
-      await navigator.share({ title: DEFAULT_SHARE_TITLE, text, url: value });
-      return;
-    } catch (_) {
-      // fall through to WhatsApp
-    }
-  }
-  window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
-}
-
-function getRandomActivityMessage() {
-  const liveFeedParticipants = currentParticipants.length
-    ? currentParticipants
-    : participants.filter((participant) => participant?.joinedAt instanceof Date && !Number.isNaN(participant.joinedAt.getTime()) && participant.joinedAt >= LIVE_FEED_PARTICIPANTS_START_DATE);
-  
-  if (!liveFeedParticipants.length) {
-    return null;
-  }
-
-  const person = randomFrom(liveFeedParticipants);
-  const chances = getParticipantChances(person);
-  
-  // Persuasive templates based on chances
-  let template = '';
-  if (chances >= 10) {
-    template = randomFrom([
-      `¡WOW! Compró un pack de ${chances} chances y multiplicó sus posibilidades.`,
-      `acaba de asegurar ${chances} participaciones. ¡Va con todo por el Corsa!`,
-      `eligió el pack VIP de ${chances} chances. ¡Nivel de confianza: Máximo!`
-    ]);
-  } else if (chances >= 3) {
-    template = randomFrom([
-      `se sumó con ${chances} chances y ya tiene acceso al curso GRATIS.`,
-      `aprovechó la promo de ${chances} chances y ya está en la lista.`,
-      `eligió participar con ${chances} chances para tener más ventaja.`
-    ]);
-  } else {
-    template = randomFrom([
-      'acaba de reservar su lugar en el sorteo.',
-      'se sumó hace instantes desde ' + participantLocation(person) + '.',
-      'ya es parte de los participantes de hoy.',
-      'confirmó su participación por el Chevrolet Corsa.'
-    ]);
-  }
-
-  return {
-    text: `${person.displayName || person.name} ${template}`,
-    sub: `Hace instantes · ${person.date}`
-  };
-}
-
-function showLiveFeedNotification() {
-  const feed = document.getElementById('liveFeed');
-  const message = getRandomActivityMessage();
-  if (!message) return;
-  document.getElementById('liveFeedText').textContent = message.text;
-  document.getElementById('liveFeedSub').textContent = message.sub;
-  feed.classList.add('show');
-  setTimeout(() => feed.classList.remove('show'), 4600);
-}
-
-function scheduleLiveFeed() {
-  const liveFeedParticipants = currentParticipants.length
-    ? currentParticipants
-    : participants.filter((participant) => participant?.joinedAt instanceof Date && !Number.isNaN(participant.joinedAt.getTime()) && participant.joinedAt >= LIVE_FEED_PARTICIPANTS_START_DATE);
-  if (!liveFeedParticipants.length) return;
-  if (liveFeedTimeout) clearTimeout(liveFeedTimeout);
-  const delay = 9000 + Math.random() * 11000;
-  liveFeedTimeout = setTimeout(() => {
-    showLiveFeedNotification();
-    scheduleLiveFeed();
-  }, delay);
-}
-
-function updateHeroDynamicElements() {
-  // Visitor count simulation
-  const visitorCountEl = document.getElementById('visitorCount');
-  if (visitorCountEl) {
-    // We skip setting it to 0 and go directly from "Cargando..." to the random number
-    
-    // After a short random delay, set the first random number
-    setTimeout(() => {
-      let count = 135 + Math.floor(Math.random() * 60);
-      visitorCountEl.textContent = `${count} personas viendo esto ahora`;
-      
-      setInterval(() => {
-        // Small fluctuations
-        count += Math.floor(Math.random() * 7) - 3;
-        if (count < 110) count = 110;
-        visitorCountEl.textContent = `${count} personas viendo esto ahora`;
-      }, 4500);
-    }, 1500);
-  }
-
-  // Hero progress simulation - SET TO 96%
-  const progressFill = document.getElementById('heroProgressFill');
-  const progressText = document.getElementById('heroProgressText');
-  if (progressFill && progressText) {
-    const percent = 96;
-    progressFill.style.width = `${percent}%`;
-    progressText.textContent = `${percent}% de chances reservadas`;
-  }
-}
-
-function startFloatingAvatars() {
-  const container = document.getElementById('floatingAvatarsContainer');
-  if (!container) return;
-
-  function createAvatar() {
-    if (!participants.length) return;
-    const p = randomFrom(participants);
-    const avatar = document.createElement('div');
-    avatar.className = 'floating-avatar';
-    
-    // Random position
-    const top = Math.random() * 80 + 10;
-    const left = Math.random() * 80 + 10;
-    
-    avatar.style.top = `${top}%`;
-    avatar.style.left = `${left}%`;
-    
-    if (p.photoUrl) {
-      avatar.innerHTML = `<img src="${p.photoUrl}" style="width:100%;height:100%;border-radius:50%;object-fit:cover">`;
-    } else {
-      // Show full name instead of initials
-      avatar.textContent = p.displayName || p.name;
-      avatar.style.width = 'auto';
-      avatar.style.height = 'auto';
-      avatar.style.padding = '0.5rem 1rem';
-      avatar.style.borderRadius = '999px';
-      avatar.style.display = 'flex';
-      avatar.style.alignItems = 'center';
-      avatar.style.justifyContent = 'center';
-      avatar.style.fontSize = '10px';
-      avatar.style.fontWeight = '800';
-      avatar.style.whiteSpace = 'nowrap';
-      avatar.style.color = colorFor(participants.indexOf(p));
-      avatar.style.background = `${colorFor(participants.indexOf(p))}22`;
-    }
-
-    container.appendChild(avatar);
-    
-    // Remove after animation
-    setTimeout(() => avatar.remove(), 4000);
-  }
-
-  // Initial burst
-  for(let i=0; i<5; i++) setTimeout(createAvatar, i * 500);
-  
-  // Infinite loop
-  setInterval(createAvatar, 2500);
-}
-
-function updateStats(){
-  return;
-}
-
-function renderPackages(){
-  const grid = document.getElementById('packagesGrid');
-  const tc = totalChances();
-  const baseChancePrice = getBaseChancePrice();
-  grid.innerHTML = '';
-
-  // Filtrar para ocultar los paquetes de 100 y 1000 chances
-  const visiblePackages = packages.filter(p => Number(p.entries_qty) < 100);
-
-  visiblePackages.forEach(pkg => {
-    const chances = Number(pkg.entries_qty || 0) + Number(pkg.bonus_entries || 0);
-    const totalPrice = Number(pkg.price_ars || 0);
-    const fillPct = Math.min(100, Math.round((tc / Math.max(currentMaxChances(), 1)) * 100));
-    const perChance = chances > 0 ? (totalPrice / chances).toLocaleString('es-AR', { maximumFractionDigits: 0 }) : '0';
-    const theoreticalPrice = baseChancePrice > 0 ? baseChancePrice * chances : 0;
-    const savings = theoreticalPrice > totalPrice ? theoreticalPrice - totalPrice : 0;
-    const savingsLabel = savings > 0 ? `Ahorras $${savings.toLocaleString('es-AR')}` : '&nbsp;';
-    const div = document.createElement('div');
-    div.className = 'pkg reveal' + (pkg.featured ? ' featured' : '');
-    div.innerHTML = `
-      ${pkg.featured ? '<span class="pkg-badge">MEJOR OPCION</span>' : ''}
-      <span class="pkg-chances">${chances >= 1000 ? (chances/1000)+'K' : chances}</span>
-      <span class="pkg-unit">CHANCE${chances > 1 ? 'S' : ''}</span>
-      <div class="pkg-progress"><div class="pkg-progress-fill" style="width:${fillPct}%"></div></div>
-      <span class="pkg-price">$${totalPrice.toLocaleString('es-AR')}</span>
-      <span class="pkg-price-unit">$${perChance} por chance</span>
-      <span class="pkg-saving">${savingsLabel}</span>
-      <span class="pkg-price-unit">${chances >= 3 ? 'Con 3 o mas chances se habilita tu link unico y cada referido aprobado te suma 2 chances extra' : '&nbsp;'}</span>
-      <button class="pkg-btn" onclick="openModal('${pkg.id}')">Quiero ${chances >= 1000 ? (chances/1000)+'K' : chances} chance${chances > 1 ? 's' : ''}</button>
-    `;
-    grid.appendChild(div);
-  });
-
-  repairDocumentText(grid);
-  observeReveal();
-}
-
-function renderParticipants(filter=''){
-  const body = document.getElementById('participantsBody');
-  if (!body) return;
-  body.innerHTML = '';
-  const filtered = filter
-    ? participants.filter(p =>
-        (p.displayName || p.name).toLowerCase().includes(normalizedFilter) ||
-        p.name.toLowerCase().includes(normalizedFilter) ||
-        (p.city || '').toLowerCase().includes(normalizedFilter) ||
-        (p.province || '').toLowerCase().includes(normalizedFilter) ||
-        (p.publicCode || '').toLowerCase().includes(normalizedFilter)
-      )
-    : participants;
-
-  filtered.forEach((p) => {
-    const sourceIndex = participants.indexOf(p);
-    const purchasedChances = Math.max(1, Number(p.currentChances || p.purchasedChances || p.chances || 0));
-    const detailId = `${p.publicCode || p.name}-${sourceIndex}-${p.date}`;
-    const row = document.createElement('tr');
-    row.className = 'participant-main-row';
-    row.dataset.detailId = detailId;
-    row.dataset.participantIndex = String(sourceIndex);
-    const verifiedHtml = `<span class="verified-badge"><svg viewBox="0 0 24 24"><path d="M23,12L20.56,9.22L20.9,5.54L17.29,4.72L15.4,1.54L12,3L8.6,1.54L6.71,4.72L3.1,5.53L3.44,9.21L1,12L3.44,14.78L3.1,18.47L6.71,19.29L8.6,22.47L12,21L15.4,22.46L17.29,19.28L20.9,18.46L20.56,14.78L23,12M10,17L6,13L7.41,11.59L10,14.17L16.59,7.58L18,9L10,17Z"></path></svg>Verificado</span>`;
-    row.innerHTML = `
-      <td data-col="participant">
-        <div class="participant-cell">
-          ${avatarHtml}
-          <div class="participant-info">
-            <span class="participant-label">${escapeHtml(p.displayName || p.name)}${verifiedHtml}</span>
-            <div class="participant-mobile-location">${escapeHtml(p.province || '-')}${p.city ? ', ' + escapeHtml(p.city) : ''}</div>
-          </div>
-        </div>
-      </td>
-      <td data-col="province"><span style="font-size:0.8rem;color:var(--text2)">${p.province || '-'}</span></td>
-      <td data-col="city"><span style="font-size:0.8rem;color:var(--text2)">${p.city || '-'}</span></td>
-      <td data-col="entries"><span class="chances-badge">x${purchasedChances.toLocaleString('es-AR')}</span></td>
-      <td data-col="date" style="font-size:0.8rem;color:var(--text2)">${p.date}</td>
-      <td data-col="message" class="message-cell"><button type="button" class="message-trigger${p.opinionMessage ? '' : ' empty'}" data-opinion="${encodeURIComponent(p.opinionMessage || '')}" data-author="${encodeURIComponent(p.displayName || p.name)}" data-city="${encodeURIComponent(participantLocation(p))}" data-photo="${escapeHtml(p.photoUrl || '')}"><span class="message-trigger-icon">ðŸ’¬</span><span>${p.opinionMessage ? 'Ver mensaje' : 'Sin mensaje'}</span></button></td>
-    `;
-    body.appendChild(row);
-
-    if (expandedParticipantRows.has(detailId)) {
-      Array.from({ length: purchasedChances }, (_, idx) => idx + 1).forEach((chanceNumber) => {
-        const detailRow = document.createElement('tr');
-        const detailAvatarHtml = renderParticipantAvatar(p, p.detailLabel || p.displayName || p.name, colorFor(sourceIndex));
-        detailRow.className = 'participant-detail-row';
-        detailRow.innerHTML = `
-          <td data-col="participant">
-            <div class="participant-cell">
-              ${detailAvatarHtml}
-              <div class="participant-info">
-                <span class="participant-label">${escapeHtml(p.detailLabel || p.displayName || p.name)}${verifiedHtml}</span>
-                <div class="participant-mobile-location">${escapeHtml(p.province || '-')}${p.city ? ', ' + escapeHtml(p.city) : ''}</div>
-              </div>
-            </div>
-          </td>
-          <td data-col="province"><span style="font-size:0.8rem;color:var(--text2)">${p.province || '-'}</span></td>
-          <td data-col="city"><span style="font-size:0.8rem;color:var(--text2)">${p.city || '-'}</span></td>
-          <td data-col="entries"><span class="chances-badge">x${chanceNumber}</span></td>
-          <td data-col="date" style="font-size:0.8rem;color:var(--text2)">${p.date}</td>
-          <td data-col="message" class="message-cell"><button type="button" class="message-trigger${p.opinionMessage ? '' : ' empty'}" data-opinion="${encodeURIComponent(p.opinionMessage || '')}" data-author="${encodeURIComponent(p.displayName || p.name)}" data-city="${encodeURIComponent(participantLocation(p))}" data-photo="${escapeHtml(p.photoUrl || '')}"><span class="message-trigger-icon">ðŸ’¬</span><span>${p.opinionMessage ? 'Ver mensaje' : 'Sin mensaje'}</span></button></td>
-        `;
-        body.appendChild(detailRow);
-      });
-    }
-  });
-
-  syncParticipantTableFocus(drawShowcaseState.activeParticipantIndex, drawShowcaseState.activeSpotlight);
-
-  body.querySelectorAll('.message-trigger:not(.empty)').forEach((button) => {
-    button.addEventListener('click', (event) => {
-      event.stopPropagation();
-      openOpinionModal({
-        message: decodeURIComponent(button.dataset.opinion || ''),
-        author: decodeURIComponent(button.dataset.author || 'Participante'),
-        city: decodeURIComponent(button.dataset.city || 'Argentina'),
-        photoUrl: button.dataset.photo || ''
-      });
-    });
-  });
-
-  body.querySelectorAll('.participant-main-row').forEach((row) => {
-    row.addEventListener('click', () => {
-      const { detailId } = row.dataset;
-      if (!detailId) return;
-      if (expandedParticipantRows.has(detailId)) {
-        expandedParticipantRows.delete(detailId);
-      } else {
-        expandedParticipantRows.add(detailId);
-      }
-      renderParticipants(document.getElementById('searchInput').value);
-    });
-  });
-
-  if (!filtered.length) {
-    body.innerHTML = '<tr><td colspan="6" style="padding:1rem;color:var(--text2)">Todavia no hay compras aprobadas para mostrar.</td></tr>';
-  }
-
-  updateStats();
-}
-
-function renderProofMessages() {
-  const grid = document.getElementById('proofGrid');
-  if (!grid) return;
-
-  const proofCutOff = new Date('2026-05-01T00:00:00-03:00');
-
-  const dynamicMessages = participants
-    .filter((p) => p.opinionMessage && p.joinedAt >= proofCutOff)
-    .map((p) => ({
-      name: p.displayName || p.name,
-      city: participantLocation(p),
-      message: p.opinionMessage,
-      photoUrl: p.photoUrl || ''
-    }));
-
-  const cards = dynamicMessages.length ? dynamicMessages : [];
-  grid.innerHTML = cards.map((item, index) => `
-    <div class="proof-card reveal" style="transition-delay:${Math.min(index * 0.08, 0.32)}s">
-      <div class="proof-head">
-        <div class="proof-avatar">${item.photoUrl ? `<img src="${escapeHtml(item.photoUrl)}" alt="${escapeHtml(item.name)}">` : initials(item.name)}</div>
-        <div class="proof-head-copy">
-          <span class="proof-name">${escapeHtml(item.name)}</span>
-          <span class="proof-city">${escapeHtml(item.city)}</span>
-        </div>
-      </div>
-      <div class="proof-copy">"${escapeHtml(item.message)}"</div>
-    </div>
-  `).join('');
-
-  observeReveal();
-}
-
-function setCountdown(targetIso){
-  if (countdownInterval) clearInterval(countdownInterval);
-  const target = new Date(DRAW_TARGET_ISO);
-  const countdownBar = document.getElementById('countdownBar');
-
-  function tick(){
-    const diff = target - Date.now();
-    if (diff <= 0) {
-      clearInterval(countdownInterval);
-      countdownBar.classList.remove('hidden-until-thirty');
-      document.getElementById('countdownNote').textContent = 'Se acerca el cierre final. AprovechÃ¡ antes de que se agoten las chances.';
-      return;
-    }
-    const d = Math.floor(diff / 864e5);
-    const h = Math.floor((diff % 864e5) / 36e5);
-    const m = Math.floor((diff % 36e5) / 6e4);
-    const s = Math.floor((diff % 6e4) / 1e3);
-    if (d <= 30) {
-      countdownBar.classList.remove('hidden-until-thirty');
-    } else {
-      countdownBar.classList.add('hidden-until-thirty');
-    }
-    document.getElementById('cd-d').textContent = String(d).padStart(2,'0');
-    document.getElementById('cd-h').textContent = String(h).padStart(2,'0');
-    document.getElementById('cd-m').textContent = String(m).padStart(2,'0');
-    document.getElementById('cd-s').textContent = String(s).padStart(2,'0');
-    const note = document.getElementById('countdownNote');
-    if (d <= 3) {
-      note.textContent = 'Ultimos dias. Quedan pocos lugares para hacer el sorteo antes.';
-    } else if (d <= 10) {
-      note.textContent = 'Se viene el cierre. Quedan pocos lugares y puede sortearse antes al agotar chances.';
-    } else if (d <= 30) {
-      note.textContent = 'Comienza la cuenta regresiva. Quedan pocos lugares para hacer el sorteo antes.';
-    } else {
-      note.textContent = 'Quedan pocos lugares para hacer el sorteo antes.';
-    }
-  }
-
-  tick();
-  countdownInterval = setInterval(tick, 1000);
-}
-
-function createSparks(){
-  const container = document.getElementById('sparks');
-  for(let i = 0; i < 30; i++){
-    const s = document.createElement('div');
-    s.className = 'spark';
-    const size = Math.random() * 4 + 2;
-    s.style.cssText = `
-      width:${size}px; height:${size}px;
-      left:${Math.random()*100}%;
-      background:${Math.random()>0.5?'#F5C842':'#E8192C'};
-      animation-duration:${4+Math.random()*8}s;
-      animation-delay:${Math.random()*6}s;
-    `;
-    container.appendChild(s);
-  }
-}
-
-function openModal(pkgId){
-  selectedPkg = packages.find(p => p.id === pkgId);
-  if (!selectedPkg) return;
-  const totalEntries = Number(selectedPkg.entries_qty || 0) + Number(selectedPkg.bonus_entries || 0);
-  document.getElementById('modal-pkg-name').textContent = `${totalEntries} chance${totalEntries > 1 ? 's' : ''}`;
-  document.getElementById('modal-pkg-price').textContent = '$' + Number(selectedPkg.price_ars || 0).toLocaleString('es-AR');
-  document.getElementById('f-name').value = '';
-  document.getElementById('f-phone').value = '';
-  document.getElementById('f-province').value = '';
-  document.getElementById('f-city').value = '';
-  document.getElementById('f-photo').value = '';
-  document.getElementById('f-message').value = '';
-  document.getElementById('f-anonymous').checked = false;
-  selectedPhotoFile = null;
-  updatePhotoPreview(null);
-  updateMessagePreview();
-  selectPaymentProvider('galiopay');
-  setModalOpen(true);
-}
-
-function setModalOpen(isOpen) {
-  document.getElementById('modal').classList.toggle('open', isOpen);
-  document.body.classList.toggle('modal-open', isOpen);
-}
-
-function selectPaymentProvider(provider) {
-  const chip = document.querySelector(`.pm-chip[data-provider="${provider}"]`);
-  if (!chip) return;
-  document.querySelectorAll('.pm-chip').forEach(c => c.classList.remove('selected'));
-  chip.classList.add('selected');
-  selectedPaymentProvider = chip.dataset.provider || 'manual';
-}
-
-document.getElementById('modalClose').onclick = () => setModalOpen(false);
-document.getElementById('modal').onclick = e => { if (e.target === document.getElementById('modal')) setModalOpen(false); };
-
-function selectPM(el){
-  document.querySelectorAll('.pm-chip').forEach(c => c.classList.remove('selected'));
-  el.classList.add('selected');
-  selectedPaymentProvider = el.dataset.provider || 'manual';
-}
-
-function updateMessagePreview() {
-  const value = document.getElementById('f-message').value.trim();
-  const preview = document.getElementById('messagePreview');
-  const copy = document.getElementById('messagePreviewCopy');
-  copy.textContent = value;
-  preview.classList.toggle('show', Boolean(value));
-}
-
-document.getElementById('f-message').addEventListener('input', updateMessagePreview);
-document.getElementById('f-photo').addEventListener('change', (event) => {
-  const [file] = event.target.files || [];
-  selectedPhotoFile = file || null;
-  updatePhotoPreview(selectedPhotoFile);
-});
-document.getElementById('opinionModalClose').onclick = () => document.getElementById('opinionModal').classList.remove('open');
-document.getElementById('opinionModal').onclick = e => { if (e.target === document.getElementById('opinionModal')) document.getElementById('opinionModal').classList.remove('open'); };
-
-function openOpinionModal({ message, author, city, photoUrl }) {
-  const modal = document.getElementById('opinionModal');
-  const body = document.getElementById('opinionModalBody');
-  if (!modal || !body) return;
-
-  const color = colorFor(0);
-  const avatarHtml = photoUrl 
-    ? `<img src="${escapeHtml(photoUrl)}" alt="${escapeHtml(author)}">`
-    : initials(author);
-
-  body.innerHTML = `
-    <div class="opinion-modal-head">
-      <div class="opinion-modal-avatar" style="background:${color}22; color:${color}; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:14px;">
-        ${avatarHtml}
-      </div>
-      <div class="opinion-modal-info">
-        <span class="opinion-modal-author">${escapeHtml(author)}</span>
-        <span class="opinion-modal-city">${escapeHtml(city)} Â· Mensaje compartido desde el formulario del sorteo.</span>
-      </div>
-    </div>
-    <div class="opinion-modal-copy">${escapeHtml(message)}</div>
-  `;
-  modal.classList.add('open');
-  document.body.classList.add('modal-open');
-}
-
-function escapeHtml(value) {
-  return String(value || '')
-    .replaceAll('&', '&amp;')
-    .replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;')
-    .replaceAll('"', '&quot;')
-    .replaceAll("'", '&#39;');
-}
-
-function renderParticipantAvatar(participant, fallbackLabel, color) {
-  if (participant.photoUrl) {
-    let finalUrl = participant.photoUrl;
-    const isHeic = finalUrl.toLowerCase().endsWith('.heic');
-    
-    if (isHeic && finalUrl.includes('supabase.co')) {
-      const transformUrl = finalUrl.replace('/storage/v1/object/public/', '/storage/v1/render/image/public/') + '?width=100&height=100&format=auto&quality=80';
-      return `<div class="td-avatar"><img src="${escapeHtml(transformUrl)}" data-heic="${escapeHtml(finalUrl)}" onerror="handleHeicError(this)" alt="${escapeHtml(fallbackLabel)}" loading="lazy"></div>`;
-    }
-    
-    return `<div class="td-avatar"><img src="${escapeHtml(finalUrl)}" alt="${escapeHtml(fallbackLabel)}" loading="lazy"></div>`;
-  }
-  return `<div class="td-avatar" style="background:${color}22;color:${color}">${escapeHtml(initials(fallbackLabel))}</div>`;
-}
-
-async function handleHeicError(img) {
-  const originalUrl = img.dataset.heic;
-  if (!originalUrl) return;
-  
-  // Si fallÃ³ la transformaciÃ³n o el navegador no soporta HEIC, convertimos por JS
-  try {
-    const response = await fetch(originalUrl);
-    const blob = await response.blob();
-    const convertedBlob = await heic2any({
-      blob: blob,
-      toType: 'image/jpeg',
-      quality: 0.7
-    });
-    const objectUrl = URL.createObjectURL(Array.isArray(convertedBlob) ? convertedBlob[0] : convertedBlob);
-    img.src = objectUrl;
-    img.onerror = null; // Evitar bucles infinitos
-  } catch (e) {
-    console.error('Error convirtiendo HEIC existente:', e);
-    // Si todo falla, mostrar iniciales
-    const parent = img.parentElement;
-    if (parent) {
-      const initialsText = initials(img.alt || 'P');
-      parent.innerHTML = initialsText;
-      parent.style.background = 'rgba(255,255,255,0.05)';
-      parent.style.color = 'var(--text2)';
-    }
-  }
-}
-
-function participantLocation(participant) {
-  const province = participant.province || '';
-  const city = participant.city || '';
-  return province || city || 'Argentina';
-}
-
-function normalizeParticipantLocation(row) {
-  const rawProvince = (row.province || '').trim();
-  const rawCity = (row.city || '').trim();
-  const normalizedCity = rawCity.toLowerCase();
-  const hasLegacyLocation = !rawProvince && rawCity && normalizedCity !== 'argentina';
-  return {
-    province: hasLegacyLocation ? rawCity : rawProvince,
-    city: hasLegacyLocation || normalizedCity === 'argentina' ? '' : rawCity
-  };
-}
-
-async function submitOrder(){
-  const name = document.getElementById('f-name').value.trim();
-  const phone = document.getElementById('f-phone').value.trim();
-  const province = document.getElementById('f-province').value.trim() || 'Argentina';
-  const city = document.getElementById('f-city').value.trim() || '';
-  const opinionMessage = document.getElementById('f-message').value.trim();
-  const wantsAnonymous = document.getElementById('f-anonymous').checked;
-  if (!selectedPkg) return showToast('ElegÃ­ un paquete.');
-  if (!name || !phone) return alert('CompletÃ¡ nombre y WhatsApp');
-
-  const button = document.getElementById('modalConfirm');
-  const originalText = button.textContent;
-  button.disabled = true;
-  button.textContent = 'PROCESANDO...';
-
-  try {
-    const photoUrl = await uploadParticipantPhoto(selectedPhotoFile, phone);
-    const { data, error } = await supabaseClient.rpc('create_order_from_landing', {
-      p_campaign_slug: CAMPAIGN_SLUG,
-      p_package_id: selectedPkg.id,
-      p_full_name: name,
-      p_phone: phone,
-      p_province: province,
-      p_city: city,
-      p_photo_url: photoUrl,
-      p_show_public_name: !wantsAnonymous,
-      p_payment_provider: selectedPaymentProvider,
-      p_referral_code: getReferralCode() || null,
-      p_opinion_message: opinionMessage || null
-    });
-
-    if (error) throw error;
-
-    if (selectedPaymentProvider === 'galiopay') {
-      const response = await fetch(buildFunctionUrl('galiopay-create-payment'), {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'text/plain;charset=UTF-8'
-        },
-        body: JSON.stringify({
-          order_id: data.order_id,
-          provider: 'galiopay',
-          landing_url: window.location.origin + window.location.pathname,
-          landing_origin: window.location.origin
-        })
-      });
-
-      const checkout = await response.json().catch(() => ({}));
-      if (!response.ok) {
-        throw new Error(checkout.error || 'No se pudo generar el link de pago de Galiopay.');
-      }
-
-      if (checkout.checkout_url) {
-        window.location.href = checkout.checkout_url;
-        return;
-      }
-    }
-
-    setModalOpen(false);
-    await loadParticipants();
-    renderPackages();
-    renderParticipants(document.getElementById('searchInput').value);
-
-    const shareHint = data?.share_unlocked_after_payment
-      ? ' Al aprobarse el pago se habilita tu enlace unico para compartir.'
-      : '';
-    showToast('Reserva creada correctamente.' + shareHint);
-    setTimeout(() => document.getElementById('participantes').scrollIntoView({behavior:'smooth'}), 400);
-  } catch (error) {
-    console.error(error);
-    showToast(error.message || 'No se pudo crear la orden.');
-  } finally {
-    button.disabled = false;
-    button.textContent = originalText;
-  }
-}
-
-async function loadCampaign(){
-  let { data, error } = await supabaseClient
-    .from('campaigns')
-    .select('*')
-    .eq('slug', CAMPAIGN_SLUG)
-    .eq('status', 'active')
-    .limit(1)
-    .maybeSingle();
-
-  if (error) throw error;
-  if (!data) {
-    const fallback = await supabaseClient
-      .from('campaigns')
-      .select('*')
-      .eq('status', 'active')
-      .order('created_at', { ascending: false })
-      .limit(1)
-      .maybeSingle();
-    if (fallback.error) throw fallback.error;
-    data = fallback.data;
-  }
-
-  if (!data) throw new Error('No hay una campana activa configurada.');
-  activeCampaign = data;
-  setCountdown(DRAW_TARGET_ISO);
-}
-
-async function loadPackages(){
-  const { data, error } = await supabaseClient
-    .from('packages')
-    .select('*')
-    .eq('campaign_id', activeCampaign.id)
-    .eq('status', 'active')
-    .order('sort_order')
-    .order('entries_qty');
-
-  if (error) throw error;
-  packages = data || [];
-}
-
-async function loadParticipants(){
-  const { data, error } = await supabaseClient.rpc('list_public_participants', {
-    p_campaign_slug: CAMPAIGN_SLUG
-  });
-
-  if (error) throw error;
-  participants = (data || []).map((row, index) => {
-    const location = normalizeParticipantLocation(row);
-    const displayName = row.display_name || row.full_name;
-    const fullName = row.full_name || displayName;
-    const province = location.province;
-    const city = location.city;
-    return {
-      sourceIndex: index,
-      name: fullName,
-      displayName,
-    detailLabel: row.is_anonymous ? (row.display_name || 'AnÃ³nimo') : row.full_name,
-      isAnonymous: Boolean(row.is_anonymous),
-      publicCode: row.public_code || '',
-      photoUrl: row.photo_url || '',
-      province: location.province,
-      city: location.city,
-      purchasedChances: Number(row.purchased_entries || row.total_entries || 0),
-      chances: Number(row.total_entries || 0),
-      currentChances: Math.max(Number(row.purchased_entries || 0), Number(row.total_entries || 0)),
-      opinionMessage: (row.opinion_message || '').trim(),
-      date: new Date(row.joined_at).toLocaleDateString('es-AR', { day: '2-digit', month: '2-digit', year: 'numeric' })
-    };
-  });
-  renderProofMessages();
-  startDrawShowcase();
-}
-
-async function loadPublicOrderStatus(orderRef) {
-  const { data, error } = await supabaseClient.rpc('get_public_order_status', {
-    p_external_reference: orderRef
-  });
-  if (error) throw error;
-  latestOrderStatus = data || null;
-  return latestOrderStatus;
-}
-
-function renderParticipants(filter=''){
-  const body = document.getElementById('participantsBody');
-  if (!body) return;
-  body.innerHTML = '';
-
-  const normalizedFilter = (filter || '').trim().toLowerCase();
-  const filtered = normalizedFilter
-    ? currentParticipants.filter((participant) => (participant.searchIndex || '').includes(normalizedFilter))
-    : currentParticipants;
-
-  if (!filtered.length) {
-    body.innerHTML = '<tr><td colspan="6" style="padding:1rem;color:var(--text2)">Todavia no hay compras aprobadas para mostrar.</td></tr>';
-    updateStats();
-    return;
-  }
-
-  const fragment = document.createDocumentFragment();
-  filtered.forEach((participant) => {
-    const sourceIndex = Number.isInteger(participant.sourceIndex) ? participant.sourceIndex : currentParticipants.indexOf(participant);
-    const purchasedChances = getParticipantChances(participant);
-    const detailId = `${participant.publicCode || participant.name}-${sourceIndex}-${participant.date}`;
-    const avatarHtml = renderParticipantAvatar(participant, participant.displayName || participant.name, colorFor(sourceIndex));
-
-    const verifiedHtml = `<span class="verified-badge"><svg viewBox="0 0 24 24"><path d="M23,12L20.56,9.22L20.9,5.54L17.29,4.72L15.4,1.54L12,3L8.6,1.54L6.71,4.72L3.1,5.53L3.44,9.21L1,12L3.44,14.78L3.1,18.47L6.71,19.29L8.6,22.47L12,21L15.4,22.46L17.29,19.28L20.9,18.46L20.56,14.78L23,12M10,17L6,13L7.41,11.59L10,14.17L16.59,7.58L18,9L10,17Z"></path></svg>Verificado</span>`;
-
-    const row = document.createElement('tr');
-    row.className = 'participant-main-row';
-    row.style.animationDelay = `${(sourceIndex % 10) * 0.05}s`;
-    row.dataset.detailId = detailId;
-    row.dataset.participantIndex = String(sourceIndex);
-    row.innerHTML = `
-      <td data-col="participant">
-        <div class="participant-cell">
-          ${avatarHtml}
-          <div class="participant-info">
-            <span class="participant-label">${escapeHtml(participant.displayName || participant.name)}${verifiedHtml}</span>
-            <div class="participant-mobile-location">${escapeHtml(participant.province || '-')}${participant.city ? ', ' + escapeHtml(participant.city) : ''}</div>
-          </div>
-        </div>
-      </td>
-      <td data-col="province"><span style="font-size:0.8rem;color:var(--text2)">${escapeHtml(participant.province || '-')}</span></td>
-      <td data-col="city"><span style="font-size:0.8rem;color:var(--text2)">${escapeHtml(participant.city || '-')}</span></td>
-      <td data-col="entries"><span class="chances-badge">x${purchasedChances.toLocaleString('es-AR')}</span></td>
-      <td data-col="date" style="font-size:0.8rem;color:var(--text2)">${escapeHtml(participant.date)}</td>
-      <td data-col="message" class="message-cell"><button type="button" class="message-trigger${participant.opinionMessage ? '' : ' empty'}" data-opinion="${encodeURIComponent(participant.opinionMessage || '')}" data-author="${encodeURIComponent(participant.displayName || participant.name)}" data-city="${encodeURIComponent(participantLocation(participant))}"><span class="message-trigger-icon">💬</span><span>${participant.opinionMessage ? 'Ver mensaje' : 'Sin mensaje'}</span></button></td>
-    `;
-    fragment.appendChild(row);
-
-    if (expandedParticipantRows.has(detailId)) {
-      Array.from({ length: purchasedChances }, (_, idx) => idx + 1).forEach((chanceNumber) => {
-        const detailRow = document.createElement('tr');
-        detailRow.className = 'participant-detail-row';
-        detailRow.innerHTML = `
-          <td data-col="participant">
-            <div class="participant-cell">
-              ${avatarHtml}
-              <div class="participant-info">
-                <span class="participant-label">${escapeHtml(participant.detailLabel || participant.displayName || participant.name)}</span>
-                <div class="participant-mobile-location">${escapeHtml(participant.province || '-')}${participant.city ? ', ' + escapeHtml(participant.city) : ''}</div>
-              </div>
-            </div>
-          </td>
-          <td data-col="province"><span style="font-size:0.8rem;color:var(--text2)">${escapeHtml(participant.province || '-')}</span></td>
-          <td data-col="city"><span style="font-size:0.8rem;color:var(--text2)">${escapeHtml(participant.city || '-')}</span></td>
-          <td data-col="entries"><span class="chances-badge">x${chanceNumber}</span></td>
-          <td data-col="date" style="font-size:0.8rem;color:var(--text2)">${escapeHtml(participant.date)}</td>
-          <td data-col="message" class="message-cell"><button type="button" class="message-trigger${participant.opinionMessage ? '' : ' empty'}" data-opinion="${encodeURIComponent(participant.opinionMessage || '')}" data-author="${encodeURIComponent(participant.displayName || participant.name)}" data-city="${encodeURIComponent(participantLocation(participant))}"><span class="message-trigger-icon">💬</span><span>${participant.opinionMessage ? 'Ver mensaje' : 'Sin mensaje'}</span></button></td>
-        `;
-        fragment.appendChild(detailRow);
-      });
-    }
-  });
-
-  body.appendChild(fragment);
-  repairDocumentText(body);
-  syncParticipantTableFocus(drawShowcaseState.activeParticipantIndex, drawShowcaseState.activeSpotlight);
-
-  body.querySelectorAll('.message-trigger:not(.empty)').forEach((button) => {
-    button.addEventListener('click', (event) => {
-      event.stopPropagation();
-      openOpinionModal({
-        message: decodeURIComponent(button.dataset.opinion || ''),
-        author: decodeURIComponent(button.dataset.author || 'Participante'),
-        city: decodeURIComponent(button.dataset.city || 'Argentina')
-      });
-    });
-  });
-
-  body.querySelectorAll('.participant-main-row').forEach((row) => {
-    row.addEventListener('click', () => {
-      const { detailId } = row.dataset;
-      if (!detailId) return;
-      if (expandedParticipantRows.has(detailId)) {
-        expandedParticipantRows.delete(detailId);
-      } else {
-        expandedParticipantRows.add(detailId);
-      }
-      renderParticipants(document.getElementById('searchInput')?.value || '');
-    });
-  });
-
-  updateStats();
-}
-
-function formatPastParticipantName(fullName) {
-  if (!fullName) return 'Anónimo';
-  const parts = fullName.trim().split(' ');
-  if (parts.length < 2) return fullName;
-  const firstName = parts[0];
-  const lastName = parts[parts.length - 1];
-  return `${firstName} ${lastName.substring(0, 3)}...`;
-}
-
-function renderPastParticipants() {
-  const track = document.getElementById('pastParticipantsTrack');
-  const section = document.getElementById('pastParticipantsSection');
-  if (!track || !section) return;
-
-  const displayList = pastParticipants;
-
-  if (!displayList.length) {
-    section.classList.add('hidden');
-    return;
-  }
-
-  section.classList.remove('hidden');
-  
-  track.innerHTML = displayList.map((p, idx) => `
-    <div class="past-participant-item">
-      <div class="td-avatar" style="width:32px; height:32px; font-size:10px; background:${colorFor(idx)}22; color:${colorFor(idx)}">${p.photoUrl ? `<img src="${p.photoUrl}" class="past-participant-avatar">` : initials(p.displayName || p.name)}</div>
-      <div class="past-participant-info">
-        <span class="past-participant-name">${escapeHtml(formatPastParticipantName(p.name))}</span>
-        <span class="past-participant-date">${p.date}</span>
-      </div>
-    </div>
-  `).join('');
-
-  setupInfiniteScroll(track, pastParticipantsInterval, (interval) => pastParticipantsInterval = interval);
-}
-
-function renderPastMessages() {
-  const track = document.getElementById('pastCommentsTrack');
-  const section = document.getElementById('pastCommentsSection');
-  if (!track || !section) return;
-
-  const displayComments = [
-    { city: 'Mendoza', opinionMessage: 'Increíble la transparencia, pude ver mi nombre apenas pagué.' },
-    { city: 'Buenos Aires', opinionMessage: 'El curso de autos usados me sirvió muchísimo, muy recomendado.' },
-    { city: 'Salta', opinionMessage: 'Ya es la segunda vez que participo, me genera mucha confianza el sistema.' },
-    { city: 'Neuquén', opinionMessage: 'Todo muy claro desde el principio. ¡Ojalá gane esta vez!' }
-  ];
-
-  section.classList.remove('hidden');
-
-  track.innerHTML = displayComments.map(p => `
-    <div class="past-comment-item">
-      <div class="past-comment-location">${escapeHtml(p.city || p.province || 'Argentina')}</div>
-      <div class="past-comment-text">"${escapeHtml(p.opinionMessage)}"</div>
-      <div class="past-comment-tag">Sorteo anterior</div>
-    </div>
-  `).join('');
-
-  setupInfiniteScroll(track, pastCommentsInterval, (interval) => pastCommentsInterval = interval);
-}
-
-function setupInfiniteScroll(track, currentInterval, setIntervalCallback) {
-  if (currentInterval) clearInterval(currentInterval);
-  
-  // Duplicate items to ensure smooth loop if content is short
-  const originalContent = track.innerHTML;
-  track.innerHTML = originalContent + originalContent;
-
-  let currentX = 0;
-  const interval = setInterval(() => {
-    currentX -= 0.8; // Constant speed
-    
-    // Reset position when half of the track has passed (since we duplicated it)
-    if (Math.abs(currentX) >= track.scrollWidth / 2) {
-      currentX = 0;
-    }
-    track.style.transform = `translate3d(${currentX}px, 0, 0)`;
-  }, 20);
-  
-  setIntervalCallback(interval);
-}
-
-async function loadParticipants(){
-  const { data, error } = await supabaseClient.rpc('list_public_participants', {
-    p_campaign_slug: CAMPAIGN_SLUG
-  });
-
-  if (error) throw error;
-  
-  participants = (data || []).map((row, index) => {
-    const location = normalizeParticipantLocation(row);
-    const displayName = row.display_name || row.full_name;
-    const fullName = row.full_name || displayName;
-    const joinedAt = new Date(row.joined_at);
-    return {
-      sourceIndex: index,
-      name: fullName,
-      displayName,
-      detailLabel: row.is_anonymous ? (displayName || 'AnÃƒÂ³nimo') : fullName,
-      isAnonymous: Boolean(row.is_anonymous),
-      publicCode: row.public_code || '',
-      photoUrl: row.photo_url || '',
-      province: location.province,
-      city: location.city,
-      purchasedChances: Number(row.purchased_entries || row.total_entries || 0),
-      chances: Number(row.total_entries || 0),
-      currentChances: Math.max(Number(row.purchased_entries || 0), Number(row.total_entries || 0)),
-      opinionMessage: (row.opinion_message || '').trim(),
-      searchIndex: [displayName, fullName, location.province, location.city, row.public_code || ''].join(' ').toLowerCase(),
-      date: joinedAt.toLocaleDateString('es-AR', { day: '2-digit', month: '2-digit', year: 'numeric' }),
-      joinedAt: joinedAt
-    };
-  });
-
-  // Split into current and past
-  // Solo mostramos los participantes que se unieron despues de la fecha de inicio del feed vivo
-  currentParticipants = participants.filter(p => p.joinedAt >= LIVE_FEED_PARTICIPANTS_START_DATE);
-  pastParticipants = []; // No mostrar participantes de sorteos anteriores
-  pastComments = []; // No mostrar comentarios de sorteos anteriores
-
-  refreshDrawEntryPool();
-  renderProofMessages();
-  renderPastParticipants();
-  renderPastMessages();
-  startDrawShowcase();
-}
-
-async function handleReturnedPayment() {
-  const params = new URLSearchParams(window.location.search);
-  const paymentState = params.get('payment');
-  const orderRef = getOrderReferenceFromQuery();
-  if (!paymentState || !orderRef) return;
-
-  if (paymentState === 'failure') {
-    showCourseReward({ orderRef: '', purchasedEntries: 0 });
-    showPaymentCard({
-      kicker: 'Pago pendiente',
-      title: 'El pago no se aprobÃ³',
-      copy: 'PodÃ©s intentarlo de nuevo con otro medio o volver a elegir tu pack.'
-    });
-    showToast('El pago no fue aprobado.');
-    clearPaymentQueryState();
-    return;
-  }
-
-  let statusData = null;
-  for (let attempt = 0; attempt < 6; attempt += 1) {
-    statusData = await loadPublicOrderStatus(orderRef);
-    if (statusData?.status === 'paid') break;
-    await new Promise(resolve => setTimeout(resolve, 2500));
-  }
-
-  if (!statusData) {
-    showToast('No pudimos verificar tu pago todavÃ­a.');
-    return;
-  }
-
-  if (statusData.status !== 'paid') {
-    showCourseReward({ orderRef: '', purchasedEntries: 0 });
-    showPaymentCard({
-      kicker: 'Pago en revisiÃ³n',
-      title: 'Estamos confirmando tu compra',
-      copy: 'Cuando el pago se acredite, tu nombre aparecerÃ¡ en la lista automÃ¡ticamente.'
-    });
-    showToast('Tu pago quedÃ³ en revisiÃ³n.');
-    clearPaymentQueryState();
-    return;
-  }
-
-  await loadParticipants();
-  renderParticipants(document.getElementById('searchInput').value);
-  startDrawShowcase();
-  scheduleLiveFeed();
-
-  const shareUrl = statusData.referral_link_code ? buildLandingShareUrl(statusData.referral_link_code) : '';
-  const participantLabel = statusData.participant_name || 'Te invito';
-  const purchasedEntries = Number(statusData.purchased_entries || statusData.total_entries || 0);
-  if (shareUrl) {
-    updateShareMetadata({
-      title: `${participantLabel} te invita al Gran Sorteo`,
-      description: buildReferralShareCopy(participantLabel, shareUrl),
-      image: DEFAULT_SHARE_IMAGE,
-      url: shareUrl
-    });
-  }
-  showCourseReward({ orderRef, purchasedEntries });
-  showPaymentCard({
-    kicker: 'Pago aprobado',
-    title: `${participantLabel} ya participa del sorteo`,
-    copy: shareUrl
-      ? `Tus chances ya estÃ¡n activas, tu compra quedÃ³ registrada y tambiÃ©n se habilitÃ³ tu enlace Ãºnico. Cada compra aprobada desde ese enlace te suma 2 chances extra.`
-      : `Tus chances ya estÃ¡n activas, tu compra quedÃ³ registrada y ya aparecÃ©s en la lista pÃºblica de participantes.`,
-    shareUrl
-  });
-  showToast(
-    purchasedEntries >= COURSE_MIN_ENTRIES
-      ? 'Pago aprobado. Tambien desbloqueaste el curso gratis.'
-      : (shareUrl ? 'Pago aprobado. Ya podÃ©s compartir tu enlace Ãºnico.' : 'Pago aprobado. Ya aparecÃ©s en la lista.')
-  );
-  document.getElementById('participantes').scrollIntoView({ behavior: 'smooth' });
-  clearPaymentQueryState();
-}
-
-document.getElementById('searchInput').addEventListener('input', e => renderParticipants(e.target.value));
-document.getElementById('modalConfirm').onclick = submitOrder;
-document.getElementById('copyCourseCodeBtn').onclick = copyCourseCode;
-document.getElementById('openCourseBtn').onclick = openBonusCourse;
-document.getElementById('copyShareBtn').onclick = copyShareLink;
-document.getElementById('shareWhatsappBtn').onclick = shareWhatsappLink;
-document.getElementById('toggleDemoBtn').onclick = toggleDemoShowcase;
-document.getElementById('drawStartBtn').onclick = startDemoTrial;
-document.getElementById('saveDemoResultBtn').onclick = saveCurrentDemoResult;
-document.getElementById('toggleDemoHistoryBtn').onclick = toggleDemoHistory;
-
-document.querySelectorAll('.faq-q').forEach(btn => {
-  btn.onclick = () => {
-    const item = btn.parentElement;
-    const wasOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-    if (!wasOpen) item.classList.add('open');
-  };
-});
-
-function observeReveal(){
-  const els = document.querySelectorAll('.reveal:not(.visible)');
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
-  }, { threshold: 0.12 });
-  els.forEach(el => obs.observe(el));
-}
-
-async function bootLanding(){
-  try {
-    repairDocumentText();
-    updateShareMetadata({
-      title: DEFAULT_SHARE_TITLE,
-      description: DEFAULT_SHARE_DESCRIPTION,
-      image: DEFAULT_SHARE_IMAGE,
-      url: window.location.href
-    });
-    createSparks();
-    await loadCampaign();
-    await loadPackages();
-    await loadParticipants();
-    await loadDemoResults();
-    renderPackages();
-    renderParticipants();
-    repairDocumentText();
-    startDrawShowcase();
-    observeReveal();
-    scheduleLiveFeed();
-    updateHeroDynamicElements();
-    startFloatingAvatars();
-    await handleReturnedPayment();
-
-    if (getReferralCode()) {
-      showToast('Entraste con un enlace referido. Si compras, ese enlace suma 2 chances extra a su titular.');
-    }
-  } catch (error) {
-    console.error(error);
-    showToast('No se pudo cargar la landing conectada a Supabase.');
-  }
-}
-
-bootLanding();
+function renderWinnerModal(result) {
+  document.body.classList.add('has-official-winner', 'modal-open');
+  document.getElementById('winnerModalName').textContent = result.display_name || result.full_name;
+  document.getElementById('winnerModalSub').textContent = result.public_announcement;
+  document.getElementById('winnerModalMeta').textContent = `${result.participant_public_code} · Sorteo: ${formatDateTime(result.saved_at)} · Reclamo: ${formatDateTime(result.claim_submitted_at)}`;
+  document.getElementById('winnerDeliveryStatus').textContent = result.delivery_status_label;
+  document.getElementById('winnerClaimSummaryTitle').textContent = 'Premio entregado';
+  document.getElementById('winnerClaimSummaryDate').textContent = `Fecha de entrega: ${formatDateTime(result.delivery_confirmed_at)}`;
+  document.getElementById('winnerClaimSummaryExperience').textContent = `Experiencia: ${result.claim_experience}`;
+  document.getElementById('winnerClaimSummaryFeeling').textContent = `Al enterarse: ${result.claim_feeling}`;
+  document.getElementById('winnerClaimSummaryReceived').textContent = `Recibió: ${result.delivery_received_item}`;
+  document.getElementById('winnerClaimSummaryReceivedQuote').textContent = `"El dinero equivalente al premio"`;
+  document.getElementById('winnerModalClaimStatus').textContent = result.delivery_received_message;
+
+  const video = document.getElementById('winnerModalVideo');
+  video.src = result.video_data_url;
+  video.load();
+}
+
+renderWinnerModal(FIXED_RESULT);
 </script>
 </body>
 </html>
