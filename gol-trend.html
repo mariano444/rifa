@@ -3598,12 +3598,13 @@ function getRandomActivityMessage() {
 
 function showLiveFeedNotification() {
   const feed = document.getElementById('liveFeed');
+  const card = feed ? feed.querySelector('.live-feed-card') : null;
   const message = getRandomActivityMessage();
-  if (!message) return;
+  if (!message || !card) return;
   document.getElementById('liveFeedText').textContent = message.text;
   document.getElementById('liveFeedSub').textContent = message.sub;
-  feed.classList.add('show');
-  setTimeout(() => feed.classList.remove('show'), 4600);
+  card.classList.add('show');
+  setTimeout(() => card.classList.remove('show'), 4600);
 }
 
 function scheduleLiveFeed() {
