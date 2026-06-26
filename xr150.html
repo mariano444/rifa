@@ -1991,6 +1991,23 @@ td[data-col="participant"] { min-width: 200px; padding-left: 1rem; }
 .draw-showcase.is-focus-locked { scroll-margin-top: 84px; }
 </style>
 </head>
+  <!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '717335459401864');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=717335459401864&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 <body>
 
 <!-- NAV STRIP -->
@@ -2066,7 +2083,7 @@ td[data-col="participant"] { min-width: 200px; padding-left: 1rem; }
     </div>
   </div>
 
-  <div class="countdown-bar reveal hidden-until-thirty" id="countdownBar" style="transition-delay:0.4s; display: none;">
+  <div class="countdown-bar reveal hidden-until-thirty" id="countdownBar" style="transition-delay:0.4s;">
     <div class="countdown-unit">
       <span class="countdown-num" id="cd-d">00</span>
       <span class="countdown-label">Días</span>
@@ -2556,6 +2573,11 @@ td[data-col="participant"] { min-width: 200px; padding-left: 1rem; }
   <div class="bottom-cta-btns reveal">
     <a href="#paquetes" class="btn-primary">¡COMPRAR CHANCES AHORA!</a>
     <a href="#participantes" class="btn-secondary">Ver participantes</a>
+    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=autosusadosencuotas72@gmail.com"
+   target="_blank"
+   class="btn-secondary">
+  📧 Consultas
+  </a>
   </div>
 </section>
 
@@ -2671,7 +2693,7 @@ td[data-col="participant"] { min-width: 200px; padding-left: 1rem; }
 </div>
 
 <!-- TOAST -->
-<div class="toast" id="toast">✅ ¡Ya sos parte del sorteo! Te contactaremos por WhatsApp.</div>
+<div class="toast" id="toast">✅ ¡Ya sos parte del sorteo!</div>
 
 <!-- LIVE FEED -->
 <div class="live-feed" id="liveFeed">
@@ -2683,7 +2705,7 @@ td[data-col="participant"] { min-width: 200px; padding-left: 1rem; }
 </div>
 
 <!-- WHATSAPP FLOAT -->
-<a class="whatsapp-float" style="display:none" href="https://wa.me/543518757751?text=Hola!%20Quiero%20consultar%20por%20el%20sorteo%20del%20Volkswagen%20Gol%20Power" target="_blank" rel="noopener noreferrer">
+<a class="whatsapp-float" href="https://wa.me/543518757751?text=Hola!%20Quiero%20consultar" target="_blank" rel="noopener noreferrer">
   <span style="font-size:1.3rem">💬</span>
   <span><small>Consultas</small>WhatsApp</span>
 </a>
@@ -2698,10 +2720,10 @@ const FUNCTIONS_BASE_URL = `${SUPABASE_URL}/functions/v1`;
 const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 const DEFAULT_SHARE_IMAGE = new URL('./assets/premios/frente1.png', window.location.href).toString();
 const DEFAULT_SHARE_TITLE = 'Gran Sorteo - Volkswagen Gol Trend';
-const DEFAULT_SHARE_DESCRIPTION = 'Participa de este sorteo por un hermoso Volkswagen Gol Trend. ¡Últimas chances disponibles! El sorteo se hará el 5 de junio.';
+const DEFAULT_SHARE_DESCRIPTION = 'Participa de este sorteo por un hermoso Volkswagen Gol Trend. ¡Últimas chances disponibles!';
 const COURSE_PAGE_PATH = './curso-guia-auto-argentina.html';
 const COURSE_MIN_ENTRIES = 3;
-const DRAW_TARGET_ISO = '2026-06-28T21:00:00-03:00';
+const DRAW_TARGET_ISO = '2026-07-05T21:00:00-03:00';
 
 let activeCampaign = null;
 let packages = [];
@@ -3576,12 +3598,13 @@ function getRandomActivityMessage() {
 
 function showLiveFeedNotification() {
   const feed = document.getElementById('liveFeed');
+  const card = feed ? feed.querySelector('.live-feed-card') : null;
   const message = getRandomActivityMessage();
-  if (!message) return;
+  if (!message || !card) return;
   document.getElementById('liveFeedText').textContent = message.text;
   document.getElementById('liveFeedSub').textContent = message.sub;
-  feed.classList.add('show');
-  setTimeout(() => feed.classList.remove('show'), 4600);
+  card.classList.add('show');
+  setTimeout(() => card.classList.remove('show'), 4600);
 }
 
 function scheduleLiveFeed() {
@@ -3780,7 +3803,7 @@ function setCountdown(targetIso){
     if (d <= 3) {
       note.textContent = 'Ultimos dias. Quedan pocos lugares para hacer el sorteo antes.';
     } else if (d <= 10) {
-      note.textContent = 'Se viene el cierre. Quedan pocos lugares y puede sortearse antes al agotar chances.';
+      note.textContent = 'Quedan pocos lugares y sorteamos al agotar las chances.';
     } else if (d <= 30) {
       note.textContent = 'Comienza la cuenta regresiva. Quedan pocos lugares para hacer el sorteo antes.';
     } else {
