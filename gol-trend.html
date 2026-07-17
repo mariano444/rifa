@@ -1892,8 +1892,24 @@ body.modal-open .whatsapp-float { opacity: 0; visibility: hidden; pointer-events
 
 .participants-table-gp {
   width: 100%;
+  min-width: 640px;
   border-collapse: collapse;
   font-size: 0.85rem;
+}
+
+@media (max-width: 640px) {
+  .participants-table-gp { min-width: 0; }
+  .participants-table-gp th[data-col="province"],
+  .participants-table-gp th[data-col="city"],
+  .participants-table-gp th[data-col="date"],
+  .participants-table-gp td[data-col="province"],
+  .participants-table-gp td[data-col="city"],
+  .participants-table-gp td[data-col="date"] {
+    display: none;
+  }
+  .participant-mobile-location { display: block; }
+  td[data-col="participant"] { min-width: 0; padding-left: 0.75rem; }
+  .participants-table-gp td, .participants-table-gp th { padding: 0.6rem 0.6rem; }
 }
 .participants-table-gp th {
   background: rgba(255,255,255,0.02);
@@ -2190,12 +2206,12 @@ src="https://www.facebook.com/tr?id=717335459401864&ev=PageView&noscript=1"
           </colgroup>
           <thead>
             <tr>
-              <th>Participante</th>
-              <th>Provincia</th>
-              <th>Ciudad</th>
-              <th>Compradas</th>
-              <th>Fecha</th>
-              <th>Mensaje</th>
+              <th data-col="participant">Participante</th>
+              <th data-col="province">Provincia</th>
+              <th data-col="city">Ciudad</th>
+              <th data-col="entries">Compradas</th>
+              <th data-col="date">Fecha</th>
+              <th data-col="message">Mensaje</th>
             </tr>
           </thead>
           <tbody id="participantsBody"></tbody>
