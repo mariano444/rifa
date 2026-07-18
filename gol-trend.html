@@ -2188,7 +2188,7 @@ src="https://www.facebook.com/tr?id=717335459401864&ev=PageView&noscript=1"
     <h2 class="section-title">Lista de<br><span style="color:var(--volt)">participantes</span></h2>
     <p class="section-sub">Lista pública en tiempo real. Cada pago aprobado aparece acá con nombre, provincia y cantidad de chances activas.</p>
 
-    <div class="participants-table-wrap reveal">
+    <div class="participants-table-wrap">
       <div class="table-header-gp">
         <span class="table-title-gp">Participantes registrados</span>
         <span class="live-badge-gp"><span class="live-dot-gp"></span>EN VIVO</span>
@@ -4462,7 +4462,13 @@ function observeReveal(){
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
   }, { threshold: 0.12 });
-  els.forEach(el => obs.observe(el));
+  els.forEach(el => {
+    obs.observe(el);
+    // Red de seguridad: si por algun motivo el navegador nunca dispara la
+    // interseccion (algunos navegadores moviles, saltos de ancla, etc.),
+    // el contenido no debe quedar invisible para siempre.
+    setTimeout(() => el.classList.add('visible'), 2500);
+  });
 }
 
 async function bootLanding(){
