@@ -1931,6 +1931,66 @@ body.modal-open .whatsapp-float { opacity: 0; visibility: hidden; pointer-events
 .participants-table-gp tbody tr:hover td { background: rgba(200,255,0,0.02); }
 .participants-table-gp tbody tr:last-child td { border-bottom: none; }
 
+/* ===== "+ N MÁS" ROW WITH ANIMATED RANDOM AVATARS ===== */
+.participants-more-row td {
+  padding: 1rem 1rem 1.15rem;
+  border-bottom: none;
+}
+.more-participants-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+}
+.more-avatars-stack {
+  display: flex;
+  align-items: center;
+}
+.more-avatar {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  border: 2px solid var(--ink);
+  box-shadow: 0 0 0 1px rgba(200,255,0,0.25);
+  background: var(--ink4);
+  overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.62rem; font-weight: 800;
+  color: var(--volt);
+  margin-left: -12px;
+  animation: moreAvatarPop 0.5s cubic-bezier(.34,1.56,.64,1) backwards, moreAvatarFloat 3.2s ease-in-out infinite;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.more-avatar:first-child { margin-left: 0; }
+.more-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.more-avatar.is-swapping { opacity: 0; transform: scale(0.6); }
+@keyframes moreAvatarPop {
+  0% { opacity: 0; transform: scale(0); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@keyframes moreAvatarFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+.more-participants-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(200,255,0,0.08);
+  border: 1px solid rgba(200,255,0,0.25);
+  color: var(--volt);
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  padding: 0.4rem 0.9rem;
+  border-radius: 2rem;
+  white-space: nowrap;
+}
+.more-participants-label {
+  font-size: 0.78rem;
+  color: var(--text2);
+}
+
 /* Participant row cells */
 .p-cell-name { font-weight: 700; color: var(--white); }
 .p-cell-code { font-size: 0.72rem; color: var(--silver2); margin-top: 0.1rem; }
@@ -2758,6 +2818,8 @@ let selectedPaymentProvider = 'galiopay';
 let countdownInterval = null;
 let liveFeedTimeout = null;
 let drawAnimationTimeout = null;
+let moreParticipantsInterval = null;
+const PARTICIPANTS_DISPLAY_LIMIT = 20;
 const fallbackProofMessages = [
   {
     name: 'Mariana',
@@ -4130,6 +4192,74 @@ async function loadPublicOrderStatus(orderRef) {
   return latestOrderStatus;
 }
 
+function shuffleArray(arr) {
+  const copy = arr.slice();
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
+const MORE_AVATARS_VISIBLE = 6;
+
+function buildMoreAvatarHtml(participant, idx) {
+  const sourceIndex = Number.isInteger(participant?.sourceIndex) ? participant.sourceIndex : idx;
+  const color = colorFor(sourceIndex);
+  const label = participant?.displayName || participant?.name || '';
+  const delay = `${(idx % 6) * 0.08}s, ${(idx % 6) * 0.28}s`;
+  if (participant?.photoUrl) {
+    return `<div class="more-avatar" style="animation-delay:${delay}"><img src="${escapeHtml(participant.photoUrl)}" alt="${escapeHtml(label)}" loading="lazy"></div>`;
+  }
+  return `<div class="more-avatar" style="background:${color}22;color:${color};animation-delay:${delay}">${escapeHtml(initials(label || '?'))}</div>`;
+}
+
+function renderMoreParticipantsAvatars(hiddenParticipants) {
+  const sample = shuffleArray(hiddenParticipants).slice(0, MORE_AVATARS_VISIBLE);
+  return sample.map((p, idx) => buildMoreAvatarHtml(p, idx)).join('');
+}
+
+function appendMoreParticipantsRow(fragment, hiddenParticipants) {
+  if (!hiddenParticipants.length) return;
+  const row = document.createElement('tr');
+  row.className = 'participants-more-row';
+  row.innerHTML = `
+    <td colspan="6">
+      <div class="more-participants-wrap">
+        <div class="more-avatars-stack" id="moreAvatarsStack">
+          ${renderMoreParticipantsAvatars(hiddenParticipants)}
+        </div>
+        <span class="more-participants-count">+${hiddenParticipants.length.toLocaleString('es-AR')}</span>
+        <span class="more-participants-label">participantes más ya están anotados</span>
+      </div>
+    </td>
+  `;
+  fragment.appendChild(row);
+}
+
+function startMoreParticipantsAnimation(hiddenParticipants) {
+  if (moreParticipantsInterval) {
+    clearInterval(moreParticipantsInterval);
+    moreParticipantsInterval = null;
+  }
+  if (!hiddenParticipants.length) return;
+
+  moreParticipantsInterval = setInterval(() => {
+    const stack = document.getElementById('moreAvatarsStack');
+    if (!stack) {
+      clearInterval(moreParticipantsInterval);
+      moreParticipantsInterval = null;
+      return;
+    }
+    stack.querySelectorAll('.more-avatar').forEach((el) => el.classList.add('is-swapping'));
+    setTimeout(() => {
+      const freshStack = document.getElementById('moreAvatarsStack');
+      if (!freshStack) return;
+      freshStack.innerHTML = renderMoreParticipantsAvatars(hiddenParticipants);
+    }, 350);
+  }, 3500);
+}
+
 function renderParticipants(filter=''){
   const body = document.getElementById('participantsBody');
   if (!body) return;
@@ -4142,12 +4272,16 @@ function renderParticipants(filter=''){
 
   if (!filtered.length) {
     body.innerHTML = '<tr><td colspan="6" style="padding:1rem;color:var(--text2)">Todavia no hay compras aprobadas para mostrar.</td></tr>';
+    if (moreParticipantsInterval) { clearInterval(moreParticipantsInterval); moreParticipantsInterval = null; }
     updateStats();
     return;
   }
 
+  const visibleParticipants = filtered.slice(0, PARTICIPANTS_DISPLAY_LIMIT);
+  const hiddenParticipants = filtered.slice(PARTICIPANTS_DISPLAY_LIMIT);
+
   const fragment = document.createDocumentFragment();
-  filtered.forEach((participant) => {
+  visibleParticipants.forEach((participant) => {
     const sourceIndex = Number.isInteger(participant.sourceIndex) ? participant.sourceIndex : currentParticipants.indexOf(participant);
     const purchasedChances = getParticipantChances(participant);
     const detailId = `${participant.publicCode || participant.name}-${sourceIndex}-${participant.date}`;
@@ -4203,8 +4337,11 @@ function renderParticipants(filter=''){
     }
   });
 
+  appendMoreParticipantsRow(fragment, hiddenParticipants);
+
   body.appendChild(fragment);
   repairDocumentText(body);
+  startMoreParticipantsAnimation(hiddenParticipants);
   syncParticipantTableFocus(drawShowcaseState.activeParticipantIndex, drawShowcaseState.activeSpotlight);
 
   body.querySelectorAll('.message-trigger:not(.empty)').forEach((button) => {
