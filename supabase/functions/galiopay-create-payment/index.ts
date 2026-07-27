@@ -125,7 +125,7 @@ Deno.serve(async (req) => {
       `${normalizeBaseUrl(supabaseUrl)}/functions/v1/galiopay-webhook`;
 
     const totalEntries = Number(order.packages.entries_qty || 0) + Number(order.packages.bonus_entries || 0);
-    const checkoutText = config.extra_config?.checkout_text || "Transferencia";
+    const checkoutText = "Transferencia";
     const checkoutImageUrl = String(config.extra_config?.checkout_image_url || "").trim();
     const item = {
       title: checkoutText,
