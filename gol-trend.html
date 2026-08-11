@@ -905,6 +905,11 @@ body::before {
   padding: 1rem;
   filter: drop-shadow(0 12px 24px rgba(0,0,0,0.4));
 }
+.gallery-item-new video {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
 .gallery-tag {
   position: absolute;
   bottom: 0.6rem; left: 0.6rem;
@@ -2321,6 +2326,10 @@ src="https://www.facebook.com/tr?id=717335459401864&ev=PageView&noscript=1"
     <p class="section-sub">El vehículo se encuentra en excelentes condiciones, listo para que lo disfrutes desde el primer día.</p>
     
     <div class="gallery-grid-new">
+      <div class="gallery-item-new reveal">
+        <video src="./assets/premios/video-presentacion.mp4" poster="./assets/premios/frente1.png" controls playsinline preload="metadata"></video>
+        <span class="gallery-tag">🎥 Video del Auto</span>
+      </div>
       <div class="gallery-item-new reveal">
         <img src="./assets/premios/frente1.png" alt="Volkswagen Gol Trend Frontal Derecha">
         <span class="gallery-tag">Vista Principal</span>
