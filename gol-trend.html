@@ -2525,23 +2525,23 @@ src="https://www.facebook.com/tr?id=717335459401864&ev=PageView&noscript=1"
     
     <div class="gallery-grid-new">
       <div class="gallery-item-new reveal">
-        <img src="./assets/premios/frente1.png" alt="Volkswagen Gol Trend Frontal Derecha">
+        <img src="./assets/premios/frente1.png" alt="Volkswagen Gol Trend Frontal Derecha" loading="lazy">
         <span class="gallery-tag">Vista Principal</span>
       </div>
       <div class="gallery-item-new reveal">
-        <img src="./assets/premios/frente2.png" alt="Volkswagen Gol Trend Frontal Izquierda">
+        <img src="./assets/premios/frente2.png" alt="Volkswagen Gol Trend Frontal Izquierda" loading="lazy">
         <span class="gallery-tag">Perfil Moderno</span>
       </div>
       <div class="gallery-item-new reveal">
-        <img src="./assets/premios/frente2.png" alt="Volkswagen Gol Trend Frente">
+        <img src="./assets/premios/frente2.png" alt="Volkswagen Gol Trend Frente" loading="lazy">
         <span class="gallery-tag">Frente Impecable</span>
       </div>
       <div class="gallery-item-new reveal">
-        <img src="./assets/premios/atras.png" alt="Volkswagen Gol Trend Interior Trasero">
+        <img src="./assets/premios/atras.png" alt="Volkswagen Gol Trend Interior Trasero" loading="lazy">
         <span class="gallery-tag">Espacio Interior</span>
       </div>
       <div class="gallery-item-new reveal">
-        <img src="./assets/premios/adentro.png" alt="Volkswagen Gol Trend Interior Tablero">
+        <img src="./assets/premios/adentro.png" alt="Volkswagen Gol Trend Interior Tablero" loading="lazy">
         <span class="gallery-tag">Tablero y Control</span>
       </div>
     </div>
@@ -2588,7 +2588,7 @@ src="https://www.facebook.com/tr?id=717335459401864&ev=PageView&noscript=1"
       </div>
       
       <div class="course-visual">
-        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=800" alt="Curso de Autos" class="course-mockup">
+        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=800" alt="Curso de Autos" class="course-mockup" loading="lazy">
         <div class="course-badge-trust">
           <span style="font-size: 1.4rem">🛡️</span>
           <div>
@@ -2746,15 +2746,15 @@ src="https://www.facebook.com/tr?id=717335459401864&ev=PageView&noscript=1"
     </div>
     <div class="auto-showcase-grid reveal" style="transition-delay:0.15s">
       <div class="auto-photo-card featured">
-        <img src="./assets/premios/frente1.png" alt="Volkswagen Gol Trend">
+        <img src="./assets/premios/frente1.png" alt="Volkswagen Gol Trend" loading="lazy">
         <div class="auto-photo-label"><span class="auto-photo-label-text">Vista Principal</span></div>
       </div>
       <div class="auto-photo-card">
-        <img src="./assets/premios/frente2.png" alt="Volkswagen Gol Trend Perfil">
+        <img src="./assets/premios/frente2.png" alt="Volkswagen Gol Trend Perfil" loading="lazy">
         <div class="auto-photo-label"><span class="auto-photo-label-text">Perfil</span></div>
       </div>
       <div class="auto-photo-card">
-        <img src="./assets/premios/frente2.png" alt="Volkswagen Gol Trend Frente">
+        <img src="./assets/premios/frente2.png" alt="Volkswagen Gol Trend Frente" loading="lazy">
         <div class="auto-photo-label"><span class="auto-photo-label-text">Frente</span></div>
       </div>
     </div>
@@ -3628,7 +3628,25 @@ async function saveCurrentDemoResult() {
       p_full_name: participant.name || participant.displayName || ''
     });
     if (error) throw error;
-    await loadDemoResults();
+    // Actualizacion optimista: en vez de volver a pedir la tabla entera a
+    // Supabase (list_demo_draw_results) solo para reflejar el registro que
+    // acabamos de guardar, lo agregamos localmente. Esto evita una consulta
+    // completa a la base de datos por cada clic en "Registrar resultado".
+    const now = new Date();
+    demoResults = [
+      {
+        display_name: participant.displayName || participant.name,
+        full_name: participant.name || participant.displayName || '',
+        city: participant.city || '',
+        province: participant.province || '',
+        public_code: participant.publicCode || '',
+        chances: Number(participant.currentChances || participant.chances || 0),
+        recorded_at: now.toISOString(),
+        recorded_at_label: now.toLocaleString('es-AR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })
+      },
+      ...demoResults
+    ];
+    renderDemoHistory();
     if (!drawShowcaseState.historyOpen) {
       toggleDemoHistory();
     }
@@ -4043,7 +4061,7 @@ function renderProofMessages() {
   grid.innerHTML = cards.map((item, index) => `
     <div class="proof-card reveal" style="transition-delay:${Math.min(index * 0.08, 0.32)}s">
       <div class="proof-head">
-        <div class="proof-avatar">${item.photoUrl ? `<img src="${escapeHtml(item.photoUrl)}" alt="${escapeHtml(item.name)}">` : initials(item.name)}</div>
+        <div class="proof-avatar">${item.photoUrl ? `<img src="${escapeHtml(item.photoUrl)}" alt="${escapeHtml(item.name)}" loading="lazy">` : initials(item.name)}</div>
         <div class="proof-head-copy">
           <span class="proof-name">${escapeHtml(item.name)}</span>
           <span class="proof-city">${escapeHtml(item.city)}</span>
@@ -4348,9 +4366,12 @@ async function submitOrder(){
 }
 
 async function loadCampaign(){
+  // Pedimos solo las columnas que realmente usamos (id y max_entries) en vez
+  // de la fila completa: menos bytes transferidos por cada carga de pagina.
+  const CAMPAIGN_FIELDS = 'id, max_entries';
   let { data, error } = await supabaseClient
     .from('campaigns')
-    .select('*')
+    .select(CAMPAIGN_FIELDS)
     .eq('slug', CAMPAIGN_SLUG)
     .eq('status', 'active')
     .limit(1)
@@ -4360,7 +4381,7 @@ async function loadCampaign(){
   if (!data) {
     const fallback = await supabaseClient
       .from('campaigns')
-      .select('*')
+      .select(CAMPAIGN_FIELDS)
       .eq('status', 'active')
       .order('created_at', { ascending: false })
       .limit(1)
@@ -4375,9 +4396,10 @@ async function loadCampaign(){
 }
 
 async function loadPackages(){
+  // Idem: solo las columnas que se pintan en las tarjetas de paquetes.
   const { data, error } = await supabaseClient
     .from('packages')
-    .select('*')
+    .select('id, entries_qty, bonus_entries, price_ars, featured')
     .eq('campaign_id', activeCampaign.id)
     .eq('status', 'active')
     .order('sort_order')
@@ -4601,7 +4623,7 @@ function renderPastParticipants() {
   
   track.innerHTML = displayList.map((p, idx) => `
     <div class="past-participant-item">
-      <div class="td-avatar" style="width:32px; height:32px; font-size:10px; background:${colorFor(idx)}22; color:${colorFor(idx)}">${p.photoUrl ? `<img src="${p.photoUrl}" class="past-participant-avatar">` : initials(p.displayName || p.name)}</div>
+      <div class="td-avatar" style="width:32px; height:32px; font-size:10px; background:${colorFor(idx)}22; color:${colorFor(idx)}">${p.photoUrl ? `<img src="${p.photoUrl}" class="past-participant-avatar" loading="lazy">` : initials(p.displayName || p.name)}</div>
       <div class="past-participant-info">
         <span class="past-participant-name">${escapeHtml(formatPastParticipantName(p.name))}</span>
         <span class="past-participant-date">${p.date}</span>
@@ -4722,10 +4744,15 @@ async function handleReturnedPayment() {
   }
 
   let statusData = null;
-  for (let attempt = 0; attempt < 6; attempt += 1) {
+  // Backoff creciente: la primera consulta es casi inmediata (el pago suele
+  // confirmarse rapido) y las siguientes esperan mas. Mismo maximo de
+  // intentos y tiempo total de espera que antes, pero con menos consultas
+  // en el caso comun de confirmacion temprana.
+  const pollDelaysMs = [1200, 1800, 2500, 3200, 4000, 4800];
+  for (let attempt = 0; attempt < pollDelaysMs.length; attempt += 1) {
     statusData = await loadPublicOrderStatus(orderRef);
     if (statusData?.status === 'paid') break;
-    await new Promise(resolve => setTimeout(resolve, 2500));
+    await new Promise(resolve => setTimeout(resolve, pollDelaysMs[attempt]));
   }
 
   if (!statusData) {
