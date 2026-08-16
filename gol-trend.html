@@ -2070,6 +2070,204 @@ td[data-col="participant"] { min-width: 200px; padding-left: 1rem; }
 .chance-dot { width: 8px; height: 8px; border-radius: 1px; background: rgba(200,255,0,0.25); }
 .chance-dot.filled { background: var(--volt); }
 .draw-showcase.is-focus-locked { scroll-margin-top: 84px; }
+
+/* ================================================================
+   ===== CAPA DE PULIDO: MODERNO / PROFESIONAL / PERSUASIVO =====
+   Refinamientos visuales sobre los componentes existentes. No se
+   quita ni renombra nada — solo se eleva la terminación visual.
+   ================================================================ */
+:root {
+  --shadow-sm: 0 2px 10px rgba(0,0,0,0.25);
+  --shadow-md: 0 10px 30px rgba(0,0,0,0.35);
+  --shadow-lg: 0 20px 55px rgba(0,0,0,0.45);
+  --shadow-volt: 0 10px 34px rgba(200,255,0,0.22);
+  --ring-volt: 0 0 0 1px rgba(200,255,0,0.22);
+  --radius-md: 0.55rem;
+  --radius-lg: 0.9rem;
+}
+
+/* --- CTA primaria: mas premium, con brillo direccional al pasar el mouse --- */
+.btn-primary {
+  background: linear-gradient(135deg, var(--volt) 0%, var(--volt2) 100%);
+  box-shadow: var(--shadow-volt), 0 2px 0 rgba(0,0,0,0.15) inset;
+  position: relative; overflow: hidden;
+}
+.btn-primary::after {
+  content: '';
+  position: absolute; top: 0; left: -60%;
+  width: 40%; height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.55), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
+.btn-primary:hover {
+  background: linear-gradient(135deg, #d9ff11 0%, var(--volt) 100%);
+  box-shadow: 0 16px 44px rgba(200,255,0,0.42), 0 2px 0 rgba(0,0,0,0.15) inset;
+}
+.btn-primary:hover::after { left: 120%; }
+
+.btn-secondary {
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(6px);
+  box-shadow: var(--shadow-sm);
+}
+.btn-secondary:hover {
+  background: rgba(200,255,0,0.06);
+  box-shadow: 0 8px 24px rgba(200,255,0,0.12);
+  transform: translateY(-1px);
+}
+
+.nav-cta { box-shadow: 0 4px 16px rgba(200,255,0,0.28); }
+.nav-cta:hover { box-shadow: 0 6px 22px rgba(200,255,0,0.4); }
+
+/* --- Franja e insignias de confianza: aspecto "verificado" mas solido --- */
+.trust-strip {
+  background: linear-gradient(180deg, rgba(200,255,0,0.03), var(--ink2) 40%);
+  box-shadow: var(--shadow-sm);
+}
+.trust-icon {
+  background: linear-gradient(150deg, rgba(200,255,0,0.16), rgba(200,255,0,0.04));
+  box-shadow: var(--ring-volt), 0 6px 16px rgba(0,0,0,0.25);
+}
+.trust-item:hover .trust-icon { box-shadow: var(--ring-volt), 0 8px 20px rgba(200,255,0,0.18); }
+.trust-item:hover { background: rgba(200,255,0,0.045); }
+
+.hero-trust-badge {
+  background: rgba(255,255,255,0.05);
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.hero-trust-badge:hover {
+  border-color: rgba(200,255,0,0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.3);
+}
+
+.modal-trust-item { transition: transform 0.2s; }
+.modal-trust-item:hover { transform: translateY(-2px); }
+
+.verified-badge {
+  background: rgba(0,128,255,0.1);
+  padding: 0.12rem 0.4rem 0.12rem 0.3rem;
+  border-radius: 999px;
+  border: 1px solid rgba(0,128,255,0.22);
+}
+
+/* --- Cards de paquetes: mas profundidad y foco claro en el destacado --- */
+.pkg {
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+.pkg::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, transparent, var(--volt), transparent);
+  opacity: 0; transition: opacity 0.25s;
+}
+.pkg:hover::before { opacity: 1; }
+.pkg:hover {
+  box-shadow: var(--shadow-lg), 0 0 0 1px rgba(200,255,0,0.25);
+}
+.pkg.featured {
+  box-shadow: var(--shadow-lg), 0 0 0 1px rgba(200,255,0,0.35);
+}
+.pkg.featured::before { opacity: 1; }
+.pkg-badge { box-shadow: 0 4px 12px rgba(200,255,0,0.35); }
+.pkg-btn:hover, .pkg.featured .pkg-btn {
+  box-shadow: 0 8px 22px rgba(200,255,0,0.3);
+}
+
+/* --- Titulares: mas jerarquia y contraste persuasivo --- */
+.section-title {
+  text-shadow: 0 2px 24px rgba(0,0,0,0.35);
+}
+.section-tag, .section-kicker {
+  box-shadow: var(--shadow-sm);
+}
+
+/* --- Tarjetas generales (paneles oscuros) con elevacion consistente --- */
+.trust-item, .hero-trust-badge, .countdown-bar { border-radius: var(--radius-md); }
+
+/* --- Modal de checkout: es el momento de mayor sensibilidad ("¿esto es
+   seguro?"), asi que recibe la terminacion visual mas cuidada --- */
+.modal-overlay { backdrop-filter: blur(3px); }
+.modal {
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg), 0 0 0 1px rgba(200,255,0,0.08);
+  background: linear-gradient(165deg, var(--ink2) 0%, var(--ink) 120%);
+}
+.modal-assurance {
+  border-radius: var(--radius-md);
+  background: rgba(200,255,0,0.035);
+}
+.modal-pkg-display {
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm) inset;
+}
+.form-input {
+  box-shadow: 0 1px 0 rgba(255,255,255,0.02) inset;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.form-input:focus {
+  box-shadow: 0 0 0 3px rgba(200,255,0,0.12);
+}
+.form-check { border-radius: var(--radius-md); }
+.pm-chip { border-radius: var(--radius-md); }
+.pm-chip.selected { box-shadow: 0 0 0 1px rgba(200,255,0,0.25); }
+.modal-confirm {
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, var(--volt) 0%, var(--volt2) 100%);
+  box-shadow: var(--shadow-volt);
+  position: relative; overflow: hidden;
+}
+.modal-confirm::after {
+  content: '';
+  position: absolute; top: 0; left: -60%;
+  width: 40%; height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.5), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
+.modal-confirm:hover {
+  background: linear-gradient(135deg, #d9ff11 0%, var(--volt) 100%);
+  box-shadow: 0 16px 40px rgba(200,255,0,0.38);
+}
+.modal-confirm:hover::after { left: 120%; }
+.modal-trust-item { transition: transform 0.2s; }
+.modal-trust-item:hover { transform: translateY(-2px); }
+.modal-close {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.05);
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.modal-close:hover { background: rgba(255,255,255,0.1); }
+
+/* ===== ACCESIBILIDAD Y CONFIABILIDAD ===== */
+/* Foco visible consistente para navegacion por teclado (percepcion de sitio serio y seguro) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--volt);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Respeta la preferencia del sistema de reducir animaciones: mejora rendimiento
+   y evita mareos/distracciones, sin quitar ninguna funcionalidad. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
 </style>
 </head>
     <!-- Meta Pixel Code -->
@@ -2774,7 +2972,7 @@ src="https://www.facebook.com/tr?id=717335459401864&ev=PageView&noscript=1"
 </div>
 
 <!-- TOAST -->
-<div class="toast" id="toast">✅ ¡Ya sos parte del sorteo!</div>
+<div class="toast" id="toast" role="status" aria-live="polite">✅ ¡Ya sos parte del sorteo!</div>
 
 <!-- LIVE FEED -->
 <div class="live-feed" id="liveFeed">
@@ -3299,7 +3497,9 @@ function startDemoTrial() {
   if (!drawShowcaseState.cycle.length || drawShowcaseState.cyclePosition >= drawShowcaseState.cycle.length) {
     prepareDrawShowcaseRound();
   }
-  document.getElementById('participantsTableScroller')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  // No movemos la pagina: el usuario ya esta viendo el panel de demostracion
+  // y debe permanecer ahi. Solo re-encuadramos la tabla interna si hace falta,
+  // sin arrastrar el scroll de toda la ventana.
   tickDrawShowcase();
   const pl = document.getElementById('drawPhaseLabel');
   const pn = document.getElementById('drawPhaseName');
@@ -4579,7 +4779,16 @@ async function handleReturnedPayment() {
   clearPaymentQueryState();
 }
 
-document.getElementById('searchInput').addEventListener('input', e => renderParticipants(e.target.value));
+function debounce(fn, wait) {
+  let timeoutId;
+  return (...args) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => fn(...args), wait);
+  };
+}
+
+const debouncedRenderParticipants = debounce(value => renderParticipants(value), 180);
+document.getElementById('searchInput').addEventListener('input', e => debouncedRenderParticipants(e.target.value));
 document.getElementById('modalConfirm').onclick = submitOrder;
 document.getElementById('copyCourseCodeBtn').onclick = copyCourseCode;
 document.getElementById('openCourseBtn').onclick = openBonusCourse;
