@@ -2372,6 +2372,104 @@ select:focus-visible,
   border-radius: 4px;
 }
 
+/* ===== WOW / URGENCIA ===== */
+
+/* CTA principal con pulso magnético permanente */
+@keyframes ctaPulseGlow {
+  0%, 100% { box-shadow: var(--shadow-volt), 0 2px 0 rgba(0,0,0,0.15) inset, 0 0 0 0 rgba(200,255,0,0.5); }
+  50% { box-shadow: 0 16px 46px rgba(200,255,0,0.55), 0 2px 0 rgba(0,0,0,0.15) inset, 0 0 0 10px rgba(200,255,0,0); }
+}
+.btn-primary { animation: ctaPulseGlow 1.8s ease-in-out infinite; }
+.btn-primary:hover { animation-play-state: paused; }
+
+/* Título hero con brillo pulsante */
+@keyframes titleShine {
+  0%, 100% { text-shadow: 3px 3px 0 rgba(0,0,0,0.5), 0 0 50px rgba(200,255,0,0.4); }
+  50% { text-shadow: 3px 3px 0 rgba(0,0,0,0.5), 0 0 85px rgba(200,255,0,0.75), 0 0 120px rgba(200,255,0,0.3); }
+}
+.hero-title .title-highlight { animation: titleShine 2.4s ease-in-out infinite; }
+
+/* Badge flotante mas intenso */
+.floating-badge {
+  animation: floatBadge 2.6s ease-in-out infinite, badgeFireGlow 1.4s ease-in-out infinite;
+}
+@keyframes badgeFireGlow {
+  0%, 100% { box-shadow: 0 0 0 4px rgba(255,61,0,0.25), 0 12px 28px rgba(255,61,0,0.45); }
+  50% { box-shadow: 0 0 0 8px rgba(255,61,0,0.12), 0 16px 40px rgba(255,61,0,0.7); }
+}
+
+/* Countdown: estado critico cuando queda poco tiempo */
+@keyframes countdownCriticalPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255,61,0,0.55); border-color: rgba(255,61,0,0.5); }
+  50% { box-shadow: 0 0 0 14px rgba(255,61,0,0); border-color: rgba(255,61,0,0.9); }
+}
+.countdown-bar.critical {
+  background: rgba(255,61,0,0.08);
+  animation: countdownCriticalPulse 1.3s ease-in-out infinite;
+}
+.countdown-bar.critical .countdown-num {
+  color: var(--fire);
+  text-shadow: 0 0 18px rgba(255,61,0,0.7);
+}
+.countdown-note.critical-note {
+  color: var(--fire);
+  font-size: 1.05rem;
+  animation: countdownCriticalPulse 1.3s ease-in-out infinite;
+  display: inline-block;
+  padding: 0.3rem 0.9rem;
+  border-radius: 2rem;
+  border: 1px solid rgba(255,61,0,0.4);
+}
+
+/* Cinta de urgencia con degrade de fuego */
+.urgency-strip {
+  background: linear-gradient(90deg, var(--fire), var(--gold), var(--fire));
+  background-size: 200% 100%;
+  animation: urgencyGradientMove 3s linear infinite;
+}
+@keyframes urgencyGradientMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+.urgency-strip span { color: var(--ink); text-shadow: none; }
+
+/* Ribbon "se agota" sobre el pack destacado */
+.pkg.featured { position: relative; overflow: visible; }
+.pkg-badge {
+  animation: badgePop 1.6s ease-in-out infinite;
+}
+@keyframes badgePop {
+  0%, 100% { transform: scale(1) rotate(-2deg); }
+  50% { transform: scale(1.08) rotate(-2deg); }
+}
+
+/* Barra fija mobile con boton pulsante */
+@keyframes stickyBtnPulse {
+  0%, 100% { box-shadow: 0 4px 16px rgba(200,255,0,0.25); }
+  50% { box-shadow: 0 4px 26px rgba(200,255,0,0.55); }
+}
+.sticky-buy-btn { animation: stickyBtnPulse 1.6s ease-in-out infinite; }
+
+/* Alerta grande de escasez, inyectada dinamicamente */
+.scarcity-alert {
+  position: relative; z-index: 2;
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  background: linear-gradient(135deg, rgba(255,61,0,0.16), rgba(255,61,0,0.06));
+  border: 1px solid rgba(255,61,0,0.4);
+  color: #FFD8CC;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 800; font-size: 0.95rem;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  padding: 0.6rem 1.25rem; border-radius: 2rem;
+  margin: 0 auto 1.25rem;
+  animation: countdownCriticalPulse 1.6s ease-in-out infinite;
+}
+.scarcity-alert .flame { animation: flameFlicker 0.9s ease-in-out infinite; display: inline-block; }
+@keyframes flameFlicker {
+  0%, 100% { transform: scale(1) rotate(-3deg); }
+  50% { transform: scale(1.15) rotate(3deg); }
+}
+
 /* Respeta la preferencia del sistema de reducir animaciones: mejora rendimiento
    y evita mareos/distracciones, sin quitar ninguna funcionalidad. */
 @media (prefers-reduced-motion: reduce) {
@@ -2429,6 +2527,8 @@ src="https://www.facebook.com/tr?id=717335459401864&ev=PageView&noscript=1"
     <div class="hero-visitor-dot"></div>
     <span id="visitorCount">Cargando visitantes...</span>
   </div>
+
+  <div id="scarcityAlert"></div>
 
   <div class="hero-badge">⚡ SORTEO · ARGENTINA</div>
 
@@ -4220,8 +4320,11 @@ function renderPackages(){
     const savingsLabel = savings > 0 ? `Ahorras $${savings.toLocaleString('es-AR')}` : '&nbsp;';
     const div = document.createElement('div');
     div.className = 'pkg reveal' + (pkg.featured ? ' featured' : '');
+    const scarcityRibbon = fillPct >= 85
+      ? '<span class="pkg-badge" style="background:var(--fire);color:#fff;top:-14px">🔥 ¡SE ESTÁ AGOTANDO!</span>'
+      : (pkg.featured ? '<span class="pkg-badge">MEJOR OPCION</span>' : '');
     div.innerHTML = `
-      ${pkg.featured ? '<span class="pkg-badge">MEJOR OPCION</span>' : ''}
+      ${scarcityRibbon}
       <span class="pkg-chances">${chances >= 1000 ? (chances/1000)+'K' : chances}</span>
       <span class="pkg-unit">CHANCE${chances > 1 ? 'S' : ''}</span>
       <div class="pkg-progress"><div class="pkg-progress-fill" style="width:${fillPct}%"></div></div>
@@ -4284,13 +4387,30 @@ function setCountdown(targetIso){
   if (countdownInterval) clearInterval(countdownInterval);
   const target = new Date(DRAW_TARGET_ISO);
   const countdownBar = document.getElementById('countdownBar');
+  const scarcityEl = document.getElementById('scarcityAlert');
+
+  function updateScarcityAlert(days, hours){
+    if (!scarcityEl) return;
+    let msg = '';
+    if (days <= 0 && hours <= 24) {
+      msg = '¡Últimas horas para participar!';
+    } else if (days <= 3) {
+      msg = `¡Quedan ${days} día${days === 1 ? '' : 's'}! No te quedes afuera`;
+    }
+    scarcityEl.innerHTML = msg
+      ? `<div class="scarcity-alert"><span class="flame">🔥</span> ${msg}</div>`
+      : '';
+  }
 
   function tick(){
     const diff = target - Date.now();
     if (diff <= 0) {
       clearInterval(countdownInterval);
       countdownBar.classList.remove('hidden-until-thirty');
+      countdownBar.classList.add('critical');
       document.getElementById('countdownNote').textContent = 'Se acerca el cierre final. AprovechÃ¡ antes de que se agoten las chances.';
+      document.getElementById('countdownNote').classList.add('critical-note');
+      updateScarcityAlert(0, 0);
       return;
     }
     const d = Math.floor(diff / 864e5);
@@ -4302,6 +4422,7 @@ function setCountdown(targetIso){
     } else {
       countdownBar.classList.add('hidden-until-thirty');
     }
+    countdownBar.classList.toggle('critical', d <= 1);
     document.getElementById('cd-d').textContent = String(d).padStart(2,'0');
     document.getElementById('cd-h').textContent = String(h).padStart(2,'0');
     document.getElementById('cd-m').textContent = String(m).padStart(2,'0');
@@ -4309,13 +4430,18 @@ function setCountdown(targetIso){
     const note = document.getElementById('countdownNote');
     if (d <= 3) {
       note.textContent = 'Ultimos dias. Quedan pocos lugares para hacer el sorteo antes.';
+      note.classList.toggle('critical-note', d <= 1);
     } else if (d <= 10) {
       note.textContent = 'Quedan pocos lugares y sorteamos al agotar las chances.';
+      note.classList.remove('critical-note');
     } else if (d <= 30) {
       note.textContent = 'Comienza la cuenta regresiva. Quedan pocos lugares para hacer el sorteo antes.';
+      note.classList.remove('critical-note');
     } else {
       note.textContent = 'Quedan pocos lugares para hacer el sorteo antes.';
+      note.classList.remove('critical-note');
     }
+    updateScarcityAlert(d, h);
   }
 
   tick();
