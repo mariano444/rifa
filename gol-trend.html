@@ -3013,11 +3013,6 @@ src="https://www.facebook.com/tr?id=717335459401864&ev=PageView&noscript=1"
     <h2 class="section-title">Un sorteo con<br><span style="color:var(--volt)">un proceso transparente</span></h2>
     <p class="section-sub">Sabemos que elegir dónde participar requiere confianza. Por eso el proceso queda documentado de punta a punta: cómo se paga, cómo se refleja tu participación y cómo se entrega el premio.</p>
 
-    <div class="footer-org reveal" style="max-width:760px;">
-      <strong>🧑‍💼 Contacto directo antes de comprar</strong>
-      Escribinos por WhatsApp o email si tenés dudas. Sorteo dirigido a residentes de Argentina, con entrega coordinada personalmente con el ganador dentro de las 48 horas posteriores al resultado.
-    </div>
-
     <div class="trustinfo-grid">
       <div class="trustinfo-card reveal">
         <div class="trustinfo-icon">🔐</div>
@@ -3135,11 +3130,6 @@ src="https://www.facebook.com/tr?id=717335459401864&ev=PageView&noscript=1"
       <span class="ft-title">Entrega coordinada</span>
       <span class="ft-sub">Contacto personal con el ganador dentro de las 48 horas del sorteo.</span>
     </div>
-  </div>
-
-  <div class="footer-org">
-    <strong>Gran Sorteo</strong>
-    Sorteo destinado a residentes de Argentina. Este sorteo es organizado de forma independiente y no está afiliado a Volkswagen Argentina S.A. ni a sus concesionarios oficiales.
   </div>
 
   <div class="footer-contact-row">
@@ -4395,7 +4385,7 @@ function setCountdown(targetIso){
     if (days <= 0 && hours <= 24) {
       msg = '¡Últimas horas para participar!';
     } else if (days <= 3) {
-      msg = `¡Quedan ${days} día${days === 1 ? '' : 's'}! No te quedes afuera`;
+      msg = 'No te quedes afuera';
     }
     scarcityEl.innerHTML = msg
       ? `<div class="scarcity-alert"><span class="flame">🔥</span> ${msg}</div>`
@@ -4429,7 +4419,7 @@ function setCountdown(targetIso){
     document.getElementById('cd-s').textContent = String(s).padStart(2,'0');
     const note = document.getElementById('countdownNote');
     if (d <= 3) {
-      note.textContent = 'Ultimos dias. Quedan pocos lugares para hacer el sorteo antes.';
+      note.textContent = 'Ultimos dias. Quedan pocos lugares para hacer el sorteo.';
       note.classList.toggle('critical-note', d <= 1);
     } else if (d <= 10) {
       note.textContent = 'Quedan pocos lugares y sorteamos al agotar las chances.';
