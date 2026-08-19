@@ -143,16 +143,12 @@ body::before {
   overflow: hidden;
 }
 
-/* Two-column layout: the copy card and the photo exhibit sit side by side,
-   each legible on its own — nothing darkens or hides the car photo. */
+/* ===== ONE SINGLE PIECE: everything — eyebrows, title, photo, pitch, CTA —
+   lives inside one continuous card, read top to bottom like a single
+   document instead of separate floating blocks. ===== */
 .hero-split {
   position: relative; z-index: 2;
-  display: grid;
-  grid-template-columns: minmax(320px, 560px) minmax(300px, 520px);
-  align-items: center;
-  justify-content: center;
-  gap: clamp(2rem, 4vw, 4rem);
-  width: min(1240px, 100%);
+  width: min(760px, 100%);
   margin: 0 auto;
   padding: 0 1.5rem;
 }
@@ -198,45 +194,51 @@ body::before {
 }
 @media (max-width: 640px) { .doc-seal { width: 46px; height: 46px; top: -16px; right: 1.1rem; } .doc-seal::after { font-size: 0.95rem; } }
 
+/* The single card: text block on top, full photo underneath, pitch + CTA
+   below that — one uninterrupted panel, centered, easy to scan top-down. */
 .hero-content {
-  text-align: left;
+  text-align: center;
   position: relative;
   z-index: 2;
   width: 100%;
+  display: flex; flex-direction: column; align-items: center;
   background: rgba(15,21,38,0.6);
   backdrop-filter: blur(14px);
   border: 1px solid rgba(231,236,245,0.1);
-  border-left: 3px solid var(--volt);
-  padding: clamp(1.6rem, 3vw, 2.4rem);
+  border-top: 3px solid var(--volt);
+  padding: clamp(1.8rem, 3vw, 2.8rem);
   box-shadow: 0 30px 70px rgba(0,0,0,0.45);
 }
-.hero-content .hero-lead { margin: 0 0 1.5rem; text-align: left; }
-.hero-content .hero-progress-container { margin: 0 0 1.5rem; width: 100%; max-width: 420px; }
-.hero-content .hero-cta { justify-content: flex-start; }
-.hero-content .hero-trust-badges { justify-content: flex-start; }
-.hero-content .countdown-bar { margin: 1.5rem 0 0; }
+.hero-content .hero-lead { margin: 1.6rem 0 0; text-align: center; max-width: 54ch; }
+.hero-content .hero-progress-container { margin: 1.6rem 0 0; width: 100%; max-width: 420px; }
+.hero-content .hero-cta { justify-content: center; margin-top: 1.6rem; }
+.hero-content .hero-trust-badges { justify-content: center; margin-top: 1.4rem; }
+.hero-content .countdown-bar { margin: 1.6rem 0 0; }
 
-/* ---- Photo exhibit: the car takes center stage in its own framed card,
-   captioned like a catalogued piece of evidence — no dark overlay hides it. ---- */
+/* ---- Photo: shown whole, directly under the headline, as part of the
+   same card — nothing crops it and nothing sits beside it. ---- */
 .hero-visual {
   position: relative;
   z-index: 2;
   width: 100%;
+  margin-top: 1.8rem;
 }
 .hero-visual .hero-car-featured {
   position: relative;
   width: 100%;
-  aspect-ratio: 4 / 5;
   margin: 0;
   transform: none;
-  border-radius: 1rem;
+  border-radius: 0.85rem;
   overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
   background: var(--ink3);
   border: 1px solid rgba(47,94,255,0.22);
-  box-shadow: 0 40px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.03) inset;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.03) inset;
 }
 .hero-visual .hero-car-featured img {
-  width: 100%; height: 100%; object-fit: cover; object-position: center 58%;
+  width: 100%; height: auto; max-height: 62vh;
+  object-fit: contain; object-position: center;
+  display: block;
   border-radius: 0; border: none;
   filter: saturate(1.06) contrast(1.03);
 }
@@ -246,7 +248,7 @@ body::before {
 .hero-car-featured::after {
   content: '';
   position: absolute; inset: 0 0 0 0; z-index: 1;
-  background: linear-gradient(0deg, rgba(10,14,26,0.88) 0%, rgba(10,14,26,0) 32%);
+  background: linear-gradient(0deg, rgba(10,14,26,0.75) 0%, rgba(10,14,26,0) 22%);
   pointer-events: none;
 }
 .hero-visual-plate {
@@ -261,10 +263,9 @@ body::before {
   white-space: nowrap;
 }
 
-@media (max-width: 980px) {
-  .hero-split { grid-template-columns: 1fr; padding: 0 1rem; }
-  .hero-visual { order: -1; max-width: 420px; margin: 0 auto; }
-  .hero-content { width: 100%; text-align: left; }
+@media (max-width: 640px) {
+  .hero-split { padding: 0 1rem; }
+  .hero-visual .hero-car-featured img { max-height: 46vh; }
 }
 
 /* Angled background panels */
@@ -422,19 +423,6 @@ body::before {
   color: var(--silver2);
   text-shadow: none;
   margin-top: 0.2em;
-}
-
-/* Car image */
-.hero-car-featured {
-  position: relative; z-index: 3;
-  width: min(720px, 100%);
-  margin: 1.5rem auto;
-  filter: drop-shadow(0 30px 60px rgba(0,0,0,0.7)) drop-shadow(0 0 40px rgba(47,94,255,0.1));
-  animation: carFloat 7s ease-in-out infinite;
-}
-@keyframes carFloat {
-  0%,100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-14px) scale(1.015); }
 }
 
 .hero-subtitle {
@@ -2430,6 +2418,18 @@ src="https://www.facebook.com/tr?id=717335459401864&ev=PageView&noscript=1"
 
       <p class="hero-subtitle">Impecable · Listo para transferir · ¡Puede ser tuyo hoy!</p>
 
+      <div class="hero-visual">
+        <div class="hero-car-featured reveal">
+          <img src="./assets/premios/frente11.png" alt="Volkswagen Gol Power 5P Full" loading="lazy">
+          <div class="hero-visual-plate">GOL POWER · 5P FULL</div>
+          <div class="floating-badge">
+            <span>Últimas</span>
+            <strong>CHANCES</strong>
+            <span>disponibles</span>
+          </div>
+        </div>
+      </div>
+
       <p class="hero-lead">Participá por un hermoso Volkswagen Gol Power 5P Full. <strong>Seguridad garantizada, lista pública en tiempo real</strong> y un beneficio exclusivo: con 3+ chances te llevás gratis el curso guía para comprar usados.</p>
 
       <div class="hero-progress-container reveal">
@@ -2484,18 +2484,6 @@ src="https://www.facebook.com/tr?id=717335459401864&ev=PageView&noscript=1"
         </div>
       </div>
       <div class="countdown-note reveal" id="countdownNote" style="transition-delay:0.45s">Quedan pocos lugares para hacer el sorteo antes.</div>
-    </div>
-
-    <div class="hero-visual">
-      <div class="hero-car-featured reveal">
-        <img src="./assets/premios/frente11.png" alt="Volkswagen Gol Power 5P Full" loading="lazy">
-        <div class="hero-visual-plate">GOL POWER · 5P FULL</div>
-        <div class="floating-badge">
-          <span>Últimas</span>
-          <strong>CHANCES</strong>
-          <span>disponibles</span>
-        </div>
-      </div>
     </div>
   </div>
 </div>
