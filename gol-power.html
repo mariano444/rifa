@@ -126,10 +126,66 @@ body::before {
   position: relative;
   min-height: 100vh;
   display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
+  align-items: stretch; justify-content: center;
   text-align: center;
   padding: 6rem 1rem 5rem;
   overflow: hidden;
+}
+
+/* Split, asymmetric hero: copy on the left, product portrait on the right */
+.hero-split {
+  position: relative; z-index: 2;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  align-items: center;
+  gap: clamp(2rem, 5vw, 5rem);
+  width: min(1360px, 100%);
+  margin: 0 auto;
+}
+.hero-content { text-align: left; }
+.hero-content .hero-lead { margin: 0 0 1.5rem; text-align: left; }
+.hero-content .hero-progress-container { margin: 0 0 1.5rem; width: 100%; max-width: 420px; }
+.hero-content .hero-cta { justify-content: flex-start; }
+.hero-content .hero-trust-badges { justify-content: flex-start; }
+.hero-content .countdown-bar { margin: 1.5rem 0 0; }
+
+.hero-visual {
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+}
+.hero-visual .hero-car-featured {
+  width: 100%; margin: 0;
+  transform: rotate(-2deg);
+}
+.hero-visual .hero-car-featured img {
+  width: 100%; border-radius: 0.9rem;
+  filter: drop-shadow(0 30px 60px rgba(0,0,0,0.7)) drop-shadow(0 0 40px rgba(212,175,55,0.12));
+  border: 1px solid rgba(212,175,55,0.25);
+}
+.hero-visual-plate {
+  position: absolute; bottom: -14px; left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+  background: var(--ink);
+  border: 2px solid var(--volt);
+  color: var(--volt);
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700; letter-spacing: 0.2em;
+  font-size: 0.75rem;
+  padding: 0.4rem 1.4rem;
+  border-radius: 4px;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.5);
+  white-space: nowrap;
+}
+
+@media (max-width: 980px) {
+  .hero-split { grid-template-columns: 1fr; text-align: center; }
+  .hero-content { text-align: center; }
+  .hero-content .hero-lead,
+  .hero-content .hero-progress-container { margin-left: auto; margin-right: auto; }
+  .hero-content .hero-cta,
+  .hero-content .hero-trust-badges { justify-content: center; }
+  .hero-content .countdown-bar { margin-left: auto; margin-right: auto; width: fit-content; }
+  .hero-visual { order: -1; max-width: 480px; margin: 0 auto 1.5rem; }
 }
 
 /* Angled background panels */
@@ -257,8 +313,8 @@ body::before {
 .hero-title {
   position: relative; z-index: 2;
   font-family: 'Anton', sans-serif;
-  font-size: clamp(3.8rem, 13vw, 9.5rem);
-  line-height: 0.88;
+  font-size: clamp(2.8rem, 6vw, 5.4rem);
+  line-height: 0.9;
   letter-spacing: -0.02em;
   color: var(--white);
   text-shadow: 
@@ -546,45 +602,55 @@ body::before {
 }
 
 .section-eyebrow {
-  display: inline-flex; align-items: center; gap: 0.5rem;
+  display: flex; align-items: center; gap: 0.75rem;
   font-family: 'Oswald', sans-serif;
-  font-size: 0.75rem; font-weight: 700;
-  letter-spacing: 0.25em; text-transform: uppercase;
+  font-size: 0.72rem; font-weight: 600;
+  letter-spacing: 0.3em; text-transform: uppercase;
   color: var(--volt);
-  background: rgba(212,175,55,0.08);
-  border: 1px solid rgba(212,175,55,0.2);
-  padding: 0.35rem 0.85rem;
-  border-radius: 0.25rem;
-  margin-bottom: 1rem;
+  background: none; border: none; padding: 0;
+  margin-bottom: 1.1rem;
+}
+.section-eyebrow::before {
+  content: '';
+  width: 2.4rem; height: 2px;
+  background: linear-gradient(90deg, var(--fire), var(--volt));
+  flex-shrink: 0;
 }
 /* backward compat alias */
-.section-tag { 
-  display: inline-flex; align-items: center; gap: 0.5rem;
+.section-tag {
+  display: flex; align-items: center; gap: 0.75rem;
   font-family: 'Oswald', sans-serif;
-  font-size: 0.75rem; font-weight: 700;
-  letter-spacing: 0.25em; text-transform: uppercase;
+  font-size: 0.72rem; font-weight: 600;
+  letter-spacing: 0.3em; text-transform: uppercase;
   color: var(--volt);
-  background: rgba(212,175,55,0.08);
-  border: 1px solid rgba(212,175,55,0.2);
-  padding: 0.35rem 0.85rem;
-  border-radius: 0.25rem;
-  margin-bottom: 1rem;
+  background: none; border: none; padding: 0;
+  margin-bottom: 1.1rem;
+}
+.section-tag::before {
+  content: '';
+  width: 2.4rem; height: 2px;
+  background: linear-gradient(90deg, var(--fire), var(--volt));
+  flex-shrink: 0;
 }
 
 .section-title {
   font-family: 'Anton', sans-serif;
-  font-size: clamp(2.2rem, 5vw, 3.8rem);
-  line-height: 0.92;
+  font-size: clamp(2.1rem, 4.4vw, 3.4rem);
+  line-height: 0.95;
   color: var(--white);
-  margin-bottom: 1rem;
-  letter-spacing: -0.01em;
+  margin-bottom: 1.1rem;
+  letter-spacing: -0.005em;
+  text-transform: uppercase;
 }
 
 .section-sub {
   color: var(--silver2);
-  font-size: 1rem; line-height: 1.7;
-  max-width: 660px;
-  margin-bottom: 2.5rem;
+  font-family: 'Manrope', sans-serif;
+  font-size: 1.02rem; line-height: 1.75;
+  max-width: 620px;
+  margin-bottom: 2.75rem;
+  padding-left: 1rem;
+  border-left: 2px solid rgba(212,175,55,0.25);
 }
 
 /* ===== PACKAGES ===== */
@@ -2291,7 +2357,7 @@ src="https://www.facebook.com/tr?id=717335459401864&ev=PageView&noscript=1"
 
 <!-- NAV STRIP -->
 <nav class="nav-strip">
-  <a href="#" class="nav-brand">GOL<span>TREND</span></a>
+  <a href="#" class="nav-brand">GOL<span>POWER</span></a>
   <div class="nav-live">
     <div class="nav-live-dot"></div>
     <span id="visitorCountNav">En vivo</span>
@@ -2311,79 +2377,86 @@ src="https://www.facebook.com/tr?id=717335459401864&ev=PageView&noscript=1"
     <span>disponibles</span>
   </div>
 
-  <div class="hero-visitor-badge">
-    <div class="hero-visitor-dot"></div>
-    <span id="visitorCount">Cargando visitantes...</span>
+  <div class="hero-split">
+    <div class="hero-content">
+      <div class="hero-visitor-badge">
+        <div class="hero-visitor-dot"></div>
+        <span id="visitorCount">Cargando visitantes...</span>
+      </div>
+
+      <div class="hero-badge">⚡ SORTEO · ARGENTINA</div>
+
+      <h1 class="hero-title">
+        GRAN
+        <span class="title-highlight">SORTEO</span>
+        <span class="title-model">Volkswagen Gol Power 5P Full</span>
+      </h1>
+
+      <p class="hero-subtitle">Impecable · Listo para transferir · ¡Puede ser tuyo hoy!</p>
+
+      <p class="hero-lead">Participá por un hermoso Volkswagen Gol Power 5P Full. <strong>Seguridad garantizada, lista pública en tiempo real</strong> y un beneficio exclusivo: con 3+ chances te llevás gratis el curso guía para comprar usados.</p>
+
+      <div class="hero-progress-container reveal">
+        <div class="hero-progress-label">
+          <span>Chances reservadas</span>
+          <span id="heroProgressText">91% completado</span>
+        </div>
+        <div class="hero-progress-bar">
+          <div class="hero-progress-fill" id="heroProgressFill" style="width: 91%"></div>
+        </div>
+      </div>
+
+      <div class="hero-cta reveal" style="transition-delay:0.2s">
+        <a href="#paquetes" class="btn-primary">¡QUIERO PARTICIPAR AHORA!</a>
+        <a href="#participantes" class="btn-secondary">Ver la lista</a>
+      </div>
+
+      <div class="hero-trust-badges reveal" style="transition-delay:0.35s">
+        <div class="hero-trust-badge">
+          <img src="https://img.icons8.com/color/48/000000/shield.png" alt="Seguro">
+          <span>Pago 100% Protegido</span>
+        </div>
+        <div class="hero-trust-badge">
+          <img src="https://img.icons8.com/color/48/000000/checked-user-male.png" alt="Verificado">
+          <span>Sorteo Transparente</span>
+        </div>
+        <div class="hero-trust-badge">
+          <img src="https://img.icons8.com/color/48/000000/clock--v1.png" alt="Rápido">
+          <span>Registro Inmediato</span>
+        </div>
+      </div>
+
+      <div class="countdown-bar reveal hidden-until-thirty" id="countdownBar" style="transition-delay:0.4s;">
+        <div class="countdown-unit">
+          <span class="countdown-num" id="cd-d">00</span>
+          <span class="countdown-label">Días</span>
+        </div>
+        <div class="countdown-sep">:</div>
+        <div class="countdown-unit">
+          <span class="countdown-num" id="cd-h">00</span>
+          <span class="countdown-label">Horas</span>
+        </div>
+        <div class="countdown-sep">:</div>
+        <div class="countdown-unit">
+          <span class="countdown-num" id="cd-m">00</span>
+          <span class="countdown-label">Min</span>
+        </div>
+        <div class="countdown-sep">:</div>
+        <div class="countdown-unit">
+          <span class="countdown-num" id="cd-s">00</span>
+          <span class="countdown-label">Seg</span>
+        </div>
+      </div>
+      <div class="countdown-note reveal" id="countdownNote" style="transition-delay:0.45s">Quedan pocos lugares para hacer el sorteo antes.</div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-car-featured reveal">
+        <img src="./assets/premios/frente1.png" alt="Volkswagen Gol Power 5P Full" loading="lazy">
+      </div>
+      <div class="hero-visual-plate">GOL POWER · 5P FULL</div>
+    </div>
   </div>
-
-  <div class="hero-badge">⚡ SORTEO · ARGENTINA</div>
-
-  <h1 class="hero-title">
-    GRAN
-    <span class="title-highlight">SORTEO</span>
-    <span class="title-model">Volkswagen Gol Power 5P Full</span>
-  </h1>
-
-  <div class="hero-car-featured reveal" style="max-width: 650px; margin: 0 auto;">
-    <img src="./assets/premios/frente1.png" alt="Volkswagen Gol Power 5P Full" style="width:100%; border-radius: 0.75rem; filter: drop-shadow(0 10px 30px rgba(0,0,0,0.5));" loading="lazy">
-  </div>
-
-  <p class="hero-subtitle">Impecable · Listo para transferir · ¡Puede ser tuyo hoy!</p>
-
-  <div class="hero-progress-container reveal">
-    <div class="hero-progress-label">
-      <span>Chances reservadas</span>
-      <span id="heroProgressText">91% completado</span>
-    </div>
-    <div class="hero-progress-bar">
-      <div class="hero-progress-fill" id="heroProgressFill" style="width: 91%"></div>
-    </div>
-  </div>
-
-  <p class="hero-lead">Participá por un hermoso Volkswagen Gol Power 5P Full. <strong>Seguridad garantizada, lista pública en tiempo real</strong> y un beneficio exclusivo: con 3+ chances te llevás gratis el curso guía para comprar usados.</p>
-
-  <div class="hero-cta reveal" style="transition-delay:0.2s">
-    <a href="#paquetes" class="btn-primary">¡QUIERO PARTICIPAR AHORA!</a>
-    <a href="#participantes" class="btn-secondary">Ver la lista</a>
-  </div>
-
-  <div class="hero-trust-badges reveal" style="transition-delay:0.35s">
-    <div class="hero-trust-badge">
-      <img src="https://img.icons8.com/color/48/000000/shield.png" alt="Seguro">
-      <span>Pago 100% Protegido</span>
-    </div>
-    <div class="hero-trust-badge">
-      <img src="https://img.icons8.com/color/48/000000/checked-user-male.png" alt="Verificado">
-      <span>Sorteo Transparente</span>
-    </div>
-    <div class="hero-trust-badge">
-      <img src="https://img.icons8.com/color/48/000000/clock--v1.png" alt="Rápido">
-      <span>Registro Inmediato</span>
-    </div>
-  </div>
-
-  <div class="countdown-bar reveal hidden-until-thirty" id="countdownBar" style="transition-delay:0.4s;">
-    <div class="countdown-unit">
-      <span class="countdown-num" id="cd-d">00</span>
-      <span class="countdown-label">Días</span>
-    </div>
-    <div class="countdown-sep">:</div>
-    <div class="countdown-unit">
-      <span class="countdown-num" id="cd-h">00</span>
-      <span class="countdown-label">Horas</span>
-    </div>
-    <div class="countdown-sep">:</div>
-    <div class="countdown-unit">
-      <span class="countdown-num" id="cd-m">00</span>
-      <span class="countdown-label">Min</span>
-    </div>
-    <div class="countdown-sep">:</div>
-    <div class="countdown-unit">
-      <span class="countdown-num" id="cd-s">00</span>
-      <span class="countdown-label">Seg</span>
-    </div>
-  </div>
-  <div class="countdown-note reveal" id="countdownNote" style="transition-delay:0.45s">Quedan pocos lugares para hacer el sorteo antes.</div>
 </div>
 
 <!-- URGENCY STRIP -->
