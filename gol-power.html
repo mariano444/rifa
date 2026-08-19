@@ -132,24 +132,29 @@ body::before {
   50% { opacity: 0.3; }
 }
 
-/* ===== HERO — full-bleed poster layout ===== */
+/* ===== HERO — split exhibit layout: copy left, verified photo right ===== */
 .hero {
   position: relative;
   min-height: 100vh;
   display: flex; flex-direction: column;
-  align-items: stretch; justify-content: flex-end;
+  align-items: stretch; justify-content: center;
   text-align: center;
-  padding: 6rem 0 0;
+  padding: 7rem 0 3rem;
   overflow: hidden;
 }
 
-/* Full-bleed backdrop photo with poster panel anchored at the base */
+/* Two-column layout: the copy card and the photo exhibit sit side by side,
+   each legible on its own — nothing darkens or hides the car photo. */
 .hero-split {
   position: relative; z-index: 2;
-  display: flex; align-items: flex-end;
-  min-height: 100vh;
-  width: 100%;
-  padding: 0 1.5rem 3.5rem;
+  display: grid;
+  grid-template-columns: minmax(320px, 560px) minmax(300px, 520px);
+  align-items: center;
+  justify-content: center;
+  gap: clamp(2rem, 4vw, 4rem);
+  width: min(1240px, 100%);
+  margin: 0 auto;
+  padding: 0 1.5rem;
 }
 /* ===== SIGNATURE: "ACTA VERIFICADA" FRAME + SEAL =====
    Marcas de esquina tipo documento escaneado/auditado, y un sello circular
@@ -197,13 +202,13 @@ body::before {
   text-align: left;
   position: relative;
   z-index: 2;
-  width: min(640px, 100%);
-  background: rgba(10,14,26,0.72);
+  width: 100%;
+  background: rgba(15,21,38,0.6);
   backdrop-filter: blur(14px);
-  border: 1px solid rgba(231,236,245,0.12);
+  border: 1px solid rgba(231,236,245,0.1);
   border-left: 3px solid var(--volt);
-  padding: clamp(1.6rem, 3vw, 2.6rem);
-  box-shadow: 0 30px 70px rgba(0,0,0,0.55);
+  padding: clamp(1.6rem, 3vw, 2.4rem);
+  box-shadow: 0 30px 70px rgba(0,0,0,0.45);
 }
 .hero-content .hero-lead { margin: 0 0 1.5rem; text-align: left; }
 .hero-content .hero-progress-container { margin: 0 0 1.5rem; width: 100%; max-width: 420px; }
@@ -211,40 +216,54 @@ body::before {
 .hero-content .hero-trust-badges { justify-content: flex-start; }
 .hero-content .countdown-bar { margin: 1.5rem 0 0; }
 
+/* ---- Photo exhibit: the car takes center stage in its own framed card,
+   captioned like a catalogued piece of evidence — no dark overlay hides it. ---- */
 .hero-visual {
-  position: absolute; inset: 0;
-  z-index: 0;
+  position: relative;
+  z-index: 2;
+  width: 100%;
 }
 .hero-visual .hero-car-featured {
-  width: 100%; height: 100%; margin: 0;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  margin: 0;
   transform: none;
+  border-radius: 1rem;
+  overflow: hidden;
+  background: var(--ink3);
+  border: 1px solid rgba(47,94,255,0.22);
+  box-shadow: 0 40px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.03) inset;
 }
 .hero-visual .hero-car-featured img {
-  width: 100%; height: 100%; object-fit: cover; object-position: center 65%;
+  width: 100%; height: 100%; object-fit: cover; object-position: center 58%;
   border-radius: 0; border: none;
-  filter: saturate(0.9) brightness(0.72);
+  filter: saturate(1.06) contrast(1.03);
 }
-.hero-visual::after {
+.hero-visual::after { content: none; }
+/* Soft caption strip anchored to the bottom of the photo — legible without
+   dimming the rest of the image. */
+.hero-car-featured::after {
   content: '';
-  position: absolute; inset: 0;
-  background:
-    linear-gradient(0deg, var(--ink) 5%, rgba(10,14,26,0.35) 45%, rgba(10,14,26,0.55) 100%),
-    linear-gradient(100deg, rgba(10,14,26,0.65) 0%, transparent 55%);
+  position: absolute; inset: 0 0 0 0; z-index: 1;
+  background: linear-gradient(0deg, rgba(10,14,26,0.88) 0%, rgba(10,14,26,0) 32%);
+  pointer-events: none;
 }
 .hero-visual-plate {
-  position: absolute; top: 6.5rem; left: 1.5rem; z-index: 2;
+  position: absolute; left: 1.1rem; bottom: 1.1rem; z-index: 2;
   background: var(--ink);
   border: 1px solid var(--volt);
   color: var(--volt);
   font-family: 'IBM Plex Mono', monospace;
-  font-weight: 600; letter-spacing: 0.2em;
-  font-size: 0.72rem;
-  padding: 0.4rem 1.1rem;
+  font-weight: 600; letter-spacing: 0.18em;
+  font-size: 0.7rem;
+  padding: 0.4rem 1rem;
   white-space: nowrap;
 }
 
 @media (max-width: 980px) {
-  .hero-split { padding: 0 1rem 2rem; align-items: flex-end; }
+  .hero-split { grid-template-columns: 1fr; padding: 0 1rem; }
+  .hero-visual { order: -1; max-width: 420px; margin: 0 auto; }
   .hero-content { width: 100%; text-align: left; }
 }
 
@@ -303,30 +322,38 @@ body::before {
   100% { transform: scale(0.5); opacity: 0; }
 }
 
-/* Floating badge — top right corner */
+/* Floating badge — pinned to the top-right corner of the photo frame, like a
+   seal attached to the exhibit rather than a sticker floating in space. */
 .floating-badge {
   position: absolute;
-  top: 18%; right: 8%;
+  top: -14px; right: -14px;
   background: var(--fire);
   color: #fff;
   padding: 0.9rem;
   border-radius: 50%;
-  width: 78px; height: 78px;
+  width: 74px; height: 74px;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
-  font-size: 0.62rem; font-weight: 900;
+  font-size: 0.6rem; font-weight: 900;
   text-transform: uppercase; text-align: center; line-height: 1.1;
   z-index: 5;
-  transform: rotate(12deg);
-  box-shadow: 0 0 0 4px rgba(18,166,107,0.2), 0 12px 28px rgba(18,166,107,0.4);
+  transform: rotate(10deg);
+  box-shadow: 0 0 0 4px var(--ink), 0 12px 28px rgba(18,166,107,0.4);
   animation: floatBadge 4s ease-in-out infinite;
 }
 @keyframes floatBadge {
-  0%,100% { transform: rotate(12deg) translateY(0); }
-  50% { transform: rotate(12deg) translateY(-12px); }
+  0%,100% { transform: rotate(10deg) translateY(0); }
+  50% { transform: rotate(10deg) translateY(-8px); }
 }
-.floating-badge strong { font-size: 1.15rem; display: block; }
+.floating-badge strong { font-size: 1.1rem; display: block; }
+@media (max-width: 640px) { .floating-badge { width: 60px; height: 60px; font-size: 0.5rem; top: -10px; right: -10px; } .floating-badge strong { font-size: 0.9rem; } }
 
-/* Live visitors */
+/* Live visitors + badge row — grouped so the eyebrow reads as one line */
+.hero-eyebrow-row {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem;
+  margin-bottom: 1.25rem;
+}
+.hero-eyebrow-row .hero-visitor-badge,
+.hero-eyebrow-row .hero-badge { margin-bottom: 0; }
 .hero-visitor-badge {
   position: relative; z-index: 2;
   background: rgba(23,214,127,0.1);
@@ -2385,20 +2412,15 @@ src="https://www.facebook.com/tr?id=717335459401864&ev=PageView&noscript=1"
   <div class="hero-sparks" id="sparks"></div>
   <div class="hero-floating-avatars" id="floatingAvatarsContainer"></div>
 
-  <div class="floating-badge">
-    <span>Últimas</span>
-    <strong>CHANCES</strong>
-    <span>disponibles</span>
-  </div>
-
   <div class="hero-split">
     <div class="hero-content doc-frame"><span class="doc-seal" aria-hidden="true"></span>
-      <div class="hero-visitor-badge">
-        <div class="hero-visitor-dot"></div>
-        <span id="visitorCount">Cargando visitantes...</span>
+      <div class="hero-eyebrow-row">
+        <div class="hero-visitor-badge">
+          <div class="hero-visitor-dot"></div>
+          <span id="visitorCount">Cargando visitantes...</span>
+        </div>
+        <div class="hero-badge">⚡ SORTEO · ARGENTINA</div>
       </div>
-
-      <div class="hero-badge">⚡ SORTEO · ARGENTINA</div>
 
       <h1 class="hero-title">
         GRAN
@@ -2467,8 +2489,13 @@ src="https://www.facebook.com/tr?id=717335459401864&ev=PageView&noscript=1"
     <div class="hero-visual">
       <div class="hero-car-featured reveal">
         <img src="./assets/premios/frente11.png" alt="Volkswagen Gol Power 5P Full" loading="lazy">
+        <div class="hero-visual-plate">GOL POWER · 5P FULL</div>
+        <div class="floating-badge">
+          <span>Últimas</span>
+          <strong>CHANCES</strong>
+          <span>disponibles</span>
+        </div>
       </div>
-      <div class="hero-visual-plate">GOL POWER · 5P FULL</div>
     </div>
   </div>
 </div>
