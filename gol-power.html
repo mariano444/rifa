@@ -3104,7 +3104,7 @@ const DEFAULT_SHARE_TITLE = 'Gran Sorteo - Volkswagen Gol Power 5P Full';
 const DEFAULT_SHARE_DESCRIPTION = 'Participa de este sorteo por un hermoso Volkswagen Gol Power 5P Full. ¡Últimas chances disponibles!';
 const COURSE_PAGE_PATH = './curso-guia-auto-argentina.html';
 const COURSE_MIN_ENTRIES = 3;
-const DRAW_TARGET_ISO = '2026-08-22T21:00:00-03:00';
+const DRAW_TARGET_ISO = '2026-08-23T21:00:00-03:00';
 
 let activeCampaign = null;
 let packages = [];
@@ -4204,7 +4204,7 @@ function setCountdown(targetIso){
     document.getElementById('cd-s').textContent = String(s).padStart(2,'0');
     const note = document.getElementById('countdownNote');
     if (d <= 3) {
-      note.textContent = 'Ultimos dias. Quedan pocos lugares.';
+      note.textContent = 'Ultimos dias. Quedan pocos lugares para hacer el sorteo.';
     } else if (d <= 10) {
       note.textContent = 'Quedan pocos lugares y sorteamos al agotar las chances.';
     } else if (d <= 30) {
