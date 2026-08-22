@@ -360,7 +360,7 @@ const CAMPAIGN_SLUG = 'sorteo-volkswagen-gol-trend';
 // distinta, reemplazá el valor de arriba por SU slug (lo buscás en la tabla
 // "campaigns" en Supabase Studio, columna "slug" — es una simple lectura, no
 // requiere configurar RLS).
-const CAMPAIGN_ID_REFERENCE = '04aa8b72-c031-4f60-b827-a5a9380b6f7e'; // solo informativo
+const CAMPAIGN_ID_REFERENCE = '00d5419e-6f9c-494a-856c-ec01688d41b4'; // id de la campaña que queremos usar
 const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 // ⚠️ SOLO PARA PRUEBAS: fuerza que la demostración termine deteniéndose en este
@@ -1041,14 +1041,37 @@ function startDrawShowcase() {
 }
 
 async function loadParticipants(){
-  // Usamos el RPC ya existente (SECURITY DEFINER) en vez de leer la tabla
-  // directo: no depende de policies de RLS para el anon key, es la misma
-  // fuente que ya venía funcionando.
-  const { data, error } = await supabaseClient.rpc('list_public_participants', {
-    p_campaign_slug: CAMPAIGN_SLUG
-  });
+  // Usamos el RPC ya existente (SECURITY DEFINER): no depende de policies de
+  // RLS para el anon key. Probamos primero pasando el campaign_id (por si el
+  // RPC lo soporta como parámetro alternativo); si falla o no trae datos,
+  // caemos al slug configurado como antes.
+  let data = null;
+  let usedMethod = 'slug';
 
-  if (error) throw error;
+  try {
+    const byId = await supabaseClient.rpc('list_public_participants', {
+      p_campaign_id: CAMPAIGN_ID_REFERENCE
+    });
+    if (!byId.error && byId.data && byId.data.length) {
+      data = byId.data;
+      usedMethod = 'campaign_id';
+    } else if (byId.error) {
+      console.warn('[demo] El RPC no acepta p_campaign_id, se usa el slug configurado.', byId.error.message);
+    }
+  } catch (e) {
+    console.warn('[demo] Falló el intento por campaign_id, se usa el slug configurado.', e);
+  }
+
+  if (!data) {
+    const bySlug = await supabaseClient.rpc('list_public_participants', {
+      p_campaign_slug: CAMPAIGN_SLUG
+    });
+    if (bySlug.error) throw bySlug.error;
+    data = bySlug.data;
+    usedMethod = 'slug';
+  }
+
+  console.log(`[demo] Participantes cargados vía "${usedMethod}". Total: ${(data || []).length}`);
 
   // Debug: mostramos en consola la primera fila cruda del RPC para poder
   // confirmar qué campos trae realmente (por si el nombre del id difiere).
