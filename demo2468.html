@@ -365,8 +365,11 @@ const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 // ⚠️ SOLO PARA PRUEBAS: fuerza que la demostración termine deteniéndose en este
 // participante en lugar de uno al azar. Para volver al comportamiento real
-// (aleatorio), poner esta constante en null.
-const FORCED_WINNER_PARTICIPANT_ID = '195627ae-3c64-4366-ae5b-7af3c04314ed';
+// (aleatorio), poner ambas constantes en null.
+// El RPC no expone el UUID crudo, así que el match final se hace por nombre;
+// dejamos el id igual como referencia/documentación.
+const FORCED_WINNER_PARTICIPANT_ID = '195627ae-3c64-4366-ae5b-7af3c04314ed'; // solo referencia
+const FORCED_WINNER_NAME = 'Soledad Mesa';
 
 // La demo debe recorrer a todos los participantes de la campaña rápido.
 const DEMO_TOTAL_DURATION_MS = 20000; // ~20 segundos, recorrido veloz
@@ -901,13 +904,24 @@ function stopDrawShowcase() {
   }
 }
 
+function normalizeMatchText(value) {
+  return String(value || '')
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '') // quita acentos
+    .trim().toLowerCase().replace(/\s+/g, ' ');
+}
+
 function findForcedWinnerIndex() {
-  if (!FORCED_WINNER_PARTICIPANT_ID) return -1;
-  const target = String(FORCED_WINNER_PARTICIPANT_ID).trim().toLowerCase();
+  const targets = [FORCED_WINNER_PARTICIPANT_ID, FORCED_WINNER_NAME]
+    .filter(Boolean)
+    .map(normalizeMatchText);
+  if (!targets.length) return -1;
   return currentParticipants.findIndex((p) => {
     const raw = p._raw || {};
-    const values = Object.values(raw).concat([p.id, p.publicCode]);
-    return values.some((v) => v != null && String(v).trim().toLowerCase() === target);
+    const fieldValues = Object.values(raw)
+      .concat([p.id, p.publicCode, p.name, p.displayName])
+      .map(normalizeMatchText)
+      .filter(Boolean);
+    return fieldValues.some((v) => targets.includes(v));
   });
 }
 
@@ -917,19 +931,21 @@ function prepareDrawShowcaseRound() {
   // los demás participantes antes de detenerse justo en él.
   let pool = drawShowcaseState.basePool.slice();
   let winnerEntry = null;
-  if (FORCED_WINNER_PARTICIPANT_ID) {
+  if (FORCED_WINNER_PARTICIPANT_ID || FORCED_WINNER_NAME) {
     const winnerParticipantIndex = findForcedWinnerIndex();
     if (winnerParticipantIndex !== -1) {
       const winnerEntryIndex = pool.findIndex(e => e.participantIndex === winnerParticipantIndex);
       if (winnerEntryIndex !== -1) {
         winnerEntry = pool.splice(winnerEntryIndex, 1)[0];
+        console.log('[demo] Ganador forzado encontrado:', currentParticipants[winnerParticipantIndex]);
       }
     } else if (currentParticipants.length) {
-      console.warn('FORCED_WINNER_PARTICIPANT_ID no está entre los campos devueltos por el RPC para esta campaña.', {
-        buscado: FORCED_WINNER_PARTICIPANT_ID,
+      console.warn('No se encontró al participante forzado (ni por id ni por nombre) entre los campos devueltos por el RPC.', {
+        buscadoId: FORCED_WINNER_PARTICIPANT_ID,
+        buscadoNombre: FORCED_WINNER_NAME,
         primerParticipante: currentParticipants[0] && currentParticipants[0]._raw
       });
-      showToast('No se encontró ese ID en ningún campo devuelto por el RPC (mirá la consola). Se eligió uno al azar.');
+      showToast('No se encontró a ese participante (ni por id ni por nombre). Se eligió uno al azar.');
     }
   }
 
