@@ -355,7 +355,12 @@ body::before {
 const SUPABASE_URL = 'https://asokopamdmuvuupywjzt.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_zBhxdMJHw_uy_m3uRDj-ng_0yXz42EN';
 const CAMPAIGN_SLUG = 'sorteo-volkswagen-gol-trend';
-const CAMPAIGN_ID = '04aa8b72-c031-4f60-b827-a5a9380b6f7e';
+// Este es el slug que ya usaba el RPC. Si el campaign_id 04aa8b72-c031-4f60-b827-a5a9380b6f7e
+// corresponde a esta misma campaña, no hace falta tocar nada más. Si es una campaña
+// distinta, reemplazá el valor de arriba por SU slug (lo buscás en la tabla
+// "campaigns" en Supabase Studio, columna "slug" — es una simple lectura, no
+// requiere configurar RLS).
+const CAMPAIGN_ID_REFERENCE = '04aa8b72-c031-4f60-b827-a5a9380b6f7e'; // solo informativo
 const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 // ⚠️ SOLO PARA PRUEBAS: fuerza que la demostración termine deteniéndose en este
@@ -1006,40 +1011,39 @@ function startDrawShowcase() {
 }
 
 async function loadParticipants(){
-  // Traemos directamente de la tabla participants, filtrando por campaign_id
-  // y sin exponer columnas sensibles (email, phone). Requiere que la policy
-  // de RLS para SELECT anónimo esté habilitada sobre esta tabla/columnas.
-  const { data, error } = await supabaseClient
-    .from('participants')
-    .select('id, full_name, is_public_name, public_display_code, photo_url, city, province, total_entries, status, created_at')
-    .eq('campaign_id', CAMPAIGN_ID)
-    .eq('status', 'active')
-    .order('created_at', { ascending: true });
+  // Usamos el RPC ya existente (SECURITY DEFINER) en vez de leer la tabla
+  // directo: no depende de policies de RLS para el anon key, es la misma
+  // fuente que ya venía funcionando.
+  const { data, error } = await supabaseClient.rpc('list_public_participants', {
+    p_campaign_slug: CAMPAIGN_SLUG
+  });
 
   if (error) throw error;
 
-  participants = (data || []).map((row) => {
+  participants = (data || []).map((row, index) => {
     const location = normalizeParticipantLocation(row);
-    const isAnonymous = row.is_public_name === false;
-    const displayName = isAnonymous ? 'Anónimo' : (row.full_name || 'Participante');
-    const joinedAt = row.created_at ? new Date(row.created_at) : new Date();
+    const isAnonymous = Boolean(row.is_anonymous);
+    const displayName = row.display_name || row.full_name || 'Participante';
+    const fullName = row.full_name || displayName;
+    const joinedAt = row.joined_at ? new Date(row.joined_at) : new Date();
     return {
-      id: row.id,
-      name: row.full_name || displayName,
+      id: row.id || row.participant_id || row.uuid || String(index),
+      sourceIndex: index,
+      name: fullName,
       displayName,
       isAnonymous,
-      publicCode: row.public_display_code || '',
+      publicCode: row.public_code || '',
       photoUrl: row.photo_url || '',
       province: location.province,
       city: location.city,
       chances: Number(row.total_entries || 0),
-      currentChances: Number(row.total_entries || 0),
+      currentChances: Math.max(Number(row.purchased_entries || 0), Number(row.total_entries || 0)),
       date: joinedAt.toLocaleDateString('es-AR', { day: '2-digit', month: '2-digit', year: 'numeric' }),
       joinedAt
     };
   });
 
-  // Se recorren todos los participantes activos de esta campaña.
+  // Se recorren todos los participantes que devuelve el RPC para esta campaña.
   currentParticipants = participants;
 
   refreshDrawEntryPool();
