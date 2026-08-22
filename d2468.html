@@ -368,9 +368,9 @@ const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 // (aleatorio), poner esta constante en null.
 const FORCED_WINNER_PARTICIPANT_ID = '195627ae-3c64-4366-ae5b-7af3c04314ed';
 
-// La demo debe recorrer a todos los participantes de la campaña en ~2 minutos.
-const DEMO_TOTAL_DURATION_MS = 120000;
-const DEMO_FINAL_PAUSE_MS = 2200;
+// La demo debe recorrer a todos los participantes de la campaña rápido.
+const DEMO_TOTAL_DURATION_MS = 20000; // ~20 segundos, recorrido veloz
+const DEMO_FINAL_PAUSE_MS = 1600;
 
 let participants = [];
 let currentParticipants = [];
@@ -901,6 +901,15 @@ function stopDrawShowcase() {
   }
 }
 
+function findForcedWinnerIndex() {
+  if (!FORCED_WINNER_PARTICIPANT_ID) return -1;
+  const target = String(FORCED_WINNER_PARTICIPANT_ID).trim().toLowerCase();
+  return currentParticipants.findIndex((p) => {
+    const candidates = [p.id, p.publicCode].filter(Boolean).map((v) => String(v).trim().toLowerCase());
+    return candidates.includes(target);
+  });
+}
+
 function prepareDrawShowcaseRound() {
   // Si hay un participante forzado para pruebas, lo sacamos del pool base,
   // barajamos el resto y lo agregamos al final: así la demo recorre a TODOS
@@ -908,7 +917,7 @@ function prepareDrawShowcaseRound() {
   let pool = drawShowcaseState.basePool.slice();
   let winnerEntry = null;
   if (FORCED_WINNER_PARTICIPANT_ID) {
-    const winnerParticipantIndex = currentParticipants.findIndex(p => p.id === FORCED_WINNER_PARTICIPANT_ID);
+    const winnerParticipantIndex = findForcedWinnerIndex();
     if (winnerParticipantIndex !== -1) {
       const winnerEntryIndex = pool.findIndex(e => e.participantIndex === winnerParticipantIndex);
       if (winnerEntryIndex !== -1) {
@@ -916,6 +925,7 @@ function prepareDrawShowcaseRound() {
       }
     } else if (currentParticipants.length) {
       console.warn('FORCED_WINNER_PARTICIPANT_ID no está entre los participantes cargados de esta campaña.');
+      showToast('No se encontró el participante indicado (revisá que esté cargado en esta campaña); se eligió uno al azar.');
     }
   }
 
