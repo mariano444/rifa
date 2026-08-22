@@ -905,8 +905,9 @@ function findForcedWinnerIndex() {
   if (!FORCED_WINNER_PARTICIPANT_ID) return -1;
   const target = String(FORCED_WINNER_PARTICIPANT_ID).trim().toLowerCase();
   return currentParticipants.findIndex((p) => {
-    const candidates = [p.id, p.publicCode].filter(Boolean).map((v) => String(v).trim().toLowerCase());
-    return candidates.includes(target);
+    const raw = p._raw || {};
+    const values = Object.values(raw).concat([p.id, p.publicCode]);
+    return values.some((v) => v != null && String(v).trim().toLowerCase() === target);
   });
 }
 
@@ -924,8 +925,11 @@ function prepareDrawShowcaseRound() {
         winnerEntry = pool.splice(winnerEntryIndex, 1)[0];
       }
     } else if (currentParticipants.length) {
-      console.warn('FORCED_WINNER_PARTICIPANT_ID no está entre los participantes cargados de esta campaña.');
-      showToast('No se encontró el participante indicado (revisá que esté cargado en esta campaña); se eligió uno al azar.');
+      console.warn('FORCED_WINNER_PARTICIPANT_ID no está entre los campos devueltos por el RPC para esta campaña.', {
+        buscado: FORCED_WINNER_PARTICIPANT_ID,
+        primerParticipante: currentParticipants[0] && currentParticipants[0]._raw
+      });
+      showToast('No se encontró ese ID en ningún campo devuelto por el RPC (mirá la consola). Se eligió uno al azar.');
     }
   }
 
@@ -1030,6 +1034,13 @@ async function loadParticipants(){
 
   if (error) throw error;
 
+  // Debug: mostramos en consola la primera fila cruda del RPC para poder
+  // confirmar qué campos trae realmente (por si el nombre del id difiere).
+  if (data && data.length) {
+    console.log('[demo] Ejemplo de fila devuelta por list_public_participants:', data[0]);
+    console.log('[demo] Campos disponibles:', Object.keys(data[0]));
+  }
+
   participants = (data || []).map((row, index) => {
     const location = normalizeParticipantLocation(row);
     const isAnonymous = Boolean(row.is_anonymous);
@@ -1049,7 +1060,8 @@ async function loadParticipants(){
       chances: Number(row.total_entries || 0),
       currentChances: Math.max(Number(row.purchased_entries || 0), Number(row.total_entries || 0)),
       date: joinedAt.toLocaleDateString('es-AR', { day: '2-digit', month: '2-digit', year: 'numeric' }),
-      joinedAt
+      joinedAt,
+      _raw: row // guardamos la fila cruda para poder buscar el id forzado en cualquier campo
     };
   });
 
