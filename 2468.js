@@ -245,9 +245,9 @@ function getDrawNarrative(participant, isSpotlight, cycleProgress) {
   if (isSpotlight) {
     return 'La demostracion alcanzo el punto final de la prueba y deja visible la chance exacta seleccionada dentro de la urna.';
   }
-  if (cycleProgress < 0.2) return 'La demostracion comenzo a recorrer la urna completa, incluyendo cada chance activa de cada participante.';
-  if (cycleProgress > 0.72) return 'La prueba entra en su tramo final y empieza a acercarse a la chance donde se detendra automaticamente.';
-  return 'El sistema sigue recorriendo chances individuales en tiempo real para mostrar una simulacion mas fiel del mecanismo de seleccion.';
+  if (cycleProgress < 0.2) return 'El sistema oficial comenzo a recorrer la urna completa, incluyendo cada chance activa de cada participante.';
+  if (cycleProgress > 0.72) return ' ';
+  return 'El sistema sigue recorriendo chances individuales en tiempo real para mostrar el ganador/ganadora.';
 }
 
 function getActiveDemoParticipant() {
