@@ -506,17 +506,7 @@ body::before {
     animateTo(current);
   }
 
-  var viewersInterval = setInterval(nextTick, 2200 + Math.random() * 1600);
-
-  function hideViewersBadge() {
-    badgeEl.classList.add('hide-badge');
-    clearInterval(viewersInterval);
-  }
-
-  var startBtn = document.getElementById('drawStartBtn');
-  if (startBtn) {
-    startBtn.addEventListener('click', hideViewersBadge);
-  }
+  setInterval(nextTick, 2200 + Math.random() * 1600);
 })();
 </script>
 </body>
