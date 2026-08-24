@@ -324,6 +324,39 @@ body::before {
   .draw-showcase-panel { grid-template-columns: 1fr; }
 }
 
+/* ===== VIEWERS LIVE BADGE ===== */
+.viewers-live-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.78rem; font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--silver);
+  background: rgba(255,61,0,0.08);
+  border: 1px solid rgba(255,61,0,0.25);
+  padding: 0.4rem 0.85rem;
+  border-radius: 2rem;
+  margin: 0.75rem 0 0.25rem;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.viewers-live-badge.hide-badge {
+  opacity: 0;
+  transform: translateY(-6px) scale(0.98);
+  pointer-events: none;
+  height: 0; margin: 0; padding: 0; overflow: hidden; border-width: 0;
+}
+.viewers-live-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--fire);
+  box-shadow: 0 0 0 0 rgba(255,61,0,0.6);
+  animation: viewers-pulse 1.4s ease-out infinite;
+}
+@keyframes viewers-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(255,61,0,0.55); }
+  70% { box-shadow: 0 0 0 8px rgba(255,61,0,0); }
+  100% { box-shadow: 0 0 0 0 rgba(255,61,0,0); }
+}
+.viewers-live-count { color: var(--fire); font-weight: 800; }
+
 /* ===== TOAST ===== */
 .toast {
   position: fixed; bottom: 1.5rem; left: 50%;
@@ -350,6 +383,10 @@ body::before {
   <div class="section-inner">
     <span class="section-tag">🎮 Oficial en tiempo real</span>
     <h2 class="section-title">En vivo<br><span style="color:var(--volt)">la selección</span></h2>
+    <div class="viewers-live-badge" id="viewersLiveBadge">
+      <span class="viewers-live-dot"></span>
+      <span><span class="viewers-live-count" id="viewersLiveCount">0</span> personas viendo</span>
+    </div>
     <div style="margin-bottom:1rem">
       <button class="btn-draw-sec" style="display:none;" id="toggleDemoBtn" type="button">Mostrar / Ocultar</button>
     </div>
@@ -425,5 +462,62 @@ body::before {
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="2468.js"></script>
+<script>
+(function () {
+  var MIN_VIEWERS = 92;
+  var MAX_VIEWERS = 154;
+  var badgeEl = document.getElementById('viewersLiveBadge');
+  var countEl = document.getElementById('viewersLiveCount');
+  if (!badgeEl || !countEl) return;
+
+  var current = Math.floor(Math.random() * (MAX_VIEWERS - MIN_VIEWERS + 1)) + MIN_VIEWERS;
+  var displayed = current;
+  countEl.textContent = current;
+
+  function animateTo(target) {
+    var start = displayed;
+    var diff = target - start;
+    var duration = 600;
+    var startTime = null;
+
+    function step(ts) {
+      if (!startTime) startTime = ts;
+      var progress = Math.min((ts - startTime) / duration, 1);
+      var eased = 1 - Math.pow(1 - progress, 3);
+      displayed = Math.round(start + diff * eased);
+      countEl.textContent = displayed;
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      } else {
+        displayed = target;
+        countEl.textContent = target;
+      }
+    }
+    requestAnimationFrame(step);
+  }
+
+  function nextTick() {
+    var maxStep = 9;
+    var delta = Math.floor(Math.random() * (maxStep * 2 + 1)) - maxStep;
+    var target = current + delta;
+    if (target < MIN_VIEWERS) target = MIN_VIEWERS + Math.floor(Math.random() * 5);
+    if (target > MAX_VIEWERS) target = MAX_VIEWERS - Math.floor(Math.random() * 5);
+    current = target;
+    animateTo(current);
+  }
+
+  var viewersInterval = setInterval(nextTick, 2200 + Math.random() * 1600);
+
+  function hideViewersBadge() {
+    badgeEl.classList.add('hide-badge');
+    clearInterval(viewersInterval);
+  }
+
+  var startBtn = document.getElementById('drawStartBtn');
+  if (startBtn) {
+    startBtn.addEventListener('click', hideViewersBadge);
+  }
+})();
+</script>
 </body>
 </html>
