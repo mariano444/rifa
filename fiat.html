@@ -3186,7 +3186,8 @@ let countdownInterval = null;
 let liveFeedTimeout = null;
 let drawAnimationTimeout = null;
 let moreParticipantsInterval = null;
-const PARTICIPANTS_DISPLAY_LIMIT = 20;
+const PARTICIPANTS_COLLAPSE_THRESHOLD = 25; // desde esta cantidad se empieza a agrupar
+const PARTICIPANTS_DISPLAY_LIMIT = 15;     // cuantos se muestran en la tabla al agrupar
 const fallbackProofMessages = [
   {
     name: 'Mariana',
@@ -4706,8 +4707,11 @@ function renderParticipants(filter=''){
     return;
   }
 
-  const visibleParticipants = filtered.slice(0, PARTICIPANTS_DISPLAY_LIMIT);
-  const hiddenParticipants = filtered.slice(PARTICIPANTS_DISPLAY_LIMIT);
+  // Menos de 25: se muestran todos. Desde 25: se muestran 15 y el resto se
+  // agrupa abajo en "+N participantes mas ya estan anotados".
+  const shouldCollapse = filtered.length >= PARTICIPANTS_COLLAPSE_THRESHOLD;
+  const visibleParticipants = shouldCollapse ? filtered.slice(0, PARTICIPANTS_DISPLAY_LIMIT) : filtered;
+  const hiddenParticipants = shouldCollapse ? filtered.slice(PARTICIPANTS_DISPLAY_LIMIT) : [];
 
   const fragment = document.createDocumentFragment();
   visibleParticipants.forEach((participant) => {
