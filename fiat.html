@@ -3117,7 +3117,49 @@ const SUPABASE_KEY = 'sb_publishable_zBhxdMJHw_uy_m3uRDj-ng_0yXz42EN';
 const CAMPAIGN_SLUG = 'sorteo-fiat-cronos';
 const MAX_FALLBACK_CHANCES = 5000;
 const FUNCTIONS_BASE_URL = `${SUPABASE_URL}/functions/v1`;
-const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+// La landing solo usa la clave publica (sin login): desactivamos sesion/refresh
+// de auth para evitar timers, escrituras en localStorage y llamadas de auth.
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
+  auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false }
+});
+
+// ===== Cache local para reducir lecturas a la base de datos =====
+// Los datos publicos (campana, paquetes, participantes, historial demo) se
+// guardan unos minutos en localStorage. Recargas / visitas repetidas dentro
+// del TTL no consultan Supabase. Las acciones que cambian datos (reserva,
+// pago aprobado, registrar resultado demo) fuerzan o actualizan la cache.
+const CACHE_PREFIX = 'fiat_cache_v1:';
+const CACHE_TTL_MS = {
+  campaign: 10 * 60 * 1000,
+  packages: 10 * 60 * 1000,
+  participants: 3 * 60 * 1000,
+  demo: 10 * 60 * 1000
+};
+function cacheGet(key, ttlMs) {
+  try {
+    const raw = localStorage.getItem(CACHE_PREFIX + key);
+    if (!raw) return null;
+    const entry = JSON.parse(raw);
+    if (!entry || typeof entry.t !== 'number' || Date.now() - entry.t > ttlMs) return null;
+    return entry.d;
+  } catch (e) { return null; }
+}
+function cacheSet(key, data) {
+  try {
+    localStorage.setItem(CACHE_PREFIX + key, JSON.stringify({ t: Date.now(), d: data }));
+  } catch (e) {
+    // Cuota llena o storage bloqueado: seguimos sin cache.
+    try { localStorage.removeItem(CACHE_PREFIX + key); } catch (e2) {}
+  }
+}
+// Evita consultas duplicadas si dos partes piden lo mismo a la vez.
+const inflightRequests = {};
+function dedupe(key, factory) {
+  if (inflightRequests[key]) return inflightRequests[key];
+  const promise = Promise.resolve().then(factory).finally(() => { delete inflightRequests[key]; });
+  inflightRequests[key] = promise;
+  return promise;
+}
 const DEFAULT_SHARE_IMAGE = new URL('./assets/premios/cronos-frontal-34-b.jpg', window.location.href).toString();
 const DEFAULT_SHARE_TITLE = 'Gran Sorteo - Fiat Cronos';
 const DEFAULT_SHARE_DESCRIPTION = 'Participa de este sorteo. ¡Últimas chances disponibles!';
@@ -3136,6 +3178,7 @@ let pastParticipantsIndex = 0;
 let pastParticipantsInterval = null;
 let pastCommentsInterval = null;
 let demoResults = [];
+let demoResultsLoaded = false;
 let selectedPkg = null;
 let selectedPhotoFile = null;
 let selectedPaymentProvider = 'galiopay';
@@ -3570,6 +3613,9 @@ function toggleDemoHistory() {
   if (button) {
     button.textContent = drawShowcaseState.historyOpen ? 'Ocultar participantes demo' : 'Participantes demostracion';
   }
+  if (drawShowcaseState.historyOpen && !demoResultsLoaded) {
+    ensureDemoResults();
+  }
 }
 
 function toggleDemoShowcase() {
@@ -3717,22 +3763,40 @@ function renderDrawShowcaseEmpty() {
 }
 
 async function loadDemoResults() {
+  const cacheKey = `demo:${CAMPAIGN_SLUG}`;
+  const cached = cacheGet(cacheKey, CACHE_TTL_MS.demo);
+  if (cached) {
+    demoResults = cached;
+    demoResultsLoaded = true;
+    renderDemoHistory();
+    return;
+  }
   try {
-    const { data, error } = await supabaseClient.rpc('list_demo_draw_results', {
-      p_campaign_slug: CAMPAIGN_SLUG
+    await dedupe(cacheKey, async () => {
+      const { data, error } = await supabaseClient.rpc('list_demo_draw_results', {
+        p_campaign_slug: CAMPAIGN_SLUG
+      });
+      if (error) throw error;
+      demoResults = (data || []).map((row) => ({
+        ...row,
+        recorded_at_label: row.recorded_at
+          ? new Date(row.recorded_at).toLocaleString('es-AR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })
+          : ''
+      }));
+      cacheSet(cacheKey, demoResults);
     });
-    if (error) throw error;
-    demoResults = (data || []).map((row) => ({
-      ...row,
-      recorded_at_label: row.recorded_at
-        ? new Date(row.recorded_at).toLocaleString('es-AR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })
-        : ''
-    }));
+    demoResultsLoaded = true;
   } catch (error) {
     console.warn('No se pudo cargar el historial demo.', error);
     demoResults = [];
   }
   renderDemoHistory();
+}
+
+// El historial demo solo se ve al abrir el panel: se consulta la primera vez
+// que hace falta (abrir el panel o registrar un resultado), no al cargar la pagina.
+async function ensureDemoResults() {
+  if (!demoResultsLoaded) await loadDemoResults();
 }
 
 async function saveCurrentDemoResult() {
@@ -3742,6 +3806,7 @@ async function saveCurrentDemoResult() {
     return;
   }
   try {
+    await ensureDemoResults();
     const { error } = await supabaseClient.rpc('record_demo_draw_result', {
       p_campaign_slug: CAMPAIGN_SLUG,
       p_participant_public_code: participant.publicCode || '',
@@ -3767,6 +3832,7 @@ async function saveCurrentDemoResult() {
       },
       ...demoResults
     ];
+    cacheSet(`demo:${CAMPAIGN_SLUG}`, demoResults);
     renderDemoHistory();
     if (!drawShowcaseState.historyOpen) {
       toggleDemoHistory();
@@ -4090,7 +4156,7 @@ function startFloatingAvatars() {
     avatar.style.left = `${left}%`;
     
     if (p.photoUrl) {
-      avatar.innerHTML = `<img src="${p.photoUrl}" style="width:100%;height:100%;border-radius:50%;object-fit:cover">`;
+      avatar.innerHTML = `<img src="${p.photoUrl}" loading="lazy" decoding="async" style="width:100%;height:100%;border-radius:50%;object-fit:cover">`;
     } else {
       // Show full name instead of initials
       avatar.textContent = p.displayName || p.name;
@@ -4468,7 +4534,7 @@ async function submitOrder(){
     }
 
     setModalOpen(false);
-    await loadParticipants();
+    await loadParticipants({ force: true });
     renderPackages();
     renderParticipants(document.getElementById('searchInput').value);
 
@@ -4487,6 +4553,13 @@ async function submitOrder(){
 }
 
 async function loadCampaign(){
+  const campaignCacheKey = `campaign:${CAMPAIGN_SLUG}`;
+  const cachedCampaign = cacheGet(campaignCacheKey, CACHE_TTL_MS.campaign);
+  if (cachedCampaign && cachedCampaign.id) {
+    activeCampaign = cachedCampaign;
+    setCountdown(DRAW_TARGET_ISO);
+    return;
+  }
   // Pedimos solo las columnas que realmente usamos (id y max_entries) en vez
   // de la fila completa: menos bytes transferidos por cada carga de pagina.
   const CAMPAIGN_FIELDS = 'id, max_entries';
@@ -4513,10 +4586,17 @@ async function loadCampaign(){
 
   if (!data) throw new Error('No hay una campana activa configurada.');
   activeCampaign = data;
+  cacheSet(campaignCacheKey, data);
   setCountdown(DRAW_TARGET_ISO);
 }
 
 async function loadPackages(){
+  const packagesCacheKey = `packages:${activeCampaign.id}`;
+  const cachedPackages = cacheGet(packagesCacheKey, CACHE_TTL_MS.packages);
+  if (cachedPackages) {
+    packages = cachedPackages;
+    return;
+  }
   // Idem: solo las columnas que se pintan en las tarjetas de paquetes.
   const { data, error } = await supabaseClient
     .from('packages')
@@ -4528,6 +4608,7 @@ async function loadPackages(){
 
   if (error) throw error;
   packages = data || [];
+  cacheSet(packagesCacheKey, packages);
 }
 
 
@@ -4801,13 +4882,28 @@ function setupInfiniteScroll(track, currentInterval, setIntervalCallback) {
   setIntervalCallback(interval);
 }
 
-async function loadParticipants(){
-  const { data, error } = await supabaseClient.rpc('list_public_participants', {
-    p_campaign_slug: CAMPAIGN_SLUG
+// force = true salta la cache (tras una reserva o un pago aprobado, cuando la
+// lista realmente cambio). En una carga normal se reutiliza la cache reciente.
+async function fetchParticipantRows(force) {
+  const cacheKey = `participants:${CAMPAIGN_SLUG}`;
+  if (!force) {
+    const cached = cacheGet(cacheKey, CACHE_TTL_MS.participants);
+    if (cached) return cached;
+  }
+  return dedupe(cacheKey + (force ? ':force' : ''), async () => {
+    const { data, error } = await supabaseClient.rpc('list_public_participants', {
+      p_campaign_slug: CAMPAIGN_SLUG
+    });
+    if (error) throw error;
+    const rows = data || [];
+    cacheSet(cacheKey, rows);
+    return rows;
   });
+}
 
-  if (error) throw error;
-  
+async function loadParticipants(options = {}){
+  const data = await fetchParticipantRows(Boolean(options.force));
+
   participants = (data || []).map((row, index) => {
     const location = normalizeParticipantLocation(row);
     const displayName = row.display_name || row.full_name;
@@ -4893,7 +4989,7 @@ async function handleReturnedPayment() {
     return;
   }
 
-  await loadParticipants();
+  await loadParticipants({ force: true });
   renderParticipants(document.getElementById('searchInput').value);
   startDrawShowcase();
   scheduleLiveFeed();
@@ -4981,9 +5077,9 @@ async function bootLanding(){
     });
     createSparks();
     await loadCampaign();
-    await loadPackages();
-    await loadParticipants();
-    await loadDemoResults();
+    // Paquetes y participantes no dependen entre si: se piden en paralelo.
+    // El historial demo se carga recien cuando se abre el panel.
+    await Promise.all([loadPackages(), loadParticipants()]);
     renderPackages();
     renderParticipants();
     repairDocumentText();
