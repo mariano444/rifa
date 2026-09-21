@@ -1047,6 +1047,7 @@ body { counter-reset: sec-index; }
   display: block;
   background: #000;
 }
+.gallery-video-wrap, .gallery-video-wrap video { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
 .gallery-video-wrap .gallery-tag { top: 0.6rem; bottom: auto; pointer-events: none; }
 .gallery-tag {
   position: absolute;
@@ -2525,7 +2526,7 @@ src="https://www.facebook.com/tr?id=717335459401864&ev=PageView&noscript=1"
         </div>
       </div>
 
-      <div class="countdown-bar reveal hidden-until-thirty" id="countdownBar" style="transition-delay:0.4s;">
+      <div style="display:none;" class="countdown-bar reveal hidden-until-thirty" id="countdownBar" style="transition-delay:0.4s;">
         <div class="countdown-unit">
           <span class="countdown-num" id="cd-d">00</span>
           <span class="countdown-label">Días</span>
@@ -2689,7 +2690,7 @@ src="https://www.facebook.com/tr?id=717335459401864&ev=PageView&noscript=1"
     <p class="section-sub">El vehículo se encuentra en excelentes condiciones, listo para que lo disfrutes desde el primer día.</p>
     
     <div class="gallery-video-wrap reveal">
-      <video id="galleryVideo" controls muted loop playsinline preload="none"
+      <video id="galleryVideo" controls controlsList="nodownload noremoteplayback" disablePictureInPicture disableRemotePlayback muted loop playsinline preload="none"
              poster="./assets/premios/cronos-video-poster.jpg"
              aria-label="Video del Fiat Cronos: exterior, frente e interior">
         <source src="./assets/premios/cronos-video.mp4" type="video/mp4">
@@ -2705,6 +2706,9 @@ src="https://www.facebook.com/tr?id=717335459401864&ev=PageView&noscript=1"
     (function () {
       var v = document.getElementById('galleryVideo');
       if (!v) return;
+      // Desalienta la descarga casual: sin boton de descargar y sin menu de clic derecho.
+      v.addEventListener('contextmenu', function (e) { e.preventDefault(); });
+      v.addEventListener('dragstart', function (e) { e.preventDefault(); });
       var conn = navigator.connection || {};
       var slow = conn.saveData || /(^|-)2g$|3g/.test(conn.effectiveType || '');
       var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -3252,7 +3256,7 @@ const DEFAULT_SHARE_TITLE = 'Gran Sorteo - Fiat Cronos';
 const DEFAULT_SHARE_DESCRIPTION = 'Participa de este sorteo. ¡Últimas chances disponibles!';
 const COURSE_PAGE_PATH = './curso-guia-auto-argentina.html';
 const COURSE_MIN_ENTRIES = 3;
-const DRAW_TARGET_ISO = '2026-09-22T10:00:00-03:00'; // = 2026-11-30 21:00:00+00 (mismo instante que draw_at en el SQL)
+const DRAW_TARGET_ISO = '2026-09-22T24:00:00-03:00'; // = 2026-11-30 21:00:00+00 (mismo instante que draw_at en el SQL)
 
 let activeCampaign = null;
 let packages = [];
