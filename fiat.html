@@ -4381,13 +4381,13 @@ function setCountdown(targetIso){
     document.getElementById('cd-s').textContent = String(s).padStart(2,'0');
     const note = document.getElementById('countdownNote');
     if (d <= 3) {
-      note.textContent = 'Ultimos dias. Quedan pocos lugares para hacer el sorteo antes.';
+      note.textContent = 'Quedan pocos lugares para hacer el sorteo.';
     } else if (d <= 10) {
       note.textContent = 'Quedan pocos lugares y sorteamos al agotar las chances.';
     } else if (d <= 30) {
-      note.textContent = 'Comienza la cuenta regresiva. Quedan pocos lugares para hacer el sorteo antes.';
+      note.textContent = 'Quedan pocos lugares para hacer el sorteo.';
     } else {
-      note.textContent = 'Quedan pocos lugares para hacer el sorteo antes.';
+      note.textContent = 'Quedan pocos lugares para hacer el sorteo.';
     }
   }
 
