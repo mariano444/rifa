@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gran Sorteo</title>
+<title>Gran Sorteo - Fiat Cronos</title>
 <meta name="description" content="Participa desde cualquier punto de Argentina por un hermoso premio. ¡Últimas chances disponibles!">
 <meta name="author" content="Gran Sorteo">
 <meta property="og:title" content="Gran Premio">
@@ -1031,6 +1031,23 @@ body { counter-reset: sec-index; }
   object-fit: cover;
   display: block;
 }
+/* Video del auto (arriba de la galeria) */
+.gallery-video-wrap {
+  position: relative;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  aspect-ratio: 16/9;
+  background: var(--ink3);
+  border: 1px solid rgba(255,255,255,0.06);
+  margin-bottom: 1rem;
+}
+.gallery-video-wrap video {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  background: #000;
+}
+.gallery-video-wrap .gallery-tag { top: 0.6rem; bottom: auto; pointer-events: none; }
 .gallery-tag {
   position: absolute;
   bottom: 0.6rem; left: 0.6rem;
@@ -2671,6 +2688,49 @@ src="https://www.facebook.com/tr?id=717335459401864&ev=PageView&noscript=1"
     <h2 class="section-title">Explorá tu próximo<br><span style="color:var(--volt)">Fiat Cronos</span></h2>
     <p class="section-sub">El vehículo se encuentra en excelentes condiciones, listo para que lo disfrutes desde el primer día.</p>
     
+    <div class="gallery-video-wrap reveal">
+      <video id="galleryVideo" controls muted loop playsinline preload="none"
+             poster="./assets/premios/cronos-video-poster.jpg"
+             aria-label="Video del Fiat Cronos: exterior, frente e interior">
+        <source src="./assets/premios/cronos-video.mp4" type="video/mp4">
+        Tu navegador no puede reproducir este video.
+      </video>
+      <span class="gallery-tag">Video del Fiat Cronos</span>
+    </div>
+    <script>
+    // El video no se descarga hasta que se ve en pantalla (preload="none").
+    // Se reproduce solo, sin sonido, mientras esta visible y se pausa al salir.
+    // No se autoreproduce con "ahorro de datos", conexion lenta o si el usuario
+    // pidio menos animaciones: en esos casos queda el poster y se toca para verlo.
+    (function () {
+      var v = document.getElementById('galleryVideo');
+      if (!v) return;
+      var conn = navigator.connection || {};
+      var slow = conn.saveData || /(^|-)2g$|3g/.test(conn.effectiveType || '');
+      var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (slow || reduced || !('IntersectionObserver' in window)) return;
+      var pausedByUser = false, pausedByScript = false;
+      v.addEventListener('pause', function () {
+        if (!pausedByScript && !v.ended) pausedByUser = true;
+        pausedByScript = false;
+      });
+      v.addEventListener('play', function () { pausedByUser = false; });
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting && e.intersectionRatio >= 0.5) {
+            if (!pausedByUser && v.paused) {
+              var pr = v.play();
+              if (pr && pr.catch) pr.catch(function () {});
+            }
+          } else if (!v.paused) {
+            pausedByScript = true;
+            v.pause();
+          }
+        });
+      }, { threshold: [0, 0.5] }).observe(v);
+    })();
+    </script>
+
     <div class="gallery-grid-new">
       <div class="gallery-item-new reveal">
         <img src="./assets/premios/cronos-frontal-34-b.jpg" alt="Fiat Cronos vista 3/4 frontal" loading="lazy">
@@ -4317,7 +4377,7 @@ function setCountdown(targetIso){
     document.getElementById('cd-s').textContent = String(s).padStart(2,'0');
     const note = document.getElementById('countdownNote');
     if (d <= 3) {
-      note.textContent = 'Quedan pocos lugares para hacer el sorteo antes.';
+      note.textContent = 'Ultimos dias. Quedan pocos lugares para hacer el sorteo antes.';
     } else if (d <= 10) {
       note.textContent = 'Quedan pocos lugares y sorteamos al agotar las chances.';
     } else if (d <= 30) {
