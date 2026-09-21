@@ -85,6 +85,7 @@ body::before {
   z-index: 900;
   width: min(760px, calc(100% - 2rem));
   background: rgba(18,13,13,0.7);
+  -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
   border: 1px solid rgba(237,234,230,0.14);
   border-radius: 999px;
@@ -205,6 +206,7 @@ body::before {
   width: 100%;
   display: flex; flex-direction: column; align-items: center;
   background: rgba(15,21,38,0.6);
+  -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
   border: 1px solid rgba(237,234,230,0.1);
   border-top: 3px solid var(--volt);
@@ -537,6 +539,7 @@ body::before {
   padding: 0.55rem 1rem;
   border-radius: 0.3rem;
   border: 1px solid rgba(255,255,255,0.07);
+  -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
 }
 .hero-trust-badge img { width: 20px; height: 20px; }
@@ -1028,6 +1031,23 @@ body { counter-reset: sec-index; }
   object-fit: cover;
   display: block;
 }
+/* Video del auto (arriba de la galeria) */
+.gallery-video-wrap {
+  position: relative;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  aspect-ratio: 16/9;
+  background: var(--ink3);
+  border: 1px solid rgba(255,255,255,0.06);
+  margin-bottom: 1rem;
+}
+.gallery-video-wrap video {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  background: #000;
+}
+.gallery-video-wrap .gallery-tag { top: 0.6rem; bottom: auto; pointer-events: none; }
 .gallery-tag {
   position: absolute;
   bottom: 0.6rem; left: 0.6rem;
@@ -1703,6 +1723,7 @@ footer strong { color: var(--volt); }
   opacity: 0;
   transform: translateX(-120%);
   transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
 }
 .live-feed-card.show {
@@ -2227,6 +2248,7 @@ td[data-col="participant"] { min-width: 200px; padding-left: 1rem; }
 
 .btn-secondary {
   background: rgba(255,255,255,0.03);
+  -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
   box-shadow: var(--shadow-sm);
 }
@@ -2288,7 +2310,7 @@ td[data-col="participant"] { min-width: 200px; padding-left: 1rem; }
 
 /* --- Modal de checkout: es el momento de mayor sensibilidad ("¿esto es
    seguro?"), asi que recibe la terminacion visual mas cuidada --- */
-.modal-overlay { backdrop-filter: blur(3px); }
+.modal-overlay { -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px); }
 .modal {
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg), 0 0 0 1px rgba(217,39,43,0.08);
@@ -2365,6 +2387,28 @@ select:focus-visible,
     scroll-behavior: auto !important;
   }
 }
+
+/* ===== Ajustes de compatibilidad movil ===== */
+/* iOS Safari hace zoom automatico al enfocar un campo con fuente < 16px:
+   en pantallas tactiles/chicas los campos usan 16px para evitarlo. */
+@media (max-width: 900px), (hover: none) and (pointer: coarse) {
+  input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+}
+/* Barra superior en celulares muy angostos (320-400px): el boton
+   "Participar" quedaba cortado fuera de la barra. */
+@media (max-width: 400px) {
+  .nav-strip { padding: 0.5rem 0.5rem 0.5rem 0.9rem; gap: 0.5rem; }
+  .nav-brand { font-size: 0.88rem; white-space: nowrap; }
+  .nav-live { font-size: 0.6rem; letter-spacing: 0.04em; white-space: nowrap; gap: 0.35rem; }
+  .nav-cta { font-size: 0.68rem; letter-spacing: 0; padding: 0.5rem 0.8rem; white-space: nowrap; }
+}
+
+/* Evita que iOS agrande el texto al rotar el celular */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 </style>
 </head>
    <!-- Meta Pixel Code -->
@@ -2644,6 +2688,49 @@ src="https://www.facebook.com/tr?id=717335459401864&ev=PageView&noscript=1"
     <h2 class="section-title">Explorá tu próximo<br><span style="color:var(--volt)">Fiat Cronos</span></h2>
     <p class="section-sub">El vehículo se encuentra en excelentes condiciones, listo para que lo disfrutes desde el primer día.</p>
     
+    <div class="gallery-video-wrap reveal">
+      <video id="galleryVideo" controls muted loop playsinline preload="none"
+             poster="./assets/premios/cronos-video-poster.jpg"
+             aria-label="Video del Fiat Cronos: exterior, frente e interior">
+        <source src="./assets/premios/cronos-video.mp4" type="video/mp4">
+        Tu navegador no puede reproducir este video.
+      </video>
+      <span class="gallery-tag">Video del Fiat Cronos</span>
+    </div>
+    <script>
+    // El video no se descarga hasta que se ve en pantalla (preload="none").
+    // Se reproduce solo, sin sonido, mientras esta visible y se pausa al salir.
+    // No se autoreproduce con "ahorro de datos", conexion lenta o si el usuario
+    // pidio menos animaciones: en esos casos queda el poster y se toca para verlo.
+    (function () {
+      var v = document.getElementById('galleryVideo');
+      if (!v) return;
+      var conn = navigator.connection || {};
+      var slow = conn.saveData || /(^|-)2g$|3g/.test(conn.effectiveType || '');
+      var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (slow || reduced || !('IntersectionObserver' in window)) return;
+      var pausedByUser = false, pausedByScript = false;
+      v.addEventListener('pause', function () {
+        if (!pausedByScript && !v.ended) pausedByUser = true;
+        pausedByScript = false;
+      });
+      v.addEventListener('play', function () { pausedByUser = false; });
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting && e.intersectionRatio >= 0.5) {
+            if (!pausedByUser && v.paused) {
+              var pr = v.play();
+              if (pr && pr.catch) pr.catch(function () {});
+            }
+          } else if (!v.paused) {
+            pausedByScript = true;
+            v.pause();
+          }
+        });
+      }, { threshold: [0, 0.5] }).observe(v);
+    })();
+    </script>
+
     <div class="gallery-grid-new">
       <div class="gallery-item-new reveal">
         <img src="./assets/premios/cronos-frontal-34-b.jpg" alt="Fiat Cronos vista 3/4 frontal" loading="lazy">
@@ -3186,7 +3273,8 @@ let countdownInterval = null;
 let liveFeedTimeout = null;
 let drawAnimationTimeout = null;
 let moreParticipantsInterval = null;
-const PARTICIPANTS_DISPLAY_LIMIT = 20;
+const PARTICIPANTS_COLLAPSE_THRESHOLD = 25; // desde esta cantidad se empieza a agrupar
+const PARTICIPANTS_DISPLAY_LIMIT = 15;     // cuantos se muestran en la tabla al agrupar
 const fallbackProofMessages = [
   {
     name: 'Mariana',
@@ -4706,8 +4794,11 @@ function renderParticipants(filter=''){
     return;
   }
 
-  const visibleParticipants = filtered.slice(0, PARTICIPANTS_DISPLAY_LIMIT);
-  const hiddenParticipants = filtered.slice(PARTICIPANTS_DISPLAY_LIMIT);
+  // Menos de 25: se muestran todos. Desde 25: se muestran 15 y el resto se
+  // agrupa abajo en "+N participantes mas ya estan anotados".
+  const shouldCollapse = filtered.length >= PARTICIPANTS_COLLAPSE_THRESHOLD;
+  const visibleParticipants = shouldCollapse ? filtered.slice(0, PARTICIPANTS_DISPLAY_LIMIT) : filtered;
+  const hiddenParticipants = shouldCollapse ? filtered.slice(PARTICIPANTS_DISPLAY_LIMIT) : [];
 
   const fragment = document.createDocumentFragment();
   visibleParticipants.forEach((participant) => {
