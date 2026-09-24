@@ -2492,6 +2492,9 @@ src="https://www.facebook.com/tr?id=717335459401864&ev=PageView&noscript=1"
             <span>disponibles</span>
           </div>
         </div>
+        <div class="hero-car-featured reveal" style="margin-top:0.9rem;">
+          <video src="./assets/premios/uno-video-presentacion.mp4" autoplay muted loop playsinline preload="metadata" style="width:100%;height:auto;max-height:62vh;display:block;object-fit:contain;background:var(--ink3);"></video>
+        </div>
       </div>
 
       <p class="hero-lead">Participá por un hermoso Fiat Uno. <strong>Seguridad garantizada, lista pública en tiempo real</strong> y un beneficio exclusivo: con 3+ chances te llevás gratis el curso guía para comprar usados.</p>
@@ -4177,6 +4180,7 @@ function updateHeroDynamicElements() {
 }
 
 function startFloatingAvatars() {
+  return; // Nombres flotantes aleatorios en el fondo del header deshabilitados a pedido.
   const container = document.getElementById('floatingAvatarsContainer');
   if (!container) return;
 
